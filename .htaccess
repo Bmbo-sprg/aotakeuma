@@ -1,4 +1,0 @@
-#####mime#####
-AddType image/svg+xml .svg .svgz
-#####end:mime#####
-AddEncoding gzip .svgz
