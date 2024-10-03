@@ -1,20 +1,34 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import {
-  createBrowserRouter,
-  RouterProvider,
+  Navigate,
+  Route,
+  Routes,
+  BrowserRouter as Router,
 } from "react-router-dom";
-import App from './App';
+import Navbar from './components/Navbar';
+import Root from './pages/Root';
+import Discography from './pages/Discography';
 
-const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <App />,
-  }
-]);
+const App = () => {
+  return (
+    <Router>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Root />} />
+        <Route path="snfe" element={<Navigate to="/discography/3" />} />
+        <Route path="haruame-ost" element={<Navigate to="/discography/4" />} />
+        <Route path="ubugoe" element={<Navigate to="/discography/5" />} />
+        <Route path="discography" element={<Discography />} />
+        <Route path="discography/:id" element={<Discography />} />
+        <Route path="*" element={<p>Oops...</p>} />
+      </Routes>
+    </Router>
+  );
+}
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <App />
   </StrictMode>
 );
