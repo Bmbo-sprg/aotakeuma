@@ -1,5 +1,6 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
+import { Helmet } from 'react-helmet';
 import {
   Navigate,
   Route,
@@ -9,10 +10,15 @@ import {
 import Navbar from './components/Navbar';
 import Root from './pages/Root';
 import Discography from './pages/Discography';
+import icon from './assets/img/icon/logo_with_bg.png';
 
 const App = () => {
   return (
     <Router>
+      <Helmet>
+        <meta property="og:image" content={"https://aotakeuma.com" + icon} />
+        <meta property="twitter:image" content={"https://aotakeuma.com" + icon} />
+      </Helmet>
       <Navbar />
       <Routes>
         <Route path="/" element={<Root />} />

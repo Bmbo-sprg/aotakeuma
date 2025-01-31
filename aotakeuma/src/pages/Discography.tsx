@@ -31,7 +31,7 @@ const Tnftep1 = () => {
   return (
     <div>
       <h1>ふたつの夏日に餞を</h1>
-      <a href="https://www.dropbox.com">ダウンロードページ (Dropbox)</a>
+      <a href="https://www.dropbox.com/scl/fi/uxbbjakwzw1o4jiya4uft/.zip?rlkey=x5v2fiznp1162oavcfeicspta&st=mrcf0846&dl=0">ダウンロードページ (Dropbox)</a>
     </div>
   )
 };
