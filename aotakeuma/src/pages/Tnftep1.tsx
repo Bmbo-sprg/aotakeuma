@@ -1,22 +1,24 @@
-import bg from "./assets/img/tnftep1/banner-bg.png";
-import jacket from "./assets/img/tnftep1/jacket.png";
-import niconico from "./assets/img/tnftep1/icons/niconico.png";
-import youtube from "./assets/img/tnftep1/icons/youtube.png";
-import x from "./assets/img/tnftep1/icons/x.png";
-import soundcloud from "./assets/img/tnftep1/icons/soundcloud.png";
-import pixiv from "./assets/img/tnftep1/icons/pixiv.png";
-import fuyune from "./assets/img/tnftep1/icons/fuyune.jpg";
-import booth from "./assets/img/tnftep1/icons/booth.svg";
+import bg from "../assets/img/tnftep1/banner-bg.png";
+import jacket from "../assets/img/tnftep1/jacket.png";
+import iconNekoneko from "../assets/img/tnftep1/icon-nekoneko.jpg";
+import iconPenguin from "../assets/img/tnftep1/icon-penguin.png";
+import iconTakeuma from "../assets/img/icon/logo_with_bg.png";
+
+import niconico from "../assets/img/icon/niconico.png";
+import youtube from "../assets/img/icon/youtube.png";
+import x from "../assets/img/icon/x.png";
+import soundcloud from "../assets/img/icon/soundcloud.png";
+import pixiv from "../assets/img/icon/pixiv.png";
 import styled from "styled-components";
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import React from "react";
+import { useMeasure } from "@uidotdev/usehooks";
 
 const Header = styled.h1`
   text-align: center;
   font-family: "Jost", sans-serif;
   font-weight: 300;
   font-style: normal;
-  font-size: 3rem;
+  font-size: 2rem;
   color: #115394;
   text-decoration: underline dotted 2px;
   text-underline-offset: 0.2em;
@@ -24,15 +26,9 @@ const Header = styled.h1`
 
 const CenterText = styled.p`
   text-align: center;
-  margin-top: 40px;
-  font-size: 1.2rem;
+  margin-top: 20px;
+  font-size: 1.0rem;
   line-height: 2;
-`;
-
-const HintText = styled(CenterText)`
-  font-size: 0.8rem;
-  line-height: 1;
-  margin-top: 10px;
 `;
 
 const ResponsiveBr = styled.br`
@@ -75,10 +71,24 @@ const Banner = () => {
 const Introduction = () => {
   return (
     <CenterText>
-      サークル、回生、音楽<ResponsiveBr />ジャンルの垣根を超えた、<br />
-      気鋭京大生ボカロPによる<ResponsiveBr />コンピレーションアルバム<br />
-      Kyoto University VOCALOID Compilation 2 「Bros.」
+      双葉湊音×紡乃世詞音の<ResponsiveBr />ひと夏を描いた小品集<br />
+      『ふたつの夏日に餞を』
     </CenterText>
+  )
+}
+
+const Download = () => {
+  return (
+    <>
+      <Header>Download</Header>
+      <CenterText>
+        <a href="https://www.dropbox.com/scl/fi/uxbbjakwzw1o4jiya4uft/.zip?rlkey=x5v2fiznp1162oavcfeicspta&st=mrcf0846&dl=0">ダウンロードページ (Dropbox)</a>
+        <br />
+        上記のリンクにアクセスし，<ResponsiveBr />
+        ブックレットに記載されている<ResponsiveBr />
+        パスワードを入力してください。
+      </CenterText>
+    </>
   )
 }
 
@@ -172,15 +182,6 @@ const Member: React.FC<MemberProps> = ( { member, onHover, onLeave, interactive 
   )
 }
 
-const MembersNote = styled.p`
-  text-align: center;
-  margin-top: -20px;
-
-  @media (min-width: 600px) {
-    display: none;
-  }
-`;
-
 const MembersContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -188,38 +189,11 @@ const MembersContainer = styled.div`
   justify-content: center;
 `;
 
-const CommentContainer = styled.div`
-  background-color: #f0f0f0;
-  border-radius: 1rem;
-  margin-top: 30px;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 10px;
-  white-space: pre-wrap;
-  width: 50%;
-  min-width: 200px;
-  font-size: clamp(12px, 1vw, 14px);
-`;
-
-const Members = () => {
-  const [comment, setComment] = useState("");
-
+const Vocal = () => {
   return (
     <>
-      <Header>Composers</Header>
-      <MembersNote>メンバーをタップするとコメントが下に表示されます</MembersNote>
-      <MembersContainer>
-        {members.map((member, index) => (
-          <Member
-            key={index}
-            member={member}
-            onHover={() => setComment(member.comment)}
-            onLeave={() => setComment("")}
-            interactive
-          />
-        ))}
-      </MembersContainer>
-      <CommentContainer>{comment}</CommentContainer>
+      <Header>Vocal</Header>
+      <CenterText>双葉湊音, 紡乃世詞音</CenterText>
     </>
   )
 }
@@ -230,22 +204,35 @@ const Artwork = () => {
       <Header>Artwork</Header>
       <MembersContainer>
         <Member member={{
-          "name": "柚雪ふゆね",
-          "icon": fuyune,
-          "x": "https://x.com/Snow53902",
-          "pixiv": "https://www.pixiv.net/users/42157580",
+          "name": "ねこねこ",
+          "icon": iconNekoneko,
+          "x": "https://x.com/nekohoshi_neko",
+          "pixiv": "https://pixiv.net/users/71433655",
+        }} />
+        <Member member={{
+          "name": "ぺんぎん",
+          "icon": iconPenguin,
+          "x": "https://x.com/dx19291005",
+          "pixiv": "https://pixiv.net/users/22887343",
         }} />
       </MembersContainer>
     </>
   )
 }
 
-const Organizer = () => {
+const Music = () => {
   return (
     <>
-      <Header>Organizer, Mastering</Header>
+      <Header>Music</Header>
       <MembersContainer>
-        <Member member={members[15]} />
+        <Member member={{
+          "name": "竹馬あお",
+          "icon": iconTakeuma,
+          "niconico": "https://www.nicovideo.jp/user/72888400",
+          "youtube": "https://www.youtube.com/@aotakeuma",
+          "x": "https://x.com/aotakeuma",
+          "soundcloud": "https://soundcloud.com/aotakeuma",
+        }} />
       </MembersContainer>
     </>
   )
@@ -259,29 +246,21 @@ const XFDIframe = styled.iframe`
   overflow: hidden;
 `;
 
-interface XFDProps {
-  isPublished: boolean;
-};
-
-const XFD: React.FC<XFDProps> = ({ isPublished }) => {
+const XFD = () => {
   const [ref, { width }] = useMeasure();
 
   return (
     <>
       <Header>Crossfade</Header>
       <XFDContainer ref={ref}>
-        {isPublished ? (
-          <XFDIframe
-            width={Math.floor(width || 200)}
-            height={Math.floor((width || 200) * 9 / 16)}
-            src="https://www.youtube.com/embed/Mj0Fx-Q_pgM"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerPolicy="strict-origin-when-cross-origin"
-            allowFullScreen
-          />
-        ) : (
-          <CenterText>Coming soon...</CenterText>
-        )}
+        <XFDIframe
+          width={Math.floor(width || 200)}
+          height={Math.floor((width || 200) * 9 / 16)}
+          src="https://www.youtube.com/embed/DbrYdcOpuQo"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerPolicy="strict-origin-when-cross-origin"
+          allowFullScreen
+        />
       </XFDContainer>
     </>
   )
@@ -309,7 +288,7 @@ const TrackArtist = styled.span`
   margin-left: 10px;
 
   &:before {
-    content: " / ";
+    content: " - ";
   }
 `;
 
@@ -318,141 +297,62 @@ const TrackFeat = styled.span`
   margin-left: 10px;
 `;
 
-interface TracksProps {
-  isXFDPublished: boolean;
-};
-
-const Tracks: React.FC<TracksProps> = ({ isXFDPublished }) => {
+const Tracks = () => {
   return (
     <>
       <Header>Tracks</Header>
-      {isXFDPublished ? (
-        <TracksContainer>
-          <TracksList>
-            {lyrics.map((track, index) => (
-              <li key={index}>
-                <TrackTitle>{track.title}</TrackTitle><ResponsiveBr />
-                <TrackArtist>{track.artist}</TrackArtist>
-                <TrackFeat>{track.feat}</TrackFeat>
-              </li>
-            ))}
-          </TracksList>
-        </TracksContainer>
-      ) : (
-        <CenterText>
-          全15曲<br />
-          Coming soon...
-        </CenterText>
-      )}
+      <TracksContainer>
+        <TracksList>
+          <li>
+            <TrackTitle>Lemonade/Palette (Remastered)</TrackTitle>
+            <TrackArtist>竹馬あお</TrackArtist>
+            <TrackFeat>feat. 双葉湊音, 紡乃世詞音</TrackFeat>
+          </li>
+          <li>
+            <TrackTitle>Himawari/Ascension</TrackTitle>
+            <TrackArtist>竹馬あお</TrackArtist>
+            <TrackFeat>feat. 双葉湊音, 紡乃世詞音</TrackFeat>
+          </li>
+          <li>
+            <TrackTitle>帰路</TrackTitle>
+            <TrackArtist>竹馬あお</TrackArtist>
+            <TrackFeat>feat. 双葉湊音, 紡乃世詞音</TrackFeat>
+          </li>
+          <li>
+            <TrackTitle>青色に祈りを</TrackTitle>
+            <TrackArtist>竹馬あお</TrackArtist>
+            <TrackFeat>feat. 双葉湊音</TrackFeat>
+          </li>
+          <li>
+            <TrackTitle>Lemonade/Palette (Remastered) (Instrumental)</TrackTitle>
+            <TrackArtist>竹馬あお</TrackArtist>
+          </li>
+          <li>
+            <TrackTitle>Himawari/Ascension (Instrumental)</TrackTitle>
+            <TrackArtist>竹馬あお</TrackArtist>
+          </li>
+          <li>
+            <TrackTitle>帰路 (Instrumental)</TrackTitle>
+            <TrackArtist>竹馬あお</TrackArtist>
+          </li>
+          <li>
+            <TrackTitle>青色に祈りを (Instrumental)</TrackTitle>
+            <TrackArtist>竹馬あお</TrackArtist>
+          </li>
+        </TracksList>
+      </TracksContainer>
     </>
   );
 };
 
-interface LyricsProps {
-  isPublished: boolean;
-};
-
-const SwiperContainer = styled.div`
-  height: 60vh;
-  overflow: auto;
-`;
-
-const LyricTitle = styled(CenterText)`
-  margin-top: -10px;
-`;
-
-const LyricContainer = styled.div`
-  white-space: pre-wrap;
-  margin-left: auto;
-  margin-right: auto;
-  width: fit-content;
-`;
-
-const Lyrics: React.FC<LyricsProps> = ({ isPublished }) => {
-  return (
-    <>
-      <Header>Lyrics</Header>
-      {isPublished && <HintText>←スワイプしてください→</HintText>}
-      {isPublished ? (
-        <SwiperContainer>
-          <Swiper
-            slidesPerView={1}
-            spaceBetween={10}
-          >
-            {lyrics.map((track, index) => (
-              <SwiperSlide key={index}>
-                <LyricTitle>
-                  <TrackTitle>{track.title}</TrackTitle><ResponsiveBr />
-                  <TrackArtist>{track.artist}</TrackArtist>
-                  <TrackFeat>{track.feat}</TrackFeat>
-                </LyricTitle>
-                <LyricContainer>
-                  {track.lyrics}
-                </LyricContainer>
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        </SwiperContainer>
-      ) : (
-        <CenterText>
-          Coming soon...
-        </CenterText>
-      )}
-    </>
-  )
-}
-
-const BoothIcon = styled.img`
-  margin-left: auto;
-  margin-right: auto;
-  display: block;
-  width: 200px;
-`;
-
-interface PriceProps {
-  isLyricsPublished: boolean;
-  isBoothPublished: boolean;
-};
-
-const Price: React.FC<PriceProps> = ({ isLyricsPublished, isBoothPublished }) => {
+const Price = () => {
   return (
     <>
       <Header>Buy</Header>
-      <CenterText>頒布価格: 1,500円</CenterText>
-      {isBoothPublished && <a href="https://aotakeuma.booth.pm/items/6179765">
-        <BoothIcon src={booth} alt="Booth" />
-      </a>}
-      <HintText>(通販: +送料 210円)</HintText>
-      {isLyricsPublished && <Link to="/download">
-        <HintText>DLキーを持っている方はこちら</HintText>
-      </Link>}
-    </>
-  )
-}
-
-interface ScheduleProps {
-  isXFDPublished: boolean;
-  isBoothPublished: boolean;
-};
-
-const Schedule: React.FC<ScheduleProps> = ({ isXFDPublished, isBoothPublished }) => {
-  return (
-    <>
-      <Header>Schedule</Header>
       <CenterText>
-        {!isXFDPublished && (
-          <>
-            2024.10.19 (Sat.) XFD公開<br />
-          </>
-        )}
-        2024.10.27 (Sun.) <a href="https://www.m3net.jp/">M3-2024秋 第二展示場 お-25a</a>にて頒布<br />
-        {!isBoothPublished && (
-          <>
-            2024.11.01 (Fri.) 通販開始<br />
-          </>
-        )}
-        2024.11.20 (Wed.) ~ 2024.11.23 (Sat.) <a href="https://www.nf.la/">京都大学11月祭</a>内即売会「<a href="https://comicomm.netlify.app/">Comic Community 06</a>」にて頒布<br />
-        2024.11.23 (Sat.) <a href="https://www.ketto.com/tvm/">THE VOC@LOiD M@STER 57 D-24</a>にて頒布
+        頒布価格: 1,000円
+        <br />
+        「声音の宴 4次会」 (2025/02/01) にて頒布
       </CenterText>
     </>
   )
@@ -481,14 +381,13 @@ const App = () => {
       <Banner />
       <Main>
         <Introduction />
-        <Members />
+        <Download />
+        <Vocal />
         <Artwork />
-        <Organizer />
+        <Music />
         <XFD />
         <Tracks />
-        <Lyrics />
         <Price />
-        <Schedule />
       </Main>
     </Page>
   )

@@ -19,7 +19,7 @@ const App = () => {
         <meta property="og:image" content={"https://aotakeuma.com" + icon} />
         <meta property="twitter:image" content={"https://aotakeuma.com" + icon} />
       </Helmet>
-      <Navbar />
+      {/* <Navbar /> */}
       <Routes>
         <Route path="/" element={<Root />} />
         <Route path="snfe" element={<Navigate to="/discography/3" />} />

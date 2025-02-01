@@ -1,4 +1,5 @@
 import { useParams, Link } from "react-router-dom";
+import Tnftep1 from "./Tnftep1";
 
 const Snfe = () => {
   return (
@@ -23,15 +24,6 @@ const Ubugoe = () => {
     <div>
       <h1>産声、滲んだきみの青</h1>
       <a href="https://aotakeuma.notion.site/e5af20d43b634b8d8b79e55b6287aa30">歌詞ページ</a>
-    </div>
-  )
-};
-
-const Tnftep1 = () => {
-  return (
-    <div>
-      <h1>ふたつの夏日に餞を</h1>
-      <a href="https://www.dropbox.com/scl/fi/uxbbjakwzw1o4jiya4uft/.zip?rlkey=x5v2fiznp1162oavcfeicspta&st=mrcf0846&dl=0">ダウンロードページ (Dropbox)</a>
     </div>
   )
 };
