@@ -7,7 +7,7 @@ import {
   Routes,
   BrowserRouter as Router,
 } from "react-router-dom";
-import Navbar from './components/Navbar';
+// import Navbar from './components/Navbar';
 import Root from './pages/Root';
 import Discography from './pages/Discography';
 import icon from './assets/img/icon/logo_with_bg.png';
