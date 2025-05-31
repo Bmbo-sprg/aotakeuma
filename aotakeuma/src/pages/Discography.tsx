@@ -1,5 +1,6 @@
 import { useParams, Link } from "react-router-dom";
 import Tnftep1 from "./Tnftep1";
+import Kisetsu from "./Kisetsu";
 
 const Snfe = () => {
   return (
@@ -39,6 +40,7 @@ const DiscographyList = () => {
         <li><Link to={'4'}>ハルジオンは雨と咲く -Original Soundtrack-</Link></li>
         <li><Link to={'5'}>産声、滲んだきみの青</Link></li>
         <li><Link to={'6'}>ふたつの夏日に餞を</Link></li>
+        <li><Link to={'7'}>季節は死んだりしないから</Link></li>
       </ul>
     </div>
   )
@@ -59,6 +61,8 @@ const Discography = () => {
       return <Ubugoe />;
     case '6':
       return <Tnftep1 />;
+    case '7':
+      return <Kisetsu />;
     default:
       return <DiscographyList />;
   }
