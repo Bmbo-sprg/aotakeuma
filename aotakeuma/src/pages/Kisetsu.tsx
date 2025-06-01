@@ -362,7 +362,7 @@ const Vocal = () => {
   return (
     <>
       <Header>Vocal</Header>
-      <CenterText>双葉湊音, 紡乃世詞音</CenterText>
+      <CenterText>双葉湊音, 紡乃世詞音, 夏色花梨, 小春六花, 花隈千冬</CenterText>
     </>
   )
 }
