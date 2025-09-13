@@ -1,6 +1,7 @@
 import { useParams, Link } from "react-router-dom";
 import Tnftep1 from "./Tnftep1";
 import Kisetsu from "./Kisetsu";
+import Digimoca from "./Digimoca";
 
 const Snfe = () => {
   return (
@@ -34,13 +35,14 @@ const DiscographyList = () => {
     <div>
       <h1>Discography</h1>
       <ul>
-        <li><Link to={'1'}>高校生</Link></li>
-        <li><Link to={'2'}>縋想</Link></li>
-        <li><Link to={'3'}>SummerNotFoundException</Link></li>
-        <li><Link to={'4'}>ハルジオンは雨と咲く -Original Soundtrack-</Link></li>
-        <li><Link to={'5'}>産声、滲んだきみの青</Link></li>
-        <li><Link to={'6'}>ふたつの夏日に餞を</Link></li>
-        <li><Link to={'7'}>季節は死んだりしないから</Link></li>
+        <li><Link to={'/discography/1'}>高校生</Link></li>
+        <li><Link to={'/discography/2'}>縋想</Link></li>
+        <li><Link to={'/discography/3'}>SummerNotFoundException</Link></li>
+        <li><Link to={'/discography/4'}>ハルジオンは雨と咲く -Original Soundtrack-</Link></li>
+        <li><Link to={'/discography/5'}>産声、滲んだきみの青</Link></li>
+        <li><Link to={'/discography/6'}>ふたつの夏日に餞を</Link></li>
+        <li><Link to={'/discography/7'}>季節は死んだりしないから</Link></li>
+        <li><Link to={'/discography/8'}>でぃじたる・もかちーの！</Link></li>
       </ul>
     </div>
   )
@@ -63,6 +65,8 @@ const Discography = () => {
       return <Tnftep1 />;
     case '7':
       return <Kisetsu />;
+    case '8':
+      return <Digimoca />;
     default:
       return <DiscographyList />;
   }

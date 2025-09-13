@@ -1,3 +1,5 @@
+import Discography from "./Discography";
+
 export const Root = () => {
   return (
     <>
@@ -8,6 +10,7 @@ export const Root = () => {
               ご不便おかけして申し訳ございません。<br />
               各種SNSへのリンクは <a href="https://linktr.ee/aotakeuma">linktr.ee/aotakeuma</a> をご利用ください。
           </p>
+          <Discography />
       </div>
 
       <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossOrigin="anonymous"></script>
