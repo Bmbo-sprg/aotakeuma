@@ -2,30 +2,14 @@ import { useParams, Link } from "react-router-dom";
 import Tnftep1 from "./Tnftep1";
 import Kisetsu from "./Kisetsu";
 import Digimoca from "./Digimoca";
-
-const Snfe = () => {
-  return (
-    <div>
-      <h1>SummerNotFoundException</h1>
-      <a href="https://aotakeuma.notion.site/SummerNotFoundException-9b89a2777e1c41ba992d2ece19604f2e">歌詞ページ</a>
-    </div>
-  )
-};
+import Snfe from "./Snfe";
+import Ubugoe from "./Ubugoe";
 
 const HaruameOst = () => {
   return (
     <div>
       <h1>ハルジオンは雨と咲く -Original Soundtrack-</h1>
       <a href="https://aotakeuma.notion.site/Original-Soundtrack-e0c470c71a8e4a4a9a1dcc5b561a09fc">歌詞ページ</a>
-    </div>
-  )
-};
-
-const Ubugoe = () => {
-  return (
-    <div>
-      <h1>産声、滲んだきみの青</h1>
-      <a href="https://aotakeuma.notion.site/e5af20d43b634b8d8b79e55b6287aa30">歌詞ページ</a>
     </div>
   )
 };
