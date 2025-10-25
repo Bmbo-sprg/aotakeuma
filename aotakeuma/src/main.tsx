@@ -28,6 +28,7 @@ const App = () => {
         <Route path="tnftep1" element={<Navigate to="/discography/6" />} />
         <Route path="kisetsu" element={<Navigate to="/discography/7" />} />
         <Route path="digimoca" element={<Navigate to="/discography/8" />} />
+        <Route path="aonote" element={<Navigate to="/discography/9" />} />
         <Route path="discography" element={<Discography />} />
         <Route path="discography/:id" element={<Discography />} />
         <Route path="*" element={<p>Oops...</p>} />

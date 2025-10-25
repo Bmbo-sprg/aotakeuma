@@ -4,6 +4,7 @@ import Kisetsu from "./Kisetsu";
 import Digimoca from "./Digimoca";
 import Snfe from "./Snfe";
 import Ubugoe from "./Ubugoe";
+import Aonote from "./Aonote";
 
 const HaruameOst = () => {
   return (
@@ -27,6 +28,7 @@ const DiscographyList = () => {
         <li><Link to={'/discography/6'}>ふたつの夏日に餞を</Link></li>
         <li><Link to={'/discography/7'}>季節は死んだりしないから</Link></li>
         <li><Link to={'/discography/8'}>でぃじたる・もかちーの！</Link></li>
+        <li><Link to={'/discography/9'}>あおいろがぼくたちの音</Link></li>
       </ul>
     </div>
   )
@@ -51,6 +53,8 @@ const Discography = () => {
       return <Kisetsu />;
     case '8':
       return <Digimoca />;
+    case '9':
+      return <Aonote />;
     default:
       return <DiscographyList />;
   }
