@@ -1,0 +1,39 @@
+name: Run TypeScript CI
+
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+
+jobs:
+  ci:
+    runs-on: ubuntu-24.04
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6
+
+      - name: Extract node and pnpm version from mise.toml
+        id: node-pnpm-version
+        run: |
+          NODE_VERSION=$(grep -E '^node = ' mise.toml | sed 's/node = "\(.*\)"/\1/')
+          PNPM_VERSION=$(grep -E '^pnpm = ' mise.toml | sed 's/pnpm = "\(.*\)"/\1/')
+          echo "NODE_VERSION=$NODE_VERSION" >> $GITHUB_OUTPUT
+          echo "PNPM_VERSION=$PNPM_VERSION" >> $GITHUB_OUTPUT
+
+      - uses: actions/setup-node@395ad3262231945c25e8478fd5baf05154b1d79f # v6
+        with:
+          node-version: ${{ steps.node-pnpm-version.outputs.NODE_VERSION }}
+
+      - run: npm install -g pnpm@${{ steps.node-pnpm-version.outputs.PNPM_VERSION }}
+
+      - run: cd aotakeuma2 && pnpm install
+
+      - run: cd aotakeuma2 && pnpm run lint
+
+      # TODO: also run tests after added
