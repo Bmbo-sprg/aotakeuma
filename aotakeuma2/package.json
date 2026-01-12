@@ -9,9 +9,9 @@
     "dev": "react-router dev",
     "lint": "NODE_OPTIONS=\"--experimental-strip-types\" prettier . --check && eslint",
     "fix": "NODE_OPTIONS=\"--experimental-strip-types\" prettier . --write && eslint --fix",
-    "postinstall": "npm run cf-typegen",
+    "postinstall": "pnpm run cf-typegen",
     "preview": "pnpm run build && vite preview",
-    "typecheck": "npm run cf-typegen && react-router typegen && tsc -b"
+    "typecheck": "pnpm run cf-typegen && react-router typegen && tsc -b"
   },
   "dependencies": {
     "isbot": "^5.1.31",
