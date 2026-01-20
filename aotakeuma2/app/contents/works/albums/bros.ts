@@ -1,5 +1,4 @@
 import type { Album } from "~/types";
-import { bros_xfd } from "../videos/bros_xfd";
 
 export const bros: Album = {
   type: "album",
@@ -9,6 +8,7 @@ export const bros: Album = {
   description:
     "サークル、回生、音楽ジャンルの垣根を超えた、気鋭京大生ボカロPによるコンピレーションアルバム",
   tags: [], // TODO
+  team: "京大ボカロコンピ",
   credits: [
     {
       name: "竹馬あお",
@@ -92,5 +92,15 @@ export const bros: Album = {
   ],
   jacketImageUrl: "/images/jackets/bros.png",
   tracks: [], // TODO
-  video: bros_xfd,
+  video: {
+    credits: [
+      {
+        name: "竹馬あお",
+        role: "映像制作",
+      },
+    ],
+    youtubeUrl: "https://www.youtube.com/watch?v=Mj0Fx-Q_pgM",
+    niconicoUrl: "https://www.nicovideo.jp/watch/sm44202977",
+    bilibiliUrl: "https://www.bilibili.com/video/BV1642SYhEFT",
+  },
 };

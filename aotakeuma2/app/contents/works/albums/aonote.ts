@@ -1,5 +1,4 @@
 import type { Album } from "~/types";
-import { aonote_xfd } from "../videos/aonote_xfd";
 
 export const aonote: Album = {
   type: "album",
@@ -43,5 +42,15 @@ export const aonote: Album = {
   ],
   jacketImageUrl: "/images/jackets/aonote.png",
   tracks: [], // TODO
-  video: aonote_xfd,
+  video: {
+    credits: [
+      {
+        name: "竹馬あお",
+        role: "映像制作",
+      },
+    ],
+    youtubeUrl: "https://www.youtube.com/watch?v=_QUxRgi_We0",
+    niconicoUrl: "https://www.nicovideo.jp/watch/sm45525121",
+    bilibiliUrl: "https://www.bilibili.com/video/BV1JiWkzwEn1",
+  },
 };

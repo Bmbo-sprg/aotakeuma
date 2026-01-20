@@ -1,5 +1,4 @@
 import type { Album } from "~/types";
-import { snfe_xfd } from "../videos/snfe_xfd";
 
 export const snfe: Album = {
   type: "album",
@@ -43,5 +42,15 @@ export const snfe: Album = {
   ],
   jacketImageUrl: "/images/jackets/snfe.png",
   tracks: [], // TODO
-  video: snfe_xfd,
+  video: {
+    credits: [
+      {
+        name: "竹馬あお",
+        role: "映像制作",
+      },
+    ],
+    youtubeUrl: "https://www.youtube.com/watch?v=IYl1EnV9x7g",
+    niconicoUrl: "https://www.nicovideo.jp/watch/sm43685823",
+    bilibiliUrl: "https://www.bilibili.com/video/BV17C411H7aE",
+  },
 };

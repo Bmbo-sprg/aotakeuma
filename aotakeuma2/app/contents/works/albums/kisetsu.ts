@@ -1,5 +1,4 @@
 import type { Album } from "~/types";
-import { kisetsu_xfd } from "../videos/kisetsu_xfd";
 
 export const kisetsu: Album = {
   type: "album",
@@ -25,5 +24,15 @@ export const kisetsu: Album = {
   ],
   jacketImageUrl: "/images/jackets/kisetsu.png",
   tracks: [], // TODO
-  video: kisetsu_xfd,
+  video: {
+    credits: [
+      {
+        name: "竹馬あお",
+        role: "映像制作",
+      },
+    ],
+    youtubeUrl: "https://www.youtube.com/watch?v=8bM90SuUvtQ",
+    niconicoUrl: "https://www.nicovideo.jp/watch/sm45072233",
+    bilibiliUrl: "https://www.bilibili.com/video/BV1FNTezYEYJ",
+  },
 };

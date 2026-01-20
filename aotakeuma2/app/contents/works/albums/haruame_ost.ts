@@ -1,13 +1,13 @@
 import type { Album } from "~/types";
-import { haruame_ost_xfd } from "../videos/haruame_ost_xfd";
 
 export const haruame_ost: Album = {
   type: "album",
   id: "haruame_ost",
   title: "ハルジオンは雨と咲く -Original Soundtrack-",
   description:
-    "創作プロジェクト「縋想」によるテキストADV『ハルジオンは雨と咲く』のオリジナルサウンドトラック",
+    "ビジュアルノベル『ハルジオンは雨と咲く』のオリジナルサウンドトラック",
   tags: [], // TODO
+  team: "『縋想』プロジェクト",
   credits: [
     {
       name: "竹馬あお",
@@ -47,5 +47,13 @@ export const haruame_ost: Album = {
   ],
   jacketImageUrl: "/images/jackets/haruame_ost.png",
   tracks: [], // TODO
-  video: haruame_ost_xfd,
+  video: {
+    credits: [
+      {
+        name: "竹馬あお",
+        role: "映像制作",
+      },
+    ],
+    youtubeUrl: "https://www.youtube.com/watch?v=Jpet7-awLuU",
+  },
 };

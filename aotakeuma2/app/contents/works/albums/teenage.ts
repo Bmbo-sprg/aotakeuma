@@ -1,5 +1,4 @@
 import type { Album } from "~/types";
-import { teenage_xfd } from "../videos/teenage_xfd";
 
 export const teenage: Album = {
   type: "album",
@@ -23,5 +22,21 @@ export const teenage: Album = {
   ],
   jacketImageUrl: "/images/jackets/teenage.png",
   tracks: [], // TODO
-  video: teenage_xfd,
+  video: {
+    credits: [
+      {
+        name: "閔仲",
+        role: "映像制作",
+      },
+    ],
+    youtubeUrl: "https://www.youtube.com/watch?v=X5--ExfudsU",
+    niconicoUrl: "https://www.nicovideo.jp/watch/sm36979880",
+    bilibiliUrl: "https://www.bilibili.com/video/BV1SC4y1h7Ph",
+  },
 };
+
+// TODO: こういう注意書きを作って、入れる
+/*
+※「閔仲」は竹馬あおの前名義です。
+※2026年現在、再販の予定はありません。ご了承ください。
+*/

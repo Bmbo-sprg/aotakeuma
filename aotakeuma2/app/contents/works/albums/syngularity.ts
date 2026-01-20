@@ -1,5 +1,4 @@
 import type { Album } from "~/types";
-import { syngularity_xfd } from "../videos/syngularity_xfd";
 
 export const syngularity: Album = {
   type: "album",
@@ -9,6 +8,7 @@ export const syngularity: Album = {
   description:
     "『学園アイドルマスター』のユニット・SyngUp!へのファンメイドアルバム",
   tags: [], // TODO
+  team: "スタジオ加速",
   credits: [
     {
       name: "竹馬あお",
@@ -31,5 +31,15 @@ export const syngularity: Album = {
   links: [],
   jacketImageUrl: "/images/jackets/syngularity.png",
   tracks: [], // TODO
-  video: syngularity_xfd,
+  video: {
+    credits: [
+      {
+        name: "竹馬あお",
+        role: "映像制作",
+      },
+    ],
+    youtubeUrl: "https://www.youtube.com/watch?v=u7sIGUoTTdE",
+    niconicoUrl: "https://www.nicovideo.jp/watch/sm45771879",
+    bilibiliUrl: "https://www.bilibili.com/video/BV1SMBkBhEwD",
+  },
 };

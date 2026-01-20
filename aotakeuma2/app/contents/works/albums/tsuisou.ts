@@ -6,9 +6,10 @@ export const tsuisou: Album = {
   titlePrefix: "縋想 1st Album",
   title: "縋想",
   description: `
-創作プロジェクト「縋想」の一作目。
+創作プロジェクト『縋想』の一作目。
 想い出の中の「キミ」に縋る、切実なオルタナティブ青春物語。`,
   tags: [], // TODO
+  team: "『縋想』プロジェクト",
   credits: [
     {
       name: "竹馬あお",

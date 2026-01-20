@@ -1,5 +1,4 @@
 import type { Album } from "~/types";
-import { ubugoe_xfd } from "../videos/ubugoe_xfd";
 
 export const ubugoe: Album = {
   type: "album",
@@ -44,5 +43,15 @@ export const ubugoe: Album = {
   ],
   jacketImageUrl: "/images/jackets/ubugoe.png",
   tracks: [], // TODO
-  video: ubugoe_xfd,
+  video: {
+    credits: [
+      {
+        name: "竹馬あお",
+        role: "映像制作",
+      },
+    ],
+    youtubeUrl: "https://www.youtube.com/watch?v=DM0bYwRLP1A",
+    niconicoUrl: "https://www.nicovideo.jp/watch/sm44104181",
+    bilibiliUrl: "https://www.bilibili.com/video/BV1nNtgetEoV",
+  },
 };

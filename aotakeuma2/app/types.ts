@@ -1,11 +1,12 @@
 export type Work = {
-  type: "album" | "music" | "video" | "game" | "other";
+  type: "album" | "music" | "game" | "other";
   id: string;
   title: string;
   description: string;
   tags: Tag[];
+  team?: string; // サークル名など。なければ自名義
   credits: Person[];
-  releaseDate?: Date;
+  releaseDate: Date;
   links?: SocialLink[];
 };
 
@@ -19,12 +20,11 @@ export type Album = Work & {
 
 export type Music = Work & {
   type: "music";
-  jacketImageUrl?: string; // if undefined, get from album
-  video?: Video;
+    video?: Video;
 };
 
-export type Video = Work & {
-  type: "video";
+export type Video = {
+  credits: Person[];
     youtubeUrl?: string;
   niconicoUrl?: string;
   bilibiliUrl?: string;

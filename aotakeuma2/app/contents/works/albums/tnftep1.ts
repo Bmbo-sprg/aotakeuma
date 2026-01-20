@@ -1,5 +1,4 @@
 import type { Album } from "~/types";
-import { tnftep1_xfd } from "../videos/tnftep1_xfd";
 
 export const tnftep1: Album = {
   type: "album",
@@ -31,5 +30,15 @@ export const tnftep1: Album = {
   ],
   jacketImageUrl: "/images/jackets/tnftep1.png",
   tracks: [], // TODO
-  video: tnftep1_xfd,
+  video: {
+    credits: [
+      {
+        name: "竹馬あお",
+        role: "映像制作",
+      },
+    ],
+    youtubeUrl: "https://www.youtube.com/watch?v=DbrYdcOpuQo",
+    niconicoUrl: "https://www.nicovideo.jp/watch/sm44599383",
+    bilibiliUrl: "https://www.bilibili.com/video/BV158FXePEZ9",
+  },
 };

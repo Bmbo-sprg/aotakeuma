@@ -1,5 +1,4 @@
 import type { Album } from "~/types";
-import { digimoca_xfd } from "../videos/digimoca_xfd";
 
 export const digimoca: Album = {
   type: "album",
@@ -27,5 +26,15 @@ export const digimoca: Album = {
   ],
   jacketImageUrl: "/images/jackets/digimoca.png",
   tracks: [], // TODO
-  video: digimoca_xfd,
+  video: {
+    credits: [
+      {
+        name: "竹馬あお",
+        role: "映像制作",
+      },
+    ],
+    youtubeUrl: "https://www.youtube.com/watch?v=JZCEuH8j9Oc",
+    niconicoUrl: "https://www.nicovideo.jp/watch/sm45443516",
+    bilibiliUrl: "https://www.bilibili.com/video/BV1s6n8zFEwr",
+  },
 };
