@@ -5,25 +5,27 @@ export type Work = {
   description: string;
   tags: Tag[];
   credits: Person[];
-  releaseDate?: string;
+  releaseDate?: Date;
   links?: SocialLink[];
 };
 
 export type Album = Work & {
   type: "album";
-  jacketImageUrl: string; // TODO: ふつうに内部のパスを指したいけどな
+  titlePrefix?: string;
+  jacketImageUrl: string;
   tracks: Music[];
+  video?: Video;
 };
 
 export type Music = Work & {
   type: "music";
   jacketImageUrl?: string; // if undefined, get from album
+  video?: Video;
 };
 
 export type Video = Work & {
   type: "video";
-  workId: string;
-  youtubeUrl?: string;
+    youtubeUrl?: string;
   niconicoUrl?: string;
   bilibiliUrl?: string;
 };
