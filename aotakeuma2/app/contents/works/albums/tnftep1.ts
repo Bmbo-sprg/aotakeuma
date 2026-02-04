@@ -1,4 +1,8 @@
 import type { Album } from "~/types";
+import { lemonade_palette } from "../musics/lemonade_palette";
+import { himawari_ascension } from "../musics/himawari_ascension";
+import { kiro } from "../musics/kiro";
+import { aoiro_ni_inoriwo } from "../musics/aoiro_ni_inoriwo";
 
 export const tnftep1: Album = {
   type: "album",
@@ -29,7 +33,7 @@ export const tnftep1: Album = {
     },
   ],
   jacketImageUrl: "/images/jackets/tnftep1.png",
-  tracks: [], // TODO
+  tracks: [lemonade_palette, himawari_ascension, kiro, aoiro_ni_inoriwo],
   video: {
     credits: [
       {

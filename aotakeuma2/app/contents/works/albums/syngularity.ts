@@ -1,4 +1,8 @@
 import type { Album } from "~/types";
+import { sunburned_wing } from "../musics/sunburned_wing";
+import { polaris_step } from "../musics/polaris_step";
+import { zanei } from "../musics/zanei";
+import { syngularity_song } from "../musics/syngularity_song";
 
 export const syngularity: Album = {
   type: "album",
@@ -30,12 +34,16 @@ export const syngularity: Album = {
   releaseDate: new Date("2025-12-31"),
   links: [],
   jacketImageUrl: "/images/jackets/syngularity.png",
-  tracks: [], // TODO
+  tracks: [sunburned_wing, polaris_step, zanei, syngularity_song],
   video: {
     credits: [
       {
         name: "竹馬あお",
         role: "映像制作",
+      },
+      {
+        name: "kiki",
+        role: "イラスト",
       },
     ],
     youtubeUrl: "https://www.youtube.com/watch?v=u7sIGUoTTdE",

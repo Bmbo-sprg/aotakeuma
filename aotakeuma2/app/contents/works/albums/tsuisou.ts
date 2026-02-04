@@ -1,4 +1,9 @@
 import type { Album } from "~/types";
+import { kowakami } from "../musics/kowakami";
+import { tsuisou_insts } from "../musics/tsuisou_insts";
+import { ramunate } from "../musics/ramunate";
+import { deadlock } from "../musics/deadlock";
+import { mataao } from "../musics/mataao";
 
 export const tsuisou: Album = {
   type: "album",
@@ -48,5 +53,13 @@ export const tsuisou: Album = {
     },
   ],
   jacketImageUrl: "/images/jackets/tsuisou.png",
-  tracks: [], // TODO
+  tracks: [
+    kowakami,
+    tsuisou_insts[0],
+    ramunate,
+    tsuisou_insts[1],
+    deadlock,
+    tsuisou_insts[2],
+    mataao,
+  ],
 };

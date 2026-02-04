@@ -1,4 +1,6 @@
 import type { Album } from "~/types";
+import { kisetsu_song } from "../musics/kisetsu_song";
+import { akari } from "../musics/akari";
 
 export const kisetsu: Album = {
   type: "album",
@@ -7,7 +9,7 @@ export const kisetsu: Album = {
   title: "季節は死んだりしないから",
   description: `
 あの夏、僕は海辺の町で、宝石のような日々を過ごした。
-原作小説: ぺんぎん, 佐薙概念『季節は死んだりしないから』(2024/05/03 発行)`,
+`,
   tags: [], // TODO
   credits: [
     {
@@ -23,7 +25,7 @@ export const kisetsu: Album = {
     },
   ],
   jacketImageUrl: "/images/jackets/kisetsu.png",
-  tracks: [], // TODO
+  tracks: [kisetsu_song, akari],
   video: {
     credits: [
       {

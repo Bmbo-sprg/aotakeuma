@@ -1,4 +1,13 @@
 import type { Album } from "~/types";
+import { untitled_20201117 } from "../musics/untitled_20201117";
+import { sasayaki_sae } from "../musics/sasayaki_sae";
+import { ao_no_tonarini } from "../musics/ao_no_tonarini";
+import { haikei_anohi } from "../musics/haikei_anohi";
+import { failed_biomimetics } from "../musics/failed_biomimetics";
+import { miteigi } from "../musics/miteigi";
+import { stardust_reboot } from "../musics/stardust_reboot";
+import { sayokazu } from "../musics/sayokazu";
+import { ubugoe_song } from "../musics/ubugoe_song";
 
 export const ubugoe: Album = {
   type: "album",
@@ -42,7 +51,17 @@ export const ubugoe: Album = {
     },
   ],
   jacketImageUrl: "/images/jackets/ubugoe.png",
-  tracks: [], // TODO
+  tracks: [
+    untitled_20201117,
+    sasayaki_sae,
+    ao_no_tonarini,
+    haikei_anohi,
+    failed_biomimetics,
+    miteigi,
+    stardust_reboot,
+    sayokazu,
+    ubugoe_song,
+  ],
   video: {
     credits: [
       {

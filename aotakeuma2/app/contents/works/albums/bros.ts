@@ -1,4 +1,5 @@
 import type { Album } from "~/types";
+import { sayounara_ryuseigun } from "../musics/sayounara_ryuseigun";
 
 export const bros: Album = {
   type: "album",
@@ -10,10 +11,6 @@ export const bros: Album = {
   tags: [], // TODO
   team: "京大ボカロコンピ",
   credits: [
-    {
-      name: "竹馬あお",
-      role: "企画、楽曲制作 (Tr.15)、マスタリング",
-    },
     {
       name: "柚雪ふゆね",
       role: "イラスト",
@@ -78,6 +75,10 @@ export const bros: Album = {
       name: "Nui",
       role: "楽曲制作 (Tr.14)",
     },
+    {
+      name: "竹馬あお",
+      role: "企画、楽曲制作 (Tr.15)、マスタリング",
+    },
   ],
   releaseDate: new Date("2024-10-27"),
   links: [
@@ -91,7 +92,7 @@ export const bros: Album = {
     },
   ],
   jacketImageUrl: "/images/jackets/bros.png",
-  tracks: [], // TODO
+  tracks: [sayounara_ryuseigun],
   video: {
     credits: [
       {
@@ -104,3 +105,6 @@ export const bros: Album = {
     bilibiliUrl: "https://www.bilibili.com/video/BV1642SYhEFT",
   },
 };
+
+// TODO: コメントを入れる
+// TODO: 他のアルバムもそうだけど、メンバーの social link を入れる

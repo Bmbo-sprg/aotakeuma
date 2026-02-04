@@ -1,4 +1,7 @@
 import type { Album } from "~/types";
+import { jumping_into_orbit } from "../musics/jumping_into_orbit";
+import { nyanverse } from "../musics/nyanverse";
+import { afterburn } from "../musics/afterburn";
 
 export const digimoca: Album = {
   type: "album",
@@ -25,7 +28,7 @@ export const digimoca: Album = {
     },
   ],
   jacketImageUrl: "/images/jackets/digimoca.png",
-  tracks: [], // TODO
+  tracks: [jumping_into_orbit, nyanverse, afterburn],
   video: {
     credits: [
       {

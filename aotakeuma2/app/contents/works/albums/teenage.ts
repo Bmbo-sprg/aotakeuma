@@ -1,4 +1,12 @@
 import type { Album } from "~/types";
+import { tabun } from "../musics/tabun";
+import { aq } from "../musics/aq";
+import { nichijo_wo_hashire } from "../musics/nichijo_wo_hashire";
+import { late_november } from "../musics/late_november";
+import { kaigansen } from "../musics/kaigansen";
+import { natsuno_owari } from "../musics/natsuno_owari";
+import { itomagoi } from "../musics/itomagoi";
+import { movere_vivere } from "../musics/movere_vivere";
 
 export const teenage: Album = {
   type: "album",
@@ -9,7 +17,7 @@ export const teenage: Album = {
   tags: [], // TODO
   credits: [
     {
-      name: "閔仲",
+      name: "閔仲 (later 竹馬あお)",
       role: "制作、マスタリング",
     },
   ],
@@ -21,11 +29,20 @@ export const teenage: Album = {
     },
   ],
   jacketImageUrl: "/images/jackets/teenage.png",
-  tracks: [], // TODO
+  tracks: [
+    tabun,
+    aq,
+    nichijo_wo_hashire,
+    late_november,
+    kaigansen,
+    natsuno_owari,
+    itomagoi,
+    movere_vivere,
+  ],
   video: {
     credits: [
       {
-        name: "閔仲",
+        name: "閔仲 (later 竹馬あお)",
         role: "映像制作",
       },
     ],
@@ -34,9 +51,3 @@ export const teenage: Album = {
     bilibiliUrl: "https://www.bilibili.com/video/BV1SC4y1h7Ph",
   },
 };
-
-// TODO: こういう注意書きを作って、入れる
-/*
-※「閔仲」は竹馬あおの前名義です。
-※2026年現在、再販の予定はありません。ご了承ください。
-*/

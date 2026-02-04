@@ -1,4 +1,14 @@
 import type { Album } from "~/types";
+import { twilight_tint } from "../musics/twilight_tint";
+import { connection } from "../musics/connection";
+import { created } from "../musics/created";
+import { svm } from "../musics/svm";
+import { asatte } from "../musics/asatte";
+import { kaigansen } from "../musics/kaigansen";
+import { natsuno_owari } from "../musics/natsuno_owari";
+import { lemonade_palette } from "../musics/lemonade_palette";
+import { esora } from "../musics/esora";
+import { snfe_inst } from "../musics/snfe_inst";
 
 export const snfe: Album = {
   type: "album",
@@ -41,7 +51,18 @@ export const snfe: Album = {
     },
   ],
   jacketImageUrl: "/images/jackets/snfe.png",
-  tracks: [], // TODO
+  tracks: [
+    twilight_tint,
+    connection,
+    created,
+    svm,
+    asatte,
+    kaigansen,
+    natsuno_owari,
+    lemonade_palette,
+    esora,
+    snfe_inst,
+  ],
   video: {
     credits: [
       {

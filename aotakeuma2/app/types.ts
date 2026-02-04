@@ -21,6 +21,7 @@ export type Album = Work & {
 export type Music = Work & {
   type: "music";
     video?: Video;
+  lyrics?: string;
 };
 
 export type Video = {

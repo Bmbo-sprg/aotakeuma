@@ -1,4 +1,5 @@
 import type { Album } from "~/types";
+import { nde_insts } from "../musics/nde_insts";
 
 export const nde_ost: Album = {
   type: "album",
@@ -30,5 +31,5 @@ export const nde_ost: Album = {
     },
   ],
   jacketImageUrl: "/images/jackets/nde_ost.png",
-  tracks: [], // TODO
+  tracks: [...nde_insts],
 };

@@ -1,4 +1,9 @@
 import type { Album } from "~/types";
+import { hakumeikousen } from "../musics/hakumeikousen";
+import { haikei_anohi } from "../musics/haikei_anohi";
+import { sayokazu } from "../musics/sayokazu";
+import { reminiscence_in_the_rain } from "../musics/reminiscence_in_the_rain";
+import { haruame_insts } from "../musics/haruame_insts";
 
 export const haruame_ost: Album = {
   type: "album",
@@ -46,7 +51,13 @@ export const haruame_ost: Album = {
     },
   ],
   jacketImageUrl: "/images/jackets/haruame_ost.png",
-  tracks: [], // TODO
+  tracks: [
+    hakumeikousen,
+    haikei_anohi,
+    sayokazu,
+    reminiscence_in_the_rain,
+    ...haruame_insts,
+  ],
   video: {
     credits: [
       {

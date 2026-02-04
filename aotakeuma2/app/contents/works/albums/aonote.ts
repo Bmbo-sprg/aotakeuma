@@ -1,4 +1,14 @@
 import type { Album } from "~/types";
+import { akari } from "../musics/akari";
+import { jumping_into_orbit } from "../musics/jumping_into_orbit";
+import { lemonade_palette } from "../musics/lemonade_palette";
+import { himawari_ascension } from "../musics/himawari_ascension";
+import { nyanverse } from "../musics/nyanverse";
+import { kisetsu_song } from "../musics/kisetsu_song";
+import { kiro } from "../musics/kiro";
+import { aoiro_ni_inoriwo } from "../musics/aoiro_ni_inoriwo";
+import { afterburn } from "../musics/afterburn";
+import { soji } from "../musics/soji";
 
 export const aonote: Album = {
   type: "album",
@@ -41,7 +51,18 @@ export const aonote: Album = {
     },
   ],
   jacketImageUrl: "/images/jackets/aonote.png",
-  tracks: [], // TODO
+  tracks: [
+    akari,
+    jumping_into_orbit,
+    lemonade_palette,
+    himawari_ascension,
+    nyanverse,
+    kisetsu_song,
+    kiro,
+    aoiro_ni_inoriwo,
+    afterburn,
+    soji,
+  ],
   video: {
     credits: [
       {
