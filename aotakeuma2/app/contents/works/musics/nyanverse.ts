@@ -8,7 +8,7 @@ export const nyanverse: Music = {
 Never end!!
 宮舞モカと Drum n Bass
 `,
-  tags: [], // TODO
+  tags: ["エレクトロニック"],
   credits: [
     {
       name: "竹馬あお",

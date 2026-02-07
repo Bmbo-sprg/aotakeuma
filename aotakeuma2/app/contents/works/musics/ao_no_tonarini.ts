@@ -7,7 +7,7 @@ export const ao_no_tonarini: Music = {
   description: `
 きみだけがぼくの青色／音楽だった。まっすぐなボカロックです。
 `,
-  tags: [], // TODO
+  tags: ["バンドサウンド"],
   credits: [
     {
       name: "竹馬あお",

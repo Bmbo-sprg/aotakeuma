@@ -1,3 +1,21 @@
-import type { Tag } from "~/types";
+export const tags = [
+  // genres
+  "インスト",
+  "エレクトロニック",
+  "バンドサウンド",
+  "バラード",
 
-export const tags: Tag[] = [];
+  // themes
+  "夏",
+  "アイドル",
+
+  // events
+  "ボカコレ",
+  "キラハピ",
+
+  // misc
+  "コンピ参加作品",
+  "合作参加作品",
+  "提供作品",
+  "『縋想』プロジェクト",
+] as const;

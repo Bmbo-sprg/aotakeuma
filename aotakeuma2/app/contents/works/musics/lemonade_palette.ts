@@ -8,7 +8,7 @@ export const lemonade_palette: Music = {
 つのふた爽やか夏ロックです。
 キラハピ2024 双葉湊音賞 をいただきました。ありがとうございます！
 `,
-  tags: [], // TODO
+  tags: ["キラハピ", "夏", "バンドサウンド"],
   credits: [
     {
       name: "竹馬あお",

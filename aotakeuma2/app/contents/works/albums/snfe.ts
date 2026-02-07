@@ -16,7 +16,7 @@ export const snfe: Album = {
   titlePrefix: "竹馬あお 2nd Album",
   title: "SummerNotFoundException",
   description: "夏/虚構/青春/少女/消失を描いた合成音声アルバム",
-  tags: [], // TODO
+  tags: ["夏"],
   credits: [
     {
       name: "竹馬あお",

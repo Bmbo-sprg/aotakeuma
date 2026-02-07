@@ -8,7 +8,7 @@ export const deadlock: Music = {
 高二病で退廃的なオルタナティブロック。
 ドビュッシー『亜麻色の髪の乙女』を引用しています。
 `,
-  tags: [], // TODO
+  tags: ["『縋想』プロジェクト", "バンドサウンド"],
   credits: [
     {
       name: "竹馬あお",

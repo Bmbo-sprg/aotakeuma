@@ -8,7 +8,7 @@ export const reminiscence_in_the_rain: Music = {
 ビジュアルノベル『ハルジオンは雨と咲く』のエンディング曲のひとつです。
 ゆっくりで切ない電子音楽
 `,
-  tags: [], // TODO
+  tags: ["エレクトロニック", "『縋想』プロジェクト"],
   credits: [
     {
       name: "竹馬あお",

@@ -8,7 +8,7 @@ export const kisetsu_song: Music = {
 双葉湊音ボーカルの青春ロック
 原作小説: ぺんぎん, 佐薙概念『季節は死んだりしないから』(2024/05/03 発行)
 `,
-  tags: [], // TODO
+  tags: ["夏", "バンドサウンド"],
   credits: [
     {
       name: "竹馬あお",

@@ -10,7 +10,7 @@ export const kisetsu: Album = {
   description: `
 あの夏、僕は海辺の町で、宝石のような日々を過ごした。
 `,
-  tags: [], // TODO
+  tags: ["バンドサウンド", "夏"],
   credits: [
     {
       name: "竹馬あお",

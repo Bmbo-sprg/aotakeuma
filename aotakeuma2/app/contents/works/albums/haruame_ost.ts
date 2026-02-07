@@ -11,7 +11,7 @@ export const haruame_ost: Album = {
   title: "ハルジオンは雨と咲く -Original Soundtrack-",
   description:
     "ビジュアルノベル『ハルジオンは雨と咲く』のオリジナルサウンドトラック",
-  tags: [], // TODO
+  tags: ["『縋想』プロジェクト"],
   team: "『縋想』プロジェクト",
   credits: [
     {

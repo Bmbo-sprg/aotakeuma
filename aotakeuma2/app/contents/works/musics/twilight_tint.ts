@@ -8,7 +8,7 @@ export const twilight_tint: Music = {
 Hardcore を取り入れたポップス習作。
 ボカコレ2024冬TOP100ランキング参加曲 でした。
 `,
-  tags: [], // TODO
+  tags: ["ボカコレ", "エレクトロニック", "アイドル"],
   credits: [
     {
       name: "竹馬あお",

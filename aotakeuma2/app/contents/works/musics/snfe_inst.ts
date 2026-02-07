@@ -8,7 +8,7 @@ export const snfe_inst: Music = {
 アルバム『SummerNotFoundException』のコンセプトのルーツとなったインスト曲です。
 消える夏とセカイ系概念
 `,
-  tags: [], // TODO
+  tags: ["インスト", "エレクトロニック", "夏"],
   credits: [
     {
       name: "竹馬あお",

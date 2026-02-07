@@ -5,7 +5,7 @@ export const miteigi: Music = {
   id: "miteigi",
   title: "未定義",
   description: "傘を棄てて、[未定義]は何処へ往く。",
-  tags: [], // TODO
+  tags: [],
   credits: [
     {
       name: "閔仲 (later 竹馬あお)",

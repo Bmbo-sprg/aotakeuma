@@ -5,7 +5,7 @@ export const natsuno_owari: Music = {
   id: "natsuno_owari",
   title: "夏の終わり、物語の続き",
   description: "君と共に送った夏を",
-  tags: [], // TODO
+  tags: ["夏", "バンドサウンド"],
   credits: [
     {
       name: "閔仲 (later 竹馬あお)",

@@ -8,7 +8,7 @@ export const bros: Album = {
   title: "Bros.",
   description:
     "サークル、回生、音楽ジャンルの垣根を超えた、気鋭京大生ボカロPによるコンピレーションアルバム",
-  tags: [], // TODO
+  tags: ["コンピ参加作品"],
   team: "京大ボカロコンピ",
   credits: [
     {

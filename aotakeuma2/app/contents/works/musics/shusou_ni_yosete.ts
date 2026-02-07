@@ -8,7 +8,7 @@ export const shusou_ni_yosete: Music = {
 吉田音楽製作所 合作コンピ2023参加曲です。
 作曲で参加しました。
 `,
-  tags: [], // TODO
+  tags: ["合作参加作品", "バンドサウンド", "夏"],
   credits: [
     {
       name: "竹馬あお",

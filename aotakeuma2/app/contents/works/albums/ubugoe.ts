@@ -16,7 +16,7 @@ export const ubugoe: Album = {
   title: "産声、滲んだきみの青",
   description:
     "滲んでゆく記憶を記録 (おんがく) で繋ぎとめる、抒情的ボカロックアルバム",
-  tags: [], // TODO
+  tags: ["バンドサウンド"],
   credits: [
     {
       name: "竹馬あお",

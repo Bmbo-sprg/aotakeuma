@@ -6,43 +6,43 @@ const nde_bgms: Music[] = (
       id: "nde_inst_1",
       title: "202_Accepted",
       description: "タイトルコール",
-      tags: [], // TODO
+      tags: ["インスト"],
     },
     {
       id: "nde_inst_2",
       title: "200_HUG",
       description: "Good な状態にあるときのBGM",
-      tags: [], // TODO
+      tags: ["インスト"],
     },
     {
       id: "nde_inst_3",
       title: "300_Multiple Choices",
       description: "Normal な状態にあるときのBGM",
-      tags: [], // TODO
+      tags: ["インスト"],
     },
     {
       id: "nde_inst_4",
       title: "400_Bad RePulse",
       description: "Bad な状態にあるときのBGM",
-      tags: [], // TODO
+      tags: ["インスト"],
     },
     {
       id: "nde_inst_5",
       title: "302_Found",
       description: "アイキャッチ",
-      tags: [], // TODO
+      tags: ["インスト"],
     },
     {
       id: "nde_inst_6",
       title: "413_Verbatim Payload",
       description: "配信中のBGM",
-      tags: [], // TODO
+      tags: ["インスト"],
     },
     {
       id: "nde_inst_7",
       title: "500_Internal Reincarnation",
       description: "謎の空間にいるときのBGM",
-      tags: [], // TODO
+      tags: ["インスト"],
     },
   ] satisfies Omit<Music, "type" | "credits" | "releaseDate">[]
 ).map((music) => ({
@@ -64,7 +64,7 @@ const mataao_cover: Music = {
   description: `
 ビジュアルノベル『Near-Death-Expedition』に収録、「また青い春が来る」のカバー。
 `,
-  tags: [], // TODO
+  tags: [],
   credits: [
     {
       name: "竹馬あお",
@@ -107,7 +107,7 @@ const sayokazu_cover: Music = {
   description: `
 ビジュアルノベル『Near-Death-Expedition』に収録、「さよならの数だけ」のカバー。
 `,
-  tags: [], // TODO
+  tags: [],
   credits: [
     {
       name: "竹馬あお",
@@ -146,7 +146,7 @@ const tenshi_cover: Music = {
   description: `
 ビジュアルノベル『Near-Death-Expedition』に収録、「天使は声変わりしないって知ってた？」のカバー。
 `,
-  tags: [], // TODO
+  tags: [],
   credits: [
     {
       name: "竹馬あお",
@@ -188,7 +188,7 @@ const nde_ending: Music = {
   description: `
 ビジュアルノベル『Near-Death-Expedition』のエンディング曲のひとつです。
 `,
-  tags: [], // TODO
+  tags: ["インスト", "エレクトロニック"],
   credits: [
     {
       name: "竹馬あお",

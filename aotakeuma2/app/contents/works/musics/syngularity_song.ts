@@ -8,7 +8,7 @@ export const syngularity_song: Music = {
 『学園アイドルマスター』の (2025/12 現在) 未実装ユニット・SyngUp! へのファンメイドソングです。
 SyngUp! のユニット曲が実装されるとして、こうはならないかも　僕なりの祈りで
 `,
-  tags: [], // TODO
+  tags: ["アイドル", "エレクトロニック"],
   team: "スタジオ加速",
   credits: [
     {

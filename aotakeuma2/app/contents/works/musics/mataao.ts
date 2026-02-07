@@ -7,7 +7,7 @@ export const mataao: Music = {
   description: `
 アルバム『縋想』を締めくくる、来たる春に祈る楽曲。
 `,
-  tags: [], // TODO
+  tags: ["バラード", "『縋想』プロジェクト", "エレクトロニック"],
   credits: [
     {
       name: "竹馬あお",

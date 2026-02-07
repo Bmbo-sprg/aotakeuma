@@ -8,7 +8,7 @@ export const connection: Music = {
 あいまいなメモリの海に沈み消えてしまった。Kawaii Future Bass です。
 第16回プロセカNEXT応募楽曲 でした。
 `,
-  tags: [], // TODO
+  tags: ["アイドル", "エレクトロニック"],
   credits: [
     {
       name: "竹馬あお",

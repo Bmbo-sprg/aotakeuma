@@ -8,7 +8,7 @@ export const sayounara_ryuseigun: Music = {
 才能のないぼくのはなし。
 ボカコレ2025冬TOP100ランキング参加曲 でした。
 `,
-  tags: [], // TODO
+  tags: ["ボカコレ", "バラード", "バンドサウンド", "コンピ参加作品"],
   credits: [
     {
       name: "竹馬あお",

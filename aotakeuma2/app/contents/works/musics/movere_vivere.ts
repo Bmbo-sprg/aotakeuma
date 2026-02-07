@@ -8,7 +8,7 @@ export const movere_vivere: Music = {
 巣立つ雛鳥よ
 高校時代の総まとめ
 `,
-  tags: [], // TODO
+  tags: ["エレクトロニック"],
   credits: [
     {
       name: "閔仲 (later 竹馬あお)",

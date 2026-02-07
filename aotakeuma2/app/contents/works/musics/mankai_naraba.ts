@@ -5,7 +5,7 @@ export const mankai_naraba: Music = {
   id: "mankai_naraba",
   title: "今日も満開ならば僕は目を瞑っていよう。",
   description: "逃げ場は、無い。",
-  tags: [], // TODO
+  tags: [],
   credits: [
     {
       name: "閔仲 (later 竹馬あお)",

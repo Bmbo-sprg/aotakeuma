@@ -8,7 +8,7 @@ export const sasayaki_sae: Music = {
 竹馬あお 名義で最初のオリジナル曲です。
 想い出と向き合うバラード曲です。
 `,
-  tags: [], // TODO
+  tags: ["バラード", "バンドサウンド"],
   credits: [
     {
       name: "竹馬あお",

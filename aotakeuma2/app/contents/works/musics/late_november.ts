@@ -5,7 +5,7 @@ export const late_november: Music = {
   id: "late_november",
   title: "11月下旬",
   description: "分類不可能の単数形",
-  tags: [], // TODO
+  tags: [],
   credits: [
     {
       name: "閔仲 (later 竹馬あお)",

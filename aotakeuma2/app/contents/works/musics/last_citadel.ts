@@ -7,7 +7,7 @@ export const last_citadel: Music = {
   description: `
 リズムゲーム『HARCA』に書き下ろした楽曲です。Hardcore です。
 `,
-  tags: [], // TODO
+  tags: ["提供作品", "エレクトロニック"],
   credits: [
     {
       name: "竹馬あお",

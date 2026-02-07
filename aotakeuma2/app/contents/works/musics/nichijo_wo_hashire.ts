@@ -8,7 +8,7 @@ export const nichijo_wo_hashire: Music = {
 頼りない日常でも、ちゃんと今日も奔りぬけて
 ※本作より前の 8 作品は YouTube よりご覧ください（マジで興味があるなら）
 `,
-  tags: [], // TODO
+  tags: ["バンドサウンド"],
   credits: [
     {
       name: "閔仲 (later 竹馬あお)",

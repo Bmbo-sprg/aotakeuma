@@ -11,7 +11,7 @@ export const syngularity: Album = {
   title: "SyngUlarity!!!",
   description:
     "『学園アイドルマスター』のユニット・SyngUp!へのファンメイドアルバム",
-  tags: [], // TODO
+  tags: ["アイドル", "合作参加作品"],
   team: "スタジオ加速",
   credits: [
     {

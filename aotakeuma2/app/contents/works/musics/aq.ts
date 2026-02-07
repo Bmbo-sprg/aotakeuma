@@ -8,7 +8,7 @@ export const aq: Music = {
 とけちゃってきみひとりにしないように
 Kawaii Future Bass およびタイポグラフィアニメーションに初挑戦
 `,
-  tags: [], // TODO
+  tags: ["エレクトロニック"],
   credits: [
     {
       name: "閔仲 (later 竹馬あお)",

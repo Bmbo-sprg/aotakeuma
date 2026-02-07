@@ -7,7 +7,7 @@ export const kiro: Music = {
   description: `
 つのふたゆったりバラード。
 `,
-  tags: [], // TODO
+  tags: ["バラード", "バンドサウンド"],
   credits: [
     {
       name: "竹馬あお",

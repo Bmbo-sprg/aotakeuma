@@ -7,7 +7,7 @@ export const afterburn: Music = {
   description: `
 次の夜にまた！
 `,
-  tags: [], // TODO
+  tags: ["エレクトロニック"],
   credits: [
     {
       name: "竹馬あお",

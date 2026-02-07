@@ -9,7 +9,7 @@ export const ubugoe_song: Music = {
 アルバム『産声、滲んだきみの青』表題曲。バラードです。
 無色透名祭Ⅱ投稿曲でした。
 `,
-  tags: [], // TODO
+  tags: ["バラード", "バンドサウンド"],
   credits: [
     {
       name: "竹馬あお",

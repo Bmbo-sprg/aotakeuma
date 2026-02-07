@@ -8,7 +8,7 @@ export const haikei_anohi: Music = {
 ビジュアルノベル『ハルジオンは雨と咲く』のエンディング曲のひとつです。
 スリーピースガールズバンドの気持ち
 `,
-  tags: [], // TODO
+  tags: ["『縋想』プロジェクト", "バンドサウンド"],
   credits: [
     {
       name: "竹馬あお",

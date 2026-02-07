@@ -9,7 +9,7 @@ export const bourei_in_the_water: Music = {
 編曲で参加しました。
 Myca. さんによる再録はこちら: https://www.nicovideo.jp/watch/sm45332566
 `,
-  tags: [], // TODO
+  tags: ["合作参加作品", "バンドサウンド", "夏"],
   credits: [
     {
       name: "Myca.",

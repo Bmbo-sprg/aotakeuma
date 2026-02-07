@@ -12,7 +12,7 @@ export const asatte: Music = {
 想いを載せた虹が蒼穹をかけるのを見つめてる。
 そんな感じの和風ロックです。
 `,
-  tags: [], // TODO
+  tags: ["バンドサウンド"],
   credits: [
     {
       name: "閔仲 (later 竹馬あお)",

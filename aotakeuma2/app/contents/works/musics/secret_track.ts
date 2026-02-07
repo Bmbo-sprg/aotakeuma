@@ -8,7 +8,7 @@ export const secret_track: Music = {
 創りつづけるんだ
 VocaDuo2025 参加曲です。
 `,
-  tags: [], // TODO
+  tags: ["合作参加作品", "バンドサウンド"],
   team: "アオノスタシス",
   credits: [
     {

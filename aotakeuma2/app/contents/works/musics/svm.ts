@@ -8,7 +8,7 @@ export const svm: Music = {
 夏・感傷マゾ・オルタナティブロック。
 題名は support-vector machine の略称 SVM から。
 `,
-  tags: [], // TODO
+  tags: ["夏", "バンドサウンド"],
   credits: [
     {
       name: "竹馬あお",

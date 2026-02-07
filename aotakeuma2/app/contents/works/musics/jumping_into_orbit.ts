@@ -8,7 +8,7 @@ export const jumping_into_orbit: Music = {
 Be the star!
 宮舞モカと House
 `,
-  tags: [], // TODO
+  tags: ["エレクトロニック"],
   credits: [
     {
       name: "竹馬あお",

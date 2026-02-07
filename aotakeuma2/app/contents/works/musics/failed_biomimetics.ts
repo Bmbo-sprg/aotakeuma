@@ -5,7 +5,7 @@ export const failed_biomimetics: Music = {
   id: "failed_biomimetics",
   title: "フェイルド・バイオミメティクス",
   description: "ねぇ？あと何周？",
-  tags: [], // TODO
+  tags: ["バンドサウンド"],
   credits: [
     {
       name: "閔仲 (later 竹馬あお)",

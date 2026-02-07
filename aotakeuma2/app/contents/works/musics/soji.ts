@@ -9,7 +9,7 @@ export const soji: Music = {
 klkkl さんとの合作です。
 実話ボカバラード投稿祭2025 参加曲でした。
 `,
-  tags: [], // TODO
+  tags: ["バラード", "合作参加作品", "バンドサウンド", "エレクトロニック"],
   credits: [
     {
       name: "竹馬あお",

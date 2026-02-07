@@ -9,7 +9,7 @@ export const digimoca: Album = {
   titlePrefix: "竹馬あお EP",
   title: "でぃじたる・もかちーの！",
   description: "ひとりといっぴき、宇宙を旅する　宮舞モカ×クラブミュージックEP",
-  tags: [], // TODO
+  tags: ["エレクトロニック"],
   credits: [
     {
       name: "竹馬あお",

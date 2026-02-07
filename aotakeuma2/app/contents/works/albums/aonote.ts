@@ -16,7 +16,7 @@ export const aonote: Album = {
   titlePrefix: "竹馬あお 4th Album",
   title: "あおいろがぼくたちの音",
   description: "青を探す旅路と、出会いと別れと再会とを描く合成音声アルバム",
-  tags: [], // TODO
+  tags: [],
   credits: [
     {
       name: "竹馬あお",

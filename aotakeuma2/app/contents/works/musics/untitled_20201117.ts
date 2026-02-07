@@ -5,7 +5,7 @@ export const untitled_20201117: Music = {
   id: "untitled_20201117",
   title: "無題_20201117",
   description: "感情と向き合うピアノ即興演奏",
-  tags: [], // TODO
+  tags: ["インスト"],
   credits: [
     {
       name: "竹馬あお",

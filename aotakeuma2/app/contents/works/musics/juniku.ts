@@ -9,7 +9,7 @@ export const juniku: Music = {
 天馬手毬と祈りとピアノバラード
 無色透名祭3 参加曲でした。
 `,
-  tags: [], // TODO
+  tags: ["バラード"],
   credits: [
     {
       name: "竹馬あお",

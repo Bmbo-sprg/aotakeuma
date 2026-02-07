@@ -9,7 +9,7 @@ export const mayonaka: Music = {
 ボカコレ2025夏ex 参加曲です。
 オルタナティブロック
 `,
-  tags: [], // TODO
+  tags: ["バンドサウンド", "ボカコレ"],
   credits: [
     {
       name: "竹馬あお",

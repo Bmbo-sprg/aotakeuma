@@ -7,7 +7,7 @@ export const nde_ost: Album = {
   title: "Near-Death-Expedition Soundtrack",
   description:
     "ビジュアルノベル『Near-Death-Expedition』のオリジナルサウンドトラック",
-  tags: [], // TODO
+  tags: ["エレクトロニック", "『縋想』プロジェクト"],
   team: "『縋想』プロジェクト",
   credits: [
     {

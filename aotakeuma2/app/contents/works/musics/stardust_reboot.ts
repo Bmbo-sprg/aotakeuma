@@ -9,7 +9,7 @@ export const stardust_reboot: Music = {
 相棒・初音ミクと創作に向き合うロック。
 ボカコレ2023春TOP100ランキング参加曲 でした。
 `,
-  tags: [], // TODO
+  tags: ["ボカコレ", "バンドサウンド", "アイドル"],
   credits: [
     {
       name: "竹馬あお",

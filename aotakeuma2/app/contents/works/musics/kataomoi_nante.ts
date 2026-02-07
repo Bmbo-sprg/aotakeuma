@@ -5,7 +5,7 @@ export const kataomoi_nante: Music = {
   id: "kataomoi_nante",
   title: "かたおもいなんてしてみたけど",
   description: "ふっと思い至って、ふわっと1時間少々で、ふらっとな1コーラス",
-  tags: [], // TODO
+  tags: ["エレクトロニック"],
   credits: [
     {
       name: "閔仲 (later 竹馬あお)",

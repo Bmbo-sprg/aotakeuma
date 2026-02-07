@@ -5,7 +5,7 @@ export const itomagoi: Music = {
   id: "itomagoi",
   title: "いとまごい",
   description: "高校生という傘を仕舞って、雨が止んだら何者でもない",
-  tags: [], // TODO
+  tags: ["バラード"],
   credits: [
     {
       name: "閔仲 (later 竹馬あお)",

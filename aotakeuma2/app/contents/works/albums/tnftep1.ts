@@ -10,7 +10,7 @@ export const tnftep1: Album = {
   titlePrefix: "竹馬あお EP",
   title: "ふたつの夏日に餞を",
   description: "双葉湊音×紡乃世詞音のひと夏を描いた小品集",
-  tags: [], // TODO
+  tags: ["夏"],
   credits: [
     {
       name: "竹馬あお",

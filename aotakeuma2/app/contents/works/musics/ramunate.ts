@@ -7,7 +7,7 @@ export const ramunate: Music = {
   description: `
 夏曲が大好きなので、毎年夏曲ロックを作っています。2021年の夏曲決定版！
 `,
-  tags: [], // TODO
+  tags: ["バンドサウンド", "夏", "『縋想』プロジェクト"],
   credits: [
     {
       name: "竹馬あお",

@@ -13,7 +13,7 @@ export const tsuisou: Album = {
   description: `
 創作プロジェクト『縋想』の一作目。
 想い出の中の「キミ」に縋る、切実なオルタナティブ青春物語。`,
-  tags: [], // TODO
+  tags: ["『縋想』プロジェクト"],
   team: "『縋想』プロジェクト",
   credits: [
     {

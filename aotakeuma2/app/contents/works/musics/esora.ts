@@ -9,7 +9,7 @@ export const esora: Music = {
 大阪大学感傷マゾ研究会『青春ヘラver.7「VTuber新時代」』の特装版CD『Virtual Mirage Seaside Girl』に書き下ろした楽曲です。
 ボカコレ2023夏TOP100ランキング参加曲 でした。
 `,
-  tags: [], // TODO
+  tags: ["夏", "提供作品", "エレクトロニック", "ボカコレ"],
   credits: [
     {
       name: "竹馬あお",

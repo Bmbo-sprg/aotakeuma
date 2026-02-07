@@ -9,7 +9,7 @@ export const upright_night_tonic: Music = {
 作詞、調声、概念作り、映像ディレクションで参加しました。
 終電後の二軒目、京都木屋町の深夜喫茶で恋バナをするオトナの小樽組のJazzyな楽曲です。
 `,
-  tags: [], // TODO
+  tags: ["合作参加作品"],
   credits: [
     {
       name: "ひとひら",

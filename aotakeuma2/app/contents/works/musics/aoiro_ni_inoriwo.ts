@@ -7,7 +7,7 @@ export const aoiro_ni_inoriwo: Music = {
   description: `
 青春ポエムです。
 `,
-  tags: [], // TODO
+  tags: ["バンドサウンド"],
   credits: [
     {
       name: "竹馬あお",

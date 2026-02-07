@@ -1,3 +1,5 @@
+import type { tags } from "./contents/tags";
+
 export type Work = {
   type: "album" | "music" | "game" | "other";
   id: string;
@@ -61,7 +63,4 @@ export type SocialLink = {
   url: string;
 };
 
-export type Tag = {
-  id: string;
-  name: string;
-};
+export type Tag = (typeof tags)[number];

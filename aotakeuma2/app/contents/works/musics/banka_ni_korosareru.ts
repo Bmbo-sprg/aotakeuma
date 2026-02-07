@@ -9,7 +9,7 @@ export const banka_ni_korosareru: Music = {
 ドラムとミックスで参加しました。
 晩夏サウンドのオルタナティブロックです。
 `,
-  tags: [], // TODO
+  tags: ["合作参加作品", "バンドサウンド", "夏"],
   team: "残暑見舞",
   credits: [
     {

@@ -8,7 +8,7 @@ export const tenshi: Music = {
 ビジュアルノベル『Near-Death-Expedition』のエンディング曲のひとつです。
 Drum n Bass, Future Core などの要素を取り入れたポップスです。
 `,
-  tags: [], // TODO
+  tags: ["エレクトロニック", "『縋想』プロジェクト"],
   credits: [
     {
       name: "竹馬あお",

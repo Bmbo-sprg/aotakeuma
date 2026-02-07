@@ -5,7 +5,7 @@ export const kaigansen: Music = {
   id: "kaigansen",
   title: "夏の海岸線では聴こえない。",
   description: "少し切ない夏の歌です。",
-  tags: [], // TODO
+  tags: ["夏", "バンドサウンド"],
   credits: [
     {
       name: "閔仲 (later 竹馬あお)",

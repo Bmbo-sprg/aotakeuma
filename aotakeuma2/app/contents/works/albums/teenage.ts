@@ -14,7 +14,7 @@ export const teenage: Album = {
   titlePrefix: "閔仲 1st Album",
   title: "高校生",
   description: "高校時代のすべてを言語化した音たちを集めました",
-  tags: [], // TODO
+  tags: [],
   credits: [
     {
       name: "閔仲 (later 竹馬あお)",

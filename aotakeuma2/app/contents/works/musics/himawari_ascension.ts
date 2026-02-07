@@ -8,7 +8,7 @@ export const himawari_ascension: Music = {
 またいつか逢える、きみに餞を。
 Hardcore 的つのふたポップス 2 作目。
 `,
-  tags: [], // TODO
+  tags: ["エレクトロニック"],
   credits: [
     {
       name: "竹馬あお",

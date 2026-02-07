@@ -8,7 +8,7 @@ export const thumbs_up: Music = {
 YouTuber・れり様に書き下ろした楽曲です。
 アイドルソング的な曲想を目指しました。
 `,
-  tags: [], // TODO
+  tags: ["アイドル", "提供作品"],
   credits: [
     {
       name: "竹馬あお",
