@@ -1,4 +1,5 @@
 import type { Music } from "~/types";
+import { getPerson } from "../../persons";
 
 export const sayounara_ryuseigun: Music = {
   type: "music",
@@ -11,7 +12,7 @@ export const sayounara_ryuseigun: Music = {
   tags: ["ボカコレ", "バラード", "バンドサウンド", "コンピ参加作品"],
   credits: [
     {
-      name: "竹馬あお",
+      ...getPerson("竹馬あお"),
       role: "作詞、作曲、編曲",
     },
     {
@@ -23,12 +24,22 @@ export const sayounara_ryuseigun: Music = {
   video: {
     credits: [
       {
-        name: "竹馬あお",
+        ...getPerson("竹馬あお"),
         role: "映像制作",
       },
       {
         name: "ゆぐﾓ",
         role: "イラスト、アニメーション",
+        socialLinks: [
+          {
+            platform: "pixiv",
+            url: "https://www.pixiv.net/users/20490764",
+          },
+          {
+            platform: "twitter",
+            url: "https://x.com/yuraruranoyuu",
+          },
+        ],
       },
     ],
     youtubeUrl: "https://www.youtube.com/watch?v=0sFnq_p2EXw",

@@ -1,4 +1,5 @@
 import type { Music } from "~/types";
+import { getPerson } from "../../persons";
 
 export const haikei_anohi: Music = {
   type: "music",
@@ -11,23 +12,37 @@ export const haikei_anohi: Music = {
   tags: ["『縋想』プロジェクト", "バンドサウンド"],
   credits: [
     {
-      name: "竹馬あお",
+      ...getPerson("竹馬あお"),
       role: "作曲、編曲",
     },
     {
-      name: "佐薙概念",
+      ...getPerson("佐薙概念"),
       role: "作詞",
     },
     {
       name: "里緒",
       role: "ボーカル",
+      socialLinks: [
+        {
+          platform: "website",
+          url: "https://rio-oir0.jimdofree.com/",
+        },
+        {
+          platform: "youtube",
+          url: "https://youtube.com/channel/UCvZUHhI9dHoaN1hCUwNjNJA",
+        },
+        {
+          platform: "twitter",
+          url: "https://x.com/rio_oir0",
+        },
+      ],
     },
     {
       name: "双葉湊音",
       role: "ボーカル (『産声、滲んだきみの青』収録版)",
     },
     {
-      name: "しもぞの",
+      ...getPerson("しもぞの"),
       role: "ギター",
     },
   ],
@@ -35,11 +50,11 @@ export const haikei_anohi: Music = {
   video: {
     credits: [
       {
-        name: "竹馬あお",
+        ...getPerson("竹馬あお"),
         role: "映像制作",
       },
       {
-        name: "犬吠埼いつき",
+        ...getPerson("犬吠埼いつき"),
         role: "イラスト",
       },
     ],

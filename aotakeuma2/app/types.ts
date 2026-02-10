@@ -7,7 +7,7 @@ export type Work = {
   description: string;
   tags: Tag[];
   team?: string; // サークル名など。なければ自名義
-  credits: Person[];
+  credits: PersonWithRole[];
   releaseDate: Date;
   links?: SocialLink[];
 };
@@ -22,13 +22,13 @@ export type Album = Work & {
 
 export type Music = Work & {
   type: "music";
-    video?: Video;
+  video?: Video;
   lyrics?: string;
 };
 
 export type Video = {
-  credits: Person[];
-    youtubeUrl?: string;
+  credits: PersonWithRole[];
+  youtubeUrl?: string;
   niconicoUrl?: string;
   bilibiliUrl?: string;
 };
@@ -52,9 +52,12 @@ export type Event = {
   links?: SocialLink[];
 };
 
+export type PersonWithRole = Person & {
+  role: string;
+};
+
 export type Person = {
   name: string;
-  role: string;
   socialLinks?: SocialLink[];
 };
 

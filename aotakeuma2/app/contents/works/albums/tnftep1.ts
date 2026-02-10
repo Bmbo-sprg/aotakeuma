@@ -1,4 +1,5 @@
 import type { Album } from "~/types";
+import { getPerson } from "../../persons";
 import { lemonade_palette } from "../musics/lemonade_palette";
 import { himawari_ascension } from "../musics/himawari_ascension";
 import { kiro } from "../musics/kiro";
@@ -13,15 +14,15 @@ export const tnftep1: Album = {
   tags: ["夏"],
   credits: [
     {
-      name: "竹馬あお",
+      ...getPerson("竹馬あお"),
       role: "制作、マスタリング",
     },
     {
-      name: "ねこねこ",
+      ...getPerson("ねこねこ"),
       role: "イラスト",
     },
     {
-      name: "ぺんぎん",
+      ...getPerson("ぺんぎん"),
       role: "イラスト",
     },
   ],
@@ -37,7 +38,7 @@ export const tnftep1: Album = {
   video: {
     credits: [
       {
-        name: "竹馬あお",
+        ...getPerson("竹馬あお"),
         role: "映像制作",
       },
     ],

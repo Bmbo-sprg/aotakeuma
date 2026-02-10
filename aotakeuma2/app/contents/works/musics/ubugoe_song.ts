@@ -1,4 +1,5 @@
 import type { Music } from "~/types";
+import { getPerson } from "../../persons";
 
 export const ubugoe_song: Music = {
   type: "music",
@@ -12,7 +13,7 @@ export const ubugoe_song: Music = {
   tags: ["バラード", "バンドサウンド"],
   credits: [
     {
-      name: "竹馬あお",
+      ...getPerson("竹馬あお"),
       role: "作詞、作曲、編曲",
     },
     {
@@ -24,11 +25,11 @@ export const ubugoe_song: Music = {
   video: {
     credits: [
       {
-        name: "竹馬あお",
+        ...getPerson("竹馬あお"),
         role: "映像制作",
       },
       {
-        name: "こんぺき",
+        ...getPerson("こんぺき"),
         role: "イラスト",
       },
     ],

@@ -1,4 +1,5 @@
 import type { Music } from "~/types";
+import { getPerson } from "../../persons";
 
 export const natsuno_owari: Music = {
   type: "music",
@@ -8,7 +9,7 @@ export const natsuno_owari: Music = {
   tags: ["夏", "バンドサウンド"],
   credits: [
     {
-      name: "閔仲 (later 竹馬あお)",
+      ...getPerson("閔仲 (later 竹馬あお)"),
       role: "作詞、作曲、編曲",
     },
     {
@@ -20,7 +21,7 @@ export const natsuno_owari: Music = {
   video: {
     credits: [
       {
-        name: "閔仲 (later 竹馬あお)",
+        ...getPerson("閔仲 (later 竹馬あお)"),
         role: "映像制作",
       },
       {
@@ -43,7 +44,7 @@ export const natsuno_owari: Music = {
 今年こそ手放したくない
 消えちゃいそうな青を 君の笑顔を
 「物語の書き手は僕らなんだ。」
- 
+
 嗚呼
 君との時間を繋ぎ止めたくて
 君との想い出を忘却れたくなくて

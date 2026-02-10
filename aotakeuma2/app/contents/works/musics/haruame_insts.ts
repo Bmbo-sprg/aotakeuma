@@ -1,4 +1,5 @@
 import type { Music } from "~/types";
+import { getPerson } from "../../persons";
 
 const haruame_bgms: Music[] = (
   [
@@ -98,7 +99,7 @@ const haruame_bgms: Music[] = (
   type: "music",
   credits: [
     {
-      name: "竹馬あお",
+      ...getPerson("竹馬あお"),
       role: "作曲、編曲",
     },
   ],
@@ -138,7 +139,7 @@ const haruame_pianos: Music[] = (
   type: "music",
   credits: [
     {
-      name: "竹馬あお",
+      ...getPerson("竹馬あお"),
       role: "作曲",
     },
     {

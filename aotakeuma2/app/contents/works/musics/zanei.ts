@@ -1,4 +1,5 @@
 import type { Music } from "~/types";
+import { getPerson } from "../../persons";
 
 export const zanei: Music = {
   type: "music",
@@ -12,7 +13,7 @@ export const zanei: Music = {
   team: "スタジオ加速",
   credits: [
     {
-      name: "竹馬あお",
+      ...getPerson("竹馬あお"),
       role: "作詞、作曲、編曲",
     },
     {
@@ -24,11 +25,11 @@ export const zanei: Music = {
   video: {
     credits: [
       {
-        name: "竹馬あお",
+        ...getPerson("竹馬あお"),
         role: "映像制作",
       },
       {
-        name: "kiki",
+        ...getPerson("kiki"),
         role: "イラスト",
       },
     ],

@@ -1,4 +1,5 @@
 import type { Music } from "~/types";
+import { getPerson } from "../..//persons";
 
 const nde_bgms: Music[] = (
   [
@@ -50,7 +51,7 @@ const nde_bgms: Music[] = (
   type: "music",
   credits: [
     {
-      name: "竹馬あお",
+      ...getPerson("竹馬あお"),
       role: "作曲、編曲",
     },
   ],
@@ -67,15 +68,15 @@ const mataao_cover: Music = {
   tags: [],
   credits: [
     {
-      name: "竹馬あお",
+      ...getPerson("竹馬あお"),
       role: "作曲、編曲",
     },
     {
-      name: "佐薙概念",
+      ...getPerson("佐薙概念"),
       role: "作詞",
     },
     {
-      name: "えもこ",
+      ...getPerson("えもこ"),
       role: "ボーカル",
     },
   ],
@@ -84,7 +85,7 @@ const mataao_cover: Music = {
 ぜんぶ僕の所為なのに　勝手に辛くなってごめんね
 息が白んでいた　18回目の冬が来た
 キミはもう覚えてないだろうな　贖罪なんて自己満足だ
- 
+
 幸せを知らなければ　不幸を知らなかった
 悲劇ばかりの人間は　喜劇なんて想像もできないから
 だったら僕はいっそ、不幸のままでいいさ
@@ -93,7 +94,7 @@ const mataao_cover: Music = {
 グレゴール、彼は幸せだったんだな
 
 冬の空気で痛む喉が　歌を歌おうとまた声を上げる
-どこかで幸せなあのキミに　捧げるこの祈り　届かなくていい 
+どこかで幸せなあのキミに　捧げるこの祈り　届かなくていい
 冬の所為で今年も死ねなかった　人生なんていらないさ
 
 架空の感傷、消えないでいる
@@ -110,15 +111,15 @@ const sayokazu_cover: Music = {
   tags: [],
   credits: [
     {
-      name: "竹馬あお",
+      ...getPerson("竹馬あお"),
       role: "作曲、編曲",
     },
     {
-      name: "佐薙概念",
+      ...getPerson("佐薙概念"),
       role: "作詞",
     },
     {
-      name: "えもこ",
+      ...getPerson("えもこ"),
       role: "ボーカル",
     },
   ],
@@ -149,15 +150,15 @@ const tenshi_cover: Music = {
   tags: [],
   credits: [
     {
-      name: "竹馬あお",
+      ...getPerson("竹馬あお"),
       role: "作曲、編曲",
     },
     {
-      name: "佐薙概念",
+      ...getPerson("佐薙概念"),
       role: "作詞",
     },
     {
-      name: "えもこ",
+      ...getPerson("えもこ"),
       role: "ボーカル",
     },
   ],
@@ -191,7 +192,7 @@ const nde_ending: Music = {
   tags: ["インスト", "エレクトロニック"],
   credits: [
     {
-      name: "竹馬あお",
+      ...getPerson("竹馬あお"),
       role: "作曲、編曲",
     },
   ],

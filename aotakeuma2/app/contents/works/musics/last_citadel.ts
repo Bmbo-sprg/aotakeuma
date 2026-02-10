@@ -1,4 +1,5 @@
 import type { Music } from "~/types";
+import { getPerson } from "../../persons";
 
 export const last_citadel: Music = {
   type: "music",
@@ -10,7 +11,7 @@ export const last_citadel: Music = {
   tags: ["提供作品", "エレクトロニック"],
   credits: [
     {
-      name: "竹馬あお",
+      ...getPerson("竹馬あお"),
       role: "作曲、編曲",
     },
   ],

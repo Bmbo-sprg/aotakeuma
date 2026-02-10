@@ -1,4 +1,5 @@
 import type { Album } from "~/types";
+import { getPerson } from "../../persons";
 import { hakumeikousen } from "../musics/hakumeikousen";
 import { haikei_anohi } from "../musics/haikei_anohi";
 import { sayokazu } from "../musics/sayokazu";
@@ -15,15 +16,15 @@ export const haruame_ost: Album = {
   team: "『縋想』プロジェクト",
   credits: [
     {
-      name: "竹馬あお",
+      ...getPerson("竹馬あお"),
       role: "作曲、編曲、マスタリング",
     },
     {
-      name: "佐薙概念",
+      ...getPerson("佐薙概念"),
       role: "作詞",
     },
     {
-      name: "犬吠埼いつき",
+      ...getPerson("犬吠埼いつき"),
       role: "イラスト",
     },
   ],
@@ -61,7 +62,7 @@ export const haruame_ost: Album = {
   video: {
     credits: [
       {
-        name: "竹馬あお",
+        ...getPerson("竹馬あお"),
         role: "映像制作",
       },
     ],

@@ -1,4 +1,5 @@
 import type { Music } from "~/types";
+import { getPerson } from "../../persons";
 
 export const banka_ni_korosareru: Music = {
   type: "music",
@@ -15,21 +16,49 @@ export const banka_ni_korosareru: Music = {
     {
       name: "可蝕部.wav",
       role: "作詞、ベース",
+      socialLinks: [
+        {
+          platform: "niconico",
+          url: "https://www.nicovideo.jp/user/140420562",
+        },
+        {
+          platform: "youtube",
+          url: "https://www.youtube.com/@user-kashokubuwav",
+        },
+        {
+          platform: "twitter",
+          url: "https://x.com/kashokubu_wav",
+        },
+      ],
     },
     {
       name: "乃々野ねね",
       role: "作曲、調声",
+      socialLinks: [
+        {
+          platform: "niconico",
+          url: "https://www.nicovideo.jp/user/129910999",
+        },
+        {
+          platform: "youtube",
+          url: "https://www.youtube.com/@neneinenene",
+        },
+        {
+          platform: "twitter",
+          url: "https://x.com/neineinenene",
+        },
+      ],
     },
     {
       name: "g",
       role: "編曲",
     },
     {
-      name: "ひとひら",
+      ...getPerson("ひとひら"),
       role: "ギター",
     },
     {
-      name: "竹馬あお",
+      ...getPerson("竹馬あお"),
       role: "ドラム、ミックス",
     },
     {

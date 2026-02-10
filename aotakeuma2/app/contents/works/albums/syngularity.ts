@@ -1,4 +1,5 @@
 import type { Album } from "~/types";
+import { getPerson } from "../../persons";
 import { sunburned_wing } from "../musics/sunburned_wing";
 import { polaris_step } from "../musics/polaris_step";
 import { zanei } from "../musics/zanei";
@@ -15,7 +16,7 @@ export const syngularity: Album = {
   team: "スタジオ加速",
   credits: [
     {
-      name: "竹馬あお",
+      ...getPerson("竹馬あお"),
       role: "企画、作詞、作曲、編曲、マスタリング",
     },
     {
@@ -27,7 +28,7 @@ export const syngularity: Album = {
       role: "企画、作詞、小説",
     },
     {
-      name: "kiki",
+      ...getPerson("kiki"),
       role: "企画、イラスト、デザイン",
     },
   ],
@@ -38,11 +39,11 @@ export const syngularity: Album = {
   video: {
     credits: [
       {
-        name: "竹馬あお",
+        ...getPerson("竹馬あお"),
         role: "映像制作",
       },
       {
-        name: "kiki",
+        ...getPerson("kiki"),
         role: "イラスト",
       },
     ],

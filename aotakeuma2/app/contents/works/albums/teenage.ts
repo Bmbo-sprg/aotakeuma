@@ -1,4 +1,5 @@
 import type { Album } from "~/types";
+import { getPerson } from "../../persons";
 import { tabun } from "../musics/tabun";
 import { aq } from "../musics/aq";
 import { nichijo_wo_hashire } from "../musics/nichijo_wo_hashire";
@@ -17,7 +18,7 @@ export const teenage: Album = {
   tags: [],
   credits: [
     {
-      name: "閔仲 (later 竹馬あお)",
+      ...getPerson("閔仲 (later 竹馬あお)"),
       role: "制作、マスタリング",
     },
   ],
@@ -42,7 +43,7 @@ export const teenage: Album = {
   video: {
     credits: [
       {
-        name: "閔仲 (later 竹馬あお)",
+        ...getPerson("閔仲 (later 竹馬あお)"),
         role: "映像制作",
       },
     ],

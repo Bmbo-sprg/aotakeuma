@@ -1,4 +1,5 @@
 import type { Music } from "~/types";
+import { getPerson } from "../../persons";
 
 export const esora: Music = {
   type: "music",
@@ -12,7 +13,7 @@ export const esora: Music = {
   tags: ["夏", "提供作品", "エレクトロニック", "ボカコレ"],
   credits: [
     {
-      name: "竹馬あお",
+      ...getPerson("竹馬あお"),
       role: "作詞、作曲、編曲",
     },
     {
@@ -22,17 +23,27 @@ export const esora: Music = {
     {
       name: "osakana",
       role: "ボーカル (『Virtual Mirage Seaside Girl』収録版)",
+      socialLinks: [
+        {
+          platform: "youtube",
+          url: "https://www.youtube.com/@hidakaharuno35",
+        },
+        {
+          platform: "twitter",
+          url: "https://x.com/hidakaharuno35",
+        },
+      ],
     },
   ],
   releaseDate: new Date("2023-08-05"),
   video: {
     credits: [
       {
-        name: "竹馬あお",
+        ...getPerson("竹馬あお"),
         role: "映像制作",
       },
       {
-        name: "ぺんぎん",
+        ...getPerson("ぺんぎん"),
         role: "イラスト",
       },
     ],

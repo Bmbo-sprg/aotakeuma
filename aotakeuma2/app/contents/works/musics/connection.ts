@@ -1,4 +1,5 @@
 import type { Music } from "~/types";
+import { getPerson } from "../../persons";
 
 export const connection: Music = {
   type: "music",
@@ -11,7 +12,7 @@ export const connection: Music = {
   tags: ["アイドル", "エレクトロニック"],
   credits: [
     {
-      name: "竹馬あお",
+      ...getPerson("竹馬あお"),
       role: "作詞、作曲、編曲",
     },
     {
@@ -23,12 +24,22 @@ export const connection: Music = {
   video: {
     credits: [
       {
-        name: "竹馬あお",
+        ...getPerson("竹馬あお"),
         role: "映像制作",
       },
       {
         name: "shamo",
         role: "イラスト",
+        socialLinks: [
+          {
+            platform: "pixiv",
+            url: "https://www.pixiv.net/users/68225513",
+          },
+          {
+            platform: "twitter",
+            url: "https://x.com/_shamo3",
+          },
+        ],
       },
     ],
     youtubeUrl: "https://www.youtube.com/watch?v=rQfi5QS8u68",
@@ -51,9 +62,9 @@ export const connection: Music = {
 あふれたビートほつれて
 ココロはオーバーフロー!
 キミに奏でるドレミ
-聴こえないフリしないで 
+聴こえないフリしないで
 眠れない夜越えて
-書き込みたい 甘い想い出 
+書き込みたい 甘い想い出
 
 こねくしょん!　2番でひと休み、まだまだいけるよ
 準備はいい?

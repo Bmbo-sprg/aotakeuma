@@ -1,4 +1,5 @@
 import type { Album } from "~/types";
+import { getPerson } from "../../persons";
 import { untitled_20201117 } from "../musics/untitled_20201117";
 import { sasayaki_sae } from "../musics/sasayaki_sae";
 import { ao_no_tonarini } from "../musics/ao_no_tonarini";
@@ -19,11 +20,11 @@ export const ubugoe: Album = {
   tags: ["バンドサウンド"],
   credits: [
     {
-      name: "竹馬あお",
+      ...getPerson("竹馬あお"),
       role: "制作、マスタリング",
     },
     {
-      name: "こんぺき",
+      ...getPerson("こんぺき"),
       role: "イラスト",
     },
   ],
@@ -65,7 +66,7 @@ export const ubugoe: Album = {
   video: {
     credits: [
       {
-        name: "竹馬あお",
+        ...getPerson("竹馬あお"),
         role: "映像制作",
       },
     ],

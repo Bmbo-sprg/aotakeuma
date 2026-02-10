@@ -1,4 +1,5 @@
 import type { Music } from "~/types";
+import { getPerson } from "../../persons";
 
 export const asatte: Music = {
   type: "music",
@@ -15,7 +16,7 @@ export const asatte: Music = {
   tags: ["バンドサウンド"],
   credits: [
     {
-      name: "閔仲 (later 竹馬あお)",
+      ...getPerson("閔仲 (later 竹馬あお)"),
       role: "作詞、作曲、編曲",
     },
     {
@@ -33,7 +34,7 @@ export const asatte: Music = {
   video: {
     credits: [
       {
-        name: "竹馬あお",
+        ...getPerson("竹馬あお"),
         role: "映像制作",
       },
     ],

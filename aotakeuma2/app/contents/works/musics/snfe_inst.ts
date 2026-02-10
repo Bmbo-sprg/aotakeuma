@@ -1,4 +1,5 @@
 import type { Music } from "~/types";
+import { getPerson } from "../../persons";
 
 export const snfe_inst: Music = {
   type: "music",
@@ -11,7 +12,7 @@ export const snfe_inst: Music = {
   tags: ["インスト", "エレクトロニック", "夏"],
   credits: [
     {
-      name: "竹馬あお",
+      ...getPerson("竹馬あお"),
       role: "作曲、編曲",
     },
     {
@@ -23,11 +24,11 @@ export const snfe_inst: Music = {
   video: {
     credits: [
       {
-        name: "竹馬あお",
+        ...getPerson("竹馬あお"),
         role: "映像制作",
       },
       {
-        name: "ぺんぎん",
+        ...getPerson("ぺんぎん"),
         role: "イラスト",
       },
     ],

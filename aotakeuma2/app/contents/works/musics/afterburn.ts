@@ -1,4 +1,5 @@
 import type { Music } from "~/types";
+import { getPerson } from "../../persons";
 
 export const afterburn: Music = {
   type: "music",
@@ -10,7 +11,7 @@ export const afterburn: Music = {
   tags: ["エレクトロニック"],
   credits: [
     {
-      name: "竹馬あお",
+      ...getPerson("竹馬あお"),
       role: "作詞、作曲、編曲",
     },
     {

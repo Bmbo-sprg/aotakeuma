@@ -1,4 +1,5 @@
 import type { Music } from "~/types";
+import { getPerson } from "../../persons";
 
 export const shusou_ni_yosete: Music = {
   type: "music",
@@ -11,7 +12,7 @@ export const shusou_ni_yosete: Music = {
   tags: ["合作参加作品", "バンドサウンド", "夏"],
   credits: [
     {
-      name: "竹馬あお",
+      ...getPerson("竹馬あお"),
       role: "作詞、作曲",
     },
     {
@@ -21,13 +22,37 @@ export const shusou_ni_yosete: Music = {
     {
       name: "りせか",
       role: "編曲、ミックス",
+      socialLinks: [
+        {
+          platform: "niconico",
+          url: "https://www.nicovideo.jp/user/95695721",
+        },
+        {
+          platform: "youtube",
+          url: "https://www.youtube.com/@nana_riika",
+        },
+        {
+          platform: "twitter",
+          url: "https://x.com/nana_riika",
+        },
+      ],
     },
     {
       name: "なあむ",
       role: "調声",
+      socialLinks: [
+        {
+          platform: "niconico",
+          url: "https://www.nicovideo.jp/user/33475469",
+        },
+        {
+          platform: "twitter",
+          url: "https://x.com/flumptic",
+        },
+      ],
     },
     {
-      name: "しもぞの",
+      ...getPerson("しもぞの"),
       role: "ギター、ベース",
     },
   ],

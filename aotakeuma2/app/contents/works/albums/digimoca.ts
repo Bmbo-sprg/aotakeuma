@@ -1,4 +1,5 @@
 import type { Album } from "~/types";
+import { getPerson } from "../../persons";
 import { jumping_into_orbit } from "../musics/jumping_into_orbit";
 import { nyanverse } from "../musics/nyanverse";
 import { afterburn } from "../musics/afterburn";
@@ -12,11 +13,11 @@ export const digimoca: Album = {
   tags: ["エレクトロニック"],
   credits: [
     {
-      name: "竹馬あお",
+      ...getPerson("竹馬あお"),
       role: "制作、マスタリング",
     },
     {
-      name: "ぺんぎん",
+      ...getPerson("ぺんぎん"),
       role: "イラスト",
     },
   ],
@@ -32,7 +33,7 @@ export const digimoca: Album = {
   video: {
     credits: [
       {
-        name: "竹馬あお",
+        ...getPerson("竹馬あお"),
         role: "映像制作",
       },
     ],

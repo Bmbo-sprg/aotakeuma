@@ -1,4 +1,5 @@
 import type { Music } from "~/types";
+import { getPerson } from "../../persons";
 import { teenage } from "../albums/teenage";
 
 export const tabun: Music = {
@@ -9,7 +10,7 @@ export const tabun: Music = {
   tags: ["バンドサウンド"],
   credits: [
     {
-      name: "閔仲 (later 竹馬あお)",
+      ...getPerson("閔仲 (later 竹馬あお)"),
       role: "作詞、作曲、編曲",
     },
     {

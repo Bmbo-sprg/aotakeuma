@@ -1,4 +1,5 @@
 import type { Music } from "~/types";
+import { getPerson } from "../../persons";
 
 export const hakumeikousen: Music = {
   type: "music",
@@ -11,15 +12,15 @@ export const hakumeikousen: Music = {
   tags: ["『縋想』プロジェクト", "バンドサウンド", "エレクトロニック"],
   credits: [
     {
-      name: "竹馬あお",
+      ...getPerson("竹馬あお"),
       role: "作曲、編曲",
     },
     {
-      name: "佐薙概念",
+      ...getPerson("佐薙概念"),
       role: "作詞",
     },
     {
-      name: "yin",
+      ...getPerson("yin"),
       role: "ボーカル",
     },
   ],
@@ -27,11 +28,11 @@ export const hakumeikousen: Music = {
   video: {
     credits: [
       {
-        name: "竹馬あお",
+        ...getPerson("竹馬あお"),
         role: "映像制作",
       },
       {
-        name: "犬吠埼いつき",
+        ...getPerson("犬吠埼いつき"),
         role: "イラスト",
       },
     ],
@@ -46,7 +47,7 @@ export const hakumeikousen: Music = {
 ゴミたちの木漏れ日が瞬いて　水たまりに飛び散った
 あのどれかがきっと君だ　光の中で生きていく
 
-夜と多くの言葉を交わして　今ここに戻ってきた 
+夜と多くの言葉を交わして　今ここに戻ってきた
 あのどれもが今の自分　この街に朝が降る
 
 想い出の静止画　二人なら映画

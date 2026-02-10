@@ -1,3 +1,4 @@
+import { getPerson } from "../../persons";
 import type { Music } from "~/types";
 
 export const aq: Music = {
@@ -11,7 +12,7 @@ Kawaii Future Bass およびタイポグラフィアニメーションに初挑�
   tags: ["エレクトロニック"],
   credits: [
     {
-      name: "閔仲 (later 竹馬あお)",
+      ...getPerson("閔仲 (later 竹馬あお)"),
       role: "作詞、作曲、編曲",
     },
     {
@@ -23,7 +24,7 @@ Kawaii Future Bass およびタイポグラフィアニメーションに初挑�
   video: {
     credits: [
       {
-        name: "閔仲 (later 竹馬あお)",
+        ...getPerson("閔仲 (later 竹馬あお)"),
         role: "映像制作",
       },
     ],

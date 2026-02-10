@@ -1,4 +1,5 @@
 import type { Album } from "~/types";
+import { getPerson } from "../../persons";
 import { twilight_tint } from "../musics/twilight_tint";
 import { connection } from "../musics/connection";
 import { created } from "../musics/created";
@@ -19,11 +20,11 @@ export const snfe: Album = {
   tags: ["夏"],
   credits: [
     {
-      name: "竹馬あお",
+      ...getPerson("竹馬あお"),
       role: "制作、マスタリング",
     },
     {
-      name: "ぺんぎん",
+      ...getPerson("ぺんぎん"),
       role: "イラスト",
     },
   ],
@@ -66,7 +67,7 @@ export const snfe: Album = {
   video: {
     credits: [
       {
-        name: "竹馬あお",
+        ...getPerson("竹馬あお"),
         role: "映像制作",
       },
     ],

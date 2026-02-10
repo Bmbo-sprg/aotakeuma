@@ -1,4 +1,5 @@
 import type { Music } from "~/types";
+import { getPerson } from "../../persons";
 
 export const sayokazu: Music = {
   type: "music",
@@ -11,20 +12,48 @@ export const sayokazu: Music = {
   tags: ["バラード", "『縋想』プロジェクト"],
   credits: [
     {
-      name: "竹馬あお",
+      ...getPerson("竹馬あお"),
       role: "作曲、編曲",
     },
     {
-      name: "佐薙概念",
+      ...getPerson("佐薙概念"),
       role: "作詞",
     },
     {
       name: "深水さや",
       role: "ボーカル",
+      socialLinks: [
+        {
+          platform: "niconico",
+          url: "https://www.nicovideo.jp/user/120931042",
+        },
+        {
+          platform: "youtube",
+          url: "https://youtube.com/@sayausa222",
+        },
+        {
+          platform: "twitter",
+          url: "https://x.com/sayausa222",
+        },
+      ],
     },
     {
       name: "HATTY.G",
       role: "ミックス",
+      socialLinks: [
+        {
+          platform: "niconico",
+          url: "https://www.nicovideo.jp/user/122948139",
+        },
+        {
+          platform: "youtube",
+          url: "https://www.youtube.com/channel/UChZovyW3a4Ko1MaOfBVjArQ",
+        },
+        {
+          platform: "twitter",
+          url: "https://x.com/Hatty_g_P",
+        },
+      ],
     },
     {
       name: "花隈千冬",
@@ -35,11 +64,11 @@ export const sayokazu: Music = {
   video: {
     credits: [
       {
-        name: "竹馬あお",
+        ...getPerson("竹馬あお"),
         role: "映像制作",
       },
       {
-        name: "犬吠埼いつき",
+        ...getPerson("犬吠埼いつき"),
         role: "イラスト",
       },
     ],

@@ -1,4 +1,5 @@
 import type { Album } from "~/types";
+import { getPerson } from "../../persons";
 import { akari } from "../musics/akari";
 import { jumping_into_orbit } from "../musics/jumping_into_orbit";
 import { lemonade_palette } from "../musics/lemonade_palette";
@@ -19,12 +20,30 @@ export const aonote: Album = {
   tags: [],
   credits: [
     {
-      name: "竹馬あお",
+      ...getPerson("竹馬あお"),
       role: "制作、マスタリング",
     },
     {
       name: "がまうお",
       role: "イラスト",
+      socialLinks: [
+        {
+          platform: "niconico",
+          url: "https://www.nicovideo.jp/user/124308052",
+        },
+        {
+          platform: "youtube",
+          url: "https://www.youtube.com/@Gama_ou",
+        },
+        {
+          platform: "pixiv",
+          url: "https://www.pixiv.net/users/94165420",
+        },
+        {
+          platform: "twitter",
+          url: "https://x.com/Gama_ou",
+        },
+      ],
     },
   ],
   releaseDate: new Date("2025-10-26"),
@@ -66,7 +85,7 @@ export const aonote: Album = {
   video: {
     credits: [
       {
-        name: "竹馬あお",
+        ...getPerson("竹馬あお"),
         role: "映像制作",
       },
     ],

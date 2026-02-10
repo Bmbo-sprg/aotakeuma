@@ -1,4 +1,5 @@
 import type { Music } from "~/types";
+import { getPerson } from "../../persons";
 
 export const created: Music = {
   type: "music",
@@ -12,7 +13,7 @@ Sandbox的な夏だけで良い。
   tags: ["インスト", "エレクトロニック", "ボカコレ", "夏"],
   credits: [
     {
-      name: "竹馬あお",
+      ...getPerson("竹馬あお"),
       role: "作詞、作曲、編曲",
     },
     {
@@ -28,7 +29,7 @@ Sandbox的な夏だけで良い。
   video: {
     credits: [
       {
-        name: "竹馬あお",
+        ...getPerson("竹馬あお"),
         role: "映像制作",
       },
     ],

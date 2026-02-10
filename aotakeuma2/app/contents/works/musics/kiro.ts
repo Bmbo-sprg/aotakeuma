@@ -1,4 +1,5 @@
 import type { Music } from "~/types";
+import { getPerson } from "../../persons";
 
 export const kiro: Music = {
   type: "music",
@@ -10,7 +11,7 @@ export const kiro: Music = {
   tags: ["バラード", "バンドサウンド"],
   credits: [
     {
-      name: "竹馬あお",
+      ...getPerson("竹馬あお"),
       role: "作詞、作曲、編曲",
     },
     {

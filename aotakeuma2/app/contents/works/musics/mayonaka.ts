@@ -1,4 +1,5 @@
 import type { Music } from "~/types";
+import { getPerson } from "../../persons";
 
 export const mayonaka: Music = {
   type: "music",
@@ -12,7 +13,7 @@ export const mayonaka: Music = {
   tags: ["バンドサウンド", "ボカコレ"],
   credits: [
     {
-      name: "竹馬あお",
+      ...getPerson("竹馬あお"),
       role: "作詞、作曲、編曲",
     },
     {
@@ -28,7 +29,7 @@ export const mayonaka: Music = {
   video: {
     credits: [
       {
-        name: "竹馬あお",
+        ...getPerson("竹馬あお"),
         role: "映像制作",
       },
     ],
@@ -50,7 +51,7 @@ export const mayonaka: Music = {
 鈍行、振り向かないで。
 ボロボロの泣き顔、今更隠さないで！
 この音楽は、時を越える。時を越えて、
-あなたをまた、見附ける。 
+あなたをまた、見附ける。
 
 ねえ。
 今。見附けたんだ。

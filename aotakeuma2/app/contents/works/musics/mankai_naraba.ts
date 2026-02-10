@@ -1,4 +1,5 @@
 import type { Music } from "~/types";
+import { getPerson } from "../../persons";
 
 export const mankai_naraba: Music = {
   type: "music",
@@ -8,7 +9,7 @@ export const mankai_naraba: Music = {
   tags: [],
   credits: [
     {
-      name: "閔仲 (later 竹馬あお)",
+      ...getPerson("閔仲 (later 竹馬あお)"),
       role: "作詞、作曲、編曲",
     },
     {
@@ -20,7 +21,7 @@ export const mankai_naraba: Music = {
   video: {
     credits: [
       {
-        name: "閔仲 (later 竹馬あお)",
+        ...getPerson("閔仲 (later 竹馬あお)"),
         role: "映像制作",
       },
     ],

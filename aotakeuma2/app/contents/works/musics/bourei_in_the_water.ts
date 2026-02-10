@@ -1,4 +1,5 @@
 import type { Music } from "~/types";
+import { getPerson } from "../../persons";
 
 export const bourei_in_the_water: Music = {
   type: "music",
@@ -14,14 +15,34 @@ Myca. さんによる再録はこちら: https://www.nicovideo.jp/watch/sm453325
     {
       name: "Myca.",
       role: "作詞、作曲",
+      socialLinks: [
+        {
+          platform: "niconico",
+          url: "https://www.nicovideo.jp/user/121767144",
+        },
+        {
+          platform: "youtube",
+          url: "https://www.youtube.com/@myca.940",
+        },
+        {
+          platform: "twitter",
+          url: "https://x.com/saaax85",
+        },
+      ],
     },
     {
-      name: "竹馬あお",
+      ...getPerson("竹馬あお"),
       role: "編曲",
     },
     {
       name: "Tormanerico",
       role: "編曲",
+      socialLinks: [
+        {
+          platform: "twitter",
+          url: "https://x.com/Mawaribe199932",
+        },
+      ],
     },
   ],
   team: "がき、竹馬あお、周辺",

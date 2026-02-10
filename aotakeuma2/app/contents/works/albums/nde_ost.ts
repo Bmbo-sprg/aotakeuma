@@ -1,4 +1,5 @@
 import type { Album } from "~/types";
+import { getPerson } from "../../persons";
 import { nde_insts } from "../musics/nde_insts";
 
 export const nde_ost: Album = {
@@ -11,15 +12,15 @@ export const nde_ost: Album = {
   team: "『縋想』プロジェクト",
   credits: [
     {
-      name: "竹馬あお",
+      ...getPerson("竹馬あお"),
       role: "作曲、編曲、マスタリング",
     },
     {
-      name: "佐薙概念",
+      ...getPerson("佐薙概念"),
       role: "作詞",
     },
     {
-      name: "犬吠埼いつき",
+      ...getPerson("犬吠埼いつき"),
       role: "イラスト",
     },
   ],

@@ -1,4 +1,5 @@
 import type { Music } from "~/types";
+import { getPerson } from "../../persons";
 
 export const akari: Music = {
   type: "music",
@@ -11,7 +12,7 @@ export const akari: Music = {
   tags: ["アイドル", "キラハピ"],
   credits: [
     {
-      name: "竹馬あお",
+      ...getPerson("竹馬あお"),
       role: "作詞、作曲、編曲",
     },
     {
@@ -39,12 +40,26 @@ export const akari: Music = {
   video: {
     credits: [
       {
-        name: "竹馬あお",
+        ...getPerson("竹馬あお"),
         role: "映像制作",
       },
       {
         name: "戌田ハチ",
         role: "イラスト (立ち絵をお借りしました)",
+        socialLinks: [
+          {
+            platform: "niconico",
+            url: "https://www.nicovideo.jp/user/25175805",
+          },
+          {
+            platform: "pixiv",
+            url: "https://www.pixiv.net/users/4173422",
+          },
+          {
+            platform: "twitter",
+            url: "https://x.com/inuhati783",
+          },
+        ],
       },
     ],
     youtubeUrl: "https://www.youtube.com/watch?v=i1hReuCCw_8",

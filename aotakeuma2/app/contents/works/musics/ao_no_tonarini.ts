@@ -1,4 +1,5 @@
 import type { Music } from "~/types";
+import { getPerson } from "../../persons";
 
 export const ao_no_tonarini: Music = {
   type: "music",
@@ -10,7 +11,7 @@ export const ao_no_tonarini: Music = {
   tags: ["バンドサウンド"],
   credits: [
     {
-      name: "竹馬あお",
+      ...getPerson("竹馬あお"),
       role: "作詞、作曲、編曲",
     },
     {
@@ -22,12 +23,26 @@ export const ao_no_tonarini: Music = {
   video: {
     credits: [
       {
-        name: "竹馬あお",
+        ...getPerson("竹馬あお"),
         role: "映像制作",
       },
       {
         name: "うらのす海老",
         role: "イラスト",
+        socialLinks: [
+          {
+            platform: "niconico",
+            url: "https://www.nicovideo.jp/user/97241760",
+          },
+          {
+            platform: "pixiv",
+            url: "https://www.pixiv.net/users/28640915",
+          },
+          {
+            platform: "twitter",
+            url: "https://x.com/UranosEBi",
+          },
+        ],
       },
     ],
     youtubeUrl: "https://www.youtube.com/watch?v=IL6eUkUzlIU",

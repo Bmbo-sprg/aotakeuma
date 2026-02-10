@@ -1,4 +1,5 @@
 import type { Music } from "~/types";
+import { getPerson } from "../../persons";
 
 export const untitled_20201117: Music = {
   type: "music",
@@ -8,7 +9,7 @@ export const untitled_20201117: Music = {
   tags: ["インスト"],
   credits: [
     {
-      name: "竹馬あお",
+      ...getPerson("竹馬あお"),
       role: "作曲",
     },
   ],

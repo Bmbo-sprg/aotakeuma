@@ -1,4 +1,5 @@
 import type { Music } from "~/types";
+import { getPerson } from "../../persons";
 
 export const thumbs_up: Music = {
   type: "music",
@@ -11,11 +12,11 @@ YouTuber・れり様に書き下ろした楽曲です。
   tags: ["アイドル", "提供作品"],
   credits: [
     {
-      name: "竹馬あお",
+      ...getPerson("竹馬あお"),
       role: "作詞、作曲、編曲",
     },
     {
-      name: "れり",
+      ...getPerson("れり"),
       role: "ボーカル",
     },
     {
@@ -27,7 +28,7 @@ YouTuber・れり様に書き下ろした楽曲です。
   video: {
     credits: [
       {
-        name: "れり",
+        ...getPerson("れり"),
         role: "映像制作",
       },
     ],

@@ -1,4 +1,5 @@
 import type { Album } from "~/types";
+import { getPerson } from "../../persons";
 import { kowakami } from "../musics/kowakami";
 import { tsuisou_insts } from "../musics/tsuisou_insts";
 import { ramunate } from "../musics/ramunate";
@@ -17,15 +18,15 @@ export const tsuisou: Album = {
   team: "『縋想』プロジェクト",
   credits: [
     {
-      name: "竹馬あお",
+      ...getPerson("竹馬あお"),
       role: "作曲、編曲、マスタリング、詩",
     },
     {
-      name: "佐薙概念",
+      ...getPerson("佐薙概念"),
       role: "小説、作詞",
     },
     {
-      name: "犬吠埼いつき",
+      ...getPerson("犬吠埼いつき"),
       role: "イラスト",
     },
   ],

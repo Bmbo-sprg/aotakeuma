@@ -1,4 +1,5 @@
 import type { Music } from "~/types";
+import { getPerson } from "../../persons";
 
 export const polaris_step: Music = {
   type: "music",
@@ -16,7 +17,7 @@ export const polaris_step: Music = {
       role: "作詞",
     },
     {
-      name: "竹馬あお",
+      ...getPerson("竹馬あお"),
       role: "作曲、編曲",
     },
     {
@@ -28,11 +29,11 @@ export const polaris_step: Music = {
   video: {
     credits: [
       {
-        name: "竹馬あお",
+        ...getPerson("竹馬あお"),
         role: "映像制作",
       },
       {
-        name: "kiki",
+        ...getPerson("kiki"),
         role: "イラスト",
       },
     ],

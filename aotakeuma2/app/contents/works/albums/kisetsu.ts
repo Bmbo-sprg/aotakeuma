@@ -1,4 +1,5 @@
 import type { Album } from "~/types";
+import { getPerson } from "../../persons";
 import { kisetsu_song } from "../musics/kisetsu_song";
 import { akari } from "../musics/akari";
 
@@ -13,7 +14,7 @@ export const kisetsu: Album = {
   tags: ["バンドサウンド", "夏"],
   credits: [
     {
-      name: "竹馬あお",
+      ...getPerson("竹馬あお"),
       role: "制作、マスタリング",
     },
   ],
@@ -29,7 +30,7 @@ export const kisetsu: Album = {
   video: {
     credits: [
       {
-        name: "竹馬あお",
+        ...getPerson("竹馬あお"),
         role: "映像制作",
       },
     ],

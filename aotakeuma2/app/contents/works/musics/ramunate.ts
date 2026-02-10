@@ -1,4 +1,5 @@
 import type { Music } from "~/types";
+import { getPerson } from "../../persons";
 
 export const ramunate: Music = {
   type: "music",
@@ -10,11 +11,11 @@ export const ramunate: Music = {
   tags: ["バンドサウンド", "夏", "『縋想』プロジェクト"],
   credits: [
     {
-      name: "竹馬あお",
+      ...getPerson("竹馬あお"),
       role: "作曲、編曲",
     },
     {
-      name: "佐薙概念",
+      ...getPerson("佐薙概念"),
       role: "作詞",
     },
     {
@@ -26,11 +27,11 @@ export const ramunate: Music = {
   video: {
     credits: [
       {
-        name: "竹馬あお",
+        ...getPerson("竹馬あお"),
         role: "映像制作",
       },
       {
-        name: "犬吠埼いつき",
+        ...getPerson("犬吠埼いつき"),
         role: "イラスト",
       },
     ],

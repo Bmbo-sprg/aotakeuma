@@ -1,4 +1,5 @@
 import type { Music } from "~/types";
+import { getPerson } from "../../persons";
 
 export const neuron: Music = {
   type: "music",
@@ -11,7 +12,7 @@ export const neuron: Music = {
   tags: ["バンドサウンド", "エレクトロニック", "コンピ参加作品"],
   credits: [
     {
-      name: "竹馬あお",
+      ...getPerson("竹馬あお"),
       role: "作詞、作曲、編曲",
     },
     {

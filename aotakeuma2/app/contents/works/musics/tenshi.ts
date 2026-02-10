@@ -1,4 +1,5 @@
 import type { Music } from "~/types";
+import { getPerson } from "../../persons";
 
 export const tenshi: Music = {
   type: "music",
@@ -11,20 +12,48 @@ Drum n Bass, Future Core などの要素を取り入れたポップスです。
   tags: ["エレクトロニック", "『縋想』プロジェクト"],
   credits: [
     {
-      name: "竹馬あお",
+      ...getPerson("竹馬あお"),
       role: "作曲、編曲",
     },
     {
-      name: "佐薙概念",
+      ...getPerson("佐薙概念"),
       role: "作詞",
     },
     {
       name: "みかん汁",
       role: "ボーカル",
+      socialLinks: [
+        {
+          platform: "youtube",
+          url: "https://www.youtube.com/@mikanzil",
+        },
+        {
+          platform: "twitter",
+          url: "https://x.com/Juicy_ringo",
+        },
+      ],
     },
     {
       name: "kamome sano",
       role: "ミックス",
+      socialLinks: [
+        {
+          platform: "website",
+          url: "https://kamomesano.info/",
+        },
+        {
+          platform: "niconico",
+          url: "https://www.nicovideo.jp/user/4619205",
+        },
+        {
+          platform: "youtube",
+          url: "https://www.youtube.com/c/kamomesano",
+        },
+        {
+          platform: "twitter",
+          url: "https://x.com/kamomesano",
+        },
+      ],
     },
   ],
   releaseDate: new Date("2024-12-25"),
@@ -33,9 +62,15 @@ Drum n Bass, Future Core などの要素を取り入れたポップスです。
       {
         name: "hanaken",
         role: "映像制作",
+        socialLinks: [
+          {
+            platform: "twitter",
+            url: "https://x.com/ochokonoflower",
+          },
+        ],
       },
       {
-        name: "犬吠埼いつき",
+        ...getPerson("犬吠埼いつき"),
         role: "イラスト",
       },
     ],

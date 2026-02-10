@@ -1,4 +1,5 @@
 import type { Music } from "~/types";
+import { getPerson } from "../../persons";
 
 export const lemonade_palette: Music = {
   type: "music",
@@ -11,7 +12,7 @@ export const lemonade_palette: Music = {
   tags: ["キラハピ", "夏", "バンドサウンド"],
   credits: [
     {
-      name: "竹馬あお",
+      ...getPerson("竹馬あお"),
       role: "作詞、作曲、編曲",
     },
     {
@@ -23,11 +24,11 @@ export const lemonade_palette: Music = {
       role: "ボーカル",
     },
     {
-      name: "しもぞの",
+      ...getPerson("しもぞの"),
       role: "ギター",
     },
     {
-      name: "Nui",
+      ...getPerson("Nui"),
       role: "ベース",
     },
   ],
@@ -37,9 +38,23 @@ export const lemonade_palette: Music = {
       {
         name: "あるすーか",
         role: "映像制作",
+        socialLinks: [
+          {
+            platform: "website",
+            url: "https://alsuhker.tumblr.com/",
+          },
+          {
+            platform: "pixiv",
+            url: "https://www.pixiv.net/users/13201282",
+          },
+          {
+            platform: "twitter",
+            url: "http://x.com/alsuhker",
+          },
+        ],
       },
       {
-        name: "ねこねこ",
+        ...getPerson("ねこねこ"),
         role: "イラスト",
       },
     ],

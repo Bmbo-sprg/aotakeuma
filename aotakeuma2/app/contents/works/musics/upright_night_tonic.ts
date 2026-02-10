@@ -1,4 +1,5 @@
 import type { Music } from "~/types";
+import { getPerson } from "../../persons";
 
 export const upright_night_tonic: Music = {
   type: "music",
@@ -12,19 +13,43 @@ export const upright_night_tonic: Music = {
   tags: ["合作参加作品"],
   credits: [
     {
-      name: "ひとひら",
+      ...getPerson("ひとひら"),
       role: "作曲、ドラム、ギター",
     },
     {
       name: "兎角菫",
       role: "編曲、ベース、ブラス",
+      socialLinks: [
+        {
+          platform: "niconico",
+          url: "https://www.nicovideo.jp/user/131974773",
+        },
+        {
+          platform: "youtube",
+          url: "https://www.youtube.com/@TokakuSumire",
+        },
+        {
+          platform: "twitter",
+          url: "https://x.com/TokakuSumire",
+        },
+      ],
     },
     {
       name: "Ririwo",
       role: "ストリングス",
+      socialLinks: [
+        {
+          platform: "niconico",
+          url: "https://nicovideo.jp/user/138826386",
+        },
+        {
+          platform: "twitter",
+          url: "https://x.com/rrw_musica",
+        },
+      ],
     },
     {
-      name: "竹馬あお",
+      ...getPerson("竹馬あお"),
       role: "作詞、ピアノ、調声、ミックス",
     },
   ],
@@ -51,7 +76,7 @@ export const upright_night_tonic: Music = {
   video: {
     credits: [
       {
-        name: "竹馬あお",
+        ...getPerson("竹馬あお"),
         role: "映像制作",
       },
       {

@@ -1,4 +1,5 @@
 import type { Music } from "~/types";
+import { getPerson } from "../../persons";
 
 export const syngularity_song: Music = {
   type: "music",
@@ -12,7 +13,7 @@ SyngUp! のユニット曲が実装されるとして、こうはならないか
   team: "スタジオ加速",
   credits: [
     {
-      name: "竹馬あお",
+      ...getPerson("竹馬あお"),
       role: "作詞、作曲、編曲",
     },
     {
@@ -32,11 +33,11 @@ SyngUp! のユニット曲が実装されるとして、こうはならないか
   video: {
     credits: [
       {
-        name: "竹馬あお",
+        ...getPerson("竹馬あお"),
         role: "映像制作",
       },
       {
-        name: "kiki",
+        ...getPerson("kiki"),
         role: "イラスト",
       },
     ],

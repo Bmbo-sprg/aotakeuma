@@ -1,4 +1,5 @@
 import type { Music } from "~/types";
+import { getPerson } from "../../persons";
 
 export const himawari_ascension: Music = {
   type: "music",
@@ -11,7 +12,7 @@ Hardcore 的つのふたポップス 2 作目。
   tags: ["エレクトロニック"],
   credits: [
     {
-      name: "竹馬あお",
+      ...getPerson("竹馬あお"),
       role: "作詞、作曲、編曲",
     },
     {
@@ -27,16 +28,22 @@ Hardcore 的つのふたポップス 2 作目。
   video: {
     credits: [
       {
-        name: "竹馬あお",
+        ...getPerson("竹馬あお"),
         role: "映像制作",
       },
       {
-        name: "ねこねこ",
+        ...getPerson("ねこねこ"),
         role: "イラスト",
       },
       {
         name: "なずしろ",
         role: "写真提供",
+        socialLinks: [
+          {
+            platform: "twitter",
+            url: "https://x.com/nazushiro",
+          },
+        ],
       },
     ],
     youtubeUrl: "https://www.youtube.com/watch?v=yuOZ4Y7zmYQ",

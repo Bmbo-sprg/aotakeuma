@@ -1,4 +1,5 @@
 import type { Music } from "~/types";
+import { getPerson } from "../../persons";
 
 export const twilight_tint: Music = {
   type: "music",
@@ -11,7 +12,7 @@ Hardcore を取り入れたポップス習作。
   tags: ["ボカコレ", "エレクトロニック", "アイドル"],
   credits: [
     {
-      name: "竹馬あお",
+      ...getPerson("竹馬あお"),
       role: "作詞、作曲、編曲",
     },
     {
@@ -23,11 +24,11 @@ Hardcore を取り入れたポップス習作。
   video: {
     credits: [
       {
-        name: "竹馬あお",
+        ...getPerson("竹馬あお"),
         role: "映像制作",
       },
       {
-        name: "ぺんぎん",
+        ...getPerson("ぺんぎん"),
         role: "イラスト",
       },
     ],

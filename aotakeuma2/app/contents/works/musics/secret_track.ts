@@ -1,4 +1,5 @@
 import type { Music } from "~/types";
+import { getPerson } from "../../persons";
 
 export const secret_track: Music = {
   type: "music",
@@ -12,20 +13,54 @@ VocaDuo2025 参加曲です。
   team: "アオノスタシス",
   credits: [
     {
-      name: "竹馬あお",
+      ...getPerson("竹馬あお"),
       role: "作詞、作曲、編曲、ミックス",
     },
     {
       name: "らいあん",
       role: "ボーカル",
+      socialLinks: [
+        {
+          platform: "niconico",
+          url: "https://www.nicovideo.jp/user/28902468",
+        },
+        {
+          platform: "youtube",
+          url: "https://www.youtube.com/channel/UCD26ojPaxUPmdgC6T4B7t_g",
+        },
+        {
+          platform: "twitter",
+          url: "https://x.com/Ryan5_Im",
+        },
+      ],
     },
     {
       name: "霧崎 叶葉",
       role: "ボーカル",
+      socialLinks: [
+        {
+          platform: "youtube",
+          url: "https://www.youtube.com/@kanaha.K_2170",
+        },
+        {
+          platform: "twitter",
+          url: "https://x.com/Kanaha_2170",
+        },
+      ],
     },
     {
       name: "いちき",
       role: "ベース",
+      socialLinks: [
+        {
+          platform: "youtube",
+          url: "https://www.youtube.com/@ichikey_bass",
+        },
+        {
+          platform: "twitter",
+          url: "https://x.com/Ichi_keybass",
+        },
+      ],
     },
     {
       name: "小春六花",
@@ -46,10 +81,38 @@ VocaDuo2025 参加曲です。
       {
         name: "いからげ",
         role: "映像制作",
+        socialLinks: [
+          {
+            platform: "website",
+            url: "https://ikarage.com/",
+          },
+          {
+            platform: "niconico",
+            url: "https://www.nicovideo.jp/user/57321650",
+          },
+          {
+            platform: "youtube",
+            url: "http://www.youtube.com/@ika_rage",
+          },
+          {
+            platform: "twitter",
+            url: "https://x.com/ika_rage",
+          },
+        ],
       },
       {
         name: "Unio",
         role: "イラスト",
+        socialLinks: [
+          {
+            platform: "youtube",
+            url: "https://www.youtube.com/@UniGohan",
+          },
+          {
+            platform: "twitter",
+            url: "https://x.com/waai_zako",
+          },
+        ],
       },
     ],
     youtubeUrl: "https://www.youtube.com/watch?v=GQfVSEropNg",

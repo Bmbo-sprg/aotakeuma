@@ -1,4 +1,5 @@
 import type { Music } from "~/types";
+import { getPerson } from "../../persons";
 
 export const nichijo_wo_hashire: Music = {
   type: "music",
@@ -11,7 +12,7 @@ export const nichijo_wo_hashire: Music = {
   tags: ["バンドサウンド"],
   credits: [
     {
-      name: "閔仲 (later 竹馬あお)",
+      ...getPerson("閔仲 (later 竹馬あお)"),
       role: "作詞、作曲、編曲",
     },
     {
@@ -23,7 +24,7 @@ export const nichijo_wo_hashire: Music = {
   video: {
     credits: [
       {
-        name: "閔仲 (later 竹馬あお)",
+        ...getPerson("閔仲 (later 竹馬あお)"),
         role: "映像制作",
       },
       {

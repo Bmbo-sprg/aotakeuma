@@ -1,4 +1,5 @@
 import type { Music } from "~/types";
+import { getPerson } from "../../persons";
 
 export const soji: Music = {
   type: "music",
@@ -12,12 +13,26 @@ klkkl さんとの合作です。
   tags: ["バラード", "合作参加作品", "バンドサウンド", "エレクトロニック"],
   credits: [
     {
-      name: "竹馬あお",
+      ...getPerson("竹馬あお"),
       role: "作詞、作曲、編曲",
     },
     {
       name: "klkkl",
       role: "編曲",
+      socialLinks: [
+        {
+          platform: "niconico",
+          url: "https://www.nicovideo.jp/user/134013296",
+        },
+        {
+          platform: "youtube",
+          url: "https://www.youtube.com/@itklkkl",
+        },
+        {
+          platform: "twitter",
+          url: "https://x.com/itklkkl",
+        },
+      ],
     },
     {
       name: "花隈千冬",
@@ -28,12 +43,22 @@ klkkl さんとの合作です。
   video: {
     credits: [
       {
-        name: "竹馬あお",
+        ...getPerson("竹馬あお"),
         role: "映像制作",
       },
       {
         name: "星河ナル",
         role: "イラスト",
+        socialLinks: [
+          {
+            platform: "niconico",
+            url: "https://www.nicovideo.jp/user/60543580",
+          },
+          {
+            platform: "twitter",
+            url: "https://x.com/NARu31_",
+          },
+        ],
       },
     ],
     youtubeUrl: "https://www.youtube.com/watch?v=LmtLQ6PwmrU",
