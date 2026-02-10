@@ -58,7 +58,9 @@ import { juniku } from "./juniku";
 import { soji } from "./soji";
 import { zanei } from "./zanei";
 import { polaris_step } from "./polaris_step";
+import { stelia } from "./stelia";
 import { sunburned_wing } from "./sunburned_wing";
+import { suspensus } from "./suspensus";
 import { syngularity_song } from "./syngularity_song";
 
 export const musics: Music[] = [
@@ -121,6 +123,8 @@ export const musics: Music[] = [
   soji,
   zanei,
   polaris_step,
+  stelia,
   sunburned_wing,
+  suspensus,
   syngularity_song,
 ];

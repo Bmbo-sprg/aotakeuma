@@ -191,6 +191,15 @@ export const persons: Person[] = [
       },
     ],
   },
+  {
+    name: "篝火",
+    socialLinks: [
+      {
+        platform: "twitter",
+        url: "https://x.com/Eterirs_",
+      },
+    ],
+  },
 ] as const;
 
 export const personsByName = Object.fromEntries(
