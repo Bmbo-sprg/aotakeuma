@@ -47,9 +47,18 @@ export type Event = {
   title: string;
   description: string;
   tags: Tag[];
-  date: string;
+  date: Date;
   location: string;
   links?: SocialLink[];
+};
+
+export type Performance = Event & {
+  type: "performance";
+};
+
+export type Exhibition = Event & {
+  type: "exhibition";
+  catalog: Work[];
 };
 
 export type PersonWithRole = Person & {
