@@ -7,7 +7,7 @@ export type Work = {
   description: string;
   tags: Tag[];
   team?: string; // サークル名など。なければ自名義
-  credits: PersonWithRole[];
+  credits: Credit[];
   releaseDate: Date;
   links?: SocialLink[];
 };
@@ -27,7 +27,7 @@ export type Music = Work & {
 };
 
 export type Video = {
-  credits: PersonWithRole[];
+  credits: Credit[];
   youtubeUrl?: string;
   niconicoUrl?: string;
   bilibiliUrl?: string;
@@ -61,8 +61,9 @@ export type Exhibition = Event & {
   catalog: Work[];
 };
 
-export type PersonWithRole = Person & {
+export type Credit = Person & {
   role: string;
+  comment?: string;
 };
 
 export type Person = {
