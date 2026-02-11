@@ -18,10 +18,6 @@ export const last_citadel: Music = {
   releaseDate: new Date("2024-04-28"),
   links: [
     {
-      platform: "soundcloud",
-      url: "https://soundcloud.com/aotakeuma/last-citadel",
-    },
-    {
       platform: "bandcamp",
       url: "https://harca.bandcamp.com/track/last-citadel",
     },

@@ -36,6 +36,10 @@ export const connection: Music = {
             url: "https://www.pixiv.net/users/68225513",
           },
           {
+            platform: "skeb",
+            url: "https://skeb.jp/@_shamo3",
+          },
+          {
             platform: "twitter",
             url: "https://x.com/_shamo3",
           },

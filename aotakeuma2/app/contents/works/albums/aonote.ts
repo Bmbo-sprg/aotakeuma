@@ -36,6 +36,10 @@ export const aonote: Album = {
           url: "https://www.youtube.com/@Gama_ou",
         },
         {
+          platform: "bilibili",
+          url: "https://space.bilibili.com/3546918361762451",
+        },
+        {
           platform: "pixiv",
           url: "https://www.pixiv.net/users/94165420",
         },
@@ -63,10 +67,6 @@ export const aonote: Album = {
     {
       platform: "youtube_music",
       url: "https://music.youtube.com/playlist?list=OLAK5uy_l0GxUnEkxKeQDBNt0QMqBqPYQoCVuPR8o",
-    },
-    {
-      platform: "recochoku",
-      url: "https://recochoku.jp/album/A2005952564",
     },
   ],
   jacketImageUrl: "/images/jackets/aonote.png",

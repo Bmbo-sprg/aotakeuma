@@ -13,6 +13,10 @@ export const persons: Person[] = [
         url: "https://www.youtube.com/@aotakeuma",
       },
       {
+        platform: "bilibili",
+        url: "https://space.bilibili.com/398057918",
+      },
+      {
         platform: "twitter",
         url: "https://x.com/aotakeuma",
       },
@@ -28,6 +32,10 @@ export const persons: Person[] = [
       {
         platform: "youtube",
         url: "https://www.youtube.com/@aotakeuma",
+      },
+      {
+        platform: "bilibili",
+        url: "https://space.bilibili.com/398057918",
       },
       {
         platform: "twitter",
@@ -56,6 +64,14 @@ export const persons: Person[] = [
         url: "https://www.pixiv.net/users/42653439",
       },
       {
+        platform: "skeb",
+        url: "https://skeb.jp/@N_ekobouzaki",
+      },
+      {
+        platform: "fanbox",
+        url: "https://inubouzaki.fanbox.cc/",
+      },
+      {
         platform: "twitter",
         url: "https://x.com/N_ekobouzaki",
       },
@@ -67,6 +83,14 @@ export const persons: Person[] = [
       {
         platform: "pixiv",
         url: "https://www.pixiv.net/users/22887343",
+      },
+      {
+        platform: "skeb",
+        url: "https://skeb.jp/@dx19291005",
+      },
+      {
+        platform: "fanbox",
+        url: "https://penguindx.fanbox.cc/",
       },
       {
         platform: "twitter",

@@ -46,6 +46,10 @@ export const upright_night_tonic: Music = {
           platform: "twitter",
           url: "https://x.com/rrw_musica",
         },
+        {
+          platform: "bilibili",
+          url: "https://space.bilibili.com/3546554535250694",
+        },
       ],
     },
     {
@@ -68,10 +72,6 @@ export const upright_night_tonic: Music = {
       platform: "youtube_music",
       url: "https://music.youtube.com/playlist?list=OLAK5uy_kzgMEpofMI_8Bxyi3TENzx8lC2t2xaPJ4",
     },
-    {
-      platform: "recochoku",
-      url: "https://recochoku.jp/song/S1029199712/single",
-    },
   ],
   video: {
     credits: [
@@ -82,6 +82,28 @@ export const upright_night_tonic: Music = {
       {
         name: "たぬざか",
         role: "イラスト",
+        socialLinks: [
+          {
+            platform: "niconico",
+            url: "https://www.nicovideo.jp/user/124788874",
+          },
+          {
+            platform: "youtube",
+            url: "https://www.youtube.com/@tanuzaka",
+          },
+          {
+            platform: "pixiv",
+            url: "https://www.pixiv.net/users/103912433",
+          },
+          {
+            platform: "skeb",
+            url: "https://skeb.jp/@tanuzaka",
+          },
+          {
+            platform: "twitter",
+            url: "https://x.com/tanuzaka",
+          },
+        ],
       },
     ],
     youtubeUrl: "https://www.youtube.com/watch?v=9TjOYGEW-ig",

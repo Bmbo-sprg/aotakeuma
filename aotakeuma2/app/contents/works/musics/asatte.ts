@@ -25,12 +25,6 @@ export const asatte: Music = {
     },
   ],
   releaseDate: new Date("2020-01-20"),
-  links: [
-    {
-      platform: "piapro",
-      url: "https://piapro.jp/content/mjoc4ifn6ekp3qgp",
-    },
-  ],
   video: {
     credits: [
       {

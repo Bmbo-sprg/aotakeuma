@@ -39,6 +39,14 @@ export const ao_no_tonarini: Music = {
             url: "https://www.pixiv.net/users/28640915",
           },
           {
+            platform: "skeb",
+            url: "https://skeb.jp/@UranosEBi",
+          },
+          {
+            platform: "fanbox",
+            url: "https://uranosebi.fanbox.cc/",
+          },
+          {
             platform: "twitter",
             url: "https://x.com/UranosEBi",
           },

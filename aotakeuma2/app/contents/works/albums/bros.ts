@@ -344,6 +344,10 @@ export const bros: Album = {
               url: "https://www.youtube.com/@sakuta_kousei",
             },
             {
+              platform: "bilibili",
+              url: "https://space.bilibili.com/3546877588933197",
+            },
+            {
               platform: "twitter",
               url: "https://x.com/sakuta_kousei",
             },
@@ -556,6 +560,10 @@ export const bros: Album = {
               url: "https://www.youtube.com/@Sohbanasick",
             },
             {
+              platform: "bilibili",
+              url: "https://space.bilibili.com/1946547293",
+            },
+            {
               platform: "twitter",
               url: "https://x.com/Sohbanasick",
             },
@@ -616,10 +624,6 @@ export const bros: Album = {
         {
           platform: "youtube_music",
           url: "https://music.youtube.com/playlist?list=OLAK5uy_mpRt3JpLL3nDw-jHjN7UjziOHHN5m7Y-I",
-        },
-        {
-          platform: "recochoku",
-          url: "https://recochoku.jp/album/A2004852763/album",
         },
       ],
     },

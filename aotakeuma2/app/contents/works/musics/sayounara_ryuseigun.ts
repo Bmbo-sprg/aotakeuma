@@ -36,6 +36,10 @@ export const sayounara_ryuseigun: Music = {
             url: "https://www.pixiv.net/users/20490764",
           },
           {
+            platform: "skeb",
+            url: "https://skeb.jp/@yuraruranoyuu",
+          },
+          {
             platform: "twitter",
             url: "https://x.com/yuraruranoyuu",
           },

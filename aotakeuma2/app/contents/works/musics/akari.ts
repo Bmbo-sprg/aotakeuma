@@ -56,6 +56,10 @@ export const akari: Music = {
             url: "https://www.pixiv.net/users/4173422",
           },
           {
+            platform: "skeb",
+            url: "https://skeb.jp/@inuhati783",
+          },
+          {
             platform: "twitter",
             url: "https://x.com/inuhati783",
           },

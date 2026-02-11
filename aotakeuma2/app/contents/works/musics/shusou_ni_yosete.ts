@@ -32,6 +32,10 @@ export const shusou_ni_yosete: Music = {
           url: "https://www.youtube.com/@nana_riika",
         },
         {
+          platform: "bilibili",
+          url: "https://space.bilibili.com/3493289651079317",
+        },
+        {
           platform: "twitter",
           url: "https://x.com/nana_riika",
         },
