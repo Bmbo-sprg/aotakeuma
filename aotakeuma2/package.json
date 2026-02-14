@@ -11,7 +11,9 @@
     "fix": "prettier . --write && eslint --fix",
     "postinstall": "pnpm run cf-typegen",
     "preview": "pnpm run build && vite preview",
-    "typecheck": "pnpm run cf-typegen && react-router typegen && tsc -b"
+    "typecheck": "pnpm run cf-typegen && react-router typegen && tsc -b",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "dependencies": {
     "isbot": "^5.1.32",
@@ -20,9 +22,14 @@
     "react-router": "^7.12.0"
   },
   "devDependencies": {
+    "@chromatic-com/storybook": "^5.0.1",
     "@cloudflare/vite-plugin": "^1.20.1",
     "@eslint/js": "^9.39.2",
     "@react-router/dev": "^7.12.0",
+    "@storybook/addon-a11y": "^10.2.8",
+    "@storybook/addon-docs": "^10.2.8",
+    "@storybook/addon-vitest": "^10.2.8",
+    "@storybook/react-vite": "^10.2.8",
     "@tailwindcss/vite": "^4.1.18",
     "@types/node": "^22.19.5",
     "@types/react": "^19.2.8",
@@ -32,14 +39,17 @@
     "eslint-import-resolver-typescript": "^4.4.4",
     "eslint-plugin-import": "^2.32.0",
     "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-storybook": "^10.2.8",
     "globals": "^16.5.0",
     "jiti": "^2.6.1",
     "prettier": "^3.7.4",
+    "storybook": "^10.2.8",
     "tailwindcss": "^4.1.18",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.52.0",
     "vite": "^7.3.1",
     "vite-tsconfig-paths": "^5.1.4",
+    "vitest": "^4.0.18",
     "wrangler": "^4.58.0"
   }
 }

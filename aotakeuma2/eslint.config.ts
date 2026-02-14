@@ -2,6 +2,7 @@ import { configs as tseslintConfigs } from "typescript-eslint";
 import pluginReact from "eslint-plugin-react";
 import prettier from "eslint-config-prettier/flat";
 import pluginImport from "eslint-plugin-import";
+import { configs as storybookConfigs } from "eslint-plugin-storybook";
 import { defineConfig } from "eslint/config";
 
 export default defineConfig([
@@ -10,6 +11,7 @@ export default defineConfig([
   pluginImport.flatConfigs.typescript,
   pluginReact.configs.flat.recommended,
   pluginReact.configs.flat["jsx-runtime"],
+  storybookConfigs["flat/recommended"],
   prettier,
 
   {

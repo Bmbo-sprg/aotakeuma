@@ -16,3 +16,6 @@ worker-configuration.d.ts
 
 !.dev.vars.example
 !.env.example
+
+*storybook.log
+storybook-static
