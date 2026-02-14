@@ -2,6 +2,10 @@ import type { tags } from "./contents/tags";
 
 export type Work = {
   type: "album" | "music" | "game" | "other";
+  /* id の命名規則: ^[a-z0-9_]+$
+  - 基本的に export するときの変数名と同じ
+  - Work, Event の両方で一意になるようにする
+  - works, events, contact などの予約語と被らない */
   id: string;
   title: string;
   description: string;
@@ -43,6 +47,10 @@ export type OtherWork = Work & {
 
 export type Event = {
   type: "performance" | "exhibition" | "other";
+  /* id の命名規則: ^[a-z0-9_]+$
+  - 基本的に export するときの変数名と同じ
+  - Work, Event の両方で一意になるようにする
+  - works, events, contact などの予約語と被らない */
   id: string;
   title: string;
   description: string;

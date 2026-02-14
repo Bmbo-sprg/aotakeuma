@@ -1,6 +1,5 @@
 import type { Music } from "~/types";
 import { getPerson } from "../../persons";
-import { teenage } from "../albums/teenage";
 
 export const tabun: Music = {
   type: "music",
@@ -18,7 +17,7 @@ export const tabun: Music = {
       role: "ボーカル",
     },
   ],
-  releaseDate: teenage.releaseDate,
+  releaseDate: new Date("2020-06-05"),
   lyrics: `
 分かった振りして　すぐ見つかる振りして
 宝物を　いつかのどっかに置いてきてしまった
