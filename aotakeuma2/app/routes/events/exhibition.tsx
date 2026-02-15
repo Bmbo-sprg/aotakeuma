@@ -1,8 +1,12 @@
+import type { Exhibition } from "~/types";
 import type { Route } from "./+types/exhibition";
 import { exhibitions } from "../../contents/events/exhibitions";
+import { EventHeadSection } from "../../components/EventHeadSection/EventHeadSection";
+import { EventDescriptionSection } from "../../components/EventDescriptionSection/EventDescriptionSection";
+import { WorkCard } from "../../components/WorkCard/WorkCard";
 
-export function meta(_: Route.MetaArgs) {
-  return [{ title: "Exhibition" }];
+export function meta({ loaderData }: Route.MetaArgs) {
+  return [{ title: `${loaderData.event.title} - 即売会 - 竹馬あお` }];
 }
 
 export function loader({ params }: Route.LoaderArgs) {
@@ -13,37 +17,25 @@ export function loader({ params }: Route.LoaderArgs) {
   return { event };
 }
 
-export default function ExhibitionRoute({ loaderData }: Route.ComponentProps) {
-  const { event } = loaderData;
+export function ExhibitionView({ event }: { event: Exhibition }) {
   return (
-    <main>
-      <h1>{event.title}</h1>
-      <div>{event.description}</div>
-      <div>tags: {event.tags.join(", ")}</div>
-      <div>date: {event.date.toLocaleDateString("ja-JP")}</div>
-      <div>location: {event.location}</div>
-      {event.links ? (
-        <div>
-          links:
-          <ul>
-            {event.links.map((link) => (
-              <li key={`${link.platform}-${link.url}`}>
-                <a href={link.url}>{link.platform}</a>
-              </li>
-            ))}
-          </ul>
-        </div>
-      ) : null}
-      <section>
-        <h2>Catalog</h2>
-        <ul>
+    <main className="space-y-8 p-6">
+      <EventHeadSection prefix="即売会" event={event} />
+      <EventDescriptionSection description={event.description} />
+      <section className="space-y-3">
+        <h2 className="text-lg font-semibold text-slate-900">頒布物</h2>
+        <ul className="grid gap-4">
           {event.catalog.map((work) => (
             <li key={work.id}>
-              {work.title} ({work.type})
+              <WorkCard work={work} />
             </li>
           ))}
         </ul>
       </section>
     </main>
   );
+}
+
+export default function ExhibitionRoute({ loaderData }: Route.ComponentProps) {
+  return <ExhibitionView event={loaderData.event} />;
 }

@@ -1,8 +1,11 @@
+import type { Performance } from "~/types";
 import type { Route } from "./+types/performance";
 import { performances } from "../../contents/events/performances";
+import { EventHeadSection } from "../../components/EventHeadSection/EventHeadSection";
+import { EventDescriptionSection } from "../../components/EventDescriptionSection/EventDescriptionSection";
 
-export function meta(_: Route.MetaArgs) {
-  return [{ title: "Performance" }];
+export function meta({ loaderData }: Route.MetaArgs) {
+  return [{ title: `${loaderData.event.title} - DJ／ライブ - 竹馬あお` }];
 }
 
 export function loader({ params }: Route.LoaderArgs) {
@@ -13,27 +16,15 @@ export function loader({ params }: Route.LoaderArgs) {
   return { event };
 }
 
-export default function PerformanceRoute({ loaderData }: Route.ComponentProps) {
-  const { event } = loaderData;
+export function PerformanceView({ event }: { event: Performance }) {
   return (
-    <main>
-      <h1>{event.title}</h1>
-      <div>{event.description}</div>
-      <div>tags: {event.tags.join(", ")}</div>
-      <div>date: {event.date.toLocaleDateString("ja-JP")}</div>
-      <div>location: {event.location}</div>
-      {event.links ? (
-        <div>
-          links:
-          <ul>
-            {event.links.map((link) => (
-              <li key={`${link.platform}-${link.url}`}>
-                <a href={link.url}>{link.platform}</a>
-              </li>
-            ))}
-          </ul>
-        </div>
-      ) : null}
+    <main className="space-y-8 p-6">
+      <EventHeadSection prefix="DJ／ライブ" event={event} />
+      <EventDescriptionSection description={event.description} />
     </main>
   );
+}
+
+export default function PerformanceRoute({ loaderData }: Route.ComponentProps) {
+  return <PerformanceView event={loaderData.event} />;
 }

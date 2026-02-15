@@ -7,7 +7,7 @@ export function meta(_: Route.MetaArgs) {
 
 export default function EventsLayout() {
   return (
-    <main>
+    <main className="lg:max-w-4xl lg:mx-auto">
       <Outlet />
     </main>
   );

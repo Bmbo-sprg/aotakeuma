@@ -40,11 +40,15 @@ a {
 }
 
 @layer components {
-  .glass-panel {
-    @apply bg-white/80 backdrop-blur-sm border border-slate-300 rounded-sm;
+  .card {
+    @apply rounded-lg border border-slate-300 bg-white/80 p-4 shadow-sm;
   }
 
-  .interactive-card {
+  .glass-card {
+    @apply rounded-lg border border-slate-200 bg-white/10 backdrop-blur-sm p-4 shadow-sm;
+  }
+
+  .interactive {
     @apply transition-transform duration-150 hover:-translate-y-1;
   }
 }

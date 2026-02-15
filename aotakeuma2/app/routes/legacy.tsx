@@ -2,8 +2,7 @@ import type { Route } from "./+types/legacy";
 import { redirect } from "react-router";
 import { works } from "../contents/works";
 import { events } from "../contents/events";
-
-const normalizeLegacyId = (legacyId: string) => legacyId.replace(/-/g, "_");
+import { getEventPath, getWorkPath, normalizeLegacyId } from "../utils/paths";
 
 export function loader({ params }: Route.LoaderArgs) {
   const legacyId = params.legacyId;
@@ -11,12 +10,12 @@ export function loader({ params }: Route.LoaderArgs) {
 
   const work = works.find((item) => item.id === normalizedId);
   if (work) {
-    return redirect(`/works/${work.type}s/${work.id}`);
+    return redirect(getWorkPath(work));
   }
 
   const event = events.find((item) => item.id === normalizedId);
   if (event) {
-    return redirect(`/events/${event.type}s/${event.id}`);
+    return redirect(getEventPath(event));
   }
 
   throw new Response("Not Found", { status: 404 });

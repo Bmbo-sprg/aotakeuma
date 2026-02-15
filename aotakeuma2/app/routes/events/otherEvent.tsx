@@ -1,8 +1,11 @@
+import type { Event } from "~/types";
 import type { Route } from "./+types/otherEvent";
 import { events } from "../../contents/events";
+import { EventHeadSection } from "../../components/EventHeadSection/EventHeadSection";
+import { EventDescriptionSection } from "../../components/EventDescriptionSection/EventDescriptionSection";
 
-export function meta(_: Route.MetaArgs) {
-  return [{ title: "Event" }];
+export function meta({ loaderData }: Route.MetaArgs) {
+  return [{ title: `${loaderData.event.title} - その他イベント - 竹馬あお` }];
 }
 
 export function loader({ params }: Route.LoaderArgs) {
@@ -10,33 +13,18 @@ export function loader({ params }: Route.LoaderArgs) {
   if (!event) {
     throw new Response("Not Found", { status: 404 });
   }
-  if (event.type !== "other") {
-    throw new Response("Not Found", { status: 404 });
-  }
   return { event };
 }
 
-export default function OtherEventRoute({ loaderData }: Route.ComponentProps) {
-  const { event } = loaderData;
+export function OtherEventView({ event }: { event: Event }) {
   return (
-    <main>
-      <h1>{event.title}</h1>
-      <div>{event.description}</div>
-      <div>tags: {event.tags.join(", ")}</div>
-      <div>date: {event.date.toLocaleDateString("ja-JP")}</div>
-      <div>location: {event.location}</div>
-      {event.links ? (
-        <div>
-          links:
-          <ul>
-            {event.links.map((link) => (
-              <li key={`${link.platform}-${link.url}`}>
-                <a href={link.url}>{link.platform}</a>
-              </li>
-            ))}
-          </ul>
-        </div>
-      ) : null}
+    <main className="space-y-8 p-6">
+      <EventHeadSection prefix="その他イベント" event={event} />
+      <EventDescriptionSection description={event.description} />
     </main>
   );
+}
+
+export default function OtherEventRoute({ loaderData }: Route.ComponentProps) {
+  return <OtherEventView event={loaderData.event} />;
 }
