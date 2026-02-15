@@ -2,7 +2,7 @@ import type { Route } from "./+types/layout";
 import { Outlet } from "react-router";
 
 export function meta(_: Route.MetaArgs) {
-  return [{ title: "Events" }];
+  return [{ title: "イベント - 竹馬あお" }];
 }
 
 export default function EventsLayout() {

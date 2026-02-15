@@ -1,14 +1,14 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { EventsView } from "./index";
+import { WorksView } from "./index";
 
-const meta: Meta<typeof EventsView> = {
-  title: "Routes/Events/EventsView",
-  component: EventsView,
+const meta: Meta<typeof WorksView> = {
+  title: "Routes/Works/WorksView",
+  component: WorksView,
 };
 
 export default meta;
-type Story = StoryObj<typeof EventsView>;
+type Story = StoryObj<typeof WorksView>;
 
 export const Default: Story = {
   args: {

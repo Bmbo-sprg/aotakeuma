@@ -1,9 +1,20 @@
+import type { Album } from "~/types";
 import type { Route } from "./+types/album";
-import { Link } from "react-router";
+import { exhibitions } from "../../contents/events/exhibitions";
 import { albums } from "../../contents/works/albums";
+import { toLocaleDateString } from "../../utils/formats";
+import { AccordionSection } from "../../components/AccordionSection/AccordionSection";
+import { Banner } from "../../components/Banner/Banner";
+import { CreditCardList } from "../../components/CreditCardList/CreditCardList";
+import { EventCard } from "../../components/EventCard/EventCard";
+import { SocialLinkItem } from "../../components/SocialLinkItem/SocialLinkItem";
+import { SpotifyIframe } from "../../components/SpotifyIframe/SpotifyIframe";
+import { TagList } from "../../components/TagList/TagList";
+import { TrackList } from "../../components/TrackList/TrackList";
+import { VideoIframe } from "../../components/VideoIframe/VideoIframe";
 
-export function meta(_: Route.MetaArgs) {
-  return [{ title: "Album" }];
+export function meta({ loaderData }: Route.MetaArgs) {
+  return [{ title: `${loaderData.album.title} - アルバム - 竹馬あお` }];
 }
 
 export function loader({ params }: Route.LoaderArgs) {
@@ -14,50 +25,97 @@ export function loader({ params }: Route.LoaderArgs) {
   return { album };
 }
 
-export default function AlbumRoute({ loaderData }: Route.ComponentProps) {
-  const { album } = loaderData;
+export function AlbumView({ album }: { album: Album }) {
+  const exhibitionsWithAlbum = exhibitions
+    .filter((exhibition) =>
+      exhibition.catalog.some((item) => item.id === album.id)
+    )
+    .sort((a, b) => b.date.getTime() - a.date.getTime());
+
   return (
     <main>
-      <h1>
-        {album.titlePrefix ? `${album.titlePrefix} ` : ""}
-        {album.title}
-      </h1>
-      <div>{album.description}</div>
-      <div>tags: {album.tags.join(", ")}</div>
-      <div>release: {album.releaseDate.toLocaleDateString("ja-JP")}</div>
-      {album.links ? (
-        <div>
-          links:
-          <ul>
-            {album.links.map((link) => (
-              <li key={`${link.platform}-${link.url}`}>
-                <a href={link.url}>{link.platform}</a>
-              </li>
+      <Banner src={album.jacketImageUrl} alt={`${album.title}のジャケット`} />
+
+      <div className="space-y-8 px-6 py-8 lg:max-w-4xl lg:mx-auto">
+        <section>
+          <p className="text-sm font-medium text-slate-500 -mb-1">
+            {album.titlePrefix ?? "アルバム"}
+          </p>
+          <div className="flex flex-wrap items-center gap-2">
+            <h1 className="text-2xl font-semibold text-slate-900">
+              {album.title}
+            </h1>
+            <TagList tags={album.tags} />
+          </div>
+          <p className="flex flex-wrap items-center text-sm font-medium text-slate-500 gap-2">
+            <span>{toLocaleDateString(album.releaseDate)}</span>
+            {album.team ? <span>by {album.team}</span> : null}
+          </p>
+        </section>
+
+        <section>
+          <p className="text-slate-700 whitespace-pre-line">
+            {album.description.trim()}
+          </p>
+        </section>
+
+        <section className="space-y-3">
+          <h2 className="text-lg font-semibold text-slate-900">クレジット</h2>
+          <CreditCardList credits={album.credits} />
+        </section>
+
+        <section className="space-y-3">
+          <h2 className="text-lg font-semibold text-slate-900">収録楽曲</h2>
+          <TrackList tracks={album.tracks} />
+        </section>
+
+        {album.links && album.links.length > 0 ? (
+          <section className="space-y-3">
+            <h2 className="text-lg font-semibold text-slate-900">
+              聴いたり買ったりできる場所
+            </h2>
+            {album.links.find((link) => link.platform === "spotify") ? (
+              <SpotifyIframe
+                url={
+                  album.links.find((link) => link.platform === "spotify")!.url
+                }
+              />
+            ) : null}
+            <div className="flex flex-wrap gap-2">
+              {album.links.map((link) => (
+                <SocialLinkItem
+                  key={`${link.platform}-${link.url}`}
+                  link={link}
+                  size="md"
+                />
+              ))}
+            </div>
+          </section>
+        ) : null}
+
+        {exhibitionsWithAlbum.length > 0 ? (
+          <AccordionSection
+            title="即売会遍歴"
+            defaultOpen={true}
+            className="space-y-2"
+          >
+            {exhibitionsWithAlbum.map((exhibition) => (
+              <EventCard key={exhibition.id} event={exhibition} />
             ))}
-          </ul>
-        </div>
-      ) : null}
-      <section>
-        <h2>Credits</h2>
-        <ul>
-          {album.credits.map((credit) => (
-            <li key={`${credit.name}-${credit.role}`}>
-              {credit.name} / {credit.role}
-            </li>
-          ))}
-        </ul>
-      </section>
-      <section>
-        <h2>Tracks</h2>
-        <ul>
-          {album.tracks.map((track) => (
-            <li key={track.id}>
-              <Link to={`/works/musics/${track.id}`}>{track.title}</Link>
-              <div>{track.description}</div>
-            </li>
-          ))}
-        </ul>
-      </section>
+          </AccordionSection>
+        ) : null}
+
+        {album.video ? (
+          <section className="space-y-2">
+            <h2 className="text-lg font-semibold text-slate-900">動画</h2>
+            <VideoIframe video={album.video} />
+          </section>
+        ) : null}
+      </div>
     </main>
   );
+}
+
+export default function AlbumRoute({ loaderData }: Route.ComponentProps) {
+  return <AlbumView album={loaderData.album} />;
 }

@@ -11,8 +11,8 @@ export const CreditCard = ({ credit, className }: CreditCardProps) => {
     <div
       className={["group card relative", className].filter(Boolean).join(" ")}
     >
-      <div className="flex items-center gap-2">
-        <p className="text-lg font-semibold text-slate-900">{credit.name}</p>
+      <div className="flex items-center justify-between gap-2">
+        <p className="text-md font-semibold text-slate-900">{credit.name}</p>
         {credit.socialLinks && credit.socialLinks.length > 0 ? (
           <SocialLinkList links={credit.socialLinks} />
         ) : null}
@@ -28,7 +28,7 @@ export const CreditCard = ({ credit, className }: CreditCardProps) => {
             "group-hover:opacity-100 group-hover:translate-y-0",
           ].join(" ")}
         >
-          {credit.comment}
+          {credit.comment.trim()}
         </div>
       ) : null}
     </div>

@@ -41,7 +41,7 @@ export const WorkCard = ({ work, className }: WorkCardProps) => {
             {work.description.trim()}
           </p>
           <p className="text-xs text-slate-500">
-            リリース日: {toLocaleDateString(work.releaseDate)}
+            {toLocaleDateString(work.releaseDate)}
           </p>
         </div>
       </Wrapper>

@@ -3,6 +3,7 @@ import type { SocialLink } from "~/types";
 
 type SocialLinkItemProps = {
   link: SocialLink;
+  size?: "xs" | "sm" | "md" | "lg" | "xl";
   className?: string;
 };
 
@@ -50,14 +51,27 @@ const PLATFORM_COLORS: Record<SocialLink["platform"], string> = {
   twitter: "bg-blue-100",
 };
 
-export const SocialLinkItem = ({ link, className }: SocialLinkItemProps) => {
+const SIZE_CLASSES: Record<NonNullable<SocialLinkItemProps["size"]>, string> = {
+  xs: "px-2 py-0.5 text-xs",
+  sm: "px-2.5 py-1 text-sm",
+  md: "px-3 py-1 text-sm",
+  lg: "px-3.5 py-1.5 text-base",
+  xl: "px-4 py-2 text-lg",
+};
+
+export const SocialLinkItem = ({
+  link,
+  size = "xs",
+  className,
+}: SocialLinkItemProps) => {
   const label = PLATFORM_NAMES[link.platform];
 
   return (
     <Link
       className={[
         "animate-subtle-in",
-        "inline-flex items-center rounded-full border border-slate-300 px-2 py-0.5 text-xs font-medium text-slate-700",
+        "inline-flex items-center rounded-full border border-slate-300 font-medium text-slate-700",
+        SIZE_CLASSES[size],
         PLATFORM_COLORS[link.platform],
         className,
       ]

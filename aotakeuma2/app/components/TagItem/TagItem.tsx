@@ -26,7 +26,7 @@ export const TagItem = ({ tag, className }: TagItemProps) => {
       ]
         .filter(Boolean)
         .join(" ")}
-      to={`works?tag=${encodeURIComponent(tag)}`}
+      to={`/works?tag=${encodeURIComponent(tag)}`}
     >
       {tag}
     </Link>

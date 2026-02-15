@@ -6,6 +6,12 @@ import { SocialLinkList } from "./SocialLinkList";
 const meta: Meta<typeof SocialLinkList> = {
   title: "SocialLinkList",
   component: SocialLinkList,
+  argTypes: {
+    size: {
+      control: "select",
+      options: ["xs", "sm", "md", "lg", "xl"],
+    },
+  },
 };
 
 export default meta;
@@ -17,5 +23,6 @@ export const Default: Story = {
       platform,
       url: `https://aotakeuma.com/`,
     })),
+    size: "xs",
   },
 };

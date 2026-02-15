@@ -1,11 +1,10 @@
 import type { Event, Tag } from "~/types";
 import type { Route } from "./+types/index";
-import { useLocation, useNavigate } from "react-router";
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { useForm, useWatch } from "react-hook-form";
 import { events } from "../../contents/events";
 import { tags } from "../../contents/tags";
-import { normalizeText, toDate, toDateString } from "../../utils/searches";
+import { normalizeText } from "../../utils/searches";
 import { EventCard } from "../../components/EventCard/EventCard";
 import { BadgeButtonList } from "../../components/BadgeButtonList/BadgeButtonList";
 import { Toggle } from "../../components/Toggle/Toggle";
@@ -16,17 +15,16 @@ export function meta(_: Route.MetaArgs) {
 
 type SortOrder = "new" | "old";
 
-const filterEvents = (
-  items: Event[],
-  filters: {
-    query: string;
-    type: Event["type"] | "";
-    tag: string;
-    from: Date | null;
-    to: Date | null;
-    sort: SortOrder;
-  }
-) => {
+type EventFilter = {
+  query: string;
+  type: Event["type"] | "";
+  tag: string;
+  from: string;
+  to: string;
+  sort: SortOrder;
+};
+
+const filterEvents = (items: Event[], filters: EventFilter) => {
   const query = normalizeText(filters.query);
   const filtered = items.filter((event) => {
     if (query && !normalizeText(event.title).includes(query)) {
@@ -38,10 +36,10 @@ const filterEvents = (
     if (filters.tag && !event.tags.includes(filters.tag as Tag)) {
       return false;
     }
-    if (filters.from && event.date < filters.from) {
+    if (filters.from && event.date < new Date(filters.from)) {
       return false;
     }
-    if (filters.to && event.date > filters.to) {
+    if (filters.to && event.date > new Date(filters.to)) {
       return false;
     }
     return true;
@@ -55,63 +53,23 @@ const filterEvents = (
 
 export function loader({ request }: Route.LoaderArgs) {
   const url = new URL(request.url);
-  const query = url.searchParams.get("q") ?? "";
-  const type = (url.searchParams.get("type") ?? "") as Event["type"] | "";
-  const tag = url.searchParams.get("tag") ?? "";
-  const from = toDate(url.searchParams.get("from"));
-  const to = toDate(url.searchParams.get("to"));
-  const sort = (url.searchParams.get("sort") as SortOrder) ?? "new";
-
-  const filteredEvents = filterEvents(events, {
-    query,
-    type,
-    tag,
-    from,
-    to,
-    sort,
-  });
 
   return {
-    events: filteredEvents,
     filters: {
-      query,
-      type,
-      tag,
-      from: toDateString(from),
-      to: toDateString(to),
-      sort,
+      query: url.searchParams.get("query") ?? "",
+      type: (url.searchParams.get("type") ?? "") as Event["type"] | "",
+      tag: url.searchParams.get("tag") ?? "",
+      from: url.searchParams.get("from") ?? "",
+      to: url.searchParams.get("to") ?? "",
+      sort: (url.searchParams.get("sort") as SortOrder) ?? "new",
     },
   };
 }
 
-type EventFilterForm = {
-  q: string;
-  type: Event["type"] | "";
-  tag: string;
-  from: string;
-  to: string;
-  sort: SortOrder;
-};
-
-export function EventsView({
-  filters,
-  events,
-}: {
-  filters: {
-    query: string;
-    type: Event["type"] | "";
-    tag: string;
-    from: string;
-    to: string;
-    sort: SortOrder;
-  };
-  events: Event[];
-}) {
-  const navigate = useNavigate();
-  const location = useLocation();
-  const { register, control, setValue } = useForm<EventFilterForm>({
+export function EventsView({ filters }: { filters: EventFilter }) {
+  const { register, control, setValue } = useForm<EventFilter>({
     defaultValues: {
-      q: filters.query,
+      query: filters.query,
       type: filters.type,
       tag: filters.tag,
       from: filters.from,
@@ -120,24 +78,25 @@ export function EventsView({
     },
   });
   const watchedValues = useWatch({ control });
+  const filteredEvents = useMemo(() => {
+    return filterEvents(events, {
+      query: watchedValues.query ?? "",
+      type: watchedValues.type ?? "",
+      tag: watchedValues.tag ?? "",
+      from: watchedValues.from ?? "",
+      to: watchedValues.to ?? "",
+      sort: watchedValues.sort ?? "new",
+    });
+  }, [watchedValues]);
 
   useEffect(() => {
-    const handler = window.setTimeout(() => {
-      const params = new URLSearchParams();
-      if (watchedValues.q) params.set("q", watchedValues.q);
-      if (watchedValues.type) params.set("type", watchedValues.type);
-      if (watchedValues.tag) params.set("tag", watchedValues.tag);
-      if (watchedValues.from) params.set("from", watchedValues.from);
-      if (watchedValues.to) params.set("to", watchedValues.to);
-      if (watchedValues.sort) params.set("sort", watchedValues.sort);
-      const nextSearch = params.toString() ? `?${params.toString()}` : "";
-      if (nextSearch !== location.search) {
-        navigate(nextSearch, { replace: true });
-      }
-    }, 300);
-
-    return () => window.clearTimeout(handler);
-  }, [watchedValues, navigate, location.search]);
+    setValue("query", filters.query, { shouldDirty: false });
+    setValue("type", filters.type, { shouldDirty: false });
+    setValue("tag", filters.tag, { shouldDirty: false });
+    setValue("from", filters.from, { shouldDirty: false });
+    setValue("to", filters.to, { shouldDirty: false });
+    setValue("sort", filters.sort, { shouldDirty: false });
+  }, [filters, setValue]);
 
   const activeType = watchedValues.type;
   const activeTag = watchedValues.tag;
@@ -164,7 +123,7 @@ export function EventsView({
             className="w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 shadow-sm focus:border-slate-400 focus:outline-none"
             placeholder="イベント名で検索"
             type="text"
-            {...register("q")}
+            {...register("query")}
           />
         </div>
 
@@ -225,8 +184,12 @@ export function EventsView({
         <input type="hidden" {...register("sort")} />
       </form>
 
+      <p className="text-sm text-slate-700">
+        {filteredEvents.length}件のイベント
+      </p>
+
       <ul className="grid gap-4">
-        {events.map((event) => (
+        {filteredEvents.map((event) => (
           <li key={event.id}>
             <EventCard event={event} className="animate-subtle-in" />
           </li>
@@ -237,5 +200,5 @@ export function EventsView({
 }
 
 export default function EventsIndex({ loaderData }: Route.ComponentProps) {
-  return <EventsView filters={loaderData.filters} events={loaderData.events} />;
+  return <EventsView filters={loaderData.filters} />;
 }

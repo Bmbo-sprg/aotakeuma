@@ -5,6 +5,12 @@ import { SocialLinkItem } from "./SocialLinkItem";
 const meta: Meta<typeof SocialLinkItem> = {
   title: "SocialLinkItem",
   component: SocialLinkItem,
+  argTypes: {
+    size: {
+      control: "select",
+      options: ["xs", "sm", "md", "lg", "xl"],
+    },
+  },
 };
 
 export default meta;
@@ -16,5 +22,6 @@ export const Default: Story = {
       platform: "youtube",
       url: "https://www.youtube.com/",
     },
+    size: "xs",
   },
 };
