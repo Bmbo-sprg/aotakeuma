@@ -71,9 +71,7 @@ export default function Home(_: Route.ComponentProps) {
               <p className="text-sm text-slate-700 font-semibold">
                 即売会出展・DJ 出演などをしてます
               </p>
-              <p className="text-xs text-slate-500">
-                声音文脈 (レギュラーDJ) など所属
-              </p>
+              <p className="text-xs text-slate-500">声音文脈 など所属</p>
             </Link>
           </div>
           {profileLinks.length > 0 ? (
@@ -91,7 +89,7 @@ export default function Home(_: Route.ComponentProps) {
         </div>
         <p className="text-xs text-slate-700">
           アルバム x{albums.length} ／ 楽曲 x{musics.length} ／ ゲーム x
-          {games.length} 具だくさんだね
+          {games.length} たくさん作ってるね
         </p>
         <div className="grid gap-4">
           {featuredWorks.map((work) => (
@@ -143,7 +141,7 @@ export default function Home(_: Route.ComponentProps) {
             <div className="flex flex-wrap items-center gap-2">
               <Link
                 to="https://x.com/aotakeuma"
-                className="inline-flex w-fit rounded-full border border-slate-300 bg-blue-100 px-4 py-2 text-sm font-semibold text-slate-700"
+                className="inline-flex w-fit rounded-full border border-slate-300 bg-primary/50 px-4 py-2 text-sm font-semibold text-slate-700"
                 target="_blank"
                 rel="noreferrer"
               >
@@ -151,7 +149,7 @@ export default function Home(_: Route.ComponentProps) {
               </Link>
               <Link
                 to="https://x.com/Bmbo_sprg"
-                className="inline-flex w-fit rounded-full border border-slate-300 bg-pink-100 px-4 py-2 text-sm font-semibold text-slate-700"
+                className="inline-flex w-fit rounded-full border border-slate-300 bg-pink-200 px-4 py-2 text-sm font-semibold text-slate-700"
                 target="_blank"
                 rel="noreferrer"
               >
@@ -159,7 +157,7 @@ export default function Home(_: Route.ComponentProps) {
               </Link>
               <Link
                 to="https://note.com/bmbo_sprg"
-                className="inline-flex w-fit rounded-full border border-slate-300 bg-gray-100 px-4 py-2 text-sm font-semibold text-slate-700"
+                className="inline-flex w-fit rounded-full border border-slate-300 bg-gray-200 px-4 py-2 text-sm font-semibold text-slate-700"
                 target="_blank"
                 rel="noreferrer"
               >

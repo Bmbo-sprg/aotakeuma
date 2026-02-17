@@ -1,44 +1,9 @@
-import { useState } from "react";
 import type { Route } from "./+types/contact";
+import { CopyField } from "../components/CopyField/CopyField";
 
 export function meta(_: Route.MetaArgs) {
   return [{ title: "お問い合わせ - 竹馬あお" }];
 }
-
-type CopyFieldProps = {
-  label: string;
-  value: string;
-};
-
-const CopyField = ({ label, value }: CopyFieldProps) => {
-  const [buttonText, setButtonText] = useState("Copy");
-  const handleCopy = async () => {
-    if (typeof navigator === "undefined" || !navigator.clipboard) {
-      return;
-    }
-    await navigator.clipboard.writeText(value);
-    setButtonText("Copied!");
-    setTimeout(() => setButtonText("Copy"), 2000);
-  };
-
-  return (
-    <div className="space-y-2">
-      <p className="text-sm font-medium text-slate-600">{label}</p>
-      <div className="flex flex-wrap items-center gap-2">
-        <div className="flex-1 rounded-lg border border-slate-300 bg-white/80 px-3 py-2 text-sm font-medium text-slate-900">
-          {value}
-        </div>
-        <button
-          type="button"
-          onClick={handleCopy}
-          className="min-w-24 rounded-lg border border-slate-300 bg-white/80 px-3 py-2 text-sm font-semibold text-slate-700 hover:opacity-50 transition-opacity duration-150"
-        >
-          {buttonText}
-        </button>
-      </div>
-    </div>
-  );
-};
 
 export default function ContactRoute(_: Route.ComponentProps) {
   return (
@@ -63,7 +28,7 @@ export default function ContactRoute(_: Route.ComponentProps) {
         <p className="text-sm text-slate-700">
           様々なジャンルやサウンドに興味があります！
           <br />
-          ご依頼前に、私の過去作品をご確認いただければ幸いです。
+          ご依頼前に、私の過去作品をご確認いただけると幸いです。
         </p>
       </section>
 
@@ -72,7 +37,7 @@ export default function ContactRoute(_: Route.ComponentProps) {
           DJ 等のオファーについて
         </h2>
         <p className="text-sm text-slate-700">
-          時期とバイブスが合えば、喜んでお引き受けします！
+          日程とバイブスが合えば、喜んでお引き受けします！
         </p>
         <p className="text-sm text-slate-700">
           出演料はいただきません。
@@ -82,7 +47,7 @@ export default function ContactRoute(_: Route.ComponentProps) {
         <p className="text-sm text-slate-700">
           様々なジャンルやサウンドに興味があります！
           <br />
-          ご依頼前に、私の過去出演をご確認いただければ幸いです。
+          ご依頼前に、私の過去出演をご確認いただけると幸いです。
         </p>
       </section>
 
@@ -91,8 +56,8 @@ export default function ContactRoute(_: Route.ComponentProps) {
         <p className="text-sm text-slate-700">
           X の DM には仕様上気付けない可能性が高いです。
           <br />
-          以下のフォーム、メールアドレス、もしくは Discord の DM
-          からご連絡いただけると助かります。
+          メールアドレス、Discord の
+          DM、もしくは以下のフォームからご連絡いただけると助かります。
         </p>
         <div className="grid gap-4 md:grid-cols-2">
           <CopyField label="Email" value="b254cmu@gmail.com" />

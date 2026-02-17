@@ -1,5 +1,6 @@
 import {
   isRouteErrorResponse,
+  Link,
   Links,
   Meta,
   Outlet,
@@ -34,6 +35,32 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </head>
       <body>
         {children}
+        <nav className="fixed left-6 bottom-6 z-50 flex flex-col flex-wrap gap-2">
+          <Link
+            to="/"
+            className="rounded-full border border-slate-300 bg-white/80 px-3 py-1 text-sm font-semibold text-slate-700 shadow-sm"
+          >
+            TOP
+          </Link>
+          <Link
+            to="/works"
+            className="rounded-full border border-slate-300 bg-white/80 px-3 py-1 text-sm font-semibold text-slate-700 shadow-sm"
+          >
+            作品
+          </Link>
+          <Link
+            to="/events"
+            className="rounded-full border border-slate-300 bg-white/80 px-3 py-1 text-sm font-semibold text-slate-700 shadow-sm"
+          >
+            イベント
+          </Link>
+          <Link
+            to="/contact"
+            className="rounded-full border border-slate-300 bg-white/80 px-3 py-1 text-sm font-semibold text-slate-700 shadow-sm"
+          >
+            連絡先
+          </Link>
+        </nav>
         <ScrollRestoration />
         <Scripts />
       </body>
