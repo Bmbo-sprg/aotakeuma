@@ -2,7 +2,6 @@ import type { Music } from "~/types";
 import type { Route } from "./+types/music";
 import { musics } from "../../contents/works/musics";
 import { albums } from "../../contents/works/albums";
-import { toLocaleDateString } from "../../utils/formats";
 import { Banner } from "../../components/Banner/Banner";
 import { CreditCardList } from "../../components/CreditCardList/CreditCardList";
 import { SocialLinkItem } from "../../components/SocialLinkItem/SocialLinkItem";
@@ -11,6 +10,18 @@ import { TagList } from "../../components/TagList/TagList";
 import { VideoIframe } from "../../components/VideoIframe/VideoIframe";
 import { WorkCard } from "../../components/WorkCard/WorkCard";
 import { AccordionSection } from "../../components/AccordionSection/AccordionSection";
+import { toLocaleDateString } from "../../utils/formats";
+import { buildOGMeta, getWorkPath } from "../../utils/paths";
+
+const aggregateAlbums = (music: Music) =>
+  albums
+    .filter((album) => album.tracks.some((track) => track.id === music.id))
+    .sort((a, b) => b.releaseDate.getTime() - a.releaseDate.getTime());
+
+const getBannerPath = (music: Music) => {
+  const latestAlbum = aggregateAlbums(music)[0];
+  return latestAlbum ? latestAlbum.jacketImageUrl : "/images/aotakeuma_ogp.png";
+};
 
 /**
  * 楽曲のリンク集をその収録アルバムから集める
@@ -20,10 +31,9 @@ import { AccordionSection } from "../../components/AccordionSection/AccordionSec
  */
 const aggregateLinks = (music: Music) => {
   const musicLinks = music.links ?? [];
-  const albumsWithTrack = albums
-    .filter((album) => album.tracks.some((track) => track.id === music.id))
-    .sort((a, b) => a.releaseDate.getTime() - b.releaseDate.getTime());
-  const albumLinks = albumsWithTrack.flatMap((album) => album.links ?? []);
+  const albumLinks = aggregateAlbums(music).flatMap(
+    (album) => album.links ?? []
+  );
   const mergedLinks = new Map<string, (typeof musicLinks)[0]>();
   for (const link of [...albumLinks, ...musicLinks]) {
     mergedLinks.set(link.platform, link);
@@ -32,7 +42,12 @@ const aggregateLinks = (music: Music) => {
 };
 
 export function meta({ loaderData }: Route.MetaArgs) {
-  return [{ title: `${loaderData.music.title} - 音楽 - 竹馬あお` }];
+  return buildOGMeta({
+    title: [loaderData.music.title, "音楽"],
+    description: loaderData.music.description,
+    path: getWorkPath(loaderData.music),
+    imagePath: getBannerPath(loaderData.music),
+  });
 }
 
 export function loader({ params }: Route.LoaderArgs) {
@@ -44,20 +59,12 @@ export function loader({ params }: Route.LoaderArgs) {
 }
 
 export function MusicView({ music }: { music: Music }) {
-  const albumsWithTrack = albums
-    .filter((album) => album.tracks.some((track) => track.id === music.id))
-    .sort((a, b) => b.releaseDate.getTime() - a.releaseDate.getTime());
-  const latestAlbum = albumsWithTrack[0];
-  // TODO: album が見つからない場合、music.video.youtubeUrl などのサムネイルを表示する方法を考える
-  const bannerSrc = latestAlbum
-    ? latestAlbum.jacketImageUrl
-    : "https://placehold.jp/600x600.png?text=No%20Image"; // TODO: change it
-
+  const albumsWithTrack = aggregateAlbums(music);
   const links = aggregateLinks(music);
 
   return (
     <main>
-      <Banner src={bannerSrc} alt={`${music.title}のジャケット`} />
+      <Banner src={getBannerPath(music)} alt={`${music.title}のジャケット`} />
 
       <div className="space-y-8 px-6 py-8 lg:max-w-4xl lg:mx-auto">
         <section>

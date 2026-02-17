@@ -1,5 +1,3 @@
-import { SocialLinkItem } from "../SocialLinkItem/SocialLinkItem";
-
 type YoutubeIframeProps = {
   url: string;
   width?: number | string;
@@ -15,18 +13,18 @@ const urlToEmbed = (url: string) => {
   return `https://www.youtube.com/embed/${id}`;
 };
 
-export const YoutubeIframe = ({ url }: YoutubeIframeProps) => {
+export const YoutubeIframe = ({ url, width, height }: YoutubeIframeProps) => {
   const embedUrl = urlToEmbed(url);
   if (!embedUrl) {
-    return <SocialLinkItem link={{ platform: "youtube", url }} size="md" />;
+    return null;
   }
 
   return (
     <iframe
       style={{ borderRadius: "12px" }}
       src={embedUrl}
-      width="100%"
-      height="400"
+      width={width || "100%"}
+      height={height || "400"}
       title="YouTube video player"
       allowFullScreen
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"

@@ -28,7 +28,7 @@ export const TagItem = ({ tag, className }: TagItemProps) => {
         .join(" ")}
       to={`/works?tag=${encodeURIComponent(tag)}`}
     >
-      {tag}
+      <span className="truncate">{tag}</span>
     </Link>
   );
 };

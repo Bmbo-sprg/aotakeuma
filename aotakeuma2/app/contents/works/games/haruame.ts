@@ -51,4 +51,5 @@ export const haruame: Game = {
       url: "https://booth.pm/ja/items/5389377",
     },
   ],
+  jacketImageUrl: "/images/jackets/haruame.png",
 };

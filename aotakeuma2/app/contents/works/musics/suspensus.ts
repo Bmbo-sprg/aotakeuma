@@ -9,7 +9,7 @@ export const suspensus: Music = {
 所属していたサークル『ニコニコ系総合創作サークル C.2.B project』によるコンピレーションアルバム『C.2.B Compilation 7 -室戸みあのために-』に書き下ろした楽曲です。
 篝火さんとの合作です。音ゲー的な要素を取り込んだ歌モノです。
 `,
-  tags: ["エレクトロニック", "コンピ参加作品"],
+  tags: ["エレクトロニック", "コンピ参加作品", "合作参加作品"],
   team: "篝火 vs 竹馬あお",
   credits: [
     {
@@ -38,5 +38,4 @@ export const suspensus: Music = {
       url: "https://www.nicovideo.jp/watch/sm44317904",
     },
   ],
-  lyrics: ``, // TODO
 };

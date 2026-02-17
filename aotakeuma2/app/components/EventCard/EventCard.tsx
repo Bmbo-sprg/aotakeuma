@@ -32,18 +32,20 @@ export const EventCard = ({ event, className }: EventCardProps) => {
           <p className="text-xs font-medium text-slate-500 -mb-1">
             {eventTypeLabel[event.type]}
           </p>
-          <div className="flex items-center gap-2 whitespace-nowrap">
-            <p className="text-lg font-semibold text-slate-900">
+          <div className="flex flex-wrap items-center gap-x-2 gap-y-0">
+            <p className="text-lg font-semibold text-slate-900 truncate whitespace-pre-line break-all line-clamp-1">
               {event.title}
             </p>
-            <TagList tags={event.tags} />
+            <TagList tags={event.tags} className="gap-y-1" />
           </div>
-          <p className="text-sm text-slate-700 overflow-hidden text-ellipsis whitespace-pre-line line-clamp-1">
+          <p className="text-sm text-slate-700 truncate whitespace-pre-line break-all line-clamp-1">
             {event.description.trim()}
           </p>
-          <p className="flex flex-nowrap whitespace-nowrap items-center text-xs text-slate-500 gap-2">
+          <p className="flex flex-nowrap items-center text-xs text-slate-500 gap-2">
             <span>{toLocaleDateString(event.date)}</span>
-            <span>{event.location}</span>
+            <span className="truncate whitespace-pre-line break-all line-clamp-1">
+              {event.location}
+            </span>
           </p>
         </div>
       </Wrapper>

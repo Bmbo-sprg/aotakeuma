@@ -4,9 +4,14 @@ import { exhibitions } from "../../contents/events/exhibitions";
 import { EventHeadSection } from "../../components/EventHeadSection/EventHeadSection";
 import { EventDescriptionSection } from "../../components/EventDescriptionSection/EventDescriptionSection";
 import { WorkCard } from "../../components/WorkCard/WorkCard";
+import { buildOGMeta, getEventPath } from "../../utils/paths";
 
 export function meta({ loaderData }: Route.MetaArgs) {
-  return [{ title: `${loaderData.event.title} - 即売会 - 竹馬あお` }];
+  return buildOGMeta({
+    title: [loaderData.event.title, "即売会"],
+    description: loaderData.event.description,
+    path: getEventPath(loaderData.event),
+  });
 }
 
 export function loader({ params }: Route.LoaderArgs) {

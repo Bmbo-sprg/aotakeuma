@@ -4,13 +4,20 @@ import { useEffect, useMemo } from "react";
 import { useForm, useWatch } from "react-hook-form";
 import { works } from "../../contents/works";
 import { tags } from "../../contents/tags";
-import { normalizeText } from "../../utils/searches";
 import { WorkCard } from "../../components/WorkCard/WorkCard";
 import { BadgeButtonList } from "../../components/BadgeButtonList/BadgeButtonList";
 import { Toggle } from "../../components/Toggle/Toggle";
+import { normalizeText } from "../../utils/searches";
+import { buildOGMeta } from "../../utils/paths";
 
 export function meta(_: Route.MetaArgs) {
-  return [{ title: "作品 - 竹馬あお" }];
+  return [
+    buildOGMeta({
+      title: ["作品"],
+      description: "竹馬あおの作品一覧です。アルバム、楽曲、ゲームなど",
+      path: "/works",
+    }),
+  ];
 }
 
 type SortOrder = "new" | "old";
@@ -24,7 +31,6 @@ type WorkFilter = {
   sort: SortOrder;
 };
 
-// TODO: 戻るボタンとかでフィルタ状態を維持できるようにする
 const filterWorks = (items: Work[], filters: WorkFilter) => {
   const query = normalizeText(filters.query);
   const filtered = items.filter((work) => {
@@ -161,7 +167,6 @@ export function WorksView({ filters }: { filters: WorkFilter }) {
               type="date"
               {...register("from")}
             />
-            {/* TODO: マジで datepicker を導入する */}
           </div>
           <div className="space-y-2">
             <label className="text-sm font-medium text-slate-700">To</label>
@@ -170,7 +175,6 @@ export function WorksView({ filters }: { filters: WorkFilter }) {
               type="date"
               {...register("to")}
             />
-            {/* TODO: マジで datepicker を導入する */}
           </div>
         </div>
 

@@ -4,6 +4,7 @@ import { events } from "../contents/events";
 import { works } from "../contents/works";
 import { getPerson } from "../contents/persons";
 import { EventCard } from "../components/EventCard/EventCard";
+import { BottomNav } from "../components/BottomNav/BottomNav";
 import { SocialLinkList } from "../components/SocialLinkList/SocialLinkList";
 import { WorkCard } from "../components/WorkCard/WorkCard";
 import { albums } from "../contents/works/albums";
@@ -11,29 +12,23 @@ import { musics } from "../contents/works/musics";
 import { games } from "../contents/works/games";
 import { exhibitions } from "../contents/events/exhibitions";
 import { performances } from "../contents/events/performances";
+import { buildOGMeta, getEventPath, getWorkPath } from "../utils/paths";
 
 export function meta(_: Route.MetaArgs) {
-  return [
-    { title: "竹馬あお" },
-    {
-      name: "description",
-      content: "音楽・ゲーム・その他制作物とイベント情報をまとめています。",
-    },
-  ];
+  return buildOGMeta({
+    path: "",
+  });
 }
 
-const getFeaturedWorks = () =>
-  [...works]
+export default function Home(_: Route.ComponentProps) {
+  const featuredWorks = [...works]
     .sort((a, b) => b.releaseDate.getTime() - a.releaseDate.getTime())
     .slice(0, 4);
-
-const getFeaturedEvents = () =>
-  [...events].sort((a, b) => b.date.getTime() - a.date.getTime()).slice(0, 4);
-
-export default function Home(_: Route.ComponentProps) {
-  const featuredWorks = getFeaturedWorks();
-  const featuredEvents = getFeaturedEvents();
-  const profileLinks = getPerson("竹馬あお").socialLinks ?? [];
+  const randomWork = works[Math.floor(Math.random() * works.length)];
+  const featuredEvents = [...events]
+    .sort((a, b) => b.date.getTime() - a.date.getTime())
+    .slice(0, 4);
+  const randomEvent = events[Math.floor(Math.random() * events.length)];
 
   return (
     <main className="space-y-16 pb-20">
@@ -74,18 +69,27 @@ export default function Home(_: Route.ComponentProps) {
               <p className="text-xs text-slate-500">声音文脈 など所属</p>
             </Link>
           </div>
-          {profileLinks.length > 0 ? (
-            <SocialLinkList links={profileLinks} size="xs" />
-          ) : null}
+          <SocialLinkList
+            links={getPerson("竹馬あお").socialLinks ?? []}
+            size="xs"
+          />
         </div>
       </section>
 
       <section className="mx-auto flex w-full max-w-4xl flex-col gap-2 px-6">
-        <div className="flex flex-wrap items-center justify-between gap-3">
+        <div className="flex flex-wrap items-center justify-between gap-2">
           <h2 className="text-xl font-semibold text-slate-900">最近の作品</h2>
-          <Link to="/works" className="text-sm font-semibold text-slate-600">
-            もっと見る
-          </Link>
+          <div className="flex items-center gap-4">
+            <Link
+              to={getWorkPath(randomWork)}
+              className="text-sm font-semibold text-slate-600"
+            >
+              大将のおまかせ
+            </Link>
+            <Link to="/works" className="text-sm font-semibold text-slate-600">
+              もっと見る
+            </Link>
+          </div>
         </div>
         <p className="text-xs text-slate-700">
           アルバム x{albums.length} ／ 楽曲 x{musics.length} ／ ゲーム x
@@ -99,13 +103,21 @@ export default function Home(_: Route.ComponentProps) {
       </section>
 
       <section className="mx-auto flex w-full max-w-4xl flex-col gap-2 px-6">
-        <div className="flex flex-wrap items-center justify-between gap-3">
+        <div className="flex flex-wrap items-center justify-between gap-2">
           <h2 className="text-xl font-semibold text-slate-900">
             最近のイベント
           </h2>
-          <Link to="/events" className="text-sm font-semibold text-slate-600">
-            もっと見る
-          </Link>
+          <div className="flex items-center gap-4">
+            <Link
+              to={getEventPath(randomEvent)}
+              className="text-sm font-semibold text-slate-600"
+            >
+              大将のおまかせ
+            </Link>
+            <Link to="/events" className="text-sm font-semibold text-slate-600">
+              もっと見る
+            </Link>
+          </div>
         </div>
         <p className="text-xs text-slate-700">
           即売会 x{exhibitions.length} ／ DJ・ライブ x{performances.length}{" "}
@@ -167,6 +179,7 @@ export default function Home(_: Route.ComponentProps) {
           </div>
         </div>
       </section>
+      <BottomNav />
     </main>
   );
 }

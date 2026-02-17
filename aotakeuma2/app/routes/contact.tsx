@@ -1,10 +1,15 @@
 import type { Route } from "./+types/contact";
 import { CopyField } from "../components/CopyField/CopyField";
+import { BottomNav } from "../components/BottomNav/BottomNav";
+import { buildOGMeta } from "../utils/paths";
 
 export function meta(_: Route.MetaArgs) {
-  return [{ title: "お問い合わせ - 竹馬あお" }];
+  return buildOGMeta({
+    title: ["お問い合わせ"],
+    description: "竹馬あおへの楽曲制作のご依頼、DJ等のオファーについての連絡先",
+    path: "/contact",
+  });
 }
-
 export default function ContactRoute(_: Route.ComponentProps) {
   return (
     <main className="space-y-8 p-6 pb-20 lg:max-w-4xl lg:mx-auto">
@@ -71,6 +76,7 @@ export default function ContactRoute(_: Route.ComponentProps) {
           読み込んでいます…
         </iframe>
       </section>
+      <BottomNav active="contact" />
     </main>
   );
 }

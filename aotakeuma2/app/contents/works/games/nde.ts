@@ -55,4 +55,5 @@ export const nde: Game = {
       url: "https://tsuisouproject.booth.pm/items/5952572",
     },
   ],
+  jacketImageUrl: "/images/jackets/nde.png",
 };

@@ -8,9 +8,14 @@ import { normalizeText } from "../../utils/searches";
 import { EventCard } from "../../components/EventCard/EventCard";
 import { BadgeButtonList } from "../../components/BadgeButtonList/BadgeButtonList";
 import { Toggle } from "../../components/Toggle/Toggle";
+import { buildOGMeta } from "../../utils/paths";
 
 export function meta(_: Route.MetaArgs) {
-  return [{ title: "イベント - 竹馬あお" }];
+  return buildOGMeta({
+    title: ["イベント"],
+    description: "竹馬あおの出演イベントや即売会などの情報",
+    path: "/events",
+  });
 }
 
 type SortOrder = "new" | "old";

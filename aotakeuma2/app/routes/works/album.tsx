@@ -2,7 +2,6 @@ import type { Album } from "~/types";
 import type { Route } from "./+types/album";
 import { exhibitions } from "../../contents/events/exhibitions";
 import { albums } from "../../contents/works/albums";
-import { toLocaleDateString } from "../../utils/formats";
 import { AccordionSection } from "../../components/AccordionSection/AccordionSection";
 import { Banner } from "../../components/Banner/Banner";
 import { CreditCardList } from "../../components/CreditCardList/CreditCardList";
@@ -12,9 +11,16 @@ import { SpotifyIframe } from "../../components/SpotifyIframe/SpotifyIframe";
 import { TagList } from "../../components/TagList/TagList";
 import { TrackList } from "../../components/TrackList/TrackList";
 import { VideoIframe } from "../../components/VideoIframe/VideoIframe";
+import { toLocaleDateString } from "../../utils/formats";
+import { buildOGMeta, getWorkPath } from "../../utils/paths";
 
 export function meta({ loaderData }: Route.MetaArgs) {
-  return [{ title: `${loaderData.album.title} - アルバム - 竹馬あお` }];
+  return buildOGMeta({
+    title: [loaderData.album.title, "アルバム"],
+    description: loaderData.album.description,
+    path: getWorkPath(loaderData.album),
+    imagePath: loaderData.album.jacketImageUrl,
+  });
 }
 
 export function loader({ params }: Route.LoaderArgs) {

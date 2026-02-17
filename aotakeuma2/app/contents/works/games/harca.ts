@@ -22,4 +22,5 @@ HARCAは、自作の楽曲と譜面をアップロードし、またアップロ
       url: "https://store.steampowered.com/app/3328530/HARCA/",
     },
   ],
+  jacketImageUrl: "/images/jackets/harca.png",
 };

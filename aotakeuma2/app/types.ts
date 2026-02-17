@@ -40,6 +40,7 @@ export type Video = {
 
 export type Game = Work & {
   type: "game";
+  jacketImageUrl: string;
 };
 
 export type OtherWork = Work & {

@@ -1,14 +1,19 @@
 import type { Work } from "~/types";
 import type { Route } from "./+types/otherWork";
 import { works } from "../../contents/works";
-import { toLocaleDateString } from "../../utils/formats";
 import { CreditCardList } from "../../components/CreditCardList/CreditCardList";
 import { SocialLinkItem } from "../../components/SocialLinkItem/SocialLinkItem";
 import { SpotifyIframe } from "../../components/SpotifyIframe/SpotifyIframe";
 import { TagList } from "../../components/TagList/TagList";
+import { toLocaleDateString } from "../../utils/formats";
+import { buildOGMeta, getWorkPath } from "../../utils/paths";
 
 export function meta({ loaderData }: Route.MetaArgs) {
-  return [{ title: `${loaderData.work.title} - その他作品 - 竹馬あお` }];
+  return buildOGMeta({
+    title: [loaderData.work.title, "その他作品"],
+    description: loaderData.work.description,
+    path: getWorkPath(loaderData.work),
+  });
 }
 
 export function loader({ params }: Route.LoaderArgs) {

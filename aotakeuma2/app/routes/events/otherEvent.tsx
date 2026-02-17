@@ -3,9 +3,14 @@ import type { Route } from "./+types/otherEvent";
 import { events } from "../../contents/events";
 import { EventHeadSection } from "../../components/EventHeadSection/EventHeadSection";
 import { EventDescriptionSection } from "../../components/EventDescriptionSection/EventDescriptionSection";
+import { buildOGMeta, getEventPath } from "~/utils/paths";
 
 export function meta({ loaderData }: Route.MetaArgs) {
-  return [{ title: `${loaderData.event.title} - その他イベント - 竹馬あお` }];
+  return buildOGMeta({
+    title: [loaderData.event.title, "その他イベント"],
+    description: loaderData.event.description,
+    path: getEventPath(loaderData.event),
+  });
 }
 
 export function loader({ params }: Route.LoaderArgs) {

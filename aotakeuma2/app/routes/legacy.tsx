@@ -20,3 +20,7 @@ export function loader({ params }: Route.LoaderArgs) {
 
   throw new Response("Not Found", { status: 404 });
 }
+
+export default function LegacyRoute() {
+  return null;
+}
