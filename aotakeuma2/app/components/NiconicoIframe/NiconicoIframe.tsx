@@ -1,4 +1,4 @@
-import { useEffect, useRef, type CSSProperties } from "react";
+import { useEffect, useRef } from "react";
 
 type NiconicoIframeProps = {
   url: string;
@@ -139,6 +139,7 @@ export const NiconicoIframe = ({ url, width, height }: NiconicoIframeProps) => {
       iframe.style.maxWidth = "100%";
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const onMessage = (event: MessageEvent<any>) => {
       if (
         !iframeRef.current ||

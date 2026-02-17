@@ -3,7 +3,7 @@ import type { Route } from "./+types/otherEvent";
 import { events } from "../../contents/events";
 import { EventHeadSection } from "../../components/EventHeadSection/EventHeadSection";
 import { EventDescriptionSection } from "../../components/EventDescriptionSection/EventDescriptionSection";
-import { buildOGMeta, getEventPath } from "~/utils/paths";
+import { buildOGMeta, getEventPath } from "../../utils/paths";
 
 export function meta({ loaderData }: Route.MetaArgs) {
   return buildOGMeta({
