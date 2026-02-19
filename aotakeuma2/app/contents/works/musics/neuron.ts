@@ -23,14 +23,21 @@ export const neuron: Music = {
   releaseDate: new Date("2025-06-01"),
   links: [
     {
-      platform: "niconico", // XFD
-      url: "https://www.nicovideo.jp/watch/sm44964426",
-    },
-    {
       platform: "booth",
       url: "https://youkus.booth.pm/items/6930834",
     },
   ],
+  video: {
+    credits: [
+      {
+        ...getPerson("竹馬あお"),
+        role: "映像制作",
+      },
+    ],
+    youtubeUrl: "https://www.youtube.com/watch?v=HuXQOF5c6a0",
+    niconicoUrl: "https://www.nicovideo.jp/watch/sm45964215",
+    bilibiliUrl: "https://www.bilibili.com/video/BV1MeZYBHEs5",
+  },
   lyrics: `
 さようならさえ届かない距離　綻びる光
 深いふかい眠りののち、乱反射に回帰する
