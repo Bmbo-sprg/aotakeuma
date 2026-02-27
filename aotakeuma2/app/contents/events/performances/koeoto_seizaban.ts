@@ -11,14 +11,12 @@ export const koeoto_seizaban: Performance = {
   tags: [],
   date: new Date("2025-06-14"),
   location: "ボカブキ",
-  links: [
-    {
-      platform: "twipla",
-      url: "https://twipla.jp/events/673291",
-    },
-    {
-      platform: "twitter",
-      url: "https://x.com/aotakeuma/status/1933971035797561593",
-    },
-  ],
+  detailLink: {
+    platform: "twipla",
+    url: "https://twipla.jp/events/673291",
+  },
+  twitterLink: {
+    platform: "twitter",
+    url: "https://x.com/aotakeuma/status/1933971035797561593",
+  },
 };

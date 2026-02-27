@@ -64,6 +64,9 @@ export type Event = {
 
 export type Performance = Event & {
   type: "performance";
+  detailLink?: SocialLink & { platform: "twipla" | "twinvite" };
+  twitterLink?: SocialLink & { platform: "twitter" };
+  mixcloudLink?: SocialLink & { platform: "mixcloud" };
 };
 
 export type Exhibition = Event & {

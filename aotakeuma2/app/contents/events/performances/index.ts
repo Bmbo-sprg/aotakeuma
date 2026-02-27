@@ -7,6 +7,7 @@ import { koeoto_seizaban } from "./koeoto_seizaban";
 import { vocaloid_context_2 } from "./vocaloid_context_2";
 import { koeoto_uradenshi } from "./koeoto_uradenshi";
 import { matome_2025 } from "./matome_2025";
+import { koeoto_3 } from "./koeoto_3";
 
 export const performances: Performance[] = [
   kuvocalodj_2,
@@ -17,4 +18,5 @@ export const performances: Performance[] = [
   vocaloid_context_2,
   koeoto_uradenshi,
   matome_2025,
+  koeoto_3,
 ];

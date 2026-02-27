@@ -12,14 +12,12 @@ export const vocacirc_3: Performance = {
   tags: [],
   date: new Date("2025-02-15"),
   location: "なんばMILULARI Legacy",
-  links: [
-    {
-      platform: "twipla",
-      url: "https://twipla.jp/events/661163",
-    },
-    {
-      platform: "twitter",
-      url: "https://x.com/aotakeuma/status/1890695729057849831",
-    },
-  ],
+  detailLink: {
+    platform: "twipla",
+    url: "https://twipla.jp/events/661163",
+  },
+  twitterLink: {
+    platform: "twitter",
+    url: "https://x.com/aotakeuma/status/1890695729057849831",
+  },
 };

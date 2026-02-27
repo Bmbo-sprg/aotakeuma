@@ -11,14 +11,12 @@ export const koeoto_uradenshi: Performance = {
   tags: [],
   date: new Date("2025-10-10"),
   location: "ニコニコ生放送",
-  links: [
-    {
-      platform: "twinvite",
-      url: "https://twvt.me/KoeotoBunmyaku_2510",
-    },
-    {
-      platform: "twitter",
-      url: "https://x.com/aotakeuma/status/1976664021509046741",
-    },
-  ],
+  detailLink: {
+    platform: "twinvite",
+    url: "https://twvt.me/KoeotoBunmyaku_2510",
+  },
+  twitterLink: {
+    platform: "twitter",
+    url: "https://x.com/aotakeuma/status/1976664021509046741",
+  },
 };

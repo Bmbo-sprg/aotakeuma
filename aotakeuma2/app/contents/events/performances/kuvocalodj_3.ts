@@ -11,10 +11,8 @@ export const kuvocalodj_3: Performance = {
   tags: [],
   date: new Date("2025-03-07"),
   location: "Twitch",
-  links: [
-    {
-      platform: "twitter",
-      url: "https://x.com/aotakeuma/status/1898001940245836016",
-    },
-  ],
+  twitterLink: {
+    platform: "twitter",
+    url: "https://x.com/aotakeuma/status/1898001940245836016",
+  },
 };

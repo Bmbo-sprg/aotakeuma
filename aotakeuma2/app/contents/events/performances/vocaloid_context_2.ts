@@ -11,14 +11,12 @@ export const vocaloid_context_2: Performance = {
   tags: [],
   date: new Date("2025-08-09"),
   location: "Cafe Bar LIVRE",
-  links: [
-    {
-      platform: "twipla",
-      url: "https://twipla.jp/events/682354",
-    },
-    {
-      platform: "twitter",
-      url: "https://x.com/aotakeuma/status/1954475401834901699",
-    },
-  ],
+  detailLink: {
+    platform: "twipla",
+    url: "https://twipla.jp/events/682354",
+  },
+  twitterLink: {
+    platform: "twitter",
+    url: "https://x.com/aotakeuma/status/1954475401834901699",
+  },
 };

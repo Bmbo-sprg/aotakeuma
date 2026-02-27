@@ -11,14 +11,12 @@ export const cellclub: Performance = {
   tags: [],
   date: new Date("2025-05-05"),
   location: "ギルドネオ",
-  links: [
-    {
-      platform: "twipla",
-      url: "https://twipla.jp/events/670966",
-    },
-    {
-      platform: "twitter",
-      url: "https://x.com/aotakeuma/status/1919263820813349209",
-    },
-  ],
+  detailLink: {
+    platform: "twipla",
+    url: "https://twipla.jp/events/670966",
+  },
+  twitterLink: {
+    platform: "twitter",
+    url: "https://x.com/aotakeuma/status/1919263820813349209",
+  },
 };
