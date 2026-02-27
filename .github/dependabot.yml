@@ -6,6 +6,8 @@
 version: 2
 updates:
   - package-ecosystem: "npm" # See documentation for possible values
-    directory: "/aotakeuma2/" # Location of package manifests
+    directory: "aotakeuma2/" # Location of package manifests
     schedule:
       interval: "weekly"
+    assignees:
+      - "Bmbo-sprg"
