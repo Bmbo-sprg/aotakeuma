@@ -3,9 +3,9 @@ import type { Route } from "./+types/performance";
 import { performances } from "../../contents/events/performances";
 import { EventHeadSection } from "../../components/EventHeadSection/EventHeadSection";
 import { EventDescriptionSection } from "../../components/EventDescriptionSection/EventDescriptionSection";
+import { MixcloudIframe } from "../../components/MixcloudIframe/MixcloudIframe";
 import { SocialLinkList } from "../../components/SocialLinkList/SocialLinkList";
 import { buildOGMeta, getEventPath } from "../../utils/paths";
-import { MixcloudIframe } from "~/components/MixcloudIframe/MixcloudIframe";
 
 export function meta({ loaderData }: Route.MetaArgs) {
   return buildOGMeta({
