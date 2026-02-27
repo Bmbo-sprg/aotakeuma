@@ -18,6 +18,8 @@ import { vocast_9 } from "./vocast_9";
 import { vocastar_2 } from "./vocastar_2";
 import { vomas_57 } from "./vomas_57";
 import { vomas_61 } from "./vomas_61";
+import { futasute_3 } from "./futasute_3";
+import { m3_2026_spring } from "./m3_2026_spring";
 
 export const exhibitions: Exhibition[] = [
   c102,
@@ -39,4 +41,6 @@ export const exhibitions: Exhibition[] = [
   m3_2025_autumn,
   vomas_61,
   c107,
+  futasute_3,
+  m3_2026_spring,
 ];
