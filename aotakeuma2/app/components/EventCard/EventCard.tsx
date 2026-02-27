@@ -21,9 +21,16 @@ export const EventCard = ({ event, className }: EventCardProps) => {
   const Wrapper = isLinkable ? Link : "div";
   const wrapperProps = isLinkable ? { to: getEventPath(event) } : { to: "" };
 
+  const isFuture = event.date.getTime() > Date.now();
+
   return (
     <div
-      className={["group card", isLinkable && "interactive", className]
+      className={[
+        "group card",
+        isLinkable && "interactive",
+        isFuture && "bg-gray-200 opacity-60",
+        className,
+      ]
         .filter(Boolean)
         .join(" ")}
     >
