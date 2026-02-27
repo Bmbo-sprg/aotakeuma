@@ -12,14 +12,12 @@ export const matome_2025: Performance = {
   tags: [],
   date: new Date("2025-12-30"),
   location: "Mixcloud",
-  links: [
-    {
-      platform: "mixcloud",
-      url: "https://www.mixcloud.com/%E7%AB%B9%E9%A6%AC%E3%81%82%E3%81%8A/%E7%AB%B9%E9%A6%AC%E3%81%82%E3%81%8A2025%E3%81%BE%E3%81%A8%E3%82%81%E8%87%AA%E5%B7%B1%E7%B4%B9%E4%BB%8Bmix/",
-    },
-    {
-      platform: "twitter",
-      url: "https://x.com/aotakeuma/status/2005933934618783783",
-    },
-  ],
+  mixcloudLink: {
+    platform: "mixcloud",
+    url: "https://www.mixcloud.com/%E7%AB%B9%E9%A6%AC%E3%81%82%E3%81%8A/%E7%AB%B9%E9%A6%AC%E3%81%82%E3%81%8A2025%E3%81%BE%E3%81%A8%E3%82%81%E8%87%AA%E5%B7%B1%E7%B4%B9%E4%BB%8Bmix/",
+  },
+  twitterLink: {
+    platform: "twitter",
+    url: "https://x.com/aotakeuma/status/2005933934618783783",
+  },
 };
