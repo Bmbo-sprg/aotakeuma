@@ -12,6 +12,7 @@ import { musics } from "../contents/works/musics";
 import { games } from "../contents/works/games";
 import { exhibitions } from "../contents/events/exhibitions";
 import { performances } from "../contents/events/performances";
+import { toLocaleDateString } from "../utils/formats";
 import { buildOGMeta, getEventPath, getWorkPath } from "../utils/paths";
 
 export function meta(_: Route.MetaArgs) {
@@ -20,7 +21,21 @@ export function meta(_: Route.MetaArgs) {
   });
 }
 
-export default function Home(_: Route.ComponentProps) {
+export function loader({ context }: Route.LoaderArgs) {
+  return {
+    lastDeployedAt: context.cloudflare.env.LAST_DEPLOYED_AT || null,
+  };
+}
+
+export default function Home({ loaderData }: Route.ComponentProps) {
+  const lastUpdatedDate = loaderData.lastDeployedAt
+    ? new Date(loaderData.lastDeployedAt)
+    : null;
+  const lastUpdatedText =
+    lastUpdatedDate !== null && !Number.isNaN(lastUpdatedDate.getTime())
+      ? toLocaleDateString(lastUpdatedDate)
+      : null;
+
   const featuredWorks = [...works]
     .sort((a, b) => b.releaseDate.getTime() - a.releaseDate.getTime())
     .slice(0, 4);
@@ -73,6 +88,11 @@ export default function Home(_: Route.ComponentProps) {
             links={getPerson("竹馬あお").socialLinks ?? []}
             size="xs"
           />
+          {lastUpdatedText ? (
+            <p className="text-xs text-slate-500">
+              最終更新日: {lastUpdatedText} 更新されてなかったら急かしてね！
+            </p>
+          ) : null}
         </div>
       </section>
 
