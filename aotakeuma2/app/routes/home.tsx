@@ -14,6 +14,7 @@ import { exhibitions } from "../contents/events/exhibitions";
 import { performances } from "../contents/events/performances";
 import { toLocaleDateString } from "../utils/formats";
 import { buildOGMeta, getEventPath, getWorkPath } from "../utils/paths";
+import { Random } from "../utils/random";
 
 export function meta(_: Route.MetaArgs) {
   return buildOGMeta({
@@ -24,6 +25,7 @@ export function meta(_: Route.MetaArgs) {
 export function loader({ context }: Route.LoaderArgs) {
   return {
     lastDeployedAt: context.cloudflare.env.LAST_DEPLOYED_AT || null,
+    seed: Date.now(),
   };
 }
 
@@ -36,14 +38,15 @@ export default function Home({ loaderData }: Route.ComponentProps) {
       ? toLocaleDateString(lastUpdatedDate)
       : null;
 
+  const random = new Random(loaderData.seed);
   const featuredWorks = [...works]
     .sort((a, b) => b.releaseDate.getTime() - a.releaseDate.getTime())
     .slice(0, 4);
-  const randomWork = works[Math.floor(Math.random() * works.length)];
+  const randomWork = works[random.nextInt(0, works.length - 1)];
   const featuredEvents = [...events]
     .sort((a, b) => b.date.getTime() - a.date.getTime())
     .slice(0, 4);
-  const randomEvent = events[Math.floor(Math.random() * events.length)];
+  const randomEvent = events[random.nextInt(0, events.length - 1)];
 
   return (
     <main className="space-y-16 pb-20">
