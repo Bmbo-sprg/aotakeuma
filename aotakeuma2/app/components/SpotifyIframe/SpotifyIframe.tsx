@@ -29,7 +29,7 @@ export const SpotifyIframe = ({ url }: SpotifyIframeProps) => {
       width="100%"
       height="400"
       allowFullScreen
-      allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+      allow="autoplay; clipboard-write; encrypted-media; picture-in-picture"
       loading="lazy"
     />
   );
