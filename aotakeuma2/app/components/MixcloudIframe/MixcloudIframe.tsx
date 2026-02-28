@@ -33,7 +33,7 @@ export const MixcloudIframe = ({ url, width, height }: MixcloudIframeProps) => {
       width={width || "100%"}
       height={height || "120"}
       allowFullScreen
-      allow="encrypted-media; fullscreen; autoplay; idle-detection; speaker-selection; web-share;"
+      allow="encrypted-media; autoplay; idle-detection; speaker-selection; web-share;"
       referrerPolicy="strict-origin-when-cross-origin"
     />
   );
