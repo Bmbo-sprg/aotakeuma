@@ -22,12 +22,14 @@ export const EventCard = ({ event, now, className }: EventCardProps) => {
   const Wrapper = isLinkable ? Link : "div";
   const wrapperProps = isLinkable ? { to: getEventPath(event) } : { to: "" };
 
+  const isFutureEvent = event.date > now;
+
   return (
     <div
       className={[
         "group card",
         isLinkable && "interactive",
-        event.date > now && "bg-gray-200 opacity-60",
+        isFutureEvent && "bg-secondary/20",
         className,
       ]
         .filter(Boolean)
@@ -37,6 +39,7 @@ export const EventCard = ({ event, now, className }: EventCardProps) => {
         <div className="overflow-hidden space-y-1">
           <p className="text-xs font-medium text-slate-500 -mb-1">
             {eventTypeLabel[event.type]}
+            {isFutureEvent && "（予定！）"}
           </p>
           <div className="flex flex-wrap items-center gap-x-2 gap-y-0">
             <p className="text-lg font-semibold text-slate-900 truncate whitespace-pre-line break-all line-clamp-1">
