@@ -14,5 +14,6 @@ type Story = StoryObj<typeof GameView>;
 export const Default: Story = {
   args: {
     game: games[0],
+    now: new Date(),
   },
 };

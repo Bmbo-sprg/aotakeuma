@@ -20,5 +20,6 @@ export const Default: Story = {
       to: "",
       sort: "new",
     },
+    now: new Date(),
   },
 };
