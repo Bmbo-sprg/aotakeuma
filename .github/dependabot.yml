@@ -7,7 +7,14 @@ version: 2
 updates:
   - package-ecosystem: "npm" # See documentation for possible values
     directory: "aotakeuma2/" # Location of package manifests
+    exclude-paths:
+      - "aotakeuma/**"
     schedule:
       interval: "weekly"
     assignees:
       - "Bmbo-sprg"
+    groups:
+      storybook:
+        patterns:
+          - "storybook"
+          - "@storybook/*"
