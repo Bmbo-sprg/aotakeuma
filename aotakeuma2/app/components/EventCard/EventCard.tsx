@@ -13,22 +13,21 @@ const eventTypeLabel: Record<Event["type"], string> = {
 
 type EventCardProps = {
   event: Event;
+  now: Date;
   className?: string;
 };
 
-export const EventCard = ({ event, className }: EventCardProps) => {
+export const EventCard = ({ event, now, className }: EventCardProps) => {
   const isLinkable = events.some((item) => item.id === event.id);
   const Wrapper = isLinkable ? Link : "div";
   const wrapperProps = isLinkable ? { to: getEventPath(event) } : { to: "" };
-
-  const isFuture = event.date.getTime() > Date.now();
 
   return (
     <div
       className={[
         "group card",
         isLinkable && "interactive",
-        isFuture && "bg-gray-200 opacity-60",
+        event.date > now && "bg-gray-200 opacity-60",
         className,
       ]
         .filter(Boolean)

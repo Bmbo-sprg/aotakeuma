@@ -19,9 +19,6 @@ const urlToEmbed = (url: string) => {
 // localhost からだと 403 が返ってくるが、デプロイしたら問題なく動くはず（なぜ？）
 export const NiconicoIframe = ({ url, width, height }: NiconicoIframeProps) => {
   const embedUrl = urlToEmbed(url);
-  if (!embedUrl) {
-    return null;
-  }
 
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const exitFullScreenRef = useRef<(() => void) | null>(null);
@@ -163,6 +160,10 @@ export const NiconicoIframe = ({ url, width, height }: NiconicoIframeProps) => {
       exitFullScreenRef.current = null;
     };
   }, []);
+
+  if (!embedUrl) {
+    return null;
+  }
 
   return (
     <iframe

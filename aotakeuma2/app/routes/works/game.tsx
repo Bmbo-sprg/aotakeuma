@@ -25,10 +25,10 @@ export function loader({ params }: Route.LoaderArgs) {
   if (!game) {
     throw new Response("Not Found", { status: 404 });
   }
-  return { game };
+  return { game, now: new Date() };
 }
 
-export function GameView({ game }: { game: Game }) {
+export function GameView({ game, now }: { game: Game; now: Date }) {
   const exhibitionsWithGame = exhibitions
     .filter((exhibition) =>
       exhibition.catalog.some((item) => item.id === game.id)
@@ -89,7 +89,7 @@ export function GameView({ game }: { game: Game }) {
             className="space-y-2"
           >
             {exhibitionsWithGame.map((exhibition) => (
-              <EventCard key={exhibition.id} event={exhibition} />
+              <EventCard key={exhibition.id} event={exhibition} now={now} />
             ))}
           </AccordionSection>
         ) : null}
@@ -99,5 +99,5 @@ export function GameView({ game }: { game: Game }) {
 }
 
 export default function GameRoute({ loaderData }: Route.ComponentProps) {
-  return <GameView game={loaderData.game} />;
+  return <GameView game={loaderData.game} now={loaderData.now} />;
 }
