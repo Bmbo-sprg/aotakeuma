@@ -68,10 +68,17 @@ export function loader({ request }: Route.LoaderArgs) {
       to: url.searchParams.get("to") ?? "",
       sort: (url.searchParams.get("sort") as SortOrder) ?? "new",
     },
+    now: new Date(),
   };
 }
 
-export function EventsView({ filters }: { filters: EventFilter }) {
+export function EventsView({
+  filters,
+  now,
+}: {
+  filters: EventFilter;
+  now: Date;
+}) {
   const { register, control, setValue } = useForm<EventFilter>({
     defaultValues: {
       query: filters.query,
@@ -196,7 +203,7 @@ export function EventsView({ filters }: { filters: EventFilter }) {
       <ul className="grid gap-4">
         {filteredEvents.map((event) => (
           <li key={event.id}>
-            <EventCard event={event} className="animate-subtle-in" />
+            <EventCard event={event} now={now} className="animate-subtle-in" />
           </li>
         ))}
       </ul>
@@ -205,5 +212,5 @@ export function EventsView({ filters }: { filters: EventFilter }) {
 }
 
 export default function EventsIndex({ loaderData }: Route.ComponentProps) {
-  return <EventsView filters={loaderData.filters} />;
+  return <EventsView filters={loaderData.filters} now={loaderData.now} />;
 }

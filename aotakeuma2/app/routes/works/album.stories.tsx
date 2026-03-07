@@ -14,5 +14,6 @@ type Story = StoryObj<typeof AlbumView>;
 export const Default: Story = {
   args: {
     album: albums[0],
+    now: new Date(),
   },
 };

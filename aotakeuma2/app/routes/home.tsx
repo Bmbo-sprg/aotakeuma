@@ -26,6 +26,7 @@ export function loader({ context }: Route.LoaderArgs) {
   return {
     lastDeployedAt: context.cloudflare.env.LAST_DEPLOYED_AT || null,
     seed: Date.now(),
+    now: new Date(),
   };
 }
 
@@ -148,7 +149,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
         </p>
         <div className="grid gap-4">
           {featuredEvents.map((event) => (
-            <EventCard key={event.id} event={event} />
+            <EventCard key={event.id} event={event} now={loaderData.now} />
           ))}
         </div>
       </section>

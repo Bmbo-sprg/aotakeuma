@@ -28,10 +28,10 @@ export function loader({ params }: Route.LoaderArgs) {
   if (!album) {
     throw new Response("Not Found", { status: 404 });
   }
-  return { album };
+  return { album, now: new Date() };
 }
 
-export function AlbumView({ album }: { album: Album }) {
+export function AlbumView({ album, now }: { album: Album; now: Date }) {
   const exhibitionsWithAlbum = exhibitions
     .filter((exhibition) =>
       exhibition.catalog.some((item) => item.id === album.id)
@@ -106,7 +106,7 @@ export function AlbumView({ album }: { album: Album }) {
             className="space-y-2"
           >
             {exhibitionsWithAlbum.map((exhibition) => (
-              <EventCard key={exhibition.id} event={exhibition} />
+              <EventCard key={exhibition.id} event={exhibition} now={now} />
             ))}
           </AccordionSection>
         ) : null}
@@ -123,5 +123,5 @@ export function AlbumView({ album }: { album: Album }) {
 }
 
 export default function AlbumRoute({ loaderData }: Route.ComponentProps) {
-  return <AlbumView album={loaderData.album} />;
+  return <AlbumView album={loaderData.album} now={loaderData.now} />;
 }
