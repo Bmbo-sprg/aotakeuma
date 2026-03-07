@@ -18,3 +18,9 @@ updates:
         patterns:
           - "storybook"
           - "@storybook/*"
+      react:
+        patterns:
+          - "react"
+          - "react-dom"
+          - "@types/react"
+          - "@types/react-dom"
