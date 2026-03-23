@@ -90,8 +90,3 @@ export const buildOGMeta = ({
     },
   ];
 };
-
-export const buildCanonicalLink = (path: string) => ({
-  rel: "canonical",
-  href: `${SITE_URL}${path}`,
-});
