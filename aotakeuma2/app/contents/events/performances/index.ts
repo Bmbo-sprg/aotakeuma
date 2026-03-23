@@ -9,6 +9,7 @@ import { koeoto_uradenshi } from "./koeoto_uradenshi";
 import { matome_2025 } from "./matome_2025";
 import { koeoto_3 } from "./koeoto_3";
 import { dddd_1 } from "./dddd_1";
+import { tabuhoriha_6 } from "./tabuhoriha_6";
 
 export const performances: Performance[] = [
   kuvocalodj_2,
@@ -21,4 +22,5 @@ export const performances: Performance[] = [
   matome_2025,
   koeoto_3,
   dddd_1,
+  tabuhoriha_6,
 ];
