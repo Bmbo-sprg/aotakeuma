@@ -64,11 +64,7 @@ export function AlbumView({ album, now }: { album: Album; now: Date }) {
 
         {/* TODO: リリース日からnヶ月の場合は最初、else最後に置くようにする */}
         {DOWNLOAD_ENABLED_ALBUM_IDS.has(album.id) ? (
-          <DownloadSection
-            productId={album.id}
-            title={`${album.title} 特典ダウンロード`}
-            description="ダウンロードキーを入力して特典を受け取れます。"
-          />
+          <DownloadSection productId={album.id} />
         ) : null}
 
         <section>

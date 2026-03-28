@@ -18,7 +18,7 @@ function parseArgs(): CliArgs {
 
   if (args.length === 0 || args[0].startsWith("--")) {
     throw new Error(
-      "Usage: pnpm key:get <KEY> [--remote] [--format table|json]",
+      "Usage: pnpm key:get <KEY> [--remote] [--format table|json]"
     );
   }
 
@@ -66,7 +66,7 @@ function displayAsTable(key: string, record: DownloadKeyRecord): void {
   console.log(`  Status:       ${record.isActive ? "✓ Active" : "✗ Inactive"}`);
   console.log(`  Expires:      ${formatDate(record.expiresAt)}`);
   console.log(
-    `  Usage:        ${record.useCount}/${record.maxUseCount} (${record.maxUseCount - record.useCount} remaining)`,
+    `  Usage:        ${record.useCount}/${record.maxUseCount} (${record.maxUseCount - record.useCount} remaining)`
   );
   console.log(`  Logs:         ${record.usageLogs.length} entries`);
 
@@ -92,7 +92,7 @@ async function getKey(args: CliArgs): Promise<void> {
 
     if (!record) {
       console.error(
-        `\n❌ Key not found: ${formatKey(args.key)} (${args.remote ? "remote" : "local"} KV)`,
+        `\n❌ Key not found: ${formatKey(args.key)} (${args.remote ? "remote" : "local"} KV)`
       );
       process.exit(1);
     }
@@ -105,7 +105,7 @@ async function getKey(args: CliArgs): Promise<void> {
   } catch (error) {
     console.error(
       "\n❌ Failed to retrieve key:",
-      error instanceof Error ? error.message : String(error),
+      error instanceof Error ? error.message : String(error)
     );
     process.exit(1);
   }

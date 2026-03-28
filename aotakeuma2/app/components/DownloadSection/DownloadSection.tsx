@@ -26,8 +26,8 @@ type DownloadSectionProps = {
 
 export function DownloadSection({
   productId,
-  title = "特典ダウンロード",
-  description = "ダウンロードキーを入力して特典を受け取れます。",
+  title = "ダウンロード",
+  description = "ダウンロードカード裏面に記載されたダウンロードコードをここに入力してください。",
 }: DownloadSectionProps) {
   const { control, handleSubmit, setValue } = useForm<{ downloadKey: string }>({
     defaultValues: {
@@ -63,7 +63,7 @@ export function DownloadSection({
 
       if (response.ok && data.ok) {
         setVerifyStatus("verified");
-        setVerifyMessage("キーを確認しました");
+        setVerifyMessage("コードを確認しました");
         setDownloadUrl(data.downloadUrl);
         return;
       }
@@ -72,7 +72,7 @@ export function DownloadSection({
       if (!data.ok && data.message) {
         setVerifyMessage(data.message);
       } else {
-        setVerifyMessage("キーの検証に失敗しました。");
+        setVerifyMessage("コードの検証に失敗しました。");
       }
       setDownloadUrl("");
     } catch {
@@ -148,6 +148,10 @@ export function DownloadSection({
       <div className="space-y-1">
         <h2 className="text-lg font-semibold text-slate-900">{title}</h2>
         <p className="text-sm text-slate-600">{description}</p>
+        <p className="text-xs text-slate-600">
+          ※マジで急ピッチで作ったのでもし不具合があったら教えてください (03/29
+          朝)
+        </p>
       </div>
 
       <form className="space-y-4" onSubmit={onSubmit}>
@@ -156,7 +160,7 @@ export function DownloadSection({
             htmlFor={inputId}
             className="text-sm font-semibold text-slate-900"
           >
-            ダウンロードキー
+            ダウンロードコード
           </label>
           <Controller
             name="downloadKey"
@@ -175,7 +179,7 @@ export function DownloadSection({
                   "focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20",
                   "transition-all duration-150",
                 ].join(" ")}
-                placeholder="DLキーを入力してください"
+                placeholder="ダウンロードコードを入力してください"
                 autoComplete="off"
                 inputMode="text"
                 aria-describedby={statusId}
@@ -185,7 +189,7 @@ export function DownloadSection({
 
           <div id={statusId} className="min-h-6">
             {verifyStatus === "validating" ? (
-              <p className="text-sm text-slate-600">キーを確認中...</p>
+              <p className="text-sm text-slate-600">コードを確認中...</p>
             ) : null}
 
             {verifyStatus === "verified" ? (
@@ -205,8 +209,9 @@ export function DownloadSection({
         <button
           type="submit"
           disabled={verifyStatus !== "verified" || !downloadUrl}
-          className="w-full px-6 py-3 rounded-lg bg-linear-to-r from-primary to-secondary text-primary-950 font-semibold enabled:hover:shadow-lg enabled:hover:scale-101 enabled:active:scale-99 transition-all duration-150 disabled:opacity-70 disabled:cursor-not-allowed"
+          className="w-full px-6 py-3 rounded-lg bg-primary text-primary-950 font-semibold enabled:hover:shadow-lg enabled:hover:scale-101 enabled:active:scale-99 transition-all duration-150 disabled:opacity-70 disabled:cursor-not-allowed"
         >
+          {/* TODO: マジでスタイル直す */}
           ダウンロード
         </button>
       </form>
