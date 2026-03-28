@@ -25,4 +25,16 @@
       "custom_domain": true,
     },
   ],
+  "r2_buckets": [
+    {
+      "bucket_name": "aotakeuma",
+      "binding": "aotakeuma_contents",
+    },
+  ],
+  "kv_namespaces": [
+    {
+      "binding": "aotakeuma_keys",
+      "id": "7c4b97c09acc4b299254da3f96845e3e",
+    },
+  ],
 }

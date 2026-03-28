@@ -5,6 +5,7 @@ import { albums } from "../../contents/works/albums";
 import { AccordionSection } from "../../components/AccordionSection/AccordionSection";
 import { Banner } from "../../components/Banner/Banner";
 import { CreditCardList } from "../../components/CreditCardList/CreditCardList";
+import { DownloadSection } from "../../components/DownloadSection/DownloadSection";
 import { EventCard } from "../../components/EventCard/EventCard";
 import { SocialLinkItem } from "../../components/SocialLinkItem/SocialLinkItem";
 import { SpotifyIframe } from "../../components/SpotifyIframe/SpotifyIframe";
@@ -13,6 +14,8 @@ import { TrackList } from "../../components/TrackList/TrackList";
 import { VideoIframe } from "../../components/VideoIframe/VideoIframe";
 import { toLocaleDateString } from "../../utils/formats";
 import { buildOGMeta, getWorkPath } from "../../utils/paths";
+
+const DOWNLOAD_ENABLED_ALBUM_IDS = new Set(["yohkoh"]); // TODO: types に入れる
 
 export function meta({ loaderData }: Route.MetaArgs) {
   return buildOGMeta({
@@ -58,6 +61,15 @@ export function AlbumView({ album, now }: { album: Album; now: Date }) {
             {album.team ? <span>by {album.team}</span> : null}
           </p>
         </section>
+
+        {/* TODO: リリース日からnヶ月の場合は最初、else最後に置くようにする */}
+        {DOWNLOAD_ENABLED_ALBUM_IDS.has(album.id) ? (
+          <DownloadSection
+            productId={album.id}
+            title={`${album.title} 特典ダウンロード`}
+            description="ダウンロードキーを入力して特典を受け取れます。"
+          />
+        ) : null}
 
         <section>
           <p className="text-slate-700 whitespace-pre-line">

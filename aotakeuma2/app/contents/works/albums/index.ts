@@ -11,6 +11,7 @@ import { bros } from "./bros";
 import { haruame_ost } from "./haruame_ost";
 import { nde_ost } from "./nde_ost";
 import { tsuisou } from "./tsuisou";
+import { yohkoh } from "./yohkoh";
 
 export const albums: Album[] = [
   aonote,
@@ -25,4 +26,5 @@ export const albums: Album[] = [
   nde_ost,
   haruame_ost,
   tsuisou,
+  yohkoh,
 ];
