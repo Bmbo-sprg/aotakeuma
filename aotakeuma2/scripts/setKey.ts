@@ -19,7 +19,7 @@ function parseArgs(): CliArgs {
 
   if (args.length === 0 || args[0].startsWith("--")) {
     throw new Error(
-      "Usage: pnpm key:set <KEY> [--active|--inactive] [--max-uses N] [--expiry DATE] [--remote]",
+      "Usage: pnpm key:set <KEY> [--active|--inactive] [--max-uses N] [--expiry DATE] [--remote]"
     );
   }
 
@@ -90,7 +90,7 @@ async function setKey(args: CliArgs): Promise<void> {
       args.expiry === undefined
     ) {
       console.log(
-        `\n⚠️  No changes specified. Use --active, --inactive, --max-uses, or --expiry`,
+        `\n⚠️  No changes specified. Use --active, --inactive, --max-uses, or --expiry`
       );
       process.exit(1);
     }
@@ -112,7 +112,7 @@ async function setKey(args: CliArgs): Promise<void> {
     if (args.active !== undefined) {
       record.isActive = args.active;
       console.log(
-        `  Status:       ${before.isActive ? "✓ Active" : "✗ Inactive"} → ${args.active ? "✓ Active" : "✗ Inactive"}`,
+        `  Status:       ${before.isActive ? "✓ Active" : "✗ Inactive"} → ${args.active ? "✓ Active" : "✗ Inactive"}`
       );
     }
 
@@ -123,7 +123,7 @@ async function setKey(args: CliArgs): Promise<void> {
 
     if (args.expiry !== undefined) {
       console.log(
-        `  Expires:      ${formatDate(before.expiresAt)} → ${formatDate(args.expiry)}`,
+        `  Expires:      ${formatDate(before.expiresAt)} → ${formatDate(args.expiry)}`
       );
       record.expiresAt = args.expiry;
     }
@@ -134,7 +134,7 @@ async function setKey(args: CliArgs): Promise<void> {
   } catch (error) {
     console.error(
       "\n❌ Failed to update key:",
-      error instanceof Error ? error.message : String(error),
+      error instanceof Error ? error.message : String(error)
     );
     process.exit(1);
   }
