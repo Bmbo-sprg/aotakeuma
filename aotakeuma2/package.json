@@ -25,7 +25,7 @@
   },
   "devDependencies": {
     "@aws-sdk/client-s3": "^3.1024.0",
-    "@chromatic-com/storybook": "^5.1.1",
+    "@chromatic-com/storybook": "^5.1.2",
     "@cloudflare/vite-plugin": "^1.29.1",
     "@eslint/js": "^9.39.4",
     "@react-router/dev": "^7.12.0",
