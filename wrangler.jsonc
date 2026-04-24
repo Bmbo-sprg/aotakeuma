@@ -4,7 +4,7 @@
  */
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "aotakeuma2",
+  "name": "aotakeuma2", // aotakeuma は古い SPA 版
   "compatibility_date": "2025-04-04",
   "main": "./workers/app.ts",
   "vars": {

@@ -10,7 +10,6 @@ https://mise.jdx.dev/getting-started.html
 
 ### んで
 
-1. `cd aotakeuma2`
 1. `mise install`
 1. `pnpm install`
 1. `pnpm run dev` でローカル起動
