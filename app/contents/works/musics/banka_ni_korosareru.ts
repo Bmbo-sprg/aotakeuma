@@ -1,0 +1,95 @@
+import type { Music } from "~/types";
+import { getPerson } from "../../persons";
+
+export const banka_ni_korosareru: Music = {
+  type: "music",
+  id: "banka_ni_korosareru",
+  title: "晩夏に殺される",
+  description: `
+吉田音楽製作所 合作コンピ2025参加曲です。
+ドラムとミックスで参加しました。
+晩夏サウンドのオルタナティブロックです。
+`,
+  tags: ["合作参加作品", "バンドサウンド", "夏"],
+  team: "残暑見舞",
+  credits: [
+    {
+      name: "可蝕部.wav",
+      role: "作詞、ベース",
+      socialLinks: [
+        {
+          platform: "niconico",
+          url: "https://www.nicovideo.jp/user/140420562",
+        },
+        {
+          platform: "youtube",
+          url: "https://www.youtube.com/@user-kashokubuwav",
+        },
+        {
+          platform: "twitter",
+          url: "https://x.com/kashokubu_wav",
+        },
+      ],
+    },
+    {
+      name: "乃々野ねね",
+      role: "作曲、調声",
+      socialLinks: [
+        {
+          platform: "niconico",
+          url: "https://www.nicovideo.jp/user/129910999",
+        },
+        {
+          platform: "youtube",
+          url: "https://www.youtube.com/@neneinenene",
+        },
+        {
+          platform: "twitter",
+          url: "https://x.com/neineinenene",
+        },
+      ],
+    },
+    {
+      name: "g",
+      role: "編曲",
+    },
+    {
+      ...getPerson("ひとひら"),
+      role: "ギター",
+    },
+    {
+      ...getPerson("竹馬あお"),
+      role: "ドラム、ミックス",
+    },
+    {
+      name: "天馬手毬",
+      role: "ボーカル",
+    },
+  ],
+  releaseDate: new Date("2025-10-15"),
+  links: [
+    {
+      platform: "bandcamp",
+      url: "https://kitchon.bandcamp.com/track/--386",
+    },
+  ],
+  lyrics: `
+夕方6時帰り道秋の消えた街を歩く私の心は伽藍堂足が棒になる
+焦点から歪みだす視界はやがて私を焦らせる道路脇の陽炎が心を焦がす
+最寄りの改札抜け濁った眼で電光掲示板を見ている
+イヤホンから漏れるのは誰も知らない雑音
+目が舞うほどの暑さ弱冷車だと知り舌を打つ情けない音は満員の箱の中で薄らいで消える
+温い車内で私徐々に徐々に融けてゆく心地がするのこのまま雲の一部にでもなろう
+惚けた頭に歪む焦点私の中何かが熱変性して私を壊してく初恋のよう
+人混みの間から見える光に目を向ける窓の奥に見える太陽狂おしいほどの黄金
+「そうか、これはお前の所為か」
+空もまちも全てがゆがみ輝きの先におちてくだけるそんなまぼろしを起きながらみてる
+「これも、ぜんぶ、おまえの、せいに、してしまえ」
+あつさでやけた回路にてをのばすとけた基ばんでひっ死にきおくの断ぺんを収集してく
+共鳴する風は記おくを記ろくの無きしつな文字列に変えて雨はかんしょう材となりわたしをけがしていくのでしょう？
+うみのきえたまどをせにきゃくもしゃしょうもきえたしゃないでただひとりでたってる
+「れいぼうが、さむい」つきもほしもみえぬそらにうかぶもうまくのこげたあと「あなた」のそんざいのしょうめい
+我に返りやっと気づく
+「わた、しは、晩、夏に、殺され、る」
+`,
+};

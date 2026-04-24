@@ -1,0 +1,112 @@
+import type { Music } from "~/types";
+import { getPerson } from "../../persons";
+
+export const tenshi: Music = {
+  type: "music",
+  id: "tenshi",
+  title: "天使は声変わりしないって知ってた？",
+  description: `
+ビジュアルノベル『Near-Death-Expedition』のエンディング曲のひとつです。
+Drum n Bass, Future Core などの要素を取り入れたポップスです。
+`,
+  tags: ["エレクトロニック", "『縋想』プロジェクト"],
+  credits: [
+    {
+      ...getPerson("竹馬あお"),
+      role: "作曲、編曲",
+    },
+    {
+      ...getPerson("佐薙概念"),
+      role: "作詞",
+    },
+    {
+      name: "みかん汁",
+      role: "ボーカル",
+      socialLinks: [
+        {
+          platform: "youtube",
+          url: "https://www.youtube.com/@mikanzil",
+        },
+        {
+          platform: "twitter",
+          url: "https://x.com/Juicy_ringo",
+        },
+      ],
+    },
+    {
+      name: "kamome sano",
+      role: "ミックス",
+      socialLinks: [
+        {
+          platform: "website",
+          url: "https://kamomesano.info/",
+        },
+        {
+          platform: "niconico",
+          url: "https://www.nicovideo.jp/user/4619205",
+        },
+        {
+          platform: "youtube",
+          url: "https://www.youtube.com/c/kamomesano",
+        },
+        {
+          platform: "twitter",
+          url: "https://x.com/kamomesano",
+        },
+      ],
+    },
+  ],
+  releaseDate: new Date("2024-12-25"),
+  video: {
+    credits: [
+      {
+        name: "hanaken",
+        role: "映像制作",
+        socialLinks: [
+          {
+            platform: "twitter",
+            url: "https://x.com/ochokonoflower",
+          },
+        ],
+      },
+      {
+        ...getPerson("犬吠埼いつき"),
+        role: "イラスト",
+      },
+    ],
+    youtubeUrl: "https://www.youtube.com/watch?v=BOh4VBA--a4",
+  },
+  lyrics: `
+旅の果てのバーチャル　ここで魂は輝く
+神様もきっといる　こっちガワにおいでよ
+われ思う　ゆえにわれあり？
+ここにいるよ
+雨模様　虹が架け橋
+
+多分だけどここって電脳の廃墟
+時間だって進まなきゃそこにはないよ
+天使は声変わりしないって知ってた？
+
+君が私の名前を呼んで　言葉が特別になっていく
+肉体なんていらないの　心のハグに邪魔
+両の胸の二つの心臓　鼓動が懲りずに鳴っている
+嘘か本当か分からないの　見た目はバグるから
+例えば海賊とかヴァンパイア　船も棺も一緒でしょ？
+
+現実 (リアル) を超えたバーチャル　ここで君に囁く
+数字より君が欲しい　不幸なフリでもいいよ
+立てこもるセカイ駆け出し
+ここにいてよ
+風を食む　ボクの前髪
+
+多分君って初めての宗教
+ボタン一つで春夏秋冬変わる服装
+次の月まであと何センチ？
+
+君が私の名前を呼んで　言葉が特別になっていく
+肉体なんていらないの　心のハグに邪魔
+両の胸の二つの心臓　鼓動が懲りずに鳴っている
+嘘か本当か分からないの　見た目はバグるから
+例えば魔女とか聖職者　推しも神も一緒でしょ？
+`,
+};

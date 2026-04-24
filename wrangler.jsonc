@@ -1,0 +1,40 @@
+/**
+ * For more details on how to configure Wrangler, refer to:
+ * https://developers.cloudflare.com/workers/wrangler/configuration/
+ */
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "aotakeuma2", // aotakeuma は古い SPA 版
+  "compatibility_date": "2025-04-04",
+  "main": "./workers/app.ts",
+  "vars": {
+    "LAST_DEPLOYED_AT": "",
+  },
+  "observability": {
+    "enabled": true,
+  },
+  "routes": [
+    {
+      "pattern": "aotakeuma.com",
+      "zone_name": "aotakeuma.com",
+      "custom_domain": true,
+    },
+    {
+      "pattern": "www.aotakeuma.com",
+      "zone_name": "aotakeuma.com",
+      "custom_domain": true,
+    },
+  ],
+  "r2_buckets": [
+    {
+      "bucket_name": "aotakeuma",
+      "binding": "aotakeuma_contents",
+    },
+  ],
+  "kv_namespaces": [
+    {
+      "binding": "aotakeuma_keys",
+      "id": "7c4b97c09acc4b299254da3f96845e3e",
+    },
+  ],
+}

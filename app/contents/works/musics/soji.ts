@@ -1,0 +1,104 @@
+import type { Music } from "~/types";
+import { getPerson } from "../../persons";
+
+export const soji: Music = {
+  type: "music",
+  id: "soji",
+  title: "送辞",
+  description: `
+送辞を書いてるときは、悔しい思いをします。
+klkkl さんとの合作です。
+実話ボカバラード投稿祭2025 参加曲でした。
+`,
+  tags: ["バラード", "合作参加作品", "バンドサウンド", "エレクトロニック"],
+  credits: [
+    {
+      ...getPerson("竹馬あお"),
+      role: "作詞、作曲、編曲",
+    },
+    {
+      name: "klkkl",
+      role: "編曲",
+      socialLinks: [
+        {
+          platform: "niconico",
+          url: "https://www.nicovideo.jp/user/134013296",
+        },
+        {
+          platform: "youtube",
+          url: "https://www.youtube.com/@itklkkl",
+        },
+        {
+          platform: "twitter",
+          url: "https://x.com/itklkkl",
+        },
+      ],
+    },
+    {
+      name: "花隈千冬",
+      role: "ボーカル",
+    },
+  ],
+  releaseDate: new Date("2025-10-13"),
+  video: {
+    credits: [
+      {
+        ...getPerson("竹馬あお"),
+        role: "映像制作",
+      },
+      {
+        name: "星河ナル",
+        role: "イラスト",
+        socialLinks: [
+          {
+            platform: "niconico",
+            url: "https://www.nicovideo.jp/user/60543580",
+          },
+          {
+            platform: "twitter",
+            url: "https://x.com/NARu31_",
+          },
+        ],
+      },
+    ],
+    youtubeUrl: "https://www.youtube.com/watch?v=LmtLQ6PwmrU",
+    niconicoUrl: "https://www.nicovideo.jp/watch/sm45508379",
+    bilibiliUrl: "https://www.bilibili.com/video/BV1CJ41znE47",
+  },
+  lyrics: `
+（学校に向かう朝が次第に温暖となり、東風が春の陽気を運んでくる時季となりました。
+この良き日に、□□期生の皆さんは、□□□□高校を卒業され、更なる高みを目指してゆかれます。
+本日は、ご卒業おめでとうございます。在校生一同、心よりお祝い申し上げます。）
+
+儀式／誰がためでもなく吹く桜／
+四分間／毎年のように代わり映えない言葉／
+憧れ／ついに「ひとり」となってしまうあなた／
+部室に残ったムスクの香り／落書きと傘の忘れ物／
+青春／最後のアトリウムで号んだ／
+わたしはそれを歌にしたんだ／物語の続きって歌った／
+襷／山はいつも広くて大きかった／
+いつも見えるのは背中だった／わたしだけの特等席から
+
+言祝ぎは冬の火光に代えて
+餞は夏の静寂で紡いだ
+今更こんな綺麗事なんて残酷すぎるよ！
+群像はあなたの声に霞んで
+記憶ごとその薫りに埋もれていく
+春のいない／春が咲く／春が来る。
+
+（さて、わたしたち□□□□□□□が、いよいよ先輩方から襷を受け取り、最高学年になろうとしています。
+□□□□□□□□、そして四月に入学する□□□□□と共に、積極的に□□□□の文化を継ぎ、そして築き、さらにしたたかに、そしてしなやかになっていきたいと思います。）
+
+我儘／わたしはきっとまだ幼かった／
+心に根を張った花の名前は／最後まで知らなかった
+
+あなたの全部をわたしで満たして
+わたしはそれ「ひとつ」だけで良いのに
+今更こんな旅立ちなんて残酷すぎるよ！
+約束は季節を変え木霊して
+記憶ごとその薫りに埋もれていく
+春のいない／春が咲く／春が来る。
+
+（卒業生の皆さんの、これからのさらなるご活躍をお祈り申し上げて、在校生代表の送辞といたします。）
+`,
+};
