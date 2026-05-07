@@ -57,6 +57,7 @@ IDs must be unique across both works and events, match `^[a-z0-9_]+$`, and avoid
 ### Download system
 
 Two-phase flow:
+
 1. **`POST /api/validate-key`** — validates an 8-char download key against Cloudflare KV, returns a signed download URL (TTL: 300s, HMAC-SHA256 signed)
 2. **`GET /api/download`** — verifies the signature and expiry, then streams the file from R2 bucket `aotakeuma_contents` as `{productId}.zip`
 
@@ -72,11 +73,11 @@ Every component in `app/components/` has a colocated `.stories.tsx`. Route files
 
 ### Cloudflare bindings
 
-| Binding | Type | Purpose |
-|---|---|---|
-| `aotakeuma_contents` | R2 | Stores downloadable `.zip` files |
-| `aotakeuma_keys` | KV | Stores download key records |
-| `SIGNED_URL_SECRET` | Secret | HMAC key for signed download URLs |
-| `LAST_DEPLOYED_AT` | Var | Injected at deploy time |
+| Binding              | Type   | Purpose                           |
+| -------------------- | ------ | --------------------------------- |
+| `aotakeuma_contents` | R2     | Stores downloadable `.zip` files  |
+| `aotakeuma_keys`     | KV     | Stores download key records       |
+| `SIGNED_URL_SECRET`  | Secret | HMAC key for signed download URLs |
+| `LAST_DEPLOYED_AT`   | Var    | Injected at deploy time           |
 
 Run `pnpm typegen` after changing `wrangler.jsonc` to regenerate `worker-configuration.d.ts`.

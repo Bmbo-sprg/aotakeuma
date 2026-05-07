@@ -1,0 +1,17 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "if": "Bash(git commit*)",
+            "command": "eval \"$(mise activate bash)\" && pnpm fix && pnpm lint && pnpm build || echo '{\"continue\": false, \"stopReason\": \"pnpm fix/lint/build failed — fix errors before committing\"}'",
+            "statusMessage": "Running fix, lint, build..."
+          }
+        ]
+      }
+    ]
+  }
+}
