@@ -1,7 +1,8 @@
 import type { Tag, Work } from "~/types";
 import type { Route } from "./+types/index";
 import { useEffect, useMemo } from "react";
-import { useForm, useWatch } from "react-hook-form";
+import { Controller, useForm, useWatch } from "react-hook-form";
+import { DatePickerInput } from "../../components/DatePickerInput/DatePickerInput";
 import { works } from "../../contents/works";
 import { tags } from "../../contents/tags";
 import { WorkCard } from "../../components/WorkCard/WorkCard";
@@ -162,18 +163,28 @@ export function WorksView({ filters }: { filters: WorkFilter }) {
         <div className="grid gap-4 mb-0 sm:grid-cols-2">
           <div className="space-y-2">
             <label className="text-sm font-medium text-slate-700">From</label>
-            <input
-              className="w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 shadow-sm focus:border-slate-400 focus:outline-none"
-              type="date"
-              {...register("from")}
+            <Controller
+              control={control}
+              name="from"
+              render={({ field }) => (
+                <DatePickerInput
+                  value={field.value}
+                  onChange={field.onChange}
+                />
+              )}
             />
           </div>
           <div className="space-y-2">
             <label className="text-sm font-medium text-slate-700">To</label>
-            <input
-              className="w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 shadow-sm focus:border-slate-400 focus:outline-none"
-              type="date"
-              {...register("to")}
+            <Controller
+              control={control}
+              name="to"
+              render={({ field }) => (
+                <DatePickerInput
+                  value={field.value}
+                  onChange={field.onChange}
+                />
+              )}
             />
           </div>
         </div>
