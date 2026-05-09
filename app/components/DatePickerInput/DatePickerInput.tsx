@@ -39,13 +39,14 @@ export const DatePickerInput = ({
   className,
 }: DatePickerInputProps) => {
   const [open, setOpen] = useState(false);
+  const [prevValue, setPrevValue] = useState(value);
   const [inputValue, setInputValue] = useState(value);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // 外部からのリセット（フォームリセットなど）に追従する
-  useEffect(() => {
+  if (value !== prevValue) {
+    setPrevValue(value);
     setInputValue(value);
-  }, [value]);
+  }
 
   // 外側クリックで閉じる
   useEffect(() => {
