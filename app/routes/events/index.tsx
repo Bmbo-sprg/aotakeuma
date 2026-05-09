@@ -1,7 +1,7 @@
 import type { Event, Tag } from "~/types";
 import type { Route } from "./+types/index";
-import { useEffect, useMemo } from "react";
-import { Controller, useForm, useWatch } from "react-hook-form";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { useSearchParams } from "react-router";
 import { DatePickerInput } from "../../components/DatePickerInput/DatePickerInput";
 import { events } from "../../contents/events";
 import { tags } from "../../contents/tags";
@@ -73,6 +73,8 @@ export function loader({ request }: Route.LoaderArgs) {
   };
 }
 
+const DEBOUNCE_MS = 300;
+
 export function EventsView({
   filters,
   now,
@@ -80,40 +82,48 @@ export function EventsView({
   filters: EventFilter;
   now: Date;
 }) {
-  const { register, control, setValue } = useForm<EventFilter>({
-    defaultValues: {
-      query: filters.query,
-      type: filters.type,
-      tag: filters.tag,
-      from: filters.from,
-      to: filters.to,
-      sort: filters.sort,
-    },
-  });
-  const watchedValues = useWatch({ control });
-  const filteredEvents = useMemo(() => {
-    return filterEvents(events, {
-      query: watchedValues.query ?? "",
-      type: watchedValues.type ?? "",
-      tag: watchedValues.tag ?? "",
-      from: watchedValues.from ?? "",
-      to: watchedValues.to ?? "",
-      sort: watchedValues.sort ?? "new",
-    });
-  }, [watchedValues]);
+  const [, setSearchParams] = useSearchParams();
+  const [queryInput, setQueryInput] = useState(filters.query);
+  const debounceRef = useRef<number | null>(null);
 
   useEffect(() => {
-    setValue("query", filters.query, { shouldDirty: false });
-    setValue("type", filters.type, { shouldDirty: false });
-    setValue("tag", filters.tag, { shouldDirty: false });
-    setValue("from", filters.from, { shouldDirty: false });
-    setValue("to", filters.to, { shouldDirty: false });
-    setValue("sort", filters.sort, { shouldDirty: false });
-  }, [filters, setValue]);
+    return () => {
+      if (debounceRef.current !== null)
+        window.clearTimeout(debounceRef.current);
+    };
+  }, []);
 
-  const activeType = watchedValues.type;
-  const activeTag = watchedValues.tag;
-  const activeSort = watchedValues.sort;
+  const updateParam = (key: string, value: string) => {
+    setSearchParams(
+      (prev) => {
+        const next = new URLSearchParams(prev);
+        if (value) {
+          next.set(key, value);
+        } else {
+          next.delete(key);
+        }
+        return next;
+      },
+      { replace: true }
+    );
+  };
+
+  const handleQueryChange = (value: string) => {
+    setQueryInput(value);
+    if (debounceRef.current !== null) window.clearTimeout(debounceRef.current);
+    debounceRef.current = window.setTimeout(() => {
+      updateParam("query", value);
+    }, DEBOUNCE_MS);
+  };
+
+  const filteredEvents = useMemo(
+    () => filterEvents(events, filters),
+    [filters]
+  );
+
+  const activeType = filters.type;
+  const activeTag = filters.tag;
+  const activeSort = filters.sort;
 
   return (
     <main className="space-y-8 p-6">
@@ -121,9 +131,7 @@ export function EventsView({
         <h1 className="text-2xl font-semibold text-slate-900">イベント</h1>
         <Toggle
           value={activeSort}
-          onChange={(nextValue) =>
-            setValue("sort", nextValue as SortOrder, { shouldDirty: true })
-          }
+          onChange={(nextValue) => updateParam("sort", nextValue)}
           left={{ value: "new", label: "新しい順" }}
           right={{ value: "old", label: "古い順" }}
         />
@@ -136,7 +144,8 @@ export function EventsView({
             className="w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 shadow-sm focus:border-slate-400 focus:outline-none"
             placeholder="イベント名で検索"
             type="text"
-            {...register("query")}
+            value={queryInput}
+            onChange={(e) => handleQueryChange(e.target.value)}
           />
         </div>
 
@@ -144,11 +153,7 @@ export function EventsView({
           <label className="text-sm font-medium text-slate-700">タイプ</label>
           <BadgeButtonList
             value={activeType}
-            onChange={(value) =>
-              setValue("type", value as Event["type"] | "", {
-                shouldDirty: true,
-              })
-            }
+            onChange={(value) => updateParam("type", value)}
             options={[
               { value: "", label: "すべて" },
               { value: "exhibition", label: "即売会" },
@@ -161,11 +166,7 @@ export function EventsView({
           <label className="text-sm font-medium text-slate-700">タグ</label>
           <BadgeButtonList
             value={activeTag}
-            onChange={(value) =>
-              setValue("tag", value, {
-                shouldDirty: true,
-              })
-            }
+            onChange={(value) => updateParam("tag", value)}
             options={[
               { value: "", label: "すべて" },
               ...tags.map((tag) => ({ value: tag, label: tag })),
@@ -176,35 +177,19 @@ export function EventsView({
         <div className="grid gap-4 mb-0 sm:grid-cols-2">
           <div className="space-y-2">
             <label className="text-sm font-medium text-slate-700">From</label>
-            <Controller
-              control={control}
-              name="from"
-              render={({ field }) => (
-                <DatePickerInput
-                  value={field.value}
-                  onChange={field.onChange}
-                />
-              )}
+            <DatePickerInput
+              value={filters.from}
+              onChange={(value) => updateParam("from", value)}
             />
           </div>
           <div className="space-y-2">
             <label className="text-sm font-medium text-slate-700">To</label>
-            <Controller
-              control={control}
-              name="to"
-              render={({ field }) => (
-                <DatePickerInput
-                  value={field.value}
-                  onChange={field.onChange}
-                />
-              )}
+            <DatePickerInput
+              value={filters.to}
+              onChange={(value) => updateParam("to", value)}
             />
           </div>
         </div>
-
-        <input type="hidden" {...register("type")} />
-        <input type="hidden" {...register("tag")} />
-        <input type="hidden" {...register("sort")} />
       </form>
 
       <p className="text-sm text-slate-700">

@@ -1,7 +1,7 @@
 import type { Tag, Work } from "~/types";
 import type { Route } from "./+types/index";
-import { useEffect, useMemo } from "react";
-import { Controller, useForm, useWatch } from "react-hook-form";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { useSearchParams } from "react-router";
 import { DatePickerInput } from "../../components/DatePickerInput/DatePickerInput";
 import { works } from "../../contents/works";
 import { tags } from "../../contents/tags";
@@ -73,43 +73,52 @@ export function loader({ request }: Route.LoaderArgs) {
   };
 }
 
+const DEBOUNCE_MS = 300;
+
 export function WorksView({ filters }: { filters: WorkFilter }) {
-  const { register, control, setValue } = useForm<WorkFilter>();
-  const watchedValues = useWatch({ control });
-
-  const activeType = watchedValues.type;
-  const activeTag = watchedValues.tag;
-  const activeSort = watchedValues.sort;
-
-  const filteredWorks = useMemo(() => {
-    return filterWorks(works, {
-      query: watchedValues.query ?? "",
-      type: activeType ?? "",
-      tag: activeTag ?? "",
-      from: watchedValues.from ?? "",
-      to: watchedValues.to ?? "",
-      sort: activeSort ?? "new",
-    });
-  }, [watchedValues, activeType, activeTag, activeSort]);
+  const [, setSearchParams] = useSearchParams();
+  const [queryInput, setQueryInput] = useState(filters.query);
+  const debounceRef = useRef<number | null>(null);
 
   useEffect(() => {
-    setValue("query", filters.query, { shouldDirty: false });
-    setValue("type", filters.type, { shouldDirty: false });
-    setValue("tag", filters.tag, { shouldDirty: false });
-    setValue("from", filters.from, { shouldDirty: false });
-    setValue("to", filters.to, { shouldDirty: false });
-    setValue("sort", filters.sort, { shouldDirty: false });
-  }, [filters, setValue]);
+    return () => {
+      if (debounceRef.current !== null)
+        window.clearTimeout(debounceRef.current);
+    };
+  }, []);
+
+  const updateParam = (key: string, value: string) => {
+    setSearchParams(
+      (prev) => {
+        const next = new URLSearchParams(prev);
+        if (value) {
+          next.set(key, value);
+        } else {
+          next.delete(key);
+        }
+        return next;
+      },
+      { replace: true }
+    );
+  };
+
+  const handleQueryChange = (value: string) => {
+    setQueryInput(value);
+    if (debounceRef.current !== null) window.clearTimeout(debounceRef.current);
+    debounceRef.current = window.setTimeout(() => {
+      updateParam("query", value);
+    }, DEBOUNCE_MS);
+  };
+
+  const filteredWorks = useMemo(() => filterWorks(works, filters), [filters]);
 
   return (
     <main className="space-y-8 p-6 lg:max-w-4xl lg:mx-auto">
       <div className="flex flex-wrap items-center justify-between gap-4">
         <h1 className="text-2xl font-semibold text-slate-900">作品</h1>
         <Toggle
-          value={activeSort}
-          onChange={(nextValue) =>
-            setValue("sort", nextValue as SortOrder, { shouldDirty: true })
-          }
+          value={filters.sort}
+          onChange={(nextValue) => updateParam("sort", nextValue)}
           left={{ value: "new", label: "新しい順" }}
           right={{ value: "old", label: "古い順" }}
         />
@@ -122,19 +131,16 @@ export function WorksView({ filters }: { filters: WorkFilter }) {
             className="w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 shadow-sm focus:border-slate-400 focus:outline-none"
             placeholder="作品名で検索"
             type="text"
-            {...register("query")}
+            value={queryInput}
+            onChange={(e) => handleQueryChange(e.target.value)}
           />
         </div>
 
         <div>
           <label className="text-sm font-medium text-slate-700">タイプ</label>
           <BadgeButtonList
-            value={activeType}
-            onChange={(value) =>
-              setValue("type", value as Work["type"] | "", {
-                shouldDirty: true,
-              })
-            }
+            value={filters.type}
+            onChange={(value) => updateParam("type", value)}
             options={[
               { value: "", label: "すべて" },
               { value: "album", label: "アルバム" },
@@ -147,12 +153,8 @@ export function WorksView({ filters }: { filters: WorkFilter }) {
         <div>
           <label className="text-sm font-medium text-slate-700">タグ</label>
           <BadgeButtonList
-            value={activeTag}
-            onChange={(value) =>
-              setValue("tag", value, {
-                shouldDirty: true,
-              })
-            }
+            value={filters.tag}
+            onChange={(value) => updateParam("tag", value)}
             options={[
               { value: "", label: "すべて" },
               ...tags.map((tag) => ({ value: tag, label: tag })),
@@ -163,35 +165,19 @@ export function WorksView({ filters }: { filters: WorkFilter }) {
         <div className="grid gap-4 mb-0 sm:grid-cols-2">
           <div className="space-y-2">
             <label className="text-sm font-medium text-slate-700">From</label>
-            <Controller
-              control={control}
-              name="from"
-              render={({ field }) => (
-                <DatePickerInput
-                  value={field.value}
-                  onChange={field.onChange}
-                />
-              )}
+            <DatePickerInput
+              value={filters.from}
+              onChange={(value) => updateParam("from", value)}
             />
           </div>
           <div className="space-y-2">
             <label className="text-sm font-medium text-slate-700">To</label>
-            <Controller
-              control={control}
-              name="to"
-              render={({ field }) => (
-                <DatePickerInput
-                  value={field.value}
-                  onChange={field.onChange}
-                />
-              )}
+            <DatePickerInput
+              value={filters.to}
+              onChange={(value) => updateParam("to", value)}
             />
           </div>
         </div>
-
-        <input type="hidden" {...register("type")} />
-        <input type="hidden" {...register("tag")} />
-        <input type="hidden" {...register("sort")} />
       </form>
 
       <p className="text-sm text-slate-700">{filteredWorks.length}件の作品</p>
