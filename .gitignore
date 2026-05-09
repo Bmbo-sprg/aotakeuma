@@ -21,3 +21,6 @@ worker-configuration.d.ts
 storybook-static
 
 scripts/generated-keys
+
+.claude/
+!.claude/settings.json
