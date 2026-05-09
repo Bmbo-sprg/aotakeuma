@@ -1,1 +1,12 @@
 pnpm-lock.yaml
+.claude/
+.bash_profile
+.bashrc
+.gitconfig
+.gitmodules
+.idea
+.mcp.json
+.profile
+.ripgreprc
+.zprofile
+.zshrc
