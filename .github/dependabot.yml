@@ -22,6 +22,10 @@ updates:
           - "react-dom"
           - "@types/react"
           - "@types/react-dom"
+      tailwindcss:
+        patterns:
+          - "tailwindcss"
+          - "@tailwindcss/vite"
     cooldown:
       default-days: 7
       semver-major-days: 7
