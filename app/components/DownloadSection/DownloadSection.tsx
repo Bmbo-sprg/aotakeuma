@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState, type ChangeEvent } from "react";
-import { Controller, useForm } from "react-hook-form";
 import { DownloadKey } from "../../utils/DownloadKey";
 
 const DEBOUNCE_MS = 700;
@@ -29,12 +28,7 @@ export function DownloadSection({
   title = "ダウンロード",
   description = "ダウンロードカード裏面に記載されたダウンロードコードをここに入力してください。",
 }: DownloadSectionProps) {
-  const { control, handleSubmit, setValue } = useForm<{ downloadKey: string }>({
-    defaultValues: {
-      downloadKey: "",
-    },
-  });
-
+  const [downloadKey, setDownloadKey] = useState("");
   const [verifyStatus, setVerifyStatus] = useState<VerifyStatus>("idle");
   const [verifyMessage, setVerifyMessage] = useState("");
   const [downloadUrl, setDownloadUrl] = useState("");
@@ -126,19 +120,16 @@ export function DownloadSection({
       setDownloadUrl("");
     }
 
-    setValue("downloadKey", displayKey, {
-      shouldDirty: true,
-      shouldTouch: true,
-      shouldValidate: false,
-    });
+    setDownloadKey(displayKey);
   };
 
-  const onSubmit = handleSubmit(() => {
+  const onSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
+    e.preventDefault();
     if (verifyStatus !== "verified" || !downloadUrl) {
       return;
     }
     window.location.assign(downloadUrl);
-  });
+  };
 
   const inputId = `downloadKey-${productId}`;
   const statusId = `${inputId}-status`;
@@ -162,29 +153,21 @@ export function DownloadSection({
           >
             ダウンロードコード
           </label>
-          <Controller
+          <input
+            type="text"
+            id={inputId}
             name="downloadKey"
-            control={control}
-            render={({ field }) => (
-              <input
-                type="text"
-                id={inputId}
-                name={field.name}
-                value={field.value}
-                onBlur={field.onBlur}
-                ref={field.ref}
-                onChange={onChangeDownloadKey}
-                className={[
-                  "w-full px-4 py-2 rounded-lg border border-slate-300 bg-white text-slate-900 placeholder-slate-400",
-                  "focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20",
-                  "transition-all duration-150",
-                ].join(" ")}
-                placeholder="ダウンロードコードを入力してください"
-                autoComplete="off"
-                inputMode="text"
-                aria-describedby={statusId}
-              />
-            )}
+            value={downloadKey}
+            onChange={onChangeDownloadKey}
+            className={[
+              "w-full px-4 py-2 rounded-lg border border-slate-300 bg-white text-slate-900 placeholder-slate-400",
+              "focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20",
+              "transition-all duration-150",
+            ].join(" ")}
+            placeholder="ダウンロードコードを入力してください"
+            autoComplete="off"
+            inputMode="text"
+            aria-describedby={statusId}
           />
 
           <div id={statusId} className="min-h-6">
