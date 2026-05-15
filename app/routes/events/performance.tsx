@@ -28,7 +28,7 @@ export function PerformanceView({ event }: { event: Performance }) {
   return (
     <main className="space-y-8 p-6">
       <BackButton label="DJ／ライブ一覧へ" href="/events?type=performance" />
-      <EventHeadSection prefix="DJ／ライブ" event={event} />
+      <EventHeadSection event={event} />
       <SocialLinkList
         links={
           [...(event.links ?? []), event.detailLink, event.twitterLink].filter(

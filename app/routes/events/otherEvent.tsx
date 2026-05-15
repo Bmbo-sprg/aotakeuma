@@ -26,7 +26,7 @@ export function OtherEventView({ event }: { event: Event }) {
   return (
     <main className="space-y-8 p-6">
       <BackButton label="イベント一覧へ" href="/events" />
-      <EventHeadSection prefix="その他イベント" event={event} />
+      <EventHeadSection event={event} />
       <EventDescriptionSection description={event.description} />
     </main>
   );
