@@ -28,7 +28,7 @@ export function loader({ params }: Route.LoaderArgs) {
 export function OtherWorkView({ work }: { work: Work }) {
   return (
     <main className="space-y-8 p-6 lg:max-w-4xl lg:mx-auto">
-      <BackButton label="作品一覧" href="/works" />
+      <BackButton label="作品一覧へ" href="/works" />
       <section>
         <p className="text-sm font-medium text-slate-500 -mb-1">その他作品</p>
         <div className="flex flex-wrap items-center gap-2">

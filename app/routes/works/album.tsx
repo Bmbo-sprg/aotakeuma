@@ -47,7 +47,7 @@ export function AlbumView({ album, now }: { album: Album; now: Date }) {
       <Banner src={album.jacketImageUrl} alt={`${album.title}のジャケット`} />
 
       <div className="space-y-8 px-6 py-8 lg:max-w-4xl lg:mx-auto">
-        <BackButton label="作品一覧" href="/works" />
+        <BackButton label="アルバム一覧へ" href="/works?type=album" />
         <section>
           <p className="text-sm font-medium text-slate-500 -mb-1">
             {album.titlePrefix ?? "アルバム"}

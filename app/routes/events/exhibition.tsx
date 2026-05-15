@@ -26,7 +26,7 @@ export function loader({ params }: Route.LoaderArgs) {
 export function ExhibitionView({ event }: { event: Exhibition }) {
   return (
     <main className="space-y-8 p-6">
-      <BackButton label="イベント一覧" href="/events" />
+      <BackButton label="即売会一覧へ" href="/events?type=exhibition" />
       <EventHeadSection prefix="即売会" event={event} />
       <EventDescriptionSection description={event.description} />
       <section className="space-y-3">

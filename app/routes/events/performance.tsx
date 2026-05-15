@@ -27,7 +27,7 @@ export function loader({ params }: Route.LoaderArgs) {
 export function PerformanceView({ event }: { event: Performance }) {
   return (
     <main className="space-y-8 p-6">
-      <BackButton label="イベント一覧" href="/events" />
+      <BackButton label="DJ／ライブ一覧へ" href="/events?type=performance" />
       <EventHeadSection prefix="DJ／ライブ" event={event} />
       <SocialLinkList
         links={
