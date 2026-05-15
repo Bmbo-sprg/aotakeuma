@@ -6,8 +6,6 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Personal artist website for **竹馬あお** (aotakeuma.com). A React Router v7 SSR app running on Cloudflare Workers, with a signed download feature backed by Cloudflare R2 and KV.
 
-> The `aotakeuma2/` directory is a legacy build artifact from before the repo restructure. Do not edit it.
-
 ## Commands
 
 ```bash
@@ -70,6 +68,8 @@ Routes are explicitly declared in `app/routes.ts` (not filesystem-based). The `:
 ### Storybook
 
 Every component in `app/components/` has a colocated `.stories.tsx`. Route files in `app/routes/` also have stories — these use `storybook-addon-remix-react-router` to simulate the router context.
+
+**新しいコンポーネントを追加する際は、必ず同階層に `.stories.tsx` も作成すること。**
 
 ### Cloudflare bindings
 

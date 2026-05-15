@@ -1,6 +1,7 @@
 import type { Exhibition } from "~/types";
 import type { Route } from "./+types/exhibition";
 import { exhibitions } from "../../contents/events/exhibitions";
+import { BackButton } from "../../components/Breadcrumb/Breadcrumb";
 import { EventHeadSection } from "../../components/EventHeadSection/EventHeadSection";
 import { EventDescriptionSection } from "../../components/EventDescriptionSection/EventDescriptionSection";
 import { WorkCard } from "../../components/WorkCard/WorkCard";
@@ -25,7 +26,8 @@ export function loader({ params }: Route.LoaderArgs) {
 export function ExhibitionView({ event }: { event: Exhibition }) {
   return (
     <main className="space-y-8 p-6">
-      <EventHeadSection prefix="即売会" event={event} />
+      <BackButton label="即売会一覧へ" href="/events?type=exhibition" />
+      <EventHeadSection event={event} />
       <EventDescriptionSection description={event.description} />
       <section className="space-y-3">
         <h2 className="text-lg font-semibold text-slate-900">頒布物</h2>

@@ -3,6 +3,7 @@ import type { Route } from "./+types/music";
 import { musics } from "../../contents/works/musics";
 import { albums } from "../../contents/works/albums";
 import { Banner } from "../../components/Banner/Banner";
+import { BackButton } from "../../components/Breadcrumb/Breadcrumb";
 import { CreditCardList } from "../../components/CreditCardList/CreditCardList";
 import { SocialLinkItem } from "../../components/SocialLinkItem/SocialLinkItem";
 import { SpotifyIframe } from "../../components/SpotifyIframe/SpotifyIframe";
@@ -67,8 +68,8 @@ export function MusicView({ music }: { music: Music }) {
       <Banner src={getBannerPath(music)} alt={`${music.title}のジャケット`} />
 
       <div className="space-y-8 px-6 py-8 lg:max-w-4xl lg:mx-auto">
+        <BackButton label="音楽一覧へ" href="/works?type=music" />
         <section>
-          <p className="text-sm font-medium text-slate-500 -mb-1">音楽</p>
           <div className="flex flex-wrap items-center gap-2">
             <h1 className="text-2xl font-semibold text-slate-900">
               {music.title}

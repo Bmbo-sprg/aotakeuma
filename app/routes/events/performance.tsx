@@ -1,6 +1,7 @@
 import type { Performance, SocialLink } from "~/types";
 import type { Route } from "./+types/performance";
 import { performances } from "../../contents/events/performances";
+import { BackButton } from "../../components/Breadcrumb/Breadcrumb";
 import { EventHeadSection } from "../../components/EventHeadSection/EventHeadSection";
 import { EventDescriptionSection } from "../../components/EventDescriptionSection/EventDescriptionSection";
 import { MixcloudIframe } from "../../components/MixcloudIframe/MixcloudIframe";
@@ -26,7 +27,8 @@ export function loader({ params }: Route.LoaderArgs) {
 export function PerformanceView({ event }: { event: Performance }) {
   return (
     <main className="space-y-8 p-6">
-      <EventHeadSection prefix="DJ／ライブ" event={event} />
+      <BackButton label="DJ／ライブ一覧へ" href="/events?type=performance" />
+      <EventHeadSection event={event} />
       <SocialLinkList
         links={
           [...(event.links ?? []), event.detailLink, event.twitterLink].filter(

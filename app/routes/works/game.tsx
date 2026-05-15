@@ -4,6 +4,7 @@ import { exhibitions } from "../../contents/events/exhibitions";
 import { games } from "../../contents/works/games";
 import { AccordionSection } from "../../components/AccordionSection/AccordionSection";
 import { Banner } from "../../components/Banner/Banner";
+import { BackButton } from "../../components/Breadcrumb/Breadcrumb";
 import { CreditCardList } from "../../components/CreditCardList/CreditCardList";
 import { EventCard } from "../../components/EventCard/EventCard";
 import { SocialLinkItem } from "../../components/SocialLinkItem/SocialLinkItem";
@@ -40,8 +41,8 @@ export function GameView({ game, now }: { game: Game; now: Date }) {
       <Banner src={game.jacketImageUrl} alt={`${game.title}のジャケット`} />
 
       <div className="space-y-8 px-6 py-8 lg:max-w-4xl lg:mx-auto">
+        <BackButton label="ゲーム一覧へ" href="/works?type=game" />
         <section>
-          <p className="text-sm font-medium text-slate-500 -mb-1">ゲーム</p>
           <div className="flex flex-wrap items-center gap-2">
             <h1 className="text-2xl font-semibold text-slate-900">
               {game.title}
