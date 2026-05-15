@@ -1,33 +1,18 @@
 import { Link } from "react-router";
 
-type BreadcrumbProps = {
-  parentLabel: string;
-  parentHref: string;
-  currentLabel: string;
+type BackButtonProps = {
+  label: string;
+  href: string;
 };
 
-export const Breadcrumb = ({
-  parentLabel,
-  parentHref,
-  currentLabel,
-}: BreadcrumbProps) => {
+export const BackButton = ({ label, href }: BackButtonProps) => {
   return (
-    <nav aria-label="パンくずリスト">
-      <ol className="flex items-center gap-1.5 text-sm text-slate-500 flex-wrap">
-        <li>
-          <Link
-            to={parentHref}
-            className="flex items-center gap-1 text-slate-600 underline underline-offset-2 hover:text-slate-900 transition-colors"
-          >
-            <span aria-hidden="true">←</span>
-            {parentLabel}
-          </Link>
-        </li>
-        <li aria-hidden="true">›</li>
-        <li className="truncate" aria-current="page">
-          {currentLabel}
-        </li>
-      </ol>
-    </nav>
+    <Link
+      to={href}
+      className="inline-flex items-center gap-1 rounded-full border border-slate-300 px-3 py-1 text-sm font-semibold text-slate-700 shadow-sm bg-white/80 hover:bg-slate-50 transition-colors"
+    >
+      <span aria-hidden="true">←</span>
+      {label}
+    </Link>
   );
 };

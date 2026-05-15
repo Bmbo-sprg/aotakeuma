@@ -4,7 +4,7 @@ import { exhibitions } from "../../contents/events/exhibitions";
 import { albums } from "../../contents/works/albums";
 import { AccordionSection } from "../../components/AccordionSection/AccordionSection";
 import { Banner } from "../../components/Banner/Banner";
-import { Breadcrumb } from "../../components/Breadcrumb/Breadcrumb";
+import { BackButton } from "../../components/Breadcrumb/Breadcrumb";
 import { CreditCardList } from "../../components/CreditCardList/CreditCardList";
 import { DownloadSection } from "../../components/DownloadSection/DownloadSection";
 import { EventCard } from "../../components/EventCard/EventCard";
@@ -47,11 +47,7 @@ export function AlbumView({ album, now }: { album: Album; now: Date }) {
       <Banner src={album.jacketImageUrl} alt={`${album.title}のジャケット`} />
 
       <div className="space-y-8 px-6 py-8 lg:max-w-4xl lg:mx-auto">
-        <Breadcrumb
-          parentLabel="作品一覧"
-          parentHref="/works"
-          currentLabel={album.title}
-        />
+        <BackButton label="作品一覧" href="/works" />
         <section>
           <p className="text-sm font-medium text-slate-500 -mb-1">
             {album.titlePrefix ?? "アルバム"}

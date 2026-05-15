@@ -1,27 +1,25 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { Breadcrumb } from "./Breadcrumb";
+import { BackButton } from "./Breadcrumb";
 
-const meta: Meta<typeof Breadcrumb> = {
-  title: "Breadcrumb",
-  component: Breadcrumb,
+const meta: Meta<typeof BackButton> = {
+  title: "BackButton",
+  component: BackButton,
 };
 
 export default meta;
-type Story = StoryObj<typeof Breadcrumb>;
+type Story = StoryObj<typeof BackButton>;
 
 export const Works: Story = {
   args: {
-    parentLabel: "作品一覧",
-    parentHref: "/works",
-    currentLabel: "夜光",
+    label: "作品一覧",
+    href: "/works",
   },
 };
 
 export const Events: Story = {
   args: {
-    parentLabel: "イベント一覧",
-    parentHref: "/events",
-    currentLabel: "M3-2025春",
+    label: "イベント一覧",
+    href: "/events",
   },
 };
