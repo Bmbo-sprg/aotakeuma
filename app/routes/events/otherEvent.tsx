@@ -1,6 +1,7 @@
 import type { Event } from "~/types";
 import type { Route } from "./+types/otherEvent";
 import { events } from "../../contents/events";
+import { Breadcrumb } from "../../components/Breadcrumb/Breadcrumb";
 import { EventHeadSection } from "../../components/EventHeadSection/EventHeadSection";
 import { EventDescriptionSection } from "../../components/EventDescriptionSection/EventDescriptionSection";
 import { buildOGMeta, getEventPath } from "../../utils/paths";
@@ -24,6 +25,11 @@ export function loader({ params }: Route.LoaderArgs) {
 export function OtherEventView({ event }: { event: Event }) {
   return (
     <main className="space-y-8 p-6">
+      <Breadcrumb
+        parentLabel="イベント一覧"
+        parentHref="/events"
+        currentLabel={event.title}
+      />
       <EventHeadSection prefix="その他イベント" event={event} />
       <EventDescriptionSection description={event.description} />
     </main>
