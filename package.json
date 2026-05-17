@@ -6,7 +6,7 @@
     "dev": "pnpm run typegen && react-router dev",
     "build": "pnpm run typegen && react-router build",
     "preview": "pnpm run build && vite preview",
-    "deploy": "pnpm run build && wrangler deploy --var LAST_DEPLOYED_AT:$(date -u +%Y-%m-%dT%H:%M:%SZ)",
+    "deploy": "pnpm run build && wrangler deploy",
     "lint": "prettier . --check && eslint",
     "fix": "prettier . --write && eslint --fix",
     "postinstall": "pnpm run typegen",
