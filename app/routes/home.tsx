@@ -96,7 +96,16 @@ export default function Home({ loaderData }: Route.ComponentProps) {
           />
           {lastUpdatedText ? (
             <p className="text-xs text-slate-500">
-              最終更新日: {lastUpdatedText} 更新されてなかったら急かしてね！
+              最終更新日:{" "}
+              <a
+                href="https://github.com/Bmbo-sprg/aotakeuma/commits/main"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline"
+              >
+                {lastUpdatedText}
+              </a>{" "}
+              更新されてなかったら急かしてね！
             </p>
           ) : null}
         </div>
