@@ -2,8 +2,17 @@ import type { DownloadKeyRecord, KeyUsageLog } from "../types";
 import { formatDownloadKey, normalizeDownloadKey } from "./downloadKey";
 
 const MAX_USAGE_LOGS = 200;
+const KV_KEY_PREFIX = "downloadKey:";
 
-const toKvKey = (downloadKey: string): string => `downloadKey:${downloadKey}`;
+const toKvKey = (downloadKey: string): string =>
+  `${KV_KEY_PREFIX}${downloadKey}`;
+
+export const listDownloadKeyNames = async (
+  kv: KVNamespace
+): Promise<string[]> => {
+  const list = await kv.list({ prefix: KV_KEY_PREFIX });
+  return list.keys.map(({ name }) => name.replace(KV_KEY_PREFIX, ""));
+};
 
 export const getDownloadKeyRecord = async (
   kv: KVNamespace,
