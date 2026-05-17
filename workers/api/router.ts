@@ -1,7 +1,7 @@
 import { Hono } from "hono";
 import { handleSignedDownload, handleValidateKey } from "../download/handlers";
 
-const api = new Hono<{ Bindings: Env }>();
+const api = new Hono<{ Bindings: Env }>().basePath("/api");
 
 api.post("/validate-key", (c) => handleValidateKey(c.req.raw, c.env));
 api.get("/download", (c) => handleSignedDownload(c.req.raw, c.env));
