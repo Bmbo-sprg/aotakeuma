@@ -9,13 +9,18 @@ export async function loader({ request, params, context }: Route.LoaderArgs) {
     context.cloudflare.env
   );
   if (!res.ok) throw new Response("Not Found", { status: 404 });
-  const { key, record } = (await res.json()) as { key: string; record: DownloadKeyRecord };
+  const { key, record } = (await res.json()) as {
+    key: string;
+    record: DownloadKeyRecord;
+  };
   return { key, record };
 }
 
 export async function action({ request, params, context }: Route.ActionArgs) {
   const fd = await request.formData();
-  const patch: Partial<Pick<DownloadKeyRecord, "isActive" | "maxUseCount" | "expiresAt">> = {
+  const patch: Partial<
+    Pick<DownloadKeyRecord, "isActive" | "maxUseCount" | "expiresAt">
+  > = {
     isActive: fd.get("isActive") === "true",
     maxUseCount: Number(fd.get("maxUseCount")),
     expiresAt: String(fd.get("expiresAt")),
@@ -103,8 +108,12 @@ export default function KeyDetail({ loaderData }: Route.ComponentProps) {
             {r.usageLogs.map((log, i) => (
               <tr key={i} className="border-b border-gray-800">
                 <td className="py-2 px-3 text-gray-500">{i + 1}</td>
-                <td className="py-2 px-3">{new Date(log.timestamp).toLocaleString("ja-JP")}</td>
-                <td className="py-2 px-3 text-gray-400">{log.ipAddress ?? "-"}</td>
+                <td className="py-2 px-3">
+                  {new Date(log.timestamp).toLocaleString("ja-JP")}
+                </td>
+                <td className="py-2 px-3 text-gray-400">
+                  {log.ipAddress ?? "-"}
+                </td>
               </tr>
             ))}
           </tbody>

@@ -8,8 +8,11 @@ export async function loader({ request, context }: Route.LoaderArgs) {
     new Request(new URL("/api/admin/keys", request.url)),
     context.cloudflare.env
   );
-  const entries = (await res.json()) as { key: string; record: DownloadKeyRecord }[];
-  return { entries };
+  const entries = (await res.json()) as {
+    key: string;
+    record: DownloadKeyRecord;
+  }[];
+  return { entries, now: Date.now() };
 }
 
 function fmt(key: string) {
@@ -17,8 +20,7 @@ function fmt(key: string) {
 }
 
 export default function KeysIndex({ loaderData }: Route.ComponentProps) {
-  const { entries } = loaderData;
-  const now = Date.now();
+  const { entries, now } = loaderData;
 
   return (
     <div>
@@ -64,16 +66,26 @@ export default function KeysIndex({ loaderData }: Route.ComponentProps) {
                     : "未使用";
 
             return (
-              <tr key={key} className="border-b border-gray-800 hover:bg-gray-900">
+              <tr
+                key={key}
+                className="border-b border-gray-800 hover:bg-gray-900"
+              >
                 <td className="py-2 px-3">
-                  <Link to={`/admin/keys/${key}`} className="text-blue-400 hover:underline">
+                  <Link
+                    to={`/admin/keys/${key}`}
+                    className="text-blue-400 hover:underline"
+                  >
                     {fmt(key)}
                   </Link>
                 </td>
                 <td className="py-2 px-3">{r.productId}</td>
                 <td className={`py-2 px-3 ${statusColor}`}>{statusText}</td>
-                <td className="py-2 px-3">{r.useCount} / {r.maxUseCount}</td>
-                <td className="py-2 px-3">{new Date(r.expiresAt).toLocaleDateString("ja-JP")}</td>
+                <td className="py-2 px-3">
+                  {r.useCount} / {r.maxUseCount}
+                </td>
+                <td className="py-2 px-3">
+                  {new Date(r.expiresAt).toLocaleDateString("ja-JP")}
+                </td>
                 <td className="py-2 px-3">{r.usageLogs.length}</td>
               </tr>
             );

@@ -2,6 +2,13 @@ import { Form, redirect, useNavigation } from "react-router";
 import type { Route } from "./+types/new";
 import { api } from "../../../../workers/api/router";
 
+export function loader() {
+  const defaultExpiry = new Date(Date.now() + 365 * 24 * 60 * 60 * 1000)
+    .toISOString()
+    .slice(0, 10);
+  return { defaultExpiry };
+}
+
 export async function action({ request, context }: Route.ActionArgs) {
   const fd = await request.formData();
   const count = Number(fd.get("count") ?? 1);
@@ -21,13 +28,10 @@ export async function action({ request, context }: Route.ActionArgs) {
   return redirect("/admin/keys");
 }
 
-export default function KeysNew() {
+export default function KeysNew({ loaderData }: Route.ComponentProps) {
+  const { defaultExpiry } = loaderData;
   const nav = useNavigation();
   const submitting = nav.state === "submitting";
-
-  const defaultExpiry = new Date(Date.now() + 365 * 24 * 60 * 60 * 1000)
-    .toISOString()
-    .slice(0, 10);
 
   return (
     <div className="max-w-lg">

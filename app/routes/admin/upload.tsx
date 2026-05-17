@@ -5,10 +5,17 @@ import { api } from "../../../workers/api/router";
 export async function action({ request, context }: Route.ActionArgs) {
   const fd = await request.formData();
   const res = await api.fetch(
-    new Request(new URL("/api/admin/upload", request.url), { method: "POST", body: fd }),
+    new Request(new URL("/api/admin/upload", request.url), {
+      method: "POST",
+      body: fd,
+    }),
     context.cloudflare.env
   );
-  const result = await res.json<{ key?: string; size?: number; error?: string }>();
+  const result = await res.json<{
+    key?: string;
+    size?: number;
+    error?: string;
+  }>();
   return result;
 }
 
@@ -20,7 +27,11 @@ export default function Upload() {
   return (
     <div className="max-w-lg">
       <h1 className="text-2xl font-bold text-blue-400 mb-6">R2 アップロード</h1>
-      <Form method="post" encType="multipart/form-data" className="flex flex-col gap-4">
+      <Form
+        method="post"
+        encType="multipart/form-data"
+        className="flex flex-col gap-4"
+      >
         <label className="flex flex-col gap-1">
           <span className="text-gray-400 text-sm">ファイル</span>
           <input
@@ -31,7 +42,9 @@ export default function Upload() {
           />
         </label>
         <label className="flex flex-col gap-1">
-          <span className="text-gray-400 text-sm">R2 キー（省略時はファイル名）</span>
+          <span className="text-gray-400 text-sm">
+            R2 キー（省略時はファイル名）
+          </span>
           <input
             type="text"
             name="key"
@@ -49,7 +62,9 @@ export default function Upload() {
       </Form>
 
       {actionData && (
-        <div className={`mt-6 p-4 rounded text-sm ${actionData.error ? "bg-red-900 text-red-300" : "bg-green-900 text-green-300"}`}>
+        <div
+          className={`mt-6 p-4 rounded text-sm ${actionData.error ? "bg-red-900 text-red-300" : "bg-green-900 text-green-300"}`}
+        >
           {actionData.error
             ? `エラー: ${actionData.error}`
             : `完了: ${actionData.key} (${((actionData.size ?? 0) / 1024).toFixed(1)} KB)`}
