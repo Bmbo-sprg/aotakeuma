@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "dev": "pnpm run typegen && react-router dev",
-    "dev:remote": "pnpm run typegen && REMOTE=1 react-router dev",
+    "dev:remote": "pnpm run typegen && NODE_ENV=development react-router build && wrangler dev --remote",
     "build": "pnpm run typegen && react-router build",
     "preview": "pnpm run build && vite preview",
     "deploy": "pnpm run build && wrangler deploy",
@@ -27,7 +27,6 @@
     "react-router": "^7.12.0"
   },
   "devDependencies": {
-    "@aws-sdk/client-s3": "^3.1041.0",
     "@chromatic-com/storybook": "^5.1.2",
     "@cloudflare/vite-plugin": "^1.35.0",
     "@eslint/js": "^9.39.4",
