@@ -1,5 +1,6 @@
-import { createRequestHandler } from "react-router";
+import { createRequestHandler, type AppLoadContext } from "react-router";
 import { handleSignedDownload, handleValidateKey } from "./download/handlers";
+import { fetchLastCommitAt } from "./github";
 
 declare module "react-router" {
   export interface AppLoadContext {
@@ -7,7 +8,18 @@ declare module "react-router" {
       env: Env;
       ctx: ExecutionContext;
     };
+    lastCommitAt: string | null;
   }
+}
+
+async function buildAppLoadContext(
+  env: Env,
+  ctx: ExecutionContext
+): Promise<AppLoadContext> {
+  return {
+    cloudflare: { env, ctx },
+    lastCommitAt: await fetchLastCommitAt(),
+  };
 }
 
 const requestHandler = createRequestHandler(
@@ -34,9 +46,10 @@ export default {
       return handleSignedDownload(request, env);
     }
 
-    const response = await requestHandler(request, {
-      cloudflare: { env, ctx },
-    });
+    const response = await requestHandler(
+      request,
+      await buildAppLoadContext(env, ctx)
+    );
 
     if (url.pathname.startsWith("/yohkoh")) {
       const blocked = new Response(response.body, response);

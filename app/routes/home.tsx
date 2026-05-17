@@ -24,15 +24,15 @@ export function meta(_: Route.MetaArgs) {
 
 export function loader({ context }: Route.LoaderArgs) {
   return {
-    lastDeployedAt: context.cloudflare.env.LAST_DEPLOYED_AT || null,
+    lastCommitAt: context.lastCommitAt,
     seed: Date.now(),
     now: new Date(),
   };
 }
 
 export default function Home({ loaderData }: Route.ComponentProps) {
-  const lastUpdatedDate = loaderData.lastDeployedAt
-    ? new Date(loaderData.lastDeployedAt)
+  const lastUpdatedDate = loaderData.lastCommitAt
+    ? new Date(loaderData.lastCommitAt)
     : null;
   const lastUpdatedText =
     lastUpdatedDate !== null && !Number.isNaN(lastUpdatedDate.getTime())
@@ -85,7 +85,9 @@ export default function Home({ loaderData }: Route.ComponentProps) {
               <p className="text-sm text-slate-700 font-semibold">
                 即売会出展・DJ 出演などをしてます
               </p>
-              <p className="text-xs text-slate-500">声音文脈 など所属</p>
+              <p className="text-xs text-slate-500">
+                声音文脈, 秘密結社D.D.D.D. など所属
+              </p>
             </Link>
           </div>
           <SocialLinkList
@@ -94,7 +96,16 @@ export default function Home({ loaderData }: Route.ComponentProps) {
           />
           {lastUpdatedText ? (
             <p className="text-xs text-slate-500">
-              最終更新日: {lastUpdatedText} 更新されてなかったら急かしてね！
+              最終更新日:{" "}
+              <a
+                href="https://github.com/Bmbo-sprg/aotakeuma/commits/main"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline"
+              >
+                {lastUpdatedText}
+              </a>{" "}
+              更新されてなかったら急かしてね！
             </p>
           ) : null}
         </div>
