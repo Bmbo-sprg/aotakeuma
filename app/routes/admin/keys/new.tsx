@@ -1,6 +1,8 @@
+import { useState } from "react";
 import { Form, redirect, useNavigation } from "react-router";
 import type { Route } from "./+types/new";
 import { api } from "../../../../workers/api/router";
+import { DatePickerInput } from "../../../components/DatePickerInput/DatePickerInput";
 
 export function loader() {
   const defaultExpiry = new Date(Date.now() + 365 * 24 * 60 * 60 * 1000)
@@ -30,6 +32,7 @@ export async function action({ request, context }: Route.ActionArgs) {
 
 export default function KeysNew({ loaderData }: Route.ComponentProps) {
   const { defaultExpiry } = loaderData;
+  const [expiresAt, setExpiresAt] = useState(defaultExpiry);
   const nav = useNavigation();
   const submitting = nav.state === "submitting";
 
@@ -57,16 +60,11 @@ export default function KeysNew({ loaderData }: Route.ComponentProps) {
             className="bg-gray-900 border border-gray-700 rounded px-3 py-2 text-white"
           />
         </label>
-        <label className="flex flex-col gap-1">
+        <div className="flex flex-col gap-1">
           <span className="text-gray-400 text-sm">有効期限</span>
-          <input
-            type="date"
-            name="expiresAt"
-            defaultValue={defaultExpiry}
-            required
-            className="bg-gray-900 border border-gray-700 rounded px-3 py-2 text-white"
-          />
-        </label>
+          <input type="hidden" name="expiresAt" value={expiresAt} />
+          <DatePickerInput value={expiresAt} onChange={setExpiresAt} />
+        </div>
         <label className="flex flex-col gap-1">
           <span className="text-gray-400 text-sm">最大使用回数</span>
           <input

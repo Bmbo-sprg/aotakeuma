@@ -1,7 +1,10 @@
+import { useState } from "react";
 import { Form, useNavigation } from "react-router";
 import type { Route } from "./+types/$key";
 import type { DownloadKeyRecord } from "~/types";
 import { api } from "../../../../workers/api/router";
+import { DatePickerInput } from "../../../components/DatePickerInput/DatePickerInput";
+import { toLocaleString } from "../../../utils/formats";
 
 export async function loader({ request, params, context }: Route.LoaderArgs) {
   const res = await api.fetch(
@@ -42,6 +45,7 @@ function fmt(key: string) {
 
 export default function KeyDetail({ loaderData }: Route.ComponentProps) {
   const { key, record: r } = loaderData;
+  const [expiresAt, setExpiresAt] = useState(r.expiresAt.slice(0, 10));
   const nav = useNavigation();
   const submitting = nav.state === "submitting";
 
@@ -72,15 +76,13 @@ export default function KeyDetail({ loaderData }: Route.ComponentProps) {
             className="bg-gray-900 border border-gray-700 rounded px-3 py-2 text-white"
           />
         </label>
-        <label className="flex items-center gap-3">
+        <div className="flex items-center gap-3">
           <span className="text-gray-400 text-sm w-32">有効期限</span>
-          <input
-            type="date"
-            name="expiresAt"
-            defaultValue={r.expiresAt.slice(0, 10)}
-            className="bg-gray-900 border border-gray-700 rounded px-3 py-2 text-white"
-          />
-        </label>
+          <div className="flex-1">
+            <input type="hidden" name="expiresAt" value={expiresAt} />
+            <DatePickerInput value={expiresAt} onChange={setExpiresAt} />
+          </div>
+        </div>
         <button
           type="submit"
           disabled={submitting}
@@ -109,7 +111,7 @@ export default function KeyDetail({ loaderData }: Route.ComponentProps) {
               <tr key={i} className="border-b border-gray-800">
                 <td className="py-2 px-3 text-gray-500">{i + 1}</td>
                 <td className="py-2 px-3">
-                  {new Date(log.timestamp).toLocaleString("ja-JP")}
+                  {toLocaleString(new Date(log.timestamp))}
                 </td>
                 <td className="py-2 px-3 text-gray-400">
                   {log.ipAddress ?? "-"}

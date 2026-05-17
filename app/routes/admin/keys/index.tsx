@@ -2,6 +2,7 @@ import { Link } from "react-router";
 import type { Route } from "./+types/index";
 import type { DownloadKeyRecord } from "~/types";
 import { api } from "../../../../workers/api/router";
+import { toLocaleDateString } from "../../../utils/formats";
 
 export async function loader({ request, context }: Route.LoaderArgs) {
   const res = await api.fetch(
@@ -84,7 +85,7 @@ export default function KeysIndex({ loaderData }: Route.ComponentProps) {
                   {r.useCount} / {r.maxUseCount}
                 </td>
                 <td className="py-2 px-3">
-                  {new Date(r.expiresAt).toLocaleDateString("ja-JP")}
+                  {toLocaleDateString(new Date(r.expiresAt))}
                 </td>
                 <td className="py-2 px-3">{r.usageLogs.length}</td>
               </tr>
