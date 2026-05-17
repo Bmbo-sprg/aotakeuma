@@ -1,24 +1,27 @@
 import { Form, redirect, useNavigation } from "react-router";
 import type { Route } from "./+types/new";
+import { api } from "../../../../workers/api/router";
 
-export async function action({ request }: Route.ActionArgs) {
+export async function action({ request, context }: Route.ActionArgs) {
   const fd = await request.formData();
   const count = Number(fd.get("count") ?? 1);
   const productId = String(fd.get("productId") ?? "");
   const expiresAt = String(fd.get("expiresAt") ?? "");
   const maxUseCount = Number(fd.get("maxUseCount") ?? 1);
 
-  const origin = new URL(request.url).origin;
-  await fetch(`${origin}/api/admin/keys`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ count, productId, expiresAt, maxUseCount }),
-  });
+  await api.fetch(
+    new Request(new URL("/api/admin/keys", request.url), {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ count, productId, expiresAt, maxUseCount }),
+    }),
+    context.cloudflare.env
+  );
 
   return redirect("/admin/keys");
 }
 
-export default function KeysNew({ actionData }: Route.ComponentProps) {
+export default function KeysNew() {
   const nav = useNavigation();
   const submitting = nav.state === "submitting";
 

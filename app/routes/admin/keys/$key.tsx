@@ -1,28 +1,33 @@
 import { Form, useNavigation } from "react-router";
 import type { Route } from "./+types/$key";
 import type { DownloadKeyRecord } from "~/types";
+import { api } from "../../../../workers/api/router";
 
-export async function loader({ request, params }: Route.LoaderArgs) {
-  const origin = new URL(request.url).origin;
-  const res = await fetch(`${origin}/api/admin/keys/${params.key}`);
+export async function loader({ request, params, context }: Route.LoaderArgs) {
+  const res = await api.fetch(
+    new Request(new URL(`/api/admin/keys/${params.key}`, request.url)),
+    context.cloudflare.env
+  );
   if (!res.ok) throw new Response("Not Found", { status: 404 });
   const { key, record } = (await res.json()) as { key: string; record: DownloadKeyRecord };
   return { key, record };
 }
 
-export async function action({ request, params }: Route.ActionArgs) {
+export async function action({ request, params, context }: Route.ActionArgs) {
   const fd = await request.formData();
   const patch: Partial<Pick<DownloadKeyRecord, "isActive" | "maxUseCount" | "expiresAt">> = {
     isActive: fd.get("isActive") === "true",
     maxUseCount: Number(fd.get("maxUseCount")),
     expiresAt: String(fd.get("expiresAt")),
   };
-  const origin = new URL(request.url).origin;
-  await fetch(`${origin}/api/admin/keys/${params.key}`, {
-    method: "PATCH",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(patch),
-  });
+  await api.fetch(
+    new Request(new URL(`/api/admin/keys/${params.key}`, request.url), {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(patch),
+    }),
+    context.cloudflare.env
+  );
   return null;
 }
 

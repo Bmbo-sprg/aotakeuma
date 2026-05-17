@@ -1,16 +1,20 @@
 import { Form, useNavigation, useActionData } from "react-router";
 import type { Route } from "./+types/upload";
+import { api } from "../../../workers/api/router";
 
-export async function action({ request }: Route.ActionArgs) {
+export async function action({ request, context }: Route.ActionArgs) {
   const fd = await request.formData();
-  const origin = new URL(request.url).origin;
-  const res = await fetch(`${origin}/api/admin/upload`, { method: "POST", body: fd });
+  const res = await api.fetch(
+    new Request(new URL("/api/admin/upload", request.url), { method: "POST", body: fd }),
+    context.cloudflare.env
+  );
   const result = await res.json<{ key?: string; size?: number; error?: string }>();
   return result;
 }
 
-export default function Upload({ actionData }: Route.ComponentProps) {
+export default function Upload() {
   const nav = useNavigation();
+  const actionData = useActionData<typeof action>();
   const submitting = nav.state === "submitting";
 
   return (

@@ -1,8 +1,11 @@
 import type { Route } from "./+types/index";
+import { api } from "../../../workers/api/router";
 
-export async function loader({ request }: Route.LoaderArgs) {
-  const origin = new URL(request.url).origin;
-  const res = await fetch(`${origin}/api/admin/keys`);
+export async function loader({ request, context }: Route.LoaderArgs) {
+  const res = await api.fetch(
+    new Request(new URL("/api/admin/keys", request.url)),
+    context.cloudflare.env
+  );
   const entries = (await res.json()) as {
     key: string;
     record: {
