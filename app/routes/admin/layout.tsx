@@ -4,6 +4,7 @@ const NAV = [
   { to: "/admin", label: "ホーム", exact: true },
   { to: "/admin/keys", label: "キー一覧" },
   { to: "/admin/keys/new", label: "キー発行" },
+  { to: "/admin/analytics", label: "アナリティクス" },
   { to: "/admin/upload", label: "R2 アップロード" },
   { to: "/admin/contents", label: "コンテンツ" },
 ];

@@ -8,6 +8,7 @@ const adminRoutes =
           route("keys", "routes/admin/keys/index.tsx"), // /admin/keys
           route("keys/new", "routes/admin/keys/new.tsx"), // /admin/keys/new
           route("keys/:key", "routes/admin/keys/$key.tsx"), // /admin/keys/:key
+          route("analytics", "routes/admin/analytics.tsx"), // /admin/analytics
           route("upload", "routes/admin/upload.tsx"), // /admin/upload
           route("contents", "routes/admin/contents.tsx"), // /admin/contents (stub)
         ]),
