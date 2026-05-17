@@ -7,9 +7,6 @@
   "name": "aotakeuma2", // aotakeuma は古い SPA 版
   "compatibility_date": "2025-04-04",
   "main": "./workers/app.ts",
-  "vars": {
-    "LAST_DEPLOYED_AT": "",
-  },
   "observability": {
     "enabled": true,
   },
