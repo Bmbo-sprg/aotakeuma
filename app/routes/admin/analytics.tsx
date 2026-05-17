@@ -201,13 +201,10 @@ export default function Analytics({ loaderData }: Route.ComponentProps) {
         };
         for (const l of successLogs) uaCounts[classifyUA(l.userAgent)]++;
 
-        // 最新失敗ログ（最大5件）
-        const recentFailed = [...failedLogs]
-          .sort(
-            (a, b) =>
-              new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime()
-          )
-          .slice(0, 5);
+        const recentFailed = [...failedLogs].sort(
+          (a, b) =>
+            new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime()
+        );
 
         return (
           <section
@@ -253,9 +250,7 @@ export default function Analytics({ loaderData }: Route.ComponentProps) {
             {/* 最新失敗ログ */}
             {recentFailed.length > 0 && (
               <div>
-                <p className="text-gray-500 text-xs mb-2">
-                  最新失敗ログ（最大5件）
-                </p>
+                <p className="text-gray-500 text-xs mb-2">失敗ログ</p>
                 <table className="w-full text-xs border-collapse">
                   <thead>
                     <tr className="text-gray-500 text-left">
