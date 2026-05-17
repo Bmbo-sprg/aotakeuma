@@ -23,6 +23,7 @@ export type Album = Work & {
   jacketImageUrl: string;
   tracks: Music[];
   video?: Video;
+  downloadEnabled?: boolean;
 };
 
 export type Music = Work & {
@@ -90,3 +91,5 @@ export type SocialLink = {
 };
 
 export type Tag = (typeof tags)[number];
+
+export type { DownloadKeyRecord } from "../workers/api/types";

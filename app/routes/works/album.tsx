@@ -16,7 +16,6 @@ import { VideoIframe } from "../../components/VideoIframe/VideoIframe";
 import { toLocaleDateString } from "../../utils/formats";
 import { buildOGMeta, getWorkPath } from "../../utils/paths";
 
-const DOWNLOAD_ENABLED_ALBUM_IDS = new Set(["yohkoh"]); // TODO: types に入れる
 
 export function meta({ loaderData }: Route.MetaArgs) {
   return buildOGMeta({
@@ -67,7 +66,7 @@ export function AlbumView({ album, now }: { album: Album; now: Date }) {
         </section>
 
         {/* TODO: リリース日からnヶ月の場合は最初、else最後に置くようにする */}
-        {DOWNLOAD_ENABLED_ALBUM_IDS.has(album.id) ? (
+        {album.downloadEnabled ? (
           <DownloadSection productId={album.id} />
         ) : null}
 
