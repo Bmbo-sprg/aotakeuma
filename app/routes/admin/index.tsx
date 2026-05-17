@@ -1,8 +1,8 @@
-import { useLoaderData } from "react-router";
 import type { Route } from "./+types/index";
 
-export async function loader() {
-  const res = await fetch("/api/admin/keys");
+export async function loader({ request }: Route.LoaderArgs) {
+  const origin = new URL(request.url).origin;
+  const res = await fetch(`${origin}/api/admin/keys`);
   const entries = (await res.json()) as {
     key: string;
     record: {

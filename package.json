@@ -4,6 +4,7 @@
   "type": "module",
   "scripts": {
     "dev": "pnpm run typegen && react-router dev",
+    "dev:remote": "pnpm run typegen && REMOTE=1 react-router dev",
     "build": "pnpm run typegen && react-router build",
     "preview": "pnpm run build && vite preview",
     "deploy": "pnpm run build && wrangler deploy",

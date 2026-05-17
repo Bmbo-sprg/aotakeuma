@@ -8,7 +8,8 @@ export async function action({ request }: Route.ActionArgs) {
   const expiresAt = String(fd.get("expiresAt") ?? "");
   const maxUseCount = Number(fd.get("maxUseCount") ?? 1);
 
-  await fetch("/api/admin/keys", {
+  const origin = new URL(request.url).origin;
+  await fetch(`${origin}/api/admin/keys`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ count, productId, expiresAt, maxUseCount }),

@@ -3,7 +3,8 @@ import type { Route } from "./+types/upload";
 
 export async function action({ request }: Route.ActionArgs) {
   const fd = await request.formData();
-  const res = await fetch("/api/admin/upload", { method: "POST", body: fd });
+  const origin = new URL(request.url).origin;
+  const res = await fetch(`${origin}/api/admin/upload`, { method: "POST", body: fd });
   const result = await res.json<{ key?: string; size?: number; error?: string }>();
   return result;
 }

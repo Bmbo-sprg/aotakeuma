@@ -2,8 +2,9 @@ import { Form, useNavigation } from "react-router";
 import type { Route } from "./+types/$key";
 import type { DownloadKeyRecord } from "~/types";
 
-export async function loader({ params }: Route.LoaderArgs) {
-  const res = await fetch(`/api/admin/keys/${params.key}`);
+export async function loader({ request, params }: Route.LoaderArgs) {
+  const origin = new URL(request.url).origin;
+  const res = await fetch(`${origin}/api/admin/keys/${params.key}`);
   if (!res.ok) throw new Response("Not Found", { status: 404 });
   const { key, record } = (await res.json()) as { key: string; record: DownloadKeyRecord };
   return { key, record };
@@ -16,7 +17,8 @@ export async function action({ request, params }: Route.ActionArgs) {
     maxUseCount: Number(fd.get("maxUseCount")),
     expiresAt: String(fd.get("expiresAt")),
   };
-  await fetch(`/api/admin/keys/${params.key}`, {
+  const origin = new URL(request.url).origin;
+  await fetch(`${origin}/api/admin/keys/${params.key}`, {
     method: "PATCH",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(patch),

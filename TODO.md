@@ -1,93 +1,78 @@
-# workers/ リファクタリング TODO
+# Dashboard 再実装 TODO（issue #139, #140）
 
-## ディレクトリ構造（移行後）
+## 目標
 
-```
-workers/
-  app.ts                          # エントリポイント（変更なし）
-  lastCommit.ts                   # github.ts → リネーム
-  api/
-    router.ts                     # Hono ルーター（変更なし）
-    types.ts                      # 共通型定義（download/types.ts から移動・整理）
-    controllers/
-      validateKey.ts              # handleValidateKey（Hono Context ベースに書き直し）
-      signedDownload.ts           # handleSignedDownload（Hono Context ベースに書き直し）
-    models/
-      downloadKey.ts              # ダウンロードコードの正規化ロジック（store.ts から）
-      keyStore.ts                 # Cloudflare KV の読み書き（store.ts から）
-      contentStore.ts             # Cloudflare R2 のファイル取得（新規）
-      signedUrl.ts                # 署名付きURL の発行・検証（signature.ts から）
-```
+`scripts/` の全機能を local dashboard に統合し、`scripts/` を廃止する。
+`/admin/*` はビルド時に除外され、プロダクションには含まれない。
+
+## アーキテクチャ方針
+
+- **フロントエンド**: 既存の React Router v7 アプリに `/admin/*` ルートを追加
+  - `process.env.NODE_ENV === "development"` 時のみ `routes.ts` に登録（バンドルから除外）
+- **バックエンド**: Hono の `/api/admin/*` を追加
+  - `import.meta.env.DEV` が `true` の時のみ登録（バンドルから除外）
+  - 既存の `keyStore.ts`・`contentStore.ts` model を活用
+- **KV/R2 アクセス**: Cloudflare binding 経由（dev 時は local、`wrangler dev --remote` で本番）
+- **`scripts/` は全廃止**: `kvClient.ts`・`seedKeys.ts`・`getKey.ts`・`setKey.ts`・`generateKey.ts`・`uploadToR2.ts` を削除
+
+## ルート構成
+
+### フロントエンド（`app/routes/admin/`）
+
+| パス               | 概要                                         |
+| ------------------ | -------------------------------------------- |
+| `/admin`           | トップ（統計サマリー）                       |
+| `/admin/keys`      | キー一覧・usageLog 分析                      |
+| `/admin/keys/new`  | キー発行（件数・product・期限・maxUseCount） |
+| `/admin/keys/:key` | キー詳細・編集・usageLog                     |
+| `/admin/upload`    | R2 へのファイルアップロード                  |
+| `/admin/contents`  | コンテンツ管理（stub、将来実装）             |
+
+### バックエンド（`workers/api/admin/`）
+
+| メソッド | パス                   | 概要                                           |
+| -------- | ---------------------- | ---------------------------------------------- |
+| GET      | `/api/admin/keys`      | 全キー一覧（record 含む）                      |
+| POST     | `/api/admin/keys`      | キー発行（複数件）                             |
+| GET      | `/api/admin/keys/:key` | キー詳細取得                                   |
+| PATCH    | `/api/admin/keys/:key` | キー更新（isActive / maxUseCount / expiresAt） |
+| POST     | `/api/admin/upload`    | R2 へファイルアップロード                      |
 
 ## タスク一覧
 
-### 1. `github.ts` → `lastCommit.ts` にリネーム
+### 1. `models/downloadKey.ts` にキー生成ロジックを追加
 
-- `workers/github.ts` を `workers/lastCommit.ts` に改名
-- `workers/app.ts` の import を更新
+- `generateKey.ts` から `generateRandomKey()` を移植
+- `formatKey` は既存の `formatDownloadKey` に統合（重複削除）
+- `kvClient.ts` の重複した `normalizeDownloadKey` も削除
 
-### 2. `api/types.ts` を作成
+### 2. `workers/api/admin/` を作成（dev only）
 
-- `download/types.ts` から以下を移動・整理：
-  - `ValidationFailureReason`（validateKey 用）
-  - `ValidateResponse` / `ValidateResponseSuccess` / `ValidateResponseFailure`
-  - `KeyUsageLog`、`DownloadKeyRecord`
-  - 全エンドポイント共通のエラー型 `{ ok: false; reason: string; message: string }` を追加
-  - `DownloadEnv` は廃止（各 model が必要な binding だけを引数で受け取る形に）
+- `workers/api/admin/router.ts` — admin 用 Hono ルーター
+- `workers/api/admin/controllers/keys.ts` — キー CRUD
+- `workers/api/admin/controllers/upload.ts` — R2 アップロード
+- `workers/api/router.ts` で `import.meta.env.DEV` 時のみ mount
 
-### 3. `models/downloadKey.ts` を作成
+### 3. `app/routes/admin/` を作成（dev only）
 
-- `store.ts` からダウンロードコードの正規化ロジックを移動：
-  - `normalizeDownloadKey`
-  - `formatNormalizedDownloadKey`（内部関数）
+- `app/routes.ts` で `process.env.NODE_ENV === "development"` 時のみ登録
+- 各ルートファイルを作成（layout / index / keys / keys.$key / keys.new / upload / contents）
 
-### 4. `models/keyStore.ts` を作成
+### 4. `scripts/` を廃止
 
-- `store.ts` から KV の読み書きロジックを移動：
-  - `getDownloadKeyRecord(kv: KVNamespace, key: string)`
-  - `putDownloadKeyRecord(kv: KVNamespace, key: string, value: DownloadKeyRecord)`
-  - `appendUsageLog(kv: KVNamespace, key: string, record, log)`
-  - 引数から `DownloadEnv` を排除し、`KVNamespace` を直接受け取る形に
+- `kvClient.ts`・`seedKeys.ts`・`getKey.ts`・`setKey.ts`・`generateKey.ts`・`uploadToR2.ts` を削除
+- `dashboard/server.ts`・`dashboard/` を削除
+- `package.json` から `dashboard` スクリプトを削除
+- `README.md` を更新（または削除）
+- `@hono/node-server` を dependencies から削除（devDependencies へ移動も不要）
 
-### 5. `models/contentStore.ts` を作成（新規）
+### 5. `Album` 型に `downloadEnabled` フラグを追加（issue #139 タスク2）
 
-- R2 からのファイル取得ロジック：
-  - `getContent(bucket: R2Bucket, productId: string): Promise<R2ObjectBody | null>`
+- `app/types.ts` の `Album` 型に `downloadEnabled?: boolean` を追加
+- `app/contents/works/albums/yohkoh.ts` で `downloadEnabled: true` を設定
+- `app/routes/works/album.tsx` の `DOWNLOAD_ENABLED_ALBUM_IDS` を廃止し型フィールドで判定
 
-### 6. `models/signedUrl.ts` を作成
+## 将来スコープ（今回は対象外）
 
-- `signature.ts` から移動・拡張：
-  - `createSignature`（現行のまま移動）
-  - `safeEquals` （現行のまま移動）
-  - `verifySignature(params): Promise<boolean>` を新たに切り出す（handlers.ts のループ検証ロジックをここに移動）
-  - `buildSignedDownloadUrl(params): URL` を切り出す（URL 組み立てロジック）
-
-### 7. `controllers/validateKey.ts` を作成
-
-- Hono `Context` を受け取る形に書き直し
-- `c.req.json()` でリクエストボディを取得
-- `c.json()` でレスポンスを返す
-- ドメインロジックは model 層に移譲（controller は薄く）
-- `router.ts` の import を更新
-
-### 8. `controllers/signedDownload.ts` を作成
-
-- Hono `Context` を受け取る形に書き直し
-- エラーレスポンスを `c.json({ ok: false, reason, message }, status)` に統一（plaintext 廃止）
-- 署名検証・期限チェックは `signedUrl.ts` に移譲
-- R2 取得は `contentStore.ts` に移譲
-- `router.ts` の import を更新
-
-### 9. 旧ファイルの削除
-
-- `workers/download/handlers.ts`
-- `workers/download/store.ts`
-- `workers/download/signature.ts`
-- `workers/download/types.ts`
-- `workers/github.ts`
-- `workers/download/` ディレクトリが空になるなら削除
-
-### 10. `signature.test.ts` の移動・更新
-
-- `workers/download/signature.test.ts` → `workers/api/models/signedUrl.test.ts`
-- 関数名変更に合わせてテストを更新
+- `/admin/contents/*` — `app/contents/` のコンテンツ CRUD（issue #140）
+  - JSON 移行の検討も含む
