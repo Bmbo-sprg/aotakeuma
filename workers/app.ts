@@ -1,5 +1,5 @@
 import { createRequestHandler, type AppLoadContext } from "react-router";
-import { fetchLastCommitAt } from "./github";
+import { fetchLastCommitAt } from "./lastCommit";
 import { api } from "./api/router";
 
 declare module "react-router" {
