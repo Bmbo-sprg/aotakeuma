@@ -8,7 +8,7 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { generateRandomKey, formatKey } from "./generateKey";
 import { putKeyRecord } from "./kvClient";
-import type { DownloadKeyRecord } from "../workers/download/types";
+import type { DownloadKeyRecord } from "../workers/api/types";
 
 const SCRIPT_DIR = dirname(fileURLToPath(import.meta.url));
 const GENERATED_KEYS_DIR = join(SCRIPT_DIR, "generated-keys");

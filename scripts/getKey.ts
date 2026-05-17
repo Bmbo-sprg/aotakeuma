@@ -5,7 +5,7 @@
 
 import { getKeyRecord } from "./kvClient";
 import { formatKey } from "./generateKey";
-import type { DownloadKeyRecord } from "../workers/download/types";
+import type { DownloadKeyRecord } from "../workers/api/types";
 
 interface CliArgs {
   key: string;

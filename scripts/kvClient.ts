@@ -4,7 +4,7 @@
  */
 
 import { execSync } from "child_process";
-import type { DownloadKeyRecord } from "../workers/download/types";
+import type { DownloadKeyRecord } from "../workers/api/types";
 
 const KV_KEY_PREFIX = "downloadKey:";
 const DOWNLOAD_KEY_BODY_LENGTH = 8;
@@ -136,7 +136,7 @@ export async function deleteKeyRecord(
 export async function listKeys(
   remote: boolean = false,
   prefix: string = KV_KEY_PREFIX
-): Promise<string[]> {
+): Promise<{ name: string }[]> {
   const remoteFlag = remote ? "--remote" : "--local";
 
   const result = executeWranglerCommand([
@@ -155,6 +155,6 @@ export async function listKeys(
     return result
       .split("\n")
       .filter((line) => line.includes(KV_KEY_PREFIX))
-      .map((line) => line.trim());
+      .map((line) => ({ name: line.trim() }));
   }
 }
