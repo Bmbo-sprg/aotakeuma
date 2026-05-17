@@ -12,7 +12,7 @@
 - **バックエンド**: Hono の `/api/admin/*` を追加
   - `import.meta.env.DEV` が `true` の時のみ登録（バンドルから除外）
   - 既存の `keyStore.ts`・`contentStore.ts` model を活用
-- **KV/R2 アクセス**: Cloudflare binding 経由（dev 時は local、`wrangler dev --remote` で本番）
+- **KV/R2 アクセス**: Cloudflare binding 経由（dev 時は local、`pnpm dev:remote` で本番）
 - **`scripts/` は全廃止**: `kvClient.ts`・`seedKeys.ts`・`getKey.ts`・`setKey.ts`・`generateKey.ts`・`uploadToR2.ts` を削除
 
 ## ルート構成
@@ -40,33 +40,33 @@
 
 ## タスク一覧
 
-### 1. `models/downloadKey.ts` にキー生成ロジックを追加
+### 1. `models/downloadKey.ts` にキー生成ロジックを追加 ✅
 
 - `generateKey.ts` から `generateRandomKey()` を移植
 - `formatKey` は既存の `formatDownloadKey` に統合（重複削除）
 - `kvClient.ts` の重複した `normalizeDownloadKey` も削除
 
-### 2. `workers/api/admin/` を作成（dev only）
+### 2. `workers/api/admin/` を作成（dev only） ✅
 
 - `workers/api/admin/router.ts` — admin 用 Hono ルーター
 - `workers/api/admin/controllers/keys.ts` — キー CRUD
 - `workers/api/admin/controllers/upload.ts` — R2 アップロード
 - `workers/api/router.ts` で `import.meta.env.DEV` 時のみ mount
 
-### 3. `app/routes/admin/` を作成（dev only）
+### 3. `app/routes/admin/` を作成（dev only） ✅
 
 - `app/routes.ts` で `process.env.NODE_ENV === "development"` 時のみ登録
 - 各ルートファイルを作成（layout / index / keys / keys.$key / keys.new / upload / contents）
+- ローダー/アクションは `api.fetch()` 経由で Hono を直接呼び出し（HTTP ラウンドトリップ不要）
 
-### 4. `scripts/` を廃止
+### 4. `scripts/` を廃止 ✅
 
 - `kvClient.ts`・`seedKeys.ts`・`getKey.ts`・`setKey.ts`・`generateKey.ts`・`uploadToR2.ts` を削除
 - `dashboard/server.ts`・`dashboard/` を削除
 - `package.json` から `dashboard` スクリプトを削除
-- `README.md` を更新（または削除）
-- `@hono/node-server` を dependencies から削除（devDependencies へ移動も不要）
+- `@hono/node-server` を dependencies から削除
 
-### 5. `Album` 型に `downloadEnabled` フラグを追加（issue #139 タスク2）
+### 5. `Album` 型に `downloadEnabled` フラグを追加（issue #139 タスク2） ✅
 
 - `app/types.ts` の `Album` 型に `downloadEnabled?: boolean` を追加
 - `app/contents/works/albums/yohkoh.ts` で `downloadEnabled: true` を設定
