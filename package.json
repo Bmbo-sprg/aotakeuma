@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "pnpm run typegen && react-router dev",
     "build": "pnpm run typegen && react-router build",
+    "dashboard": "tsx --env-file=.env scripts/dashboard/server.ts",
     "preview": "pnpm run build && vite preview",
     "deploy": "pnpm run build && wrangler deploy",
     "lint": "prettier . --check && eslint",
@@ -14,7 +15,6 @@
     "typegen:cloudflare": "wrangler types",
     "typegen:react-router": "react-router typegen",
     "test": "vitest run --config vitest.config.ts",
-    "dashboard": "tsx scripts/dashboard/server.ts",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
