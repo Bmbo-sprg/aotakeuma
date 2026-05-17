@@ -13,10 +13,12 @@
     "typegen": "pnpm run typegen:cloudflare && pnpm run typegen:react-router",
     "typegen:cloudflare": "wrangler types",
     "typegen:react-router": "react-router typegen",
+    "test": "vitest run --config vitest.config.ts",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
   "dependencies": {
+    "hono": "^4.12.18",
     "isbot": "^5.1.39",
     "react": "^19.2.5",
     "react-day-picker": "^10.0.0",

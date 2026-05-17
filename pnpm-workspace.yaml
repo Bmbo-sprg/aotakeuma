@@ -1,0 +1,6 @@
+allowBuilds:
+  esbuild: true
+  sharp: true
+  storybook-addon-remix-react-router: true
+  unrs-resolver: true
+  workerd: true
