@@ -1,85 +1,92 @@
-name: Run TypeScript CI
+name: CI
 
 on:
   workflow_dispatch:
   pull_request:
+  push:
+    branches:
+      - main
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
-  lint:
+  setup:
     runs-on: ubuntu-24.04
-    permissions:
-      contents: read
+    outputs:
+      node-version: ${{ steps.versions.outputs.NODE_VERSION }}
+      pnpm-version: ${{ steps.versions.outputs.PNPM_VERSION }}
     steps:
       - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6
 
       - name: Extract node and pnpm version from mise.toml
-        id: node-pnpm-version
+        id: versions
         run: |
           NODE_VERSION=$(grep -E '^node = ' mise.toml | sed 's/node = "\(.*\)"/\1/')
           PNPM_VERSION=$(grep -E '^pnpm = ' mise.toml | sed 's/pnpm = "\(.*\)"/\1/')
           echo "NODE_VERSION=$NODE_VERSION" >> $GITHUB_OUTPUT
           echo "PNPM_VERSION=$PNPM_VERSION" >> $GITHUB_OUTPUT
 
+  lint:
+    needs: setup
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6
       - uses: actions/setup-node@395ad3262231945c25e8478fd5baf05154b1d79f # v6
         with:
-          node-version: ${{ steps.node-pnpm-version.outputs.NODE_VERSION }}
-
-      - run: npm install -g pnpm@${{ steps.node-pnpm-version.outputs.PNPM_VERSION }}
-
+          node-version: ${{ needs.setup.outputs.node-version }}
+      - run: npm install -g pnpm@${{ needs.setup.outputs.pnpm-version }}
       - run: pnpm install
-
       - run: pnpm run lint
 
   build:
+    needs: setup
     runs-on: ubuntu-24.04
     permissions:
       contents: read
     steps:
       - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6
-
-      - name: Extract node and pnpm version from mise.toml
-        id: node-pnpm-version
-        run: |
-          NODE_VERSION=$(grep -E '^node = ' mise.toml | sed 's/node = "\(.*\)"/\1/')
-          PNPM_VERSION=$(grep -E '^pnpm = ' mise.toml | sed 's/pnpm = "\(.*\)"/\1/')
-          echo "NODE_VERSION=$NODE_VERSION" >> $GITHUB_OUTPUT
-          echo "PNPM_VERSION=$PNPM_VERSION" >> $GITHUB_OUTPUT
-
       - uses: actions/setup-node@395ad3262231945c25e8478fd5baf05154b1d79f # v6
         with:
-          node-version: ${{ steps.node-pnpm-version.outputs.NODE_VERSION }}
-
-      - run: npm install -g pnpm@${{ steps.node-pnpm-version.outputs.PNPM_VERSION }}
-
+          node-version: ${{ needs.setup.outputs.node-version }}
+      - run: npm install -g pnpm@${{ needs.setup.outputs.pnpm-version }}
       - run: pnpm install
-
       - run: pnpm run build
 
   test:
+    needs: setup
     runs-on: ubuntu-24.04
     permissions:
       contents: read
     steps:
       - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6
-
-      - name: Extract node and pnpm version from mise.toml
-        id: node-pnpm-version
-        run: |
-          NODE_VERSION=$(grep -E '^node = ' mise.toml | sed 's/node = "\(.*\)"/\1/')
-          PNPM_VERSION=$(grep -E '^pnpm = ' mise.toml | sed 's/pnpm = "\(.*\)"/\1/')
-          echo "NODE_VERSION=$NODE_VERSION" >> $GITHUB_OUTPUT
-          echo "PNPM_VERSION=$PNPM_VERSION" >> $GITHUB_OUTPUT
-
       - uses: actions/setup-node@395ad3262231945c25e8478fd5baf05154b1d79f # v6
         with:
-          node-version: ${{ steps.node-pnpm-version.outputs.NODE_VERSION }}
-
-      - run: npm install -g pnpm@${{ steps.node-pnpm-version.outputs.PNPM_VERSION }}
-
+          node-version: ${{ needs.setup.outputs.node-version }}
+      - run: npm install -g pnpm@${{ needs.setup.outputs.pnpm-version }}
       - run: pnpm install
-
       - run: pnpm test
+
+  deploy:
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    needs: [lint, build, test]
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+    environment:
+      name: production
+      url: https://aotakeuma.com
+    steps:
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6
+      - uses: actions/setup-node@395ad3262231945c25e8478fd5baf05154b1d79f # v6
+        with:
+          node-version: ${{ needs.setup.outputs.node-version }}
+      - run: npm install -g pnpm@${{ needs.setup.outputs.pnpm-version }}
+      - run: pnpm install
+      - run: pnpm run deploy
+        env:
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
