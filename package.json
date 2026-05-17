@@ -13,6 +13,7 @@
     "typegen": "pnpm run typegen:cloudflare && pnpm run typegen:react-router",
     "typegen:cloudflare": "wrangler types",
     "typegen:react-router": "react-router typegen",
+    "test": "vitest run --config vitest.config.ts",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
