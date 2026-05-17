@@ -92,4 +92,4 @@ export type SocialLink = {
 
 export type Tag = (typeof tags)[number];
 
-export type { DownloadKeyRecord } from "../workers/api/types";
+export type { DownloadKeyRecord, KeyUsageLog } from "../workers/api/types";
