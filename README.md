@@ -58,6 +58,7 @@ pnpm deploy
 ```
 
 **ポイント:**
+
 - Worker のコードは Vite プロセスにインプロセスで埋め込まれて動く
 - KV/R2 は `.wrangler/state/` 以下のファイルに読み書きされる（本番とは無関係）
 - ファイル変更が HMR で即反映される
@@ -74,6 +75,7 @@ pnpm deploy
 ```
 
 **ポイント:**
+
 - `NODE_ENV=development react-router build` で admin ルート・admin API 入りのビルドを生成してから wrangler に渡す
 - Worker は Cloudflare のエッジで実際に実行される（ローカルシミュレーションなし）
 - KV/R2 の読み書きが本番データに直接反映されるので注意
@@ -85,20 +87,24 @@ pnpm deploy
 admin 機能は 2 か所のビルド時フラグで除外される。
 
 **フロントエンド（`app/routes.ts`）:**
+
 ```ts
 const adminRoutes = process.env.NODE_ENV === "development"
   ? [route("admin", ...)]
   : [];
 ```
+
 React Router のビルドは `NODE_ENV=production` で実行されるため、`adminRoutes` は空配列になり、admin ページのコードがバンドルに含まれない。
 
 **バックエンド（`workers/api/router.ts`）:**
+
 ```ts
 if (import.meta.env.DEV) {
   const { adminRouter } = await import("./admin/router");
   api.route("/admin", adminRouter);
 }
 ```
+
 Vite は `import.meta.env.DEV` を本番ビルド時に `false` へ置換するため、この `if` ブロック全体が dead code として除去される。
 
 ### ローダーが `api.fetch()` を使う理由

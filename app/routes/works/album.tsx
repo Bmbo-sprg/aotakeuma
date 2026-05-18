@@ -16,7 +16,6 @@ import { VideoIframe } from "../../components/VideoIframe/VideoIframe";
 import { toLocaleDateString } from "../../utils/formats";
 import { buildOGMeta, getWorkPath } from "../../utils/paths";
 
-
 export function meta({ loaderData }: Route.MetaArgs) {
   return buildOGMeta({
     title: [loaderData.album.title, "アルバム"],
