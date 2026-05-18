@@ -24,6 +24,7 @@ export const yohkoh: Album = {
   ],
   jacketImageUrl: "/images/jackets/yohkoh.png",
   tracks: [yusetsu, hoga, kaika, neuron],
+  downloadEnabled: true,
   video: {
     credits: [
       {

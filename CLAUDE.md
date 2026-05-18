@@ -10,16 +10,12 @@ Personal artist website for **竹馬あお** (aotakeuma.com). A React Router v7 
 
 ```bash
 pnpm install          # install deps (also runs typegen via postinstall)
-pnpm dev              # local dev server (runs typegen first)
-pnpm build            # production build
+pnpm dev              # local dev server — KV/R2 はローカルシミュレーション
+pnpm dev:remote       # dev server — KV/R2 を本番に接続（wrangler dev --remote）
+pnpm build            # production build（admin ルート・API を除外）
 pnpm lint             # prettier + eslint check
 pnpm fix              # prettier + eslint autofix
 pnpm storybook        # Storybook dev server (port 6006)
-
-# download key management (see scripts/README.md for full docs)
-pnpm seed:keys        # generate and insert test keys into local KV
-pnpm key:get <KEY>    # inspect a key's status
-pnpm key:set <KEY>    # update a key's properties
 
 # typegen (run after changing wrangler.jsonc or adding routes)
 pnpm typegen
@@ -27,7 +23,7 @@ pnpm typegen
 
 Tests use Vitest and run via Storybook's addon-vitest. There is no standalone `pnpm test` script — run tests through Storybook or check `*.test.ts` files with `vitest` directly.
 
-**Deploy**: Cloudflare auto-deploys from GitHub. For manual deploy: `pnpm deploy`.
+**Deploy**: GitHub Actions が main push 時に自動デプロイ。手動: `pnpm deploy`。
 
 ## Architecture
 
@@ -35,12 +31,14 @@ Tests use Vitest and run via Storybook's addon-vitest. There is no standalone `p
 
 ```
 Request → workers/app.ts (ExportedHandler)
-  ├── POST /api/validate-key  → workers/download/handlers.ts
-  ├── GET  /api/download      → workers/download/handlers.ts
-  └── *                       → React Router SSR handler
+  ├── /api/*  → Hono router (workers/api/router.ts)
+  │     ├── POST /api/validate-key  → controllers/validateKey.ts
+  │     ├── GET  /api/download      → controllers/signedDownload.ts
+  │     └── [DEV only] /api/admin/* → admin/router.ts
+  └── *       → React Router SSR handler
 ```
 
-The Cloudflare Worker (`workers/app.ts`) is the true entry point. It intercepts download API routes before delegating to React Router. Routes under `/yohkoh*` have `X-Robots-Tag: noindex, nofollow` injected at the Worker level.
+The Cloudflare Worker (`workers/app.ts`) is the true entry point. All API routes are handled by Hono before falling through to React Router.
 
 ### Content data model
 
@@ -59,7 +57,22 @@ Two-phase flow:
 1. **`POST /api/validate-key`** — validates an 8-char download key against Cloudflare KV, returns a signed download URL (TTL: 300s, HMAC-SHA256 signed)
 2. **`GET /api/download`** — verifies the signature and expiry, then streams the file from R2 bucket `aotakeuma_contents` as `{productId}.zip`
 
-Keys are stored in KV binding `aotakeuma_keys`. The secret for signing is `SIGNED_URL_SECRET` (set via `wrangler secret`). The `scripts/` directory has CLI tools for managing keys locally and in production — see `scripts/README.md`.
+Keys are stored in KV binding `aotakeuma_keys`. The secret for signing is `SIGNED_URL_SECRET` (set via `wrangler secret`). ダウンロードキーの管理は `/admin` ダッシュボードから行う。
+
+`Album` 型の `downloadEnabled: true` が設定されているアルバムにのみダウンロードセクションが表示される。
+
+### Admin dashboard
+
+`/admin/*` ルートはローカル開発専用。本番ビルドには含まれない。
+
+- **フロントエンド除外**: `app/routes.ts` で `process.env.NODE_ENV === "development"` 時のみ登録
+- **バックエンド除外**: `workers/api/router.ts` で `import.meta.env.DEV` 時のみ Hono にマウント（Vite がビルド時に dead code として除去）
+
+ローダー・アクションは `api.fetch(new Request(...), context.cloudflare.env)` で Hono を直接呼び出す（HTTP ラウンドトリップなし）。`pnpm dev:remote` での動作に必要な設計。
+
+### `pnpm dev` vs `pnpm dev:remote` の仕組み
+
+→ 詳細は README.md の「開発モードの仕組み」セクションを参照。
 
 ### Routing
 

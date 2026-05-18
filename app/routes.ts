@@ -1,5 +1,20 @@
 import { type RouteConfig, index, route } from "@react-router/dev/routes";
 
+const adminRoutes =
+  process.env.NODE_ENV === "development"
+    ? [
+        route("admin", "routes/admin/layout.tsx", [
+          index("routes/admin/index.tsx"), // /admin
+          route("keys", "routes/admin/keys/index.tsx"), // /admin/keys
+          route("keys/new", "routes/admin/keys/new.tsx"), // /admin/keys/new
+          route("keys/:key", "routes/admin/keys/$key.tsx"), // /admin/keys/:key
+          route("analytics", "routes/admin/analytics.tsx"), // /admin/analytics
+          route("upload", "routes/admin/upload.tsx"), // /admin/upload
+          route("contents", "routes/admin/contents.tsx"), // /admin/contents (stub)
+        ]),
+      ]
+    : [];
+
 export default [
   index("routes/home.tsx"),
 
@@ -21,4 +36,6 @@ export default [
   route("contact", "routes/contact.tsx"), // /contact
 
   route(":legacyId", "routes/legacy.tsx"),
+
+  ...adminRoutes,
 ] satisfies RouteConfig;
