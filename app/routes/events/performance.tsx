@@ -1,7 +1,7 @@
 import type { Performance, SocialLink } from "~/types";
 import type { Route } from "./+types/performance";
 import { performances } from "../../contents/events/performances";
-import { BackButton } from "../../components/Breadcrumb/Breadcrumb";
+import { BackButton } from "../../components/BackButton/BackButton";
 import { EventHeadSection } from "../../components/EventHeadSection/EventHeadSection";
 import { EventDescriptionSection } from "../../components/EventDescriptionSection/EventDescriptionSection";
 import { MixcloudIframe } from "../../components/MixcloudIframe/MixcloudIframe";

@@ -4,7 +4,7 @@ import { exhibitions } from "../../contents/events/exhibitions";
 import { games } from "../../contents/works/games";
 import { AccordionSection } from "../../components/AccordionSection/AccordionSection";
 import { Banner } from "../../components/Banner/Banner";
-import { BackButton } from "../../components/Breadcrumb/Breadcrumb";
+import { BackButton } from "../../components/BackButton/BackButton";
 import { CreditCardList } from "../../components/CreditCardList/CreditCardList";
 import { EventCard } from "../../components/EventCard/EventCard";
 import { SocialLinkItem } from "../../components/SocialLinkItem/SocialLinkItem";

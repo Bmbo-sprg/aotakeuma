@@ -1,7 +1,7 @@
 import type { Event } from "~/types";
 import type { Route } from "./+types/otherEvent";
 import { events } from "../../contents/events";
-import { BackButton } from "../../components/Breadcrumb/Breadcrumb";
+import { BackButton } from "../../components/BackButton/BackButton";
 import { EventHeadSection } from "../../components/EventHeadSection/EventHeadSection";
 import { EventDescriptionSection } from "../../components/EventDescriptionSection/EventDescriptionSection";
 import { buildOGMeta, getEventPath } from "../../utils/paths";

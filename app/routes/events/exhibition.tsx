@@ -1,7 +1,7 @@
 import type { Exhibition } from "~/types";
 import type { Route } from "./+types/exhibition";
 import { exhibitions } from "../../contents/events/exhibitions";
-import { BackButton } from "../../components/Breadcrumb/Breadcrumb";
+import { BackButton } from "../../components/BackButton/BackButton";
 import { EventHeadSection } from "../../components/EventHeadSection/EventHeadSection";
 import { EventDescriptionSection } from "../../components/EventDescriptionSection/EventDescriptionSection";
 import { WorkCard } from "../../components/WorkCard/WorkCard";

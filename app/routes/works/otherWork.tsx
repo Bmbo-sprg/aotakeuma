@@ -1,7 +1,7 @@
 import type { Work } from "~/types";
 import type { Route } from "./+types/otherWork";
 import { works } from "../../contents/works";
-import { BackButton } from "../../components/Breadcrumb/Breadcrumb";
+import { BackButton } from "../../components/BackButton/BackButton";
 import { CreditCardList } from "../../components/CreditCardList/CreditCardList";
 import { SocialLinkItem } from "../../components/SocialLinkItem/SocialLinkItem";
 import { SpotifyIframe } from "../../components/SpotifyIframe/SpotifyIframe";

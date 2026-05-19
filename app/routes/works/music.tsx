@@ -3,7 +3,7 @@ import type { Route } from "./+types/music";
 import { musics } from "../../contents/works/musics";
 import { albums } from "../../contents/works/albums";
 import { Banner } from "../../components/Banner/Banner";
-import { BackButton } from "../../components/Breadcrumb/Breadcrumb";
+import { BackButton } from "../../components/BackButton/BackButton";
 import { CreditCardList } from "../../components/CreditCardList/CreditCardList";
 import { SocialLinkItem } from "../../components/SocialLinkItem/SocialLinkItem";
 import { SpotifyIframe } from "../../components/SpotifyIframe/SpotifyIframe";
