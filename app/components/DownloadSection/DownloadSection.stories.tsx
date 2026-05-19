@@ -23,22 +23,26 @@ export const Default: Story = {
 export const Verified: Story = {
   args: {
     productId: "sample_album",
-    validateKey: fn().mockResolvedValue({
-      ok: true,
-      key: "ABCD-1234",
-      productId: "sample_album",
-      downloadUrl: "https://example.com/download",
-    } satisfies ValidateApiResponse),
+    validateKey: fn(
+      async (): Promise<ValidateApiResponse> => ({
+        ok: true,
+        key: "ABCD-1234",
+        productId: "sample_album",
+        downloadUrl: "https://example.com/download",
+      })
+    ),
   },
 };
 
 export const Invalid: Story = {
   args: {
     productId: "sample_album",
-    validateKey: fn().mockResolvedValue({
-      ok: false,
-      reason: "not_found",
-      message: "このコードは存在しません。",
-    } satisfies ValidateApiResponse),
+    validateKey: fn(
+      async (): Promise<ValidateApiResponse> => ({
+        ok: false,
+        reason: "not_found",
+        message: "このコードは存在しません。",
+      })
+    ),
   },
 };
