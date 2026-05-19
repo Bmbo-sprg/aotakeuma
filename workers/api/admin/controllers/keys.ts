@@ -29,16 +29,19 @@ export const getKey = async (c: Context<{ Bindings: Env }>) => {
 };
 
 export const createKeys = async (c: Context<{ Bindings: Env }>) => {
-  const { count, productId, expiresAt, maxUseCount } = await c.req.json<{
+  const { count, productId, expiresAt, maxUseCount, keys } = await c.req.json<{
     count: number;
     productId: string;
     expiresAt: string;
     maxUseCount: number;
+    keys?: string[];
   }>();
 
+  const keysToCreate =
+    keys ?? Array.from({ length: count }, generateDownloadKey);
+
   const created: string[] = [];
-  for (let i = 0; i < count; i++) {
-    const key = generateDownloadKey();
+  for (const key of keysToCreate) {
     const record: DownloadKeyRecord = {
       productId,
       isActive: true,
