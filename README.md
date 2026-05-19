@@ -129,3 +129,43 @@ admin のローダー・アクションは、`fetch("http://...")` ではなく 
    SSR loader → api.fetch(new Request("/api/admin/keys"), env)
                   → Hono を直接呼び出し（ネットワークなし）
 ```
+
+### R2 大容量アップロードの仕組み
+
+#### 問題
+
+当初のアップロード実装は `multipart/form-data` でファイルを丸ごと Worker に POST し、Worker が R2 binding の `put()` で保存する単純な構成だった。
+
+```
+ブラウザ → POST /api/admin/upload（ファイル全体）→ Worker → R2.put()
+```
+
+Cloudflare Workers の無料プランはリクエストボディの上限が **100MB** のため、それを超えるファイルで `413 Entity Too Large` が発生していた。Cloudflare ダッシュボードからの直接アップロードも上限 300MB のため回避策にならなかった。
+
+#### 解決策：R2 binding のマルチパートアップロード
+
+R2 binding には S3 互換のマルチパートアップロード API が組み込まれている。ブラウザ側でファイルを **50MB ずつ分割** し、パートごとに別リクエストとして送ることで 100MB 制限を回避した。
+
+```
+① ブラウザ → POST /api/admin/upload/initiate
+              Worker: R2.createMultipartUpload(key) → uploadId を返す
+
+② ブラウザ → PUT /api/admin/upload/part?partNumber=N&uploadId=...  ×パート数
+   （1パート最大 50MB のバイナリ）
+              Worker: R2.resumeMultipartUpload(key, uploadId).uploadPart(N, body)
+              → ETag を返す
+
+③ ブラウザ → POST /api/admin/upload/complete
+              Worker: upload.complete([{partNumber, etag}, ...])
+              → R2 がパートを結合して 1 オブジェクトとして保存
+
+エラー時:
+   ブラウザ → DELETE /api/admin/upload/abort
+              Worker: upload.abort()  ← 中途半端なパートを破棄
+```
+
+#### ポイント
+
+- **S3 互換 API・追加認証情報が不要**: R2 binding を直接使うため、S3 API キー（`R2_ACCESS_KEY_ID` 等）やリクエスト署名（SigV4）は一切不要。Worker の env に既存の R2 binding があれば動く
+- **ファイルデータは Worker 経由**: presigned URL を使ってブラウザが R2 に直接 PUT する方式と異なり、各パートは Worker を経由する。ただし各パートが 50MB なので制限に引っかからない
+- **admin 専用**: このエンドポイントは `import.meta.env.DEV` フラグで本番ビルドから除外されており、外部からは到達不能
