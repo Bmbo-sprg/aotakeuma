@@ -8,6 +8,7 @@ import { configs as storybookConfigs } from "eslint-plugin-storybook";
 import { defineConfig } from "eslint/config";
 
 export default defineConfig([
+  // TODO: tseslintConfigs.recommendedTypeChecked にしたい！
   tseslintConfigs.recommended,
   pluginImport.flatConfigs.recommended,
   pluginImport.flatConfigs.typescript,
