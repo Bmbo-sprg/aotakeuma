@@ -16,12 +16,13 @@ pnpm build            # production build（admin ルート・API を除外）
 pnpm lint             # prettier + eslint check
 pnpm fix              # prettier + eslint autofix
 pnpm storybook        # Storybook dev server (port 6006)
+pnpm test             # vitest run（app/ および workers/ 以下の *.test.ts）
 
 # typegen (run after changing wrangler.jsonc or adding routes)
 pnpm typegen
 ```
 
-Tests use Vitest and run via Storybook's addon-vitest. There is no standalone `pnpm test` script — run tests through Storybook or check `*.test.ts` files with `vitest` directly.
+`pnpm test` は `app/` と `workers/` 以下の `*.test.ts` を実行する。Storybook の addon-vitest は stories に紐付いたインタラクションテスト用。
 
 **Deploy**: GitHub Actions が main push 時に自動デプロイ。手動: `pnpm deploy`。
 
