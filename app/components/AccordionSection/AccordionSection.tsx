@@ -31,19 +31,25 @@ export const AccordionSection = ({
         onClick={() => setOpen((prev) => !prev)}
         aria-expanded={open}
         aria-controls={contentId}
-        className="flex w-full items-center justify-between gap-4 text-left interactive hover:opacity-70"
+        className="flex w-full items-center gap-2 text-left interactive hover:opacity-70"
       >
-        <h2 className="text-lg font-semibold text-slate-900">{title}</h2>
-        <span
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
           className={[
-            "text-lg font-extrabold text-slate-900",
-            "transition-transform duration-300",
+            "h-4 w-4 shrink-0 text-slate-500 transition-transform duration-300",
             open ? "rotate-90" : "rotate-0",
           ].join(" ")}
           aria-hidden
         >
-          ＞
-        </span>
+          <polyline points="9 18 15 12 9 6" />
+        </svg>
+        <h2 className="text-lg font-semibold text-slate-900">{title}</h2>
       </button>
       <div
         id={contentId}
