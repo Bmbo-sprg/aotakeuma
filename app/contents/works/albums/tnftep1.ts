@@ -46,4 +46,5 @@ export const tnftep1: Album = {
     niconicoUrl: "https://www.nicovideo.jp/watch/sm44599383",
     bilibiliUrl: "https://www.bilibili.com/video/BV158FXePEZ9",
   },
+  downloadEnabled: true,
 };

@@ -37,6 +37,13 @@ pnpm deploy
 
 週に一回走るので、なんかいい感じにマージする。
 
+## ダウンロード機能運用
+
+- `pnpm dev:remote` で admin 機能にアクセス
+- `R2 アップロード` タブでアルバムの {workId}.zip をアップロード
+- `キー発行` タブで、Product ID のところには {workId} を記入し、発行
+- contents 以下の {workId} の定義で、downloadEnabled を true にする
+
 ---
 
 ## 開発モードの仕組み

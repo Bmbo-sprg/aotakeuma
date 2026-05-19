@@ -41,7 +41,7 @@ type DownloadSectionProps = {
 export function DownloadSection({
   productId,
   title = "ダウンロード",
-  description = "ダウンロードカード裏面に記載されたダウンロードコードをここに入力してください。",
+  description = "頒布物裏面に記載されたダウンロードコードをここに入力してください。",
   validateKey = defaultValidateKey,
 }: DownloadSectionProps) {
   const [downloadKey, setDownloadKey] = useState("");
@@ -144,20 +144,16 @@ export function DownloadSection({
       <div className="space-y-1">
         <h2 className="text-lg font-semibold text-slate-900">{title}</h2>
         <p className="text-sm text-slate-600">{description}</p>
-        <p className="text-xs text-slate-600">
-          ※マジで急ピッチで作ったのでもし不具合があったら教えてください (03/29
-          朝)
-        </p>
       </div>
 
-      <form className="space-y-4" onSubmit={onSubmit}>
-        <div className="space-y-2">
-          <label
-            htmlFor={inputId}
-            className="text-sm font-semibold text-slate-900"
-          >
-            ダウンロードコード
-          </label>
+      <form className="space-y-2" onSubmit={onSubmit}>
+        <label
+          htmlFor={inputId}
+          className="text-sm font-semibold text-slate-900"
+        >
+          ダウンロードコード
+        </label>
+        <div className="flex flex-col gap-2 md:flex-row">
           <input
             type="text"
             id={inputId}
@@ -165,43 +161,41 @@ export function DownloadSection({
             value={downloadKey}
             onChange={onChangeDownloadKey}
             className={[
-              "w-full px-4 py-2 rounded-lg border border-slate-300 bg-white text-slate-900 placeholder-slate-400",
+              "min-w-0 flex-1 px-4 py-2 rounded-lg border border-slate-300 bg-white text-slate-900 placeholder-slate-400",
               "focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20",
               "transition-all duration-150",
             ].join(" ")}
-            placeholder="ダウンロードコードを入力してください"
+            placeholder="XXXX-XXXX"
             autoComplete="off"
             inputMode="text"
             aria-describedby={statusId}
           />
-
-          <div id={statusId} className="min-h-6">
-            {verifyStatus === "validating" ? (
-              <p className="text-sm text-slate-600">コードを確認中...</p>
-            ) : null}
-
-            {verifyStatus === "verified" ? (
-              <p className="text-sm font-semibold text-green-700">
-                ✓ {verifyMessage}
-              </p>
-            ) : null}
-
-            {verifyStatus === "invalid" ? (
-              <p className="text-sm font-semibold text-red-700">
-                {verifyMessage}
-              </p>
-            ) : null}
-          </div>
+          <button
+            type="submit"
+            disabled={verifyStatus !== "verified" || !downloadUrl}
+            className="w-full md:w-auto shrink-0 px-6 py-2 rounded-lg bg-primary text-primary-950 font-semibold enabled:hover:shadow-lg enabled:hover:scale-101 enabled:active:scale-99 transition-all duration-150 disabled:opacity-70 disabled:cursor-not-allowed"
+          >
+            ダウンロード
+          </button>
         </div>
 
-        <button
-          type="submit"
-          disabled={verifyStatus !== "verified" || !downloadUrl}
-          className="w-full px-6 py-3 rounded-lg bg-primary text-primary-950 font-semibold enabled:hover:shadow-lg enabled:hover:scale-101 enabled:active:scale-99 transition-all duration-150 disabled:opacity-70 disabled:cursor-not-allowed"
-        >
-          {/* TODO: マジでスタイル直す */}
-          ダウンロード
-        </button>
+        <div id={statusId} className="min-h-5">
+          {verifyStatus === "validating" ? (
+            <p className="text-sm text-slate-600">コードを確認中...</p>
+          ) : null}
+
+          {verifyStatus === "verified" ? (
+            <p className="text-sm font-semibold text-green-700">
+              ✓ {verifyMessage}
+            </p>
+          ) : null}
+
+          {verifyStatus === "invalid" ? (
+            <p className="text-sm font-semibold text-red-700">
+              {verifyMessage}
+            </p>
+          ) : null}
+        </div>
       </form>
     </section>
   );

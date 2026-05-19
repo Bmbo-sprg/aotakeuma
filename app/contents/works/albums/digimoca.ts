@@ -41,4 +41,5 @@ export const digimoca: Album = {
     niconicoUrl: "https://www.nicovideo.jp/watch/sm45443516",
     bilibiliUrl: "https://www.bilibili.com/video/BV1s6n8zFEwr",
   },
+  downloadEnabled: true,
 };

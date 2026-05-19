@@ -92,6 +92,6 @@ Every component in `app/components/` has a colocated `.stories.tsx`. Route files
 | `aotakeuma_contents` | R2     | Stores downloadable `.zip` files  |
 | `aotakeuma_keys`     | KV     | Stores download key records       |
 | `SIGNED_URL_SECRET`  | Secret | HMAC key for signed download URLs |
-| `LAST_DEPLOYED_AT`   | Var    | Injected at deploy time           |
 
 Run `pnpm typegen` after changing `wrangler.jsonc` to regenerate `worker-configuration.d.ts`.
+シークレットは `wrangler types` で自動生成されないため、`workers/env-secrets.d.ts` で手動拡張している。シークレットを追加・変更した際はこのファイルも更新すること。

@@ -40,6 +40,14 @@ export function AlbumView({ album, now }: { album: Album; now: Date }) {
     )
     .sort((a, b) => b.date.getTime() - a.date.getTime());
 
+  const RECENT_DAYS = 7;
+  const recentCutoff = new Date(
+    now.getTime() - RECENT_DAYS * 24 * 60 * 60 * 1000
+  );
+  const hasRecentExhibition = exhibitionsWithAlbum.some(
+    (e) => e.date >= recentCutoff && e.date <= now
+  );
+
   return (
     <main>
       <Banner src={album.jacketImageUrl} alt={`${album.title}のジャケット`} />
@@ -64,8 +72,7 @@ export function AlbumView({ album, now }: { album: Album; now: Date }) {
           </p>
         </section>
 
-        {/* TODO: リリース日からnヶ月の場合は最初、else最後に置くようにする */}
-        {album.downloadEnabled ? (
+        {hasRecentExhibition && album.downloadEnabled ? (
           <DownloadSection productId={album.id} />
         ) : null}
 
@@ -126,6 +133,10 @@ export function AlbumView({ album, now }: { album: Album; now: Date }) {
             <h2 className="text-lg font-semibold text-slate-900">動画</h2>
             <VideoIframe video={album.video} />
           </section>
+        ) : null}
+
+        {!hasRecentExhibition && album.downloadEnabled ? (
+          <DownloadSection productId={album.id} />
         ) : null}
       </div>
     </main>

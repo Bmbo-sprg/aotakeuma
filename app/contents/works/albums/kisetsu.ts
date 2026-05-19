@@ -38,4 +38,5 @@ export const kisetsu: Album = {
     niconicoUrl: "https://www.nicovideo.jp/watch/sm45072233",
     bilibiliUrl: "https://www.bilibili.com/video/BV1FNTezYEYJ",
   },
+  downloadEnabled: true,
 };

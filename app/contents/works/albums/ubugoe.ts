@@ -74,4 +74,5 @@ export const ubugoe: Album = {
     niconicoUrl: "https://www.nicovideo.jp/watch/sm44104181",
     bilibiliUrl: "https://www.bilibili.com/video/BV1nNtgetEoV",
   },
+  downloadEnabled: true,
 };
