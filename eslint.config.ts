@@ -18,6 +18,7 @@ export default defineConfig([
   storybookConfigs["flat/recommended"],
   prettier,
 
+  // TODO: ESLint v10 に上げると .gitignore を読み込む設定ができるようになるっぽ
   {
     ignores: [
       "build/**",

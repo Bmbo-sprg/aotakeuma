@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Form, useNavigation } from "react-router";
-import type { Route } from "./+types/$key";
+import type { Route } from "./+types/key";
 import type { DownloadKeyRecord, KeyUsageLog } from "~/types";
 import { api } from "../../../../workers/api/router";
 import { DatePickerInput } from "../../../components/DatePickerInput/DatePickerInput";
