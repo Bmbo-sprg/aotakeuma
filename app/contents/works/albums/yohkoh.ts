@@ -32,8 +32,8 @@ export const yohkoh: Album = {
         role: "映像制作",
       },
     ],
-    youtubeUrl: "https://www.youtube.com/watch?v=xxxxxxxxxxx", // TODO
-    niconicoUrl: "https://www.nicovideo.jp/watch/smxxxxxxxx", // TODO
-    bilibiliUrl: "https://www.bilibili.com/video/xxxxxxxxx", // TODO
+    youtubeUrl: "https://www.youtube.com/watch?v=Fjp1-f_7irU",
+    niconicoUrl: "https://www.nicovideo.jp/watch/sm46333719",
+    bilibiliUrl: "https://www.bilibili.com/video/BV1AbLC6TErJ",
   },
 };

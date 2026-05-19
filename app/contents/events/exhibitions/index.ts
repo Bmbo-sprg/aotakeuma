@@ -20,6 +20,8 @@ import { vomas_57 } from "./vomas_57";
 import { vomas_61 } from "./vomas_61";
 import { futasute_3 } from "./futasute_3";
 import { m3_2026_spring } from "./m3_2026_spring";
+import { kowane_6 } from "./kowane_6";
+import { gsf03 } from "./gsf03";
 
 export const exhibitions: Exhibition[] = [
   c102,
@@ -43,4 +45,6 @@ export const exhibitions: Exhibition[] = [
   c107,
   futasute_3,
   m3_2026_spring,
+  kowane_6,
+  gsf03,
 ];
