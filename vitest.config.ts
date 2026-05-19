@@ -1,9 +1,10 @@
 import { defineConfig } from "vitest/config";
+import tsconfigPaths from "vite-tsconfig-paths";
 
-// Storybook の addon-vitest とは別に、workers/ の unit テスト用の設定
 export default defineConfig({
+  plugins: [tsconfigPaths()],
   test: {
-    include: ["workers/**/*.test.ts"],
+    include: ["workers/**/*.test.ts", "app/**/*.test.ts"],
     environment: "node",
   },
 });

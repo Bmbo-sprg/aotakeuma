@@ -4,7 +4,7 @@ import { DownloadKey } from "../../utils/DownloadKey";
 const DEBOUNCE_MS = 700;
 
 type VerifyStatus = "idle" | "validating" | "verified" | "invalid";
-type ValidateApiResponse =
+export type ValidateApiResponse =
   | {
       ok: true;
       key: string;
@@ -17,16 +17,32 @@ type ValidateApiResponse =
       message: string;
     };
 
+export type ValidateKeyFn = (
+  downloadKey: string,
+  productId: string
+) => Promise<ValidateApiResponse>;
+
+const defaultValidateKey: ValidateKeyFn = async (downloadKey, productId) => {
+  const response = await fetch("/api/validate-key", {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify({ downloadKey, productId }),
+  });
+  return response.json() as Promise<ValidateApiResponse>;
+};
+
 type DownloadSectionProps = {
   productId: string;
   title?: string;
   description?: string;
+  validateKey?: ValidateKeyFn;
 };
 
 export function DownloadSection({
   productId,
   title = "ダウンロード",
   description = "ダウンロードカード裏面に記載されたダウンロードコードをここに入力してください。",
+  validateKey = defaultValidateKey,
 }: DownloadSectionProps) {
   const [downloadKey, setDownloadKey] = useState("");
   const [verifyStatus, setVerifyStatus] = useState<VerifyStatus>("idle");
@@ -39,23 +55,12 @@ export function DownloadSection({
 
   const validateDownloadKey = async (displayKey: string, requestId: number) => {
     try {
-      const response = await fetch("/api/validate-key", {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify({
-          downloadKey: displayKey,
-          productId,
-        }),
-      });
-
-      const data = (await response.json()) as ValidateApiResponse;
+      const data = await validateKey(displayKey, productId);
       if (requestIdRef.current !== requestId) {
         return;
       }
 
-      if (response.ok && data.ok) {
+      if (data.ok) {
         setVerifyStatus("verified");
         setVerifyMessage("コードを確認しました");
         setDownloadUrl(data.downloadUrl);
@@ -63,7 +68,7 @@ export function DownloadSection({
       }
 
       setVerifyStatus("invalid");
-      if (!data.ok && data.message) {
+      if (data.message) {
         setVerifyMessage(data.message);
       } else {
         setVerifyMessage("コードの検証に失敗しました。");

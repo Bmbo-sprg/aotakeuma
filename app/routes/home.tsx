@@ -30,16 +30,22 @@ export function loader({ context }: Route.LoaderArgs) {
   };
 }
 
-export default function Home({ loaderData }: Route.ComponentProps) {
-  const lastUpdatedDate = loaderData.lastCommitAt
-    ? new Date(loaderData.lastCommitAt)
-    : null;
+export function HomeView({
+  seed,
+  now,
+  lastCommitAt,
+}: {
+  seed: number;
+  now: Date;
+  lastCommitAt: string | null;
+}) {
+  const lastUpdatedDate = lastCommitAt ? new Date(lastCommitAt) : null;
   const lastUpdatedText =
     lastUpdatedDate !== null && !Number.isNaN(lastUpdatedDate.getTime())
       ? toLocaleDateString(lastUpdatedDate)
       : null;
 
-  const random = new Random(loaderData.seed);
+  const random = new Random(seed);
   const featuredWorks = [...works]
     .sort((a, b) => b.releaseDate.getTime() - a.releaseDate.getTime())
     .slice(0, 4);
@@ -160,7 +166,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
         </p>
         <div className="grid gap-4">
           {featuredEvents.map((event) => (
-            <EventCard key={event.id} event={event} now={loaderData.now} />
+            <EventCard key={event.id} event={event} now={now} />
           ))}
         </div>
       </section>
@@ -216,5 +222,15 @@ export default function Home({ loaderData }: Route.ComponentProps) {
       </section>
       <BottomNav />
     </main>
+  );
+}
+
+export default function Home({ loaderData }: Route.ComponentProps) {
+  return (
+    <HomeView
+      seed={loaderData.seed}
+      now={loaderData.now}
+      lastCommitAt={loaderData.lastCommitAt}
+    />
   );
 }
