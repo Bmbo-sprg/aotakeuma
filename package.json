@@ -47,7 +47,7 @@
     "eslint-plugin-react-refresh": "^0.5.2",
     "eslint-plugin-storybook": "^10.3.6",
     "globals": "^17.6.0",
-    "jiti": "^2.6.1",
+    "jiti": "^2.7.0",
     "prettier": "^3.8.3",
     "storybook": "^10.3.6",
     "storybook-addon-remix-react-router": "^6.1.0",
