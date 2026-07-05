@@ -16,6 +16,7 @@ import { sv_living_1 } from "./sv_living_1";
 import { dddd_2 } from "./dddd_2";
 import { koeoto_uradenshi_2 } from "./koeoto_uradenshi_2";
 import { shiogroove_2 } from "./shiogroove_2";
+import { nhl_2 } from "./nhl_2";
 
 export const performances: Performance[] = [
   kuvocalodj_2,
@@ -34,5 +35,6 @@ export const performances: Performance[] = [
   tabuhoriha_6,
   dddd_2,
   koeoto_uradenshi_2,
+  nhl_2,
   shiogroove_2,
 ];
