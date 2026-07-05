@@ -1,3 +1,4 @@
+import { useMemo, useState } from "react";
 import { Link } from "react-router";
 import type { Route } from "./+types/index";
 import type { DownloadKeyRecord } from "~/types";
@@ -20,8 +21,99 @@ function fmt(key: string) {
   return key.length === 8 ? `${key.slice(0, 4)}-${key.slice(4)}` : key;
 }
 
-export default function KeysIndex({ loaderData }: Route.ComponentProps) {
+type SortColumn = "key" | "product" | "status" | "uses" | "expires" | "logs";
+type SortDirection = "asc" | "desc";
+type KeyEntry = { key: string; record: DownloadKeyRecord };
+type KeysIndexProps = { loaderData: { entries: KeyEntry[]; now: number } };
+
+function getStatusMeta(record: DownloadKeyRecord, now: number) {
+  const isExpired = now > new Date(record.expiresAt).getTime();
+  const isExhausted = record.useCount >= record.maxUseCount;
+
+  if (!record.isActive) {
+    return { color: "text-gray-500", text: "Inactive", rank: 0 };
+  }
+  if (isExpired) {
+    return { color: "text-red-400", text: "期限切れ", rank: 1 };
+  }
+  if (isExhausted) {
+    return { color: "text-red-400", text: "上限到達", rank: 2 };
+  }
+  if (record.useCount > 0) {
+    return { color: "text-yellow-400", text: "使用済", rank: 3 };
+  }
+
+  return { color: "text-green-400", text: "未使用", rank: 4 };
+}
+
+export default function KeysIndex({ loaderData }: KeysIndexProps) {
   const { entries, now } = loaderData;
+  const [sort, setSort] = useState<{
+    column: SortColumn;
+    direction: SortDirection;
+  } | null>(null);
+
+  const sortedEntries: typeof entries = useMemo(() => {
+    if (!sort) {
+      return entries;
+    }
+
+    const direction = sort.direction === "asc" ? 1 : -1;
+    return [...entries].sort((a, b) => {
+      let result = 0;
+
+      switch (sort.column) {
+        case "key":
+          result = a.key.localeCompare(b.key);
+          break;
+        case "product":
+          result = a.record.productId.localeCompare(b.record.productId);
+          break;
+        case "status": {
+          const aStatus = getStatusMeta(a.record, now);
+          const bStatus = getStatusMeta(b.record, now);
+          result = aStatus.rank - bStatus.rank;
+          break;
+        }
+        case "uses":
+          result = a.record.useCount - b.record.useCount;
+          if (result === 0) {
+            result = a.record.maxUseCount - b.record.maxUseCount;
+          }
+          break;
+        case "expires":
+          result =
+            new Date(a.record.expiresAt).getTime() -
+            new Date(b.record.expiresAt).getTime();
+          break;
+        case "logs":
+          result = a.record.usageLogs.length - b.record.usageLogs.length;
+          break;
+      }
+
+      return result * direction;
+    });
+  }, [entries, now, sort]);
+
+  const onSort = (column: SortColumn) => {
+    setSort((current) => {
+      if (!current || current.column !== column) {
+        return { column, direction: "asc" };
+      }
+
+      return {
+        column,
+        direction: current.direction === "asc" ? "desc" : "asc",
+      };
+    });
+  };
+
+  const sortMark = (column: SortColumn) => {
+    if (!sort || sort.column !== column) {
+      return "↕";
+    }
+    return sort.direction === "asc" ? "▲" : "▼";
+  };
 
   return (
     <div>
@@ -37,34 +129,71 @@ export default function KeysIndex({ loaderData }: Route.ComponentProps) {
       <table className="w-full text-sm border-collapse">
         <thead>
           <tr className="text-gray-500 text-left">
-            <th className="py-2 px-3 bg-gray-900">Key</th>
-            <th className="py-2 px-3 bg-gray-900">Product</th>
-            <th className="py-2 px-3 bg-gray-900">Status</th>
-            <th className="py-2 px-3 bg-gray-900">Uses / Max</th>
-            <th className="py-2 px-3 bg-gray-900">Expires</th>
-            <th className="py-2 px-3 bg-gray-900">Logs</th>
+            <th className="py-2 px-3 bg-gray-900">
+              <button
+                type="button"
+                className="inline-flex items-center gap-1 hover:text-white"
+                onClick={() => onSort("key")}
+              >
+                <span>Key</span>
+                <span aria-hidden>{sortMark("key")}</span>
+              </button>
+            </th>
+            <th className="py-2 px-3 bg-gray-900">
+              <button
+                type="button"
+                className="inline-flex items-center gap-1 hover:text-white"
+                onClick={() => onSort("product")}
+              >
+                <span>Product</span>
+                <span aria-hidden>{sortMark("product")}</span>
+              </button>
+            </th>
+            <th className="py-2 px-3 bg-gray-900">
+              <button
+                type="button"
+                className="inline-flex items-center gap-1 hover:text-white"
+                onClick={() => onSort("status")}
+              >
+                <span>Status</span>
+                <span aria-hidden>{sortMark("status")}</span>
+              </button>
+            </th>
+            <th className="py-2 px-3 bg-gray-900">
+              <button
+                type="button"
+                className="inline-flex items-center gap-1 hover:text-white"
+                onClick={() => onSort("uses")}
+              >
+                <span>Uses / Max</span>
+                <span aria-hidden>{sortMark("uses")}</span>
+              </button>
+            </th>
+            <th className="py-2 px-3 bg-gray-900">
+              <button
+                type="button"
+                className="inline-flex items-center gap-1 hover:text-white"
+                onClick={() => onSort("expires")}
+              >
+                <span>Expires</span>
+                <span aria-hidden>{sortMark("expires")}</span>
+              </button>
+            </th>
+            <th className="py-2 px-3 bg-gray-900">
+              <button
+                type="button"
+                className="inline-flex items-center gap-1 hover:text-white"
+                onClick={() => onSort("logs")}
+              >
+                <span>Logs</span>
+                <span aria-hidden>{sortMark("logs")}</span>
+              </button>
+            </th>
           </tr>
         </thead>
         <tbody>
-          {entries.map(({ key, record: r }) => {
-            const isExpired = now > new Date(r.expiresAt).getTime();
-            const isExhausted = r.useCount >= r.maxUseCount;
-            const statusColor = !r.isActive
-              ? "text-gray-500"
-              : isExpired || isExhausted
-                ? "text-red-400"
-                : r.useCount > 0
-                  ? "text-yellow-400"
-                  : "text-green-400";
-            const statusText = !r.isActive
-              ? "Inactive"
-              : isExpired
-                ? "期限切れ"
-                : isExhausted
-                  ? "上限到達"
-                  : r.useCount > 0
-                    ? "使用済"
-                    : "未使用";
+          {sortedEntries.map(({ key, record: r }: KeyEntry) => {
+            const status = getStatusMeta(r, now);
 
             return (
               <tr
@@ -80,7 +209,7 @@ export default function KeysIndex({ loaderData }: Route.ComponentProps) {
                   </Link>
                 </td>
                 <td className="py-2 px-3">{r.productId}</td>
-                <td className={`py-2 px-3 ${statusColor}`}>{statusText}</td>
+                <td className={`py-2 px-3 ${status.color}`}>{status.text}</td>
                 <td className="py-2 px-3">
                   {r.useCount} / {r.maxUseCount}
                 </td>
