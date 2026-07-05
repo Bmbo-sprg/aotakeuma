@@ -22,6 +22,7 @@ import { futasute_3 } from "./futasute_3";
 import { m3_2026_spring } from "./m3_2026_spring";
 import { kowane_6 } from "./kowane_6";
 import { gsf03 } from "./gsf03";
+import { c108 } from "./c108";
 
 export const exhibitions: Exhibition[] = [
   c102,
@@ -47,4 +48,5 @@ export const exhibitions: Exhibition[] = [
   m3_2026_spring,
   kowane_6,
   gsf03,
+  c108,
 ];

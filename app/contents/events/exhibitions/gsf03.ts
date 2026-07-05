@@ -6,13 +6,12 @@ export const gsf03: Exhibition = {
   id: "gsf03",
   title: "学園スターフェスティバル03",
   description: `
-サークル「スタジオ加速」として出展します。
-学園アイドルマスターへのファンメイドアルバム『SyngUlarity!!!』を頒布します。
-新グッズとか作れたらいいなあかも
+サークル「スタジオ加速」として出展しました。
+学園アイドルマスターへのファンメイドアルバム『SyngUlarity!!!』を頒布しました。
 `,
   tags: ["アイドル"],
   date: new Date("2026-06-27"),
-  location: "東京流通センター 第1展示場 配置未定",
+  location: "東京流通センター 第1展示場 4組34",
   links: [],
   catalog: [syngularity],
 };

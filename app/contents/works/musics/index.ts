@@ -65,6 +65,7 @@ import { syngularity_song } from "./syngularity_song";
 import { yusetsu } from "./yusetsu";
 import { hoga } from "./hoga";
 import { kaika } from "./kaika";
+import { matteite } from "./matteite";
 
 export const musics: Music[] = [
   nichijo_wo_hashire,
@@ -133,4 +134,5 @@ export const musics: Music[] = [
   yusetsu,
   hoga,
   kaika,
+  matteite,
 ];

@@ -5,8 +5,8 @@ export const tabuhoriha_6: Performance = {
   id: "tabuhoriha_6",
   title: "たぶほり派！vol.6",
   description: `
-田淵智也・堀江晶太フィーチャーDJイベント「たぶほり派！vol.6」に Guest Composer DJ として出演します。
-どちらも竹馬のオリジンすぎるのでやってくぜ！
+田淵智也・堀江晶太フィーチャーDJイベント「たぶほり派！vol.6」に Guest Composer DJ として出演しました。
+田淵さん堀江さんなサウンドが長年手癖な同人作曲の端くれとして、大好きをやらせていただきました。
 `,
   tags: [],
   date: new Date("2026-06-26"),
@@ -17,6 +17,6 @@ export const tabuhoriha_6: Performance = {
   },
   twitterLink: {
     platform: "twitter",
-    url: "https://x.com/tabuhoriha/status/2036050963962982585",
+    url: "https://x.com/aotakeuma/status/2070625872055501231",
   },
 };

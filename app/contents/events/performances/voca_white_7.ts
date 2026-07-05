@@ -6,8 +6,9 @@ export const voca_white_7: Performance = {
   title: "VOCALOID White Chill Out vol.7",
   description: `
 「真っ白に蕩けるような時間を」をコンセプトとし、非現実へ誘う新感覚ボカクラ
-「VOCA_White vol.7」に Guest DJ として出演します。
-残響と声についてやります。
+「VOCA_White vol.7」に Guest DJ として出演しました。
+「花隈千冬」「白い部屋」「病」などをキーワードとしつつ、
+ふだん聴いてる大好きな曲を流しました。
 `,
   tags: [],
   date: new Date("2026-05-31"),

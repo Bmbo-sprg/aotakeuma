@@ -11,6 +11,11 @@ export const kowane_6: Exhibition = {
   tags: [],
   date: new Date("2026-05-24"),
   location: "大田区産業プラザ PiO F-01",
-  links: [],
+  links: [
+    {
+      platform: "twitter",
+      url: "https://x.com/aotakeuma/status/2058372864051761591",
+    },
+  ],
   catalog: [yohkoh, aonote, esora_key],
 };
