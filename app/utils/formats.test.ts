@@ -1,5 +1,19 @@
 import { describe, expect, it } from "vitest";
-import { toLocaleDateString, toLocaleString } from "./formats";
+import { hexToRgb, toLocaleDateString, toLocaleString } from "./formats";
+
+describe("hexToRgb", () => {
+  it("# 付きの hex を rgb に変換する", () => {
+    expect(hexToRgb("#ffeb3b")).toEqual({ r: 255, g: 235, b: 59 });
+  });
+
+  it("# なしの hex にも対応する", () => {
+    expect(hexToRgb("0a1128")).toEqual({ r: 10, g: 17, b: 40 });
+  });
+
+  it("不正な文字列は白 (255,255,255) を返す", () => {
+    expect(hexToRgb("not-a-color")).toEqual({ r: 255, g: 255, b: 255 });
+  });
+});
 
 describe("toLocaleDateString", () => {
   it("年・月・日を含む文字列を返す", () => {

@@ -1,3 +1,13 @@
+// Box-Muller 法
+export const randomNormal = (mean: number, stdDev: number) => {
+  let u = 0,
+    v = 0;
+  while (u === 0) u = Math.random();
+  while (v === 0) v = Math.random();
+  const num = Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v);
+  return num * stdDev + mean;
+};
+
 export class Random {
   private x: number;
   private y: number;
