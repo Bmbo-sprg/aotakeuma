@@ -16,7 +16,11 @@ export const Default: Story = {
     const [value, setValue] = useState("#ffeb3b");
 
     return (
-      <ColorField label="ノード・線の色" value={value} onChange={setValue} />
+      <ColorField
+        label="カラーピッカーだよ"
+        value={value}
+        onChange={setValue}
+      />
     );
   },
 };
