@@ -51,4 +51,16 @@ a {
   .interactive {
     @apply transition-transform duration-150 hover:-translate-y-1;
   }
+
+  .btn-tool-primary {
+    @apply w-full rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-white shadow-sm transition-opacity duration-150 hover:opacity-90 active:opacity-80;
+  }
+
+  .btn-tool-success {
+    @apply w-full rounded-lg bg-emerald-500 px-4 py-2 text-sm font-semibold text-white shadow-sm transition-opacity duration-150 hover:opacity-90 active:opacity-80;
+  }
+
+  .btn-tool-danger {
+    @apply w-full rounded-lg bg-rose-500 px-4 py-2 text-sm font-semibold text-white shadow-sm transition-opacity duration-150 hover:opacity-90 active:opacity-80;
+  }
 }

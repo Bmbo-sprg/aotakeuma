@@ -20,6 +20,8 @@ const aggregateAlbums = (music: Music) =>
     .sort((a, b) => b.releaseDate.getTime() - a.releaseDate.getTime());
 
 const getBannerPath = (music: Music) => {
+  if (music.jacketImageUrl) return music.jacketImageUrl;
+
   const latestAlbum = aggregateAlbums(music)[0];
   return latestAlbum ? latestAlbum.jacketImageUrl : "/images/aotakeuma_ogp.png";
 };
