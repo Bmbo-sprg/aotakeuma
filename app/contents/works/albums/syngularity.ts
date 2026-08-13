@@ -33,7 +33,7 @@ export const syngularity: Album = {
     },
   ],
   releaseDate: new Date("2025-12-31"),
-  links: [],
+  links: [], // TODO: 通頒を開ける
   jacketImageUrl: "/images/jackets/syngularity.png",
   tracks: [sunburned_wing, polaris_step, zanei, syngularity_song],
   video: {
