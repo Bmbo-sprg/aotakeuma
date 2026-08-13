@@ -35,6 +35,13 @@ export default [
 
   route("contact", "routes/contact.tsx"), // /contact
 
+  route("tools", "routes/tools/layout.tsx", [
+    index("routes/tools/index.tsx"), // /tools
+    route("cardboard_box", "routes/tools/cardboardBox.tsx"), // /tools/cardboard_box
+    route("neuron_sim", "routes/tools/neuronSim.tsx"), // /tools/neuron_sim
+    route("star_trails", "routes/tools/starTrails.tsx"), // /tools/star_trails
+  ]),
+
   route(":legacyId", "routes/legacy.tsx"),
 
   ...adminRoutes,
