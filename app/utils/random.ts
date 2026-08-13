@@ -1,5 +1,6 @@
 // Box-Muller 法
 export const randomNormal = (mean: number, stdDev: number) => {
+  if (stdDev === 0) return mean;
   let u = 0,
     v = 0;
   while (u === 0) u = Math.random();

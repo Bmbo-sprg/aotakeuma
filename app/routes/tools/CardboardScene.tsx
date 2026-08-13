@@ -23,9 +23,11 @@ const THICKNESS = 0.05;
 export default function CardboardScene({ params }: { params: BoxParams }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const paramsRef = useRef(params);
+  const paramsDirtyRef = useRef(true);
 
   useEffect(() => {
     paramsRef.current = params;
+    paramsDirtyRef.current = true;
   }, [params]);
 
   useEffect(() => {
@@ -118,6 +120,7 @@ export default function CardboardScene({ params }: { params: BoxParams }) {
           material.map = createTextTexture(mesh.userData.labelName, color);
           material.color.set(0xffffff);
         } else {
+          material.map?.dispose();
           material.map = null;
           material.color.set(color);
         }
@@ -205,8 +208,6 @@ export default function CardboardScene({ params }: { params: BoxParams }) {
       applyFlapParams(flapBack, width, depth / 2, 0, topY, -depth / 2);
       applyFlapParams(flapLeft, width / 2, depth, -width / 2, topY, 0);
       applyFlapParams(flapRight, width / 2, depth, width / 2, topY, 0);
-
-      updateLabelsVisibility();
     };
 
     const updateBoxMaterials = () => {
@@ -216,20 +217,19 @@ export default function CardboardScene({ params }: { params: BoxParams }) {
         const flapMesh = pivot.children[1] as THREE.Mesh;
         (flapMesh.material as THREE.MeshPhongMaterial).color.set(color);
       });
-      updateLabelsVisibility();
     };
 
-    let prevSnapshot = JSON.stringify(paramsRef.current);
     const syncFromParams = () => {
-      const snapshot = JSON.stringify(paramsRef.current);
-      if (snapshot === prevSnapshot) return;
-      prevSnapshot = snapshot;
+      if (!paramsDirtyRef.current) return;
+      paramsDirtyRef.current = false;
       updateBoxGeometry();
       updateBoxMaterials();
+      updateLabelsVisibility();
       pivotHelpers.forEach((h) => (h.visible = paramsRef.current.showPivot));
     };
 
     updateBoxGeometry();
+    updateLabelsVisibility();
     pivotHelpers.forEach((h) => (h.visible = paramsRef.current.showPivot));
 
     let isDragging = false;
@@ -237,6 +237,7 @@ export default function CardboardScene({ params }: { params: BoxParams }) {
 
     const onMouseDown = () => (isDragging = true);
     const onMouseUp = () => (isDragging = false);
+    const onMouseLeave = () => (isDragging = false);
     const onMouseMove = (e: MouseEvent) => {
       if (isDragging) {
         const deltaMove = {
@@ -256,8 +257,10 @@ export default function CardboardScene({ params }: { params: BoxParams }) {
     const canvas = renderer.domElement;
     canvas.addEventListener("mousedown", onMouseDown);
     canvas.addEventListener("mouseup", onMouseUp);
+    canvas.addEventListener("mouseleave", onMouseLeave);
     canvas.addEventListener("mousemove", onMouseMove);
     canvas.addEventListener("wheel", onWheel);
+    window.addEventListener("mouseup", onMouseUp);
 
     const onResize = () => {
       camera.aspect = container.clientWidth / container.clientHeight;
@@ -277,8 +280,10 @@ export default function CardboardScene({ params }: { params: BoxParams }) {
     return () => {
       cancelAnimationFrame(animationFrame);
       window.removeEventListener("resize", onResize);
+      window.removeEventListener("mouseup", onMouseUp);
       canvas.removeEventListener("mousedown", onMouseDown);
       canvas.removeEventListener("mouseup", onMouseUp);
+      canvas.removeEventListener("mouseleave", onMouseLeave);
       canvas.removeEventListener("mousemove", onMouseMove);
       canvas.removeEventListener("wheel", onWheel);
       container.removeChild(canvas);
@@ -287,11 +292,11 @@ export default function CardboardScene({ params }: { params: BoxParams }) {
         if (obj instanceof THREE.Mesh) {
           obj.geometry.dispose();
           const material = obj.material as THREE.Material | THREE.Material[];
-          if (Array.isArray(material)) {
-            material.forEach((m) => m.dispose());
-          } else {
-            material.dispose();
-          }
+          const materials = Array.isArray(material) ? material : [material];
+          materials.forEach((m) => {
+            if (m instanceof THREE.MeshPhongMaterial) m.map?.dispose();
+            m.dispose();
+          });
         }
       });
     };

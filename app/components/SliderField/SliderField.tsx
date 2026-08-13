@@ -28,6 +28,7 @@ export const SliderField = ({
       </label>
       <input
         type="range"
+        aria-label={label}
         min={min}
         max={max}
         step={step}
