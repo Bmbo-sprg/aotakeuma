@@ -31,9 +31,7 @@ export type ValidateKeySuccessResponse = {
 export type ValidateKeyResponse = ValidateKeySuccessResponse | ErrorResponse;
 
 export type ValidateKeyFailureReason =
-  | "BAD_REQUEST"
-  | "KEY_NOT_FOUND"
-  | "KEY_NOT_AVAILABLE";
+  "BAD_REQUEST" | "KEY_NOT_FOUND" | "KEY_NOT_AVAILABLE";
 
 export type SignedDownloadFailureReason =
   | "BAD_REQUEST"

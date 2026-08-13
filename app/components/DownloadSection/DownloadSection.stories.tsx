@@ -23,26 +23,22 @@ export const Default: Story = {
 export const Verified: Story = {
   args: {
     productId: "sample_album",
-    validateKey: fn(
-      async (): Promise<ValidateApiResponse> => ({
-        ok: true,
-        key: "ABCD-1234",
-        productId: "sample_album",
-        downloadUrl: "https://example.com/download",
-      })
-    ),
+    validateKey: fn(async (): Promise<ValidateApiResponse> => ({
+      ok: true,
+      key: "ABCD-1234",
+      productId: "sample_album",
+      downloadUrl: "https://example.com/download",
+    })),
   },
 };
 
 export const Invalid: Story = {
   args: {
     productId: "sample_album",
-    validateKey: fn(
-      async (): Promise<ValidateApiResponse> => ({
-        ok: false,
-        reason: "not_found",
-        message: "このコードは存在しません。",
-      })
-    ),
+    validateKey: fn(async (): Promise<ValidateApiResponse> => ({
+      ok: false,
+      reason: "not_found",
+      message: "このコードは存在しません。",
+    })),
   },
 };
