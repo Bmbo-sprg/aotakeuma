@@ -85,6 +85,17 @@ Every component in `app/components/` has a colocated `.stories.tsx`. Route files
 
 **新しいコンポーネントを追加する際は、必ず同階層に `.stories.tsx` も作成すること。**
 
+### `/tools`
+
+制作補助のワンショットツール（段ボール箱シミュレーター、ノード接続シミュレーター、星の軌跡シミュレーターなど）を置く場所。`BottomNav` からの導線はなく、`meta` で `noindex` を付与して検索エンジンから隠している（URL を知っていれば誰でもアクセス可能）。
+
+新しいツールを追加する手順:
+
+1. `app/routes/tools/` に route ファイルを追加し、`app/routes.ts` の `tools` route 配下に登録する
+2. コントロール UI は `app/components/SliderField`, `ColorField`, `ToolPanel` を再利用する
+3. `meta` は `buildOGMeta`（`app/utils/paths.ts`）を使い、返り値に `{ name: "robots", content: "noindex" }` を追加する
+4. Canvas 2D で完結するツールは route ファイル内に直接実装、Three.js など重い依存を使うツールは別コンポーネントに切り出して `React.lazy` + 動的 `import()` で読み込む（`app/routes/tools/CardboardScene.tsx` が例）
+
 ### Cloudflare bindings
 
 | Binding              | Type   | Purpose                           |

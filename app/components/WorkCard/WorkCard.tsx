@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import type { Album, Game, Work } from "~/types";
+import type { Album, Game, Music, Work } from "~/types";
 import { works } from "../../contents/works";
 import { toLocaleDateString } from "../../utils/formats";
 import { getWorkPath } from "../../utils/paths";
@@ -21,7 +21,9 @@ export const WorkCard = ({ work, className }: WorkCardProps) => {
   const isLinkable = works.some((item) => item.id === work.id);
   const Wrapper = isLinkable ? Link : "div";
   const wrapperProps = isLinkable ? { to: getWorkPath(work) } : { to: "" };
-  const hasJacket = ["album", "game"].includes(work.type);
+  const hasJacket =
+    ["album", "game"].includes(work.type) ||
+    (work.type === "music" && (work as Music).jacketImageUrl);
 
   return (
     <div
@@ -52,7 +54,7 @@ export const WorkCard = ({ work, className }: WorkCardProps) => {
         </div>
         {hasJacket ? (
           <img
-            src={(work as Album | Game).jacketImageUrl}
+            src={(work as Album | Game | Music).jacketImageUrl}
             alt={`${work.title}のジャケット画像`}
             className="h-40 w-40 object-cover -m-4 rounded-md drop-shadow-sm border border-slate-300"
           />

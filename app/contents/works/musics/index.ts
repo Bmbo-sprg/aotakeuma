@@ -66,6 +66,9 @@ import { yusetsu } from "./yusetsu";
 import { hoga } from "./hoga";
 import { kaika } from "./kaika";
 import { matteite } from "./matteite";
+import { foreshadowing } from "./foreshadowing";
+import { koi_kotoba } from "./koi_kotoba";
+import { idol_do } from "./idol_do";
 
 export const musics: Music[] = [
   nichijo_wo_hashire,
@@ -135,4 +138,7 @@ export const musics: Music[] = [
   hoga,
   kaika,
   matteite,
+  foreshadowing,
+  koi_kotoba,
+  idol_do,
 ];
