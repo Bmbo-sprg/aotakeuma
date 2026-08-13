@@ -28,6 +28,7 @@ export type Album = Work & {
 
 export type Music = Work & {
   type: "music";
+  jacketImageUrl?: string;
   video?: Video;
   lyrics?: string;
 };
