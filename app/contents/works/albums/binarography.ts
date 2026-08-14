@@ -52,4 +52,5 @@ export const binarography: Album = {
     niconicoUrl: "https://www.nicovideo.jp/watch/sm46613804",
     bilibiliUrl: "https://www.bilibili.com/video/BV1qZGg64EcL",
   },
+  downloadEnabled: true,
 };
