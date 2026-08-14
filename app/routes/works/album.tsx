@@ -40,7 +40,7 @@ export function AlbumView({ album, now }: { album: Album; now: Date }) {
     )
     .sort((a, b) => b.date.getTime() - a.date.getTime());
 
-  const RECENT_DAYS = 7;
+  const RECENT_DAYS = 21;
   const recentCutoff = new Date(
     now.getTime() - RECENT_DAYS * 24 * 60 * 60 * 1000
   );
