@@ -1,56 +1,10 @@
 import type { Exhibition } from "~/types";
-import { bunfuri_tokyo_38 } from "./bunfuri_tokyo_38";
-import { c102 } from "./c102";
-import { c103 } from "./c103";
-import { c104 } from "./c104";
-import { c105 } from "./c105";
-import { c106 } from "./c106";
-import { c107 } from "./c107";
-import { cc06 } from "./cc06";
-import { futasute_2 } from "./futasute_2";
-import { kowane_4 } from "./kowane_4";
-import { kowane_5 } from "./kowane_5";
-import { m3_2024_spring } from "./m3_2024_spring";
-import { m3_2024_autumn } from "./m3_2024_autumn";
-import { m3_2025_spring } from "./m3_2025_spring";
-import { m3_2025_autumn } from "./m3_2025_autumn";
-import { vocast_9 } from "./vocast_9";
-import { vocastar_2 } from "./vocastar_2";
-import { vomas_57 } from "./vomas_57";
-import { vomas_61 } from "./vomas_61";
-import { futasute_3 } from "./futasute_3";
-import { m3_2026_spring } from "./m3_2026_spring";
-import { kowane_6 } from "./kowane_6";
-import { gsf03 } from "./gsf03";
-import { c108 } from "./c108";
-import { ife02 } from "./ife02";
-import { shiobana_5 } from "./shiobana_5";
+import { collectContents } from "../../collectContents";
 
-export const exhibitions: Exhibition[] = [
-  c102,
-  c103,
-  m3_2024_spring,
-  bunfuri_tokyo_38,
-  c104,
-  vocast_9,
-  m3_2024_autumn,
-  cc06,
-  vomas_57,
-  c105,
-  kowane_4,
-  m3_2025_spring,
-  futasute_2,
-  c106,
-  kowane_5,
-  vocastar_2,
-  m3_2025_autumn,
-  vomas_61,
-  c107,
-  futasute_3,
-  m3_2026_spring,
-  kowane_6,
-  gsf03,
-  c108,
-  ife02,
-  shiobana_5,
-];
+// ファイルを置くだけで自動登録される（手動の import/配列登録は不要）
+const modules = import.meta.glob<Record<string, unknown>>(
+  ["./*.ts", "!./index.ts"],
+  { eager: true }
+);
+
+export const exhibitions: Exhibition[] = collectContents<Exhibition>(modules);

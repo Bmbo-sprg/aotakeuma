@@ -1,6 +1,10 @@
 import type { Game } from "~/types";
-import { haruame } from "./haruame";
-import { nde } from "./nde";
-import { harca } from "./harca";
+import { collectContents } from "../../collectContents";
 
-export const games: Game[] = [haruame, nde, harca];
+// ファイルを置くだけで自動登録される（手動の import/配列登録は不要）
+const modules = import.meta.glob<Record<string, unknown>>(
+  ["./*.ts", "!./index.ts"],
+  { eager: true }
+);
+
+export const games: Game[] = collectContents<Game>(modules);
