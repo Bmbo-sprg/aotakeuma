@@ -7,12 +7,14 @@ import { EventCard } from "../components/EventCard/EventCard";
 import { BottomNav } from "../components/BottomNav/BottomNav";
 import { SocialLinkList } from "../components/SocialLinkList/SocialLinkList";
 import { WorkCard } from "../components/WorkCard/WorkCard";
+import { HomeSection } from "../components/HomeSection/HomeSection";
 import { albums } from "../contents/works/albums";
 import { musics } from "../contents/works/musics";
 import { games } from "../contents/works/games";
 import { exhibitions } from "../contents/events/exhibitions";
 import { performances } from "../contents/events/performances";
-import { toLocaleDateString } from "../utils/formats";
+import { daysUntil, toLocaleDateString } from "../utils/formats";
+import { buildFutureSchedule } from "../utils/schedule";
 import { buildOGMeta, getEventPath, getWorkPath } from "../utils/paths";
 import { Random } from "../utils/random";
 
@@ -46,14 +48,17 @@ export function HomeView({
       : null;
 
   const random = new Random(seed);
-  const featuredWorks = [...works]
+  const featuredWorks = works
+    .filter((work) => daysUntil(work.releaseDate, now) < 0)
     .sort((a, b) => b.releaseDate.getTime() - a.releaseDate.getTime())
     .slice(0, 4);
   const randomWork = works[random.nextInt(0, works.length - 1)];
-  const featuredEvents = [...events]
+  const featuredEvents = events
+    .filter((event) => daysUntil(event.date, now) < 0)
     .sort((a, b) => b.date.getTime() - a.date.getTime())
     .slice(0, 4);
   const randomEvent = events[random.nextInt(0, events.length - 1)];
+  const featuredSchedule = buildFutureSchedule(works, events, now).slice(0, 4);
 
   return (
     <main className="space-y-16 pb-20">
@@ -117,59 +122,43 @@ export function HomeView({
         </div>
       </section>
 
-      <section className="mx-auto flex w-full max-w-4xl flex-col gap-2 px-6">
-        <div className="flex flex-wrap items-center justify-between gap-2">
-          <h2 className="text-xl font-semibold text-slate-900">最近の作品</h2>
-          <div className="flex items-center gap-4">
-            <Link
-              to={getWorkPath(randomWork)}
-              className="text-sm font-semibold text-slate-600"
-            >
-              大将のおまかせ
-            </Link>
-            <Link to="/works" className="text-sm font-semibold text-slate-600">
-              もっと見る
-            </Link>
-          </div>
-        </div>
-        <p className="text-xs text-slate-700">
-          アルバム x{albums.length} ／ 楽曲 x{musics.length} ／ ゲーム x
-          {games.length} たくさん作ってるね
-        </p>
-        <div className="grid gap-4">
-          {featuredWorks.map((work) => (
-            <WorkCard key={work.id} work={work} />
-          ))}
-        </div>
-      </section>
+      <div className="mx-auto grid w-full max-w-6xl gap-8 px-6 lg:grid-cols-3 lg:items-start lg:gap-6">
+        <HomeSection
+          title="今後の予定"
+          viewAllHref="/schedule"
+          items={featuredSchedule.map((scheduleItem) => ({
+            key: scheduleItem.item.id,
+            node:
+              scheduleItem.kind === "work" ? (
+                <WorkCard work={scheduleItem.item} now={now} />
+              ) : (
+                <EventCard event={scheduleItem.item} now={now} />
+              ),
+          }))}
+        />
 
-      <section className="mx-auto flex w-full max-w-4xl flex-col gap-2 px-6">
-        <div className="flex flex-wrap items-center justify-between gap-2">
-          <h2 className="text-xl font-semibold text-slate-900">
-            最近のイベント
-          </h2>
-          <div className="flex items-center gap-4">
-            <Link
-              to={getEventPath(randomEvent)}
-              className="text-sm font-semibold text-slate-600"
-            >
-              大将のおまかせ
-            </Link>
-            <Link to="/events" className="text-sm font-semibold text-slate-600">
-              もっと見る
-            </Link>
-          </div>
-        </div>
-        <p className="text-xs text-slate-700">
-          即売会 x{exhibitions.length} ／ DJ・ライブ x{performances.length}{" "}
-          こっちもぼちぼち頑張りたい
-        </p>
-        <div className="grid gap-4">
-          {featuredEvents.map((event) => (
-            <EventCard key={event.id} event={event} now={now} />
-          ))}
-        </div>
-      </section>
+        <HomeSection
+          title="最近の作品"
+          countText={`アルバム x${albums.length} ／ 楽曲 x${musics.length} ／ ゲーム x${games.length} たくさん作ってるね`}
+          viewAllHref="/works"
+          randomHref={getWorkPath(randomWork)}
+          items={featuredWorks.map((work) => ({
+            key: work.id,
+            node: <WorkCard work={work} now={now} />,
+          }))}
+        />
+
+        <HomeSection
+          title="最近のイベント"
+          countText={`即売会 x${exhibitions.length} ／ DJ・ライブ x${performances.length} こっちもぼちぼち頑張りたい`}
+          viewAllHref="/events"
+          randomHref={getEventPath(randomEvent)}
+          items={featuredEvents.map((event) => ({
+            key: event.id,
+            node: <EventCard event={event} now={now} />,
+          }))}
+        />
+      </div>
 
       <section className="mx-auto flex w-full max-w-4xl flex-col gap-6 px-6">
         <div className="grid gap-6 md:grid-cols-2">

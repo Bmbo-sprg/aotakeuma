@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router";
 
 type BottomNavProps = {
-  active?: "works" | "events" | "contact";
+  active?: "schedule" | "works" | "events" | "contact";
 };
 
 const linkBaseClass =
@@ -13,6 +13,7 @@ const activeClassMap: Record<
   NonNullable<BottomNavProps["active"]> | "none",
   string
 > = {
+  schedule: "bg-linear-to-t from-secondary/50 to-white/80 to-30%",
   works: "bg-linear-to-t from-primary/50 to-white/80 to-30%",
   events: "bg-linear-to-t from-secondary/50 to-white/80 to-30%",
   contact: "bg-linear-to-t from-gray-300 to-white/80 to-30%",
@@ -48,6 +49,13 @@ export const BottomNav = ({ active }: BottomNavProps) => {
         >
           <Link to="/" className={topLinkClass}>
             TOP
+          </Link>
+          <Link
+            to="/schedule"
+            className={buildLinkClass(active, "schedule")}
+            aria-current={active === "schedule" ? "page" : undefined}
+          >
+            予定
           </Link>
           <Link
             to="/works"
@@ -90,6 +98,13 @@ export const BottomNav = ({ active }: BottomNavProps) => {
         </button>
       </div>
       <div className="hidden flex-wrap items-center gap-2 md:flex">
+        <Link
+          to="/schedule"
+          className={buildLinkClass(active, "schedule")}
+          aria-current={active === "schedule" ? "page" : undefined}
+        >
+          予定
+        </Link>
         <Link
           to="/works"
           className={buildLinkClass(active, "works")}

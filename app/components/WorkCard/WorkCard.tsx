@@ -1,7 +1,7 @@
 import { Link } from "react-router";
 import type { Album, Game, Music, Work } from "~/types";
 import { works } from "../../contents/works";
-import { toLocaleDateString } from "../../utils/formats";
+import { daysUntil, toLocaleDateString } from "../../utils/formats";
 import { getWorkPath } from "../../utils/paths";
 import { TagList } from "../TagList/TagList";
 
@@ -14,10 +14,11 @@ const workTypeLabel: Record<Work["type"], string> = {
 
 type WorkCardProps = {
   work: Work;
+  now: Date;
   className?: string;
 };
 
-export const WorkCard = ({ work, className }: WorkCardProps) => {
+export const WorkCard = ({ work, now, className }: WorkCardProps) => {
   const isLinkable = works.some((item) => item.id === work.id);
   const Wrapper = isLinkable ? Link : "div";
   const wrapperProps = isLinkable ? { to: getWorkPath(work) } : { to: "" };
@@ -25,9 +26,19 @@ export const WorkCard = ({ work, className }: WorkCardProps) => {
     ["album", "game"].includes(work.type) ||
     (work.type === "music" && (work as Music).jacketImageUrl);
 
+  const remainingDays = daysUntil(work.releaseDate, now);
+  const isFutureWork = remainingDays >= 0;
+  const remainingDaysText =
+    remainingDays === 0 ? "本日！" : `あと${remainingDays}日`;
+
   return (
     <div
-      className={["group card", isLinkable && "interactive", className]
+      className={[
+        "group card",
+        isLinkable && "interactive",
+        isFutureWork && "bg-secondary/20",
+        className,
+      ]
         .filter(Boolean)
         .join(" ")}
     >
@@ -38,6 +49,7 @@ export const WorkCard = ({ work, className }: WorkCardProps) => {
         <div className="overflow-hidden space-y-1">
           <p className="text-xs font-medium text-slate-500 -mb-1">
             {workTypeLabel[work.type]}
+            {isFutureWork && `（${remainingDaysText}）`}
           </p>
           <div className="flex flex-wrap items-center gap-x-2 gap-y-0">
             <p className="text-lg font-semibold text-slate-900 truncate whitespace-pre-line break-all line-clamp-1">

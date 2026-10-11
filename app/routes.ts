@@ -18,6 +18,8 @@ const adminRoutes =
 export default [
   index("routes/home.tsx"),
 
+  route("schedule", "routes/schedule.tsx"), // /schedule
+
   route("works", "routes/works/layout.tsx", [
     index("routes/works/index.tsx"), // /works
     route("albums/:workId", "routes/works/album.tsx"), // /works/albums/:workId

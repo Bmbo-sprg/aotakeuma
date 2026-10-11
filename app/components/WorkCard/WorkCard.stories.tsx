@@ -16,18 +16,21 @@ type Story = StoryObj<typeof WorkCard>;
 export const Album: Story = {
   args: {
     work: albums[0],
+    now: new Date(),
   },
 };
 
 export const Music: Story = {
   args: {
     work: musics[0],
+    now: new Date(),
   },
 };
 
 export const Game: Story = {
   args: {
     work: games[0],
+    now: new Date(),
   },
 };
 
@@ -42,5 +45,13 @@ export const Unlinkable: Story = {
       releaseDate: new Date("2026-02-06"),
       credits: [],
     },
+    now: new Date(),
+  },
+};
+
+export const FutureWork: Story = {
+  args: {
+    work: albums[0],
+    now: new Date("2002-09-04"),
   },
 };

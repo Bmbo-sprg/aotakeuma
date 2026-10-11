@@ -1,5 +1,10 @@
 import { describe, expect, it } from "vitest";
-import { hexToRgb, toLocaleDateString, toLocaleString } from "./formats";
+import {
+  daysUntil,
+  hexToRgb,
+  toLocaleDateString,
+  toLocaleString,
+} from "./formats";
 
 describe("hexToRgb", () => {
   it("# 付きの hex を rgb に変換する", () => {
@@ -32,5 +37,44 @@ describe("toLocaleString", () => {
     expect(result).toMatch(/15/);
     expect(result).toMatch(/12/);
     expect(result).toMatch(/30/);
+  });
+});
+
+describe("daysUntil", () => {
+  it("JST の日付単位で同じ日なら 0 を返す", () => {
+    const date = new Date("2026-04-26T00:00:00+09:00"); // JST 4/26 0:00
+    const now = new Date("2026-04-26T23:00:00+09:00"); // JST 4/26 23:00
+    expect(daysUntil(date, now)).toBe(0);
+  });
+
+  it("date を UTC 時刻なしで作っても JST 扱いで同じ日なら 0 を返す", () => {
+    // new Date("2026-04-26") は UTC 0:00 = JST 9:00 扱い
+    const date = new Date("2026-04-26");
+    const now = new Date("2026-04-26T23:00:00+09:00");
+    expect(daysUntil(date, now)).toBe(0);
+  });
+
+  it("1 日後なら 1 を返す", () => {
+    const date = new Date("2026-04-27T00:00:00+09:00");
+    const now = new Date("2026-04-26T23:00:00+09:00");
+    expect(daysUntil(date, now)).toBe(1);
+  });
+
+  it("1 日前なら -1 を返す", () => {
+    const date = new Date("2026-04-25T00:00:00+09:00");
+    const now = new Date("2026-04-26T00:00:00+09:00");
+    expect(daysUntil(date, now)).toBe(-1);
+  });
+
+  it("複数日先でも正しく計算する", () => {
+    const date = new Date("2026-05-10T00:00:00+09:00");
+    const now = new Date("2026-04-26T00:00:00+09:00");
+    expect(daysUntil(date, now)).toBe(14);
+  });
+
+  it("年をまたいでも正しく計算する", () => {
+    const date = new Date("2027-01-02T00:00:00+09:00");
+    const now = new Date("2026-12-31T00:00:00+09:00");
+    expect(daysUntil(date, now)).toBe(2);
   });
 });
