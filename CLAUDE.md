@@ -45,11 +45,10 @@ The Cloudflare Worker (`workers/app.ts`) is the true entry point. All API routes
 
 All site content lives as static TypeScript in `app/contents/`. Types are defined in `app/types.ts`. The main types are `Album`, `Music`, `Game`, `Event` (Performance/Exhibition). When adding a new work or event:
 
-1. Create a file in the appropriate `app/contents/works/` or `app/contents/events/` subdirectory
-2. Export it from the subdirectory's `index.ts`
-3. The top-level `app/contents/works/index.ts` and `app/contents/events/index.ts` aggregate everything — add the new item there too
+1. Create a file in the appropriate leaf subdirectory (`app/contents/works/{albums,musics,games}/` or `app/contents/events/{performances,exhibitions}/`), exporting a single object (or an array of objects, for a multi-track file like `*_insts.ts`)
+2. That's it — each leaf directory's `index.ts` auto-registers every sibling file via `import.meta.glob` (see `app/contents/collectContents.ts`). No manual import/registration step is needed.
 
-IDs must be unique across both works and events, match `^[a-z0-9_]+$`, and avoid reserved path names (`works`, `events`, `contact`).
+IDs must be unique across both works and events, match `^[a-z0-9_]+$`, and avoid reserved path names (`works`, `events`, `contact`) — enforced by `app/contents/contents.test.ts`.
 
 ### Download system
 
