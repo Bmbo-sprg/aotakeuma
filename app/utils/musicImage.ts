@@ -40,20 +40,3 @@ export const resolveMusicImage = (
 
   return null;
 };
-
-// 収録アルバムのジャケットを流用する場合、アルバム本体のカードと見分けが
-// つくよう、淡い色の枠線を付ける（色は id から決定論的に選ぶ。SSR で
-// サーバーとクライアントの表示がずれないようにするため）
-const PASTEL_BORDER_CLASSES = [
-  "border-rose-200",
-  "border-amber-200",
-  "border-lime-200",
-  "border-teal-200",
-  "border-sky-200",
-  "border-violet-200",
-];
-
-export const pickPastelBorderClass = (id: string) => {
-  const hash = [...id].reduce((sum, char) => sum + char.charCodeAt(0), 0);
-  return PASTEL_BORDER_CLASSES[hash % PASTEL_BORDER_CLASSES.length];
-};

@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import type { Album, Music } from "~/types";
-import { pickPastelBorderClass, resolveMusicImage } from "./musicImage";
+import { resolveMusicImage } from "./musicImage";
 
 const baseMusic: Music = {
   type: "music",
@@ -73,15 +73,5 @@ describe("resolveMusicImage", () => {
 
   it("どれもなければ null を返す", () => {
     expect(resolveMusicImage(baseMusic, [])).toBeNull();
-  });
-});
-
-describe("pickPastelBorderClass", () => {
-  it("同じ id には常に同じクラスを返す（SSR でずれないため）", () => {
-    expect(pickPastelBorderClass("foo")).toBe(pickPastelBorderClass("foo"));
-  });
-
-  it("border- から始まるクラス名を返す", () => {
-    expect(pickPastelBorderClass("foo")).toMatch(/^border-/);
   });
 });

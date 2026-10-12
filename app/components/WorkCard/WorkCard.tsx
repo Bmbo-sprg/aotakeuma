@@ -3,10 +3,7 @@ import type { Album, Game, Music, Work } from "~/types";
 import { works } from "../../contents/works";
 import { albums } from "../../contents/works/albums";
 import { daysUntil, toLocaleDateString } from "../../utils/formats";
-import {
-  pickPastelBorderClass,
-  resolveMusicImage,
-} from "../../utils/musicImage";
+import { resolveMusicImage } from "../../utils/musicImage";
 import { getWorkPath } from "../../utils/paths";
 import { TagList } from "../TagList/TagList";
 import { ThumbnailImage } from "../ThumbnailImage/ThumbnailImage";
@@ -40,7 +37,6 @@ export const WorkCard = ({
       : work.type === "music"
         ? resolveMusicImage(work as Music, albums)
         : null;
-  const isBorrowedImage = image?.source === "album";
 
   const remainingDays = daysUntil(work.releaseDate, now);
   const isFutureWork = remainingDays >= 0;
@@ -67,14 +63,6 @@ export const WorkCard = ({
             src={image?.url ?? null}
             alt={`${work.title}のジャケット画像`}
           />
-          {isBorrowedImage ? (
-            <div
-              className={[
-                "pointer-events-none absolute inset-1 rounded-sm border-4",
-                pickPastelBorderClass(work.id),
-              ].join(" ")}
-            />
-          ) : null}
           {isFutureWork ? (
             <span className="absolute top-1 left-1 rounded-full bg-secondary px-2 py-0.5 text-[10px] font-semibold text-slate-900 shadow-sm sm:top-2 sm:left-2">
               {remainingDaysText}
