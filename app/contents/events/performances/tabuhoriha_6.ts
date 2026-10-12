@@ -12,7 +12,7 @@ export const tabuhoriha_6: Performance = {
   date: new Date("2026-06-26"),
   location: "月あかり夢てらす",
   detailLink: {
-    platform: "twipla",
+    platform: "website",
     url: "https://twipla.jp/events/721562",
   },
   twitterLink: {

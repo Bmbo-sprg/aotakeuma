@@ -13,7 +13,7 @@ export const vocacirc_3: Performance = {
   date: new Date("2025-02-15"),
   location: "なんばMILULARI Legacy",
   detailLink: {
-    platform: "twipla",
+    platform: "website",
     url: "https://twipla.jp/events/661163",
   },
   twitterLink: {

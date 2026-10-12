@@ -50,7 +50,7 @@ export const tsuisou: Album = {
       url: "https://music.youtube.com/playlist?list=OLAK5uy_koKcxiRJy9kJWg_8GlGFWL9YJW-aM3tGs",
     },
     {
-      platform: "linkcore",
+      platform: "website",
       url: "https://linkco.re/a6386MnX",
     },
   ],

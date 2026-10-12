@@ -12,7 +12,7 @@ export const dddd_2: Performance = {
   date: new Date("2026-07-02"),
   location: "秋葉原 雷神 3F",
   detailLink: {
-    platform: "twipla",
+    platform: "website",
     url: "https://twipla.jp/events/730380",
   },
   twitterLink: {

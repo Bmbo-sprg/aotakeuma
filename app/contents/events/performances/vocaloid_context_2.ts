@@ -12,7 +12,7 @@ export const vocaloid_context_2: Performance = {
   date: new Date("2025-08-09"),
   location: "Cafe Bar LIVRE",
   detailLink: {
-    platform: "twipla",
+    platform: "website",
     url: "https://twipla.jp/events/682354",
   },
   twitterLink: {

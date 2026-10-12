@@ -12,7 +12,7 @@ export const koeoto_seizaban: Performance = {
   date: new Date("2025-06-14"),
   location: "ボカブキ",
   detailLink: {
-    platform: "twipla",
+    platform: "website",
     url: "https://twipla.jp/events/673291",
   },
   twitterLink: {

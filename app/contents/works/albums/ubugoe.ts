@@ -47,7 +47,7 @@ export const ubugoe: Album = {
       url: "https://music.youtube.com/playlist?list=OLAK5uy_lc7I6Z-l2GHvMHWn7td3BEn9CEFOV55xc",
     },
     {
-      platform: "linkcore",
+      platform: "website",
       url: "https://linkco.re/b09S57Vu",
     },
   ],
