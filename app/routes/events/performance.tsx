@@ -5,8 +5,10 @@ import { BackButton } from "../../components/BackButton/BackButton";
 import { EventHeadSection } from "../../components/EventHeadSection/EventHeadSection";
 import { EventDescriptionSection } from "../../components/EventDescriptionSection/EventDescriptionSection";
 import { MixcloudIframe } from "../../components/MixcloudIframe/MixcloudIframe";
+import { ShareButton } from "../../components/ShareButton/ShareButton";
 import { SocialLinkList } from "../../components/SocialLinkList/SocialLinkList";
 import { buildOGMeta, getEventPath } from "../../utils/paths";
+import { buildEventDiscoveryShareText } from "../../utils/shareText";
 
 export function meta({ loaderData }: Route.MetaArgs) {
   return buildOGMeta({
@@ -38,6 +40,7 @@ export function PerformanceView({ event }: { event: Performance }) {
         size={"lg"}
       />
       <EventDescriptionSection description={event.description} />
+      <ShareButton text={buildEventDiscoveryShareText(event)} />
       {event.mixcloudLink && (
         <section className="space-y-3">
           <h2 className="text-lg font-semibold text-slate-900">再現MIXなど</h2>

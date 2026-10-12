@@ -7,10 +7,12 @@ import { Banner } from "../../components/Banner/Banner";
 import { BackButton } from "../../components/BackButton/BackButton";
 import { CreditCardList } from "../../components/CreditCardList/CreditCardList";
 import { EventCard } from "../../components/EventCard/EventCard";
+import { ShareButton } from "../../components/ShareButton/ShareButton";
 import { SocialLinkItem } from "../../components/SocialLinkItem/SocialLinkItem";
 import { TagList } from "../../components/TagList/TagList";
 import { toLocaleDateString } from "../../utils/formats";
 import { buildOGMeta, getWorkPath } from "../../utils/paths";
+import { buildWorkDiscoveryShareText } from "../../utils/shareText";
 
 export function meta({ loaderData }: Route.MetaArgs) {
   return buildOGMeta({
@@ -60,6 +62,8 @@ export function GameView({ game, now }: { game: Game; now: Date }) {
             {game.description.trim()}
           </p>
         </section>
+
+        <ShareButton text={buildWorkDiscoveryShareText(game)} />
 
         <section className="space-y-3">
           <h2 className="text-lg font-semibold text-slate-900">クレジット</h2>
