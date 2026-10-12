@@ -12,6 +12,7 @@ import { VideoIframe } from "../../components/VideoIframe/VideoIframe";
 import { WorkCard } from "../../components/WorkCard/WorkCard";
 import { AccordionSection } from "../../components/AccordionSection/AccordionSection";
 import { toLocaleDateString } from "../../utils/formats";
+import { resolveMusicImage } from "../../utils/musicImage";
 import { buildOGMeta, getWorkPath } from "../../utils/paths";
 
 const aggregateAlbums = (music: Music) =>
@@ -19,12 +20,8 @@ const aggregateAlbums = (music: Music) =>
     .filter((album) => album.tracks.some((track) => track.id === music.id))
     .sort((a, b) => b.releaseDate.getTime() - a.releaseDate.getTime());
 
-const getBannerPath = (music: Music) => {
-  if (music.jacketImageUrl) return music.jacketImageUrl;
-
-  const latestAlbum = aggregateAlbums(music)[0];
-  return latestAlbum ? latestAlbum.jacketImageUrl : "/images/aotakeuma_ogp.png";
-};
+const getBannerPath = (music: Music) =>
+  resolveMusicImage(music, albums)?.url ?? "/images/aotakeuma_ogp.png";
 
 /**
  * 楽曲のリンク集をその収録アルバムから集める
