@@ -1,9 +1,12 @@
 import { Link } from "react-router";
 import type { Album, Game, Music, Work } from "~/types";
 import { works } from "../../contents/works";
+import { albums } from "../../contents/works/albums";
 import { daysUntil, toLocaleDateString } from "../../utils/formats";
+import { resolveMusicImage } from "../../utils/musicImage";
 import { getWorkPath } from "../../utils/paths";
 import { TagList } from "../TagList/TagList";
+import { ThumbnailImage } from "../ThumbnailImage/ThumbnailImage";
 
 const workTypeLabel: Record<Work["type"], string> = {
   album: "アルバム",
@@ -28,10 +31,12 @@ export const WorkCard = ({
   const isLinkable = works.some((item) => item.id === work.id);
   const Wrapper = isLinkable ? Link : "div";
   const wrapperProps = isLinkable ? { to: getWorkPath(work) } : { to: "" };
-  const jacketImageUrl =
-    ["album", "game"].includes(work.type) || (work as Music).jacketImageUrl
-      ? (work as Album | Game | Music).jacketImageUrl
-      : null;
+  const image =
+    work.type === "album" || work.type === "game"
+      ? { url: (work as Album | Game).jacketImageUrl, source: "own" as const }
+      : work.type === "music"
+        ? resolveMusicImage(work as Music, albums)
+        : null;
 
   const remainingDays = daysUntil(work.releaseDate, now);
   const isFutureWork = remainingDays >= 0;
@@ -53,23 +58,12 @@ export const WorkCard = ({
         {...wrapperProps}
         className="flex h-full flex-row-reverse items-start gap-3 sm:flex-col sm:items-stretch sm:gap-0"
       >
-        <div className="relative flex h-24 w-24 shrink-0 items-center justify-center overflow-hidden rounded-md bg-slate-100 sm:-mx-4 sm:-mt-4 sm:mb-2 sm:h-auto sm:w-auto sm:aspect-video sm:rounded-t-lg sm:rounded-b-none">
-          {jacketImageUrl ? (
-            <img
-              src={jacketImageUrl}
-              alt={`${work.title}のジャケット画像`}
-              className="h-full w-full object-cover sm:object-contain"
-            />
-          ) : (
-            <div className="flex h-full w-full flex-col items-center justify-center gap-1 bg-primary/10 p-2 text-center sm:p-3">
-              <p className="text-[11px] font-semibold text-slate-500">
-                {workTypeLabel[work.type]}
-              </p>
-              <p className="text-xs font-semibold text-slate-700">
-                {toLocaleDateString(work.releaseDate)}
-              </p>
-            </div>
-          )}
+        <div className="relative h-24 w-24 shrink-0 overflow-hidden rounded-md bg-slate-100 sm:-mx-4 sm:-mt-4 sm:mb-2 sm:h-auto sm:w-auto sm:aspect-video sm:rounded-t-lg sm:rounded-b-none">
+          <ThumbnailImage
+            src={image?.url ?? null}
+            alt={`${work.title}のジャケット画像`}
+            fit={image?.source === "youtube" ? "cover" : "contain"}
+          />
           {isFutureWork ? (
             <span className="absolute top-1 left-1 rounded-full bg-secondary px-2 py-0.5 text-[10px] font-semibold text-slate-900 shadow-sm sm:top-2 sm:left-2">
               {remainingDaysText}

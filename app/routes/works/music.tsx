@@ -12,6 +12,7 @@ import { VideoIframe } from "../../components/VideoIframe/VideoIframe";
 import { WorkCard } from "../../components/WorkCard/WorkCard";
 import { AccordionSection } from "../../components/AccordionSection/AccordionSection";
 import { toLocaleDateString } from "../../utils/formats";
+import { resolveMusicImage } from "../../utils/musicImage";
 import { buildOGMeta, getWorkPath } from "../../utils/paths";
 
 const aggregateAlbums = (music: Music) =>
@@ -19,12 +20,15 @@ const aggregateAlbums = (music: Music) =>
     .filter((album) => album.tracks.some((track) => track.id === music.id))
     .sort((a, b) => b.releaseDate.getTime() - a.releaseDate.getTime());
 
-const getBannerPath = (music: Music) => {
-  if (music.jacketImageUrl) return music.jacketImageUrl;
+const getBannerPath = (music: Music) =>
+  resolveMusicImage(music, albums)?.url ?? "/images/aotakeuma_ogp.png";
 
-  const latestAlbum = aggregateAlbums(music)[0];
-  return latestAlbum ? latestAlbum.jacketImageUrl : "/images/aotakeuma_ogp.png";
-};
+// YouTube のサムネイルは上下に黒帯を含むため、黒帯だけ切り取った上で
+// Banner の横長の枠内に収める（ThumbnailImage 参照）
+const getBannerFit = (music: Music) =>
+  resolveMusicImage(music, albums)?.source === "youtube"
+    ? "cover-contain"
+    : "contain";
 
 /**
  * 楽曲のリンク集をその収録アルバムから集める
@@ -67,7 +71,11 @@ export function MusicView({ music, now }: { music: Music; now: Date }) {
 
   return (
     <main>
-      <Banner src={getBannerPath(music)} alt={`${music.title}のジャケット`} />
+      <Banner
+        src={getBannerPath(music)}
+        alt={`${music.title}のジャケット`}
+        fit={getBannerFit(music)}
+      />
 
       <div className="space-y-8 px-6 py-8 lg:max-w-4xl lg:mx-auto">
         <BackButton label="音楽一覧へ" href="/works?type=music" />
