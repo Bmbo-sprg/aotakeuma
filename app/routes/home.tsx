@@ -58,7 +58,8 @@ export function HomeView({
     .sort((a, b) => b.date.getTime() - a.date.getTime())
     .slice(0, 4);
   const randomEvent = events[random.nextInt(0, events.length - 1)];
-  const featuredSchedule = buildFutureSchedule(works, events, now).slice(0, 4);
+  const schedule = buildFutureSchedule(works, events, now);
+  const featuredSchedule = schedule.slice(0, 4);
 
   return (
     <main className="space-y-16 pb-20">
@@ -125,6 +126,7 @@ export function HomeView({
       <div className="mx-auto grid w-full max-w-6xl gap-8 px-6 lg:grid-cols-3 lg:items-start lg:gap-6">
         <HomeSection
           title="今後の予定"
+          countText={`直近の予定 x${schedule.length}`}
           viewAllHref="/schedule"
           items={featuredSchedule.map((scheduleItem) => ({
             key: scheduleItem.item.id,
@@ -139,7 +141,7 @@ export function HomeView({
 
         <HomeSection
           title="最近の作品"
-          countText={`アルバム x${albums.length} ／ 楽曲 x${musics.length} ／ ゲーム x${games.length} たくさん作ってるね`}
+          countText={`アルバム x${albums.length} ／ 楽曲 x${musics.length} ／ ゲーム x${games.length}`}
           viewAllHref="/works"
           randomHref={getWorkPath(randomWork)}
           items={featuredWorks.map((work) => ({
@@ -150,7 +152,7 @@ export function HomeView({
 
         <HomeSection
           title="最近のイベント"
-          countText={`即売会 x${exhibitions.length} ／ DJ・ライブ x${performances.length} こっちもぼちぼち頑張りたい`}
+          countText={`即売会 x${exhibitions.length} ／ DJ・ライブ x${performances.length}`}
           viewAllHref="/events"
           randomHref={getEventPath(randomEvent)}
           items={featuredEvents.map((event) => ({

@@ -27,9 +27,9 @@ export function ScheduleView({ now }: { now: Date }) {
       <h1 className="text-2xl font-semibold text-slate-900">今後の予定</h1>
 
       {schedule.length > 0 ? (
-        <ul className="grid gap-4">
+        <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {schedule.map((scheduleItem) => (
-            <li key={scheduleItem.item.id}>
+            <li key={scheduleItem.item.id} className="h-full">
               {scheduleItem.kind === "work" ? (
                 <WorkCard work={scheduleItem.item} now={now} />
               ) : (
