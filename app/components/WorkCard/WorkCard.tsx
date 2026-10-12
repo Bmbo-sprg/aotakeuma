@@ -62,6 +62,7 @@ export const WorkCard = ({
           <ThumbnailImage
             src={image?.url ?? null}
             alt={`${work.title}のジャケット画像`}
+            fit={image?.source === "youtube" ? "cover" : "contain"}
           />
           {isFutureWork ? (
             <span className="absolute top-1 left-1 rounded-full bg-secondary px-2 py-0.5 text-[10px] font-semibold text-slate-900 shadow-sm sm:top-2 sm:left-2">

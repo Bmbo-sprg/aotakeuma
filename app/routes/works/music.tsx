@@ -23,6 +23,11 @@ const aggregateAlbums = (music: Music) =>
 const getBannerPath = (music: Music) =>
   resolveMusicImage(music, albums)?.url ?? "/images/aotakeuma_ogp.png";
 
+// YouTube のサムネイルは上下に黒帯を含むため、他と異なり object-cover で
+// トリミングする（ThumbnailImage 参照）
+const getBannerFit = (music: Music) =>
+  resolveMusicImage(music, albums)?.source === "youtube" ? "cover" : "contain";
+
 /**
  * 楽曲のリンク集をその収録アルバムから集める
  * 以下の優先順位で同一プラットフォームのリンクをマージする
@@ -64,7 +69,11 @@ export function MusicView({ music, now }: { music: Music; now: Date }) {
 
   return (
     <main>
-      <Banner src={getBannerPath(music)} alt={`${music.title}のジャケット`} />
+      <Banner
+        src={getBannerPath(music)}
+        alt={`${music.title}のジャケット`}
+        fit={getBannerFit(music)}
+      />
 
       <div className="space-y-8 px-6 py-8 lg:max-w-4xl lg:mx-auto">
         <BackButton label="音楽一覧へ" href="/works?type=music" />

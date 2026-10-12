@@ -31,7 +31,7 @@ describe("buildCollageLayout", () => {
 
   it("画像が1件なら full 配置1件を返す", () => {
     expect(buildCollageLayout([album("a")])).toEqual([
-      { url: "/images/jackets/a.png", position: "full" },
+      { url: "/images/jackets/a.png", position: "full", fit: "contain" },
     ]);
   });
 
@@ -71,7 +71,7 @@ describe("buildCollageLayout", () => {
   it("ジャケットのない Work は無視する", () => {
     const works: Work[] = [otherWork("a"), album("b")];
     expect(buildCollageLayout(works)).toEqual([
-      { url: "/images/jackets/b.png", position: "full" },
+      { url: "/images/jackets/b.png", position: "full", fit: "contain" },
     ]);
   });
 });

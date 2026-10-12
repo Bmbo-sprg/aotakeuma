@@ -7,6 +7,12 @@ const FALLBACK_SRC = "/images/aotakeuma_ogp.png";
 type ThumbnailImageProps = {
   src: string | null;
   alt: string;
+  // YouTube のサムネイル（hqdefault.jpg）は常に 4:3 で、実際の動画が
+  // 16:9 の場合は上下に黒帯が焼き込まれている。"cover" にすると、
+  // 画像を 16:9 の塊とみなした上でその黒帯だけを切り取り、あとは
+  // "contain" と同様に枠内に収める（枠自体が横長でも、画像を
+  // 引き伸ばし過ぎない）
+  fit?: "contain" | "cover";
   className?: string;
 };
 
@@ -15,6 +21,7 @@ type ThumbnailImageProps = {
 export const ThumbnailImage = ({
   src,
   alt,
+  fit = "contain",
   className,
 }: ThumbnailImageProps) => {
   const [imgSrc, setImgSrc] = useState(src ?? FALLBACK_SRC);
@@ -41,7 +48,11 @@ export const ThumbnailImage = ({
           src={imgSrc}
           alt={alt}
           onError={handleError}
-          className="h-full w-full object-contain drop-shadow-2xl"
+          className={
+            fit === "cover"
+              ? "aspect-video h-auto w-auto max-h-full max-w-full object-cover drop-shadow-2xl"
+              : "h-full w-full object-contain drop-shadow-2xl"
+          }
         />
       </div>
     </div>
