@@ -9,7 +9,7 @@ export const shiobana_5: Exhibition = {
   description: "小樽組の「卒業」をテーマとしたEPを制作中です。",
   tags: [],
   date: new Date("2026-11-01"),
-  location: "大田区産業プラザPiO 小展示ホール 配置未定",
+  location: "大田区産業プラザPiO 小展示ホール 3年B組",
   links: [
     {
       platform: "twitter",
