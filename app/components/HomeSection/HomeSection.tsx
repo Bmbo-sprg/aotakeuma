@@ -43,7 +43,7 @@ export const HomeSection = ({
         <p className="truncate text-xs text-slate-700">{countText}</p>
       ) : null}
       {items.length > 0 ? (
-        <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
           {items.map(({ key, node }) => (
             <div key={key} className="h-full">
               {node}

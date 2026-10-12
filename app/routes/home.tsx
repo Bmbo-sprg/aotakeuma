@@ -51,15 +51,15 @@ export function HomeView({
   const featuredWorks = works
     .filter((work) => daysUntil(work.releaseDate, now) < 0)
     .sort((a, b) => b.releaseDate.getTime() - a.releaseDate.getTime())
-    .slice(0, 4);
+    .slice(0, 3);
   const randomWork = works[random.nextInt(0, works.length - 1)];
   const featuredEvents = events
     .filter((event) => daysUntil(event.date, now) < 0)
     .sort((a, b) => b.date.getTime() - a.date.getTime())
-    .slice(0, 4);
+    .slice(0, 3);
   const randomEvent = events[random.nextInt(0, events.length - 1)];
   const schedule = buildFutureSchedule(works, events, now);
-  const featuredSchedule = schedule.slice(0, 4);
+  const featuredSchedule = schedule.slice(0, 3);
 
   return (
     <main className="space-y-16 pb-20">

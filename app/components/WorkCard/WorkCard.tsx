@@ -49,16 +49,19 @@ export const WorkCard = ({
         .filter(Boolean)
         .join(" ")}
     >
-      <Wrapper {...wrapperProps} className="flex h-full flex-col">
-        <div className="relative -mx-4 -mt-4 mb-2 flex aspect-video items-center justify-center overflow-hidden rounded-t-lg bg-slate-100">
+      <Wrapper
+        {...wrapperProps}
+        className="flex h-full flex-row-reverse items-start gap-3 sm:flex-col sm:items-stretch sm:gap-0"
+      >
+        <div className="relative flex h-24 w-24 shrink-0 items-center justify-center overflow-hidden rounded-md bg-slate-100 sm:-mx-4 sm:-mt-4 sm:mb-2 sm:h-auto sm:w-auto sm:aspect-video sm:rounded-t-lg sm:rounded-b-none">
           {jacketImageUrl ? (
             <img
               src={jacketImageUrl}
               alt={`${work.title}のジャケット画像`}
-              className="h-full w-full object-contain"
+              className="h-full w-full object-cover sm:object-contain"
             />
           ) : (
-            <div className="flex h-full w-full flex-col items-center justify-center gap-1 bg-primary/10 p-3 text-center">
+            <div className="flex h-full w-full flex-col items-center justify-center gap-1 bg-primary/10 p-2 text-center sm:p-3">
               <p className="text-[11px] font-semibold text-slate-500">
                 {workTypeLabel[work.type]}
               </p>
@@ -68,7 +71,7 @@ export const WorkCard = ({
             </div>
           )}
           {isFutureWork ? (
-            <span className="absolute top-2 left-2 rounded-full bg-secondary px-2 py-0.5 text-[10px] font-semibold text-slate-900 shadow-sm">
+            <span className="absolute top-1 left-1 rounded-full bg-secondary px-2 py-0.5 text-[10px] font-semibold text-slate-900 shadow-sm sm:top-2 sm:left-2">
               {remainingDaysText}
             </span>
           ) : null}
