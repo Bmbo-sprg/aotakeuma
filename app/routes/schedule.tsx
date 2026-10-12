@@ -26,6 +26,10 @@ export function ScheduleView({ now }: { now: Date }) {
     <main className="space-y-8 p-6 pb-20 lg:mx-auto lg:max-w-4xl">
       <h1 className="text-2xl font-semibold text-slate-900">今後の予定</h1>
 
+      <p className="text-slate-700 whitespace-pre-line">
+        即売会やDJ／ライブ出演など、竹馬あおの今後の予定です
+      </p>
+
       {schedule.length > 0 ? (
         <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           {schedule.map((scheduleItem) => (
