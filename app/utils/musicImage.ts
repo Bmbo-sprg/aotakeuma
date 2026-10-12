@@ -12,21 +12,14 @@ const extractYoutubeVideoId = (url: string) => {
   return shortMatch ? shortMatch[1] : null;
 };
 
-// music 自身にジャケットがなければ、収録アルバムのジャケット → YouTube の
-// サムネイルの順にフォールバックする
+// music 自身にジャケットがなければ、YouTube のサムネイル → 収録アルバムの
+// ジャケットの順にフォールバックする
 export const resolveMusicImage = (
   music: Music,
   albums: Album[]
 ): MusicImage | null => {
   if (music.jacketImageUrl) {
     return { url: music.jacketImageUrl, source: "own" };
-  }
-
-  const albumWithTrack = albums.find((album) =>
-    album.tracks.some((track) => track.id === music.id)
-  );
-  if (albumWithTrack) {
-    return { url: albumWithTrack.jacketImageUrl, source: "album" };
   }
 
   const youtubeUrl = music.video?.youtubeUrl;
@@ -36,6 +29,13 @@ export const resolveMusicImage = (
       url: `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`,
       source: "youtube",
     };
+  }
+
+  const albumWithTrack = albums.find((album) =>
+    album.tracks.some((track) => track.id === music.id)
+  );
+  if (albumWithTrack) {
+    return { url: albumWithTrack.jacketImageUrl, source: "album" };
   }
 
   return null;

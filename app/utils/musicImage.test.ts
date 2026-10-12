@@ -36,15 +36,7 @@ describe("resolveMusicImage", () => {
     });
   });
 
-  it("自前のジャケットがなければ収録アルバムのジャケットを使う", () => {
-    const music = { ...baseMusic };
-    expect(resolveMusicImage(music, [albumWithTrack(music)])).toEqual({
-      url: "/images/jackets/test_album.png",
-      source: "album",
-    });
-  });
-
-  it("収録アルバムもなければ YouTube のサムネイルを使う", () => {
+  it("自前のジャケットがなく YouTube があれば収録アルバムより優先する", () => {
     const music: Music = {
       ...baseMusic,
       video: {
@@ -52,9 +44,17 @@ describe("resolveMusicImage", () => {
         youtubeUrl: "https://www.youtube.com/watch?v=abc123XYZ_-",
       },
     };
-    expect(resolveMusicImage(music, [])).toEqual({
+    expect(resolveMusicImage(music, [albumWithTrack(music)])).toEqual({
       url: "https://img.youtube.com/vi/abc123XYZ_-/hqdefault.jpg",
       source: "youtube",
+    });
+  });
+
+  it("自前のジャケットも YouTube もなければ収録アルバムのジャケットを使う", () => {
+    const music = { ...baseMusic };
+    expect(resolveMusicImage(music, [albumWithTrack(music)])).toEqual({
+      url: "/images/jackets/test_album.png",
+      source: "album",
     });
   });
 
