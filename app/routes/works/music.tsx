@@ -23,10 +23,12 @@ const aggregateAlbums = (music: Music) =>
 const getBannerPath = (music: Music) =>
   resolveMusicImage(music, albums)?.url ?? "/images/aotakeuma_ogp.png";
 
-// YouTube のサムネイルは上下に黒帯を含むため、他と異なり object-cover で
-// トリミングする（ThumbnailImage 参照）
+// YouTube のサムネイルは上下に黒帯を含むため、黒帯だけ切り取った上で
+// Banner の横長の枠内に収める（ThumbnailImage 参照）
 const getBannerFit = (music: Music) =>
-  resolveMusicImage(music, albums)?.source === "youtube" ? "cover" : "contain";
+  resolveMusicImage(music, albums)?.source === "youtube"
+    ? "cover-contain"
+    : "contain";
 
 /**
  * 楽曲のリンク集をその収録アルバムから集める

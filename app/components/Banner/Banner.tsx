@@ -3,7 +3,7 @@ import { ThumbnailImage } from "../ThumbnailImage/ThumbnailImage";
 type BannerProps = {
   src: string;
   alt: string;
-  fit?: "contain" | "cover";
+  fit?: "contain" | "cover" | "cover-contain";
   className?: string;
 };
 
