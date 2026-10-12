@@ -1,10 +1,12 @@
+import { buildXIntentUrl } from "../../utils/shareText";
+
 type ShareButtonProps = {
   text: string;
   className?: string;
 };
 
 export const ShareButton = ({ text, className }: ShareButtonProps) => {
-  const url = `https://x.com/intent/post?text=${encodeURIComponent(text)}`;
+  const url = buildXIntentUrl(text);
 
   return (
     <a

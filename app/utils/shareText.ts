@@ -78,3 +78,7 @@ export const buildScheduleShareText = (schedule: ScheduleItem[]): string => {
 
   return [header, ...itemTexts].join("\n\n");
 };
+
+// X の投稿画面を開く intent リンクを組み立てる
+export const buildXIntentUrl = (text: string): string =>
+  `https://x.com/intent/post?text=${encodeURIComponent(text)}`;

@@ -2,4 +2,5 @@
 // wrangler secret で管理するシークレットの型はここで手動拡張する
 interface Env {
   SIGNED_URL_SECRET: string;
+  DISCORD_WEBHOOK_URL: string;
 }

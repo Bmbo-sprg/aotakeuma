@@ -2,6 +2,9 @@ import { createRequestHandler, type AppLoadContext } from "react-router";
 import { fetchLastCommitAt } from "./lastCommit";
 import { api } from "./api/router";
 import { fixDevOrigin } from "./middleware/fixDevOrigin";
+import { sendWeeklyScheduleNotification } from "./weeklyScheduleNotification";
+import { works } from "../app/contents/works";
+import { events } from "../app/contents/events";
 
 declare module "react-router" {
   export interface AppLoadContext {
@@ -43,5 +46,9 @@ export default {
       fixDevOrigin(request),
       await buildAppLoadContext(env, ctx)
     );
+  },
+
+  async scheduled(_controller, env, ctx) {
+    ctx.waitUntil(sendWeeklyScheduleNotification(works, events, env));
   },
 } satisfies ExportedHandler<Env>;
