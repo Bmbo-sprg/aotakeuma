@@ -113,7 +113,7 @@ export function MusicView({ music, now }: { music: Music; now: Date }) {
             <h2 className="text-lg font-semibold text-slate-900">
               収録されているアルバム
             </h2>
-            <div className="space-y-3">
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
               {albumsWithTrack.map((album) => (
                 <WorkCard key={album.id} work={album} now={now} />
               ))}

@@ -15,10 +15,16 @@ const workTypeLabel: Record<Work["type"], string> = {
 type WorkCardProps = {
   work: Work;
   now: Date;
+  showTags?: boolean;
   className?: string;
 };
 
-export const WorkCard = ({ work, now, className }: WorkCardProps) => {
+export const WorkCard = ({
+  work,
+  now,
+  showTags = true,
+  className,
+}: WorkCardProps) => {
   const isLinkable = works.some((item) => item.id === work.id);
   const Wrapper = isLinkable ? Link : "div";
   const wrapperProps = isLinkable ? { to: getWorkPath(work) } : { to: "" };
@@ -30,7 +36,7 @@ export const WorkCard = ({ work, now, className }: WorkCardProps) => {
   const remainingDays = daysUntil(work.releaseDate, now);
   const isFutureWork = remainingDays >= 0;
   const remainingDaysText =
-    remainingDays === 0 ? "本日！" : `あと${remainingDays}日`;
+    remainingDays === 0 ? "本日！" : `${remainingDays}日後`;
 
   return (
     <div
@@ -44,12 +50,12 @@ export const WorkCard = ({ work, now, className }: WorkCardProps) => {
         .join(" ")}
     >
       <Wrapper {...wrapperProps} className="flex h-full flex-col">
-        <div className="relative -mx-4 -mt-4 mb-2 aspect-square overflow-hidden rounded-t-lg bg-slate-100">
+        <div className="relative -mx-4 -mt-4 mb-2 flex aspect-video items-center justify-center overflow-hidden rounded-t-lg bg-slate-100">
           {jacketImageUrl ? (
             <img
               src={jacketImageUrl}
               alt={`${work.title}のジャケット画像`}
-              className="h-full w-full object-cover"
+              className="h-full w-full object-contain"
             />
           ) : (
             <div className="flex h-full w-full flex-col items-center justify-center gap-1 bg-primary/10 p-3 text-center">
@@ -76,7 +82,7 @@ export const WorkCard = ({ work, now, className }: WorkCardProps) => {
               {work.title}
             </p>
           </div>
-          <TagList tags={work.tags} className="gap-1" />
+          {showTags ? <TagList tags={work.tags} className="gap-1" /> : null}
           <p className="text-xs text-slate-700 line-clamp-2">
             {work.description.trim()}
           </p>

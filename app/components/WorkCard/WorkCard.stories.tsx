@@ -55,3 +55,11 @@ export const FutureWork: Story = {
     now: new Date("2002-09-04"),
   },
 };
+
+export const TagsHidden: Story = {
+  args: {
+    work: musics[0],
+    now: new Date(),
+    showTags: false,
+  },
+};

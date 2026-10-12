@@ -123,7 +123,7 @@ export function HomeView({
         </div>
       </section>
 
-      <div className="mx-auto grid w-full max-w-6xl gap-8 px-6 lg:grid-cols-3 lg:items-start lg:gap-6">
+      <div className="mx-auto flex w-full max-w-6xl flex-col gap-8 px-6">
         <HomeSection
           title="今後の予定"
           countText={`直近の予定 x${schedule.length}`}
@@ -132,9 +132,13 @@ export function HomeView({
             key: scheduleItem.item.id,
             node:
               scheduleItem.kind === "work" ? (
-                <WorkCard work={scheduleItem.item} now={now} />
+                <WorkCard work={scheduleItem.item} now={now} showTags={false} />
               ) : (
-                <EventCard event={scheduleItem.item} now={now} />
+                <EventCard
+                  event={scheduleItem.item}
+                  now={now}
+                  showTags={false}
+                />
               ),
           }))}
         />
@@ -146,7 +150,7 @@ export function HomeView({
           randomHref={getWorkPath(randomWork)}
           items={featuredWorks.map((work) => ({
             key: work.id,
-            node: <WorkCard work={work} now={now} />,
+            node: <WorkCard work={work} now={now} showTags={false} />,
           }))}
         />
 
@@ -157,7 +161,7 @@ export function HomeView({
           randomHref={getEventPath(randomEvent)}
           items={featuredEvents.map((event) => ({
             key: event.id,
-            node: <EventCard event={event} now={now} />,
+            node: <EventCard event={event} now={now} showTags={false} />,
           }))}
         />
       </div>

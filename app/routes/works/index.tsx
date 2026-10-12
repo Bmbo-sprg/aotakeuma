@@ -189,7 +189,7 @@ export function WorksView({
 
       <p className="text-sm text-slate-700">{filteredWorks.length}件の作品</p>
 
-      <ul className="grid gap-4">
+      <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         {filteredWorks.map((work) => (
           <li key={work.id}>
             <WorkCard work={work} now={now} className="animate-subtle-in" />

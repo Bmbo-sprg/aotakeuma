@@ -47,3 +47,11 @@ export const FutureEvent: Story = {
     now: new Date("2002-09-04"),
   },
 };
+
+export const TagsHidden: Story = {
+  args: {
+    event: performances[0],
+    now: new Date(),
+    showTags: false,
+  },
+};

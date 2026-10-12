@@ -37,7 +37,7 @@ export function ExhibitionView({
       <EventDescriptionSection description={event.description} />
       <section className="space-y-3">
         <h2 className="text-lg font-semibold text-slate-900">頒布物</h2>
-        <ul className="grid gap-4">
+        <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           {event.catalog.map((work) => (
             <li key={work.id}>
               <WorkCard work={work} now={now} />

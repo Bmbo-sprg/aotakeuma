@@ -27,10 +27,16 @@ const getExhibitionImageUrl = (event: Event) => {
 type EventCardProps = {
   event: Event;
   now: Date;
+  showTags?: boolean;
   className?: string;
 };
 
-export const EventCard = ({ event, now, className }: EventCardProps) => {
+export const EventCard = ({
+  event,
+  now,
+  showTags = true,
+  className,
+}: EventCardProps) => {
   const isLinkable = events.some((item) => item.id === event.id);
   const Wrapper = isLinkable ? Link : "div";
   const wrapperProps = isLinkable ? { to: getEventPath(event) } : { to: "" };
@@ -39,7 +45,7 @@ export const EventCard = ({ event, now, className }: EventCardProps) => {
   const remainingDays = daysUntil(event.date, now);
   const isFutureEvent = remainingDays >= 0;
   const remainingDaysText =
-    remainingDays === 0 ? "本日！" : `あと${remainingDays}日`;
+    remainingDays === 0 ? "本日！" : `${remainingDays}日後`;
 
   return (
     <div
@@ -53,9 +59,13 @@ export const EventCard = ({ event, now, className }: EventCardProps) => {
         .join(" ")}
     >
       <Wrapper {...wrapperProps} className="flex h-full flex-col">
-        <div className="relative -mx-4 -mt-4 mb-2 aspect-square overflow-hidden rounded-t-lg bg-slate-100">
+        <div className="relative -mx-4 -mt-4 mb-2 flex aspect-video items-center justify-center overflow-hidden rounded-t-lg bg-slate-100">
           {imageUrl ? (
-            <img src={imageUrl} alt="" className="h-full w-full object-cover" />
+            <img
+              src={imageUrl}
+              alt=""
+              className="h-full w-full object-contain"
+            />
           ) : (
             <div className="flex h-full w-full flex-col items-center justify-center gap-1 bg-secondary/10 p-3 text-center">
               <p className="text-[11px] font-semibold text-slate-500">
@@ -81,7 +91,7 @@ export const EventCard = ({ event, now, className }: EventCardProps) => {
               {event.title}
             </p>
           </div>
-          <TagList tags={event.tags} className="gap-1" />
+          {showTags ? <TagList tags={event.tags} className="gap-1" /> : null}
           <p className="text-xs text-slate-700 line-clamp-2">
             {event.description.trim()}
           </p>
