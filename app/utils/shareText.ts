@@ -2,9 +2,6 @@ import type { Album, Event, Music, Performance, Work } from "~/types";
 import type { ScheduleItem } from "./schedule";
 import { toLocaleDateString } from "./formats";
 import { SITE_URL, getEventPath, getWorkPath } from "./paths";
-import { countWeightedLength } from "./tweetLength";
-
-const TWEET_LENGTH_LIMIT = 280;
 
 const WORK_TYPE_DISCOVERY_LABEL: Record<Work["type"], string> = {
   album: "アルバム",
@@ -58,23 +55,14 @@ const buildScheduleItemText = (scheduleItem: ScheduleItem) => {
   return `${scheduleItem.item.title}\n📅 ${dateText}${locationLine}`;
 };
 
-// 週次の Discord 通知用に、今後の予定一覧を1つのテキストにまとめる。
-// X の重み付き文字数で上限（280）に収まる件数だけを、近い順に詰める
+// 週次の Discord 通知用に、今後の予定一覧を1つのテキストにまとめる
+// （Discord 上で先生がコピペして使う前提のため、文字数上限は設けない）
 export const buildScheduleShareText = (schedule: ScheduleItem[]): string => {
   const header = "🎈 竹馬あお 今後の予定一覧";
-  const itemTexts: string[] = [];
-
-  for (const scheduleItem of schedule) {
-    const candidate = [
-      header,
-      ...itemTexts,
-      buildScheduleItemText(scheduleItem),
-    ]
-      .join("\n\n")
-      .trim();
-    if (countWeightedLength(candidate) > TWEET_LENGTH_LIMIT) break;
-    itemTexts.push(buildScheduleItemText(scheduleItem));
-  }
-
+  const itemTexts = schedule.map(buildScheduleItemText);
   return [header, ...itemTexts].join("\n\n");
 };
+
+// X の投稿画面を開く intent リンクを組み立てる
+export const buildXIntentUrl = (text: string): string =>
+  `https://x.com/intent/post?text=${encodeURIComponent(text)}`;
