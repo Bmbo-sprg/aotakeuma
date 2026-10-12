@@ -87,7 +87,7 @@ export function GameView({ game, now }: { game: Game; now: Date }) {
           <AccordionSection
             title="即売会遍歴"
             defaultOpen={true}
-            className="space-y-2"
+            className="grid grid-cols-1 gap-2 sm:grid-cols-2"
           >
             {exhibitionsWithGame.map((exhibition) => (
               <EventCard key={exhibition.id} event={exhibition} now={now} />

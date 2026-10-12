@@ -20,10 +20,16 @@ export function loader({ params }: Route.LoaderArgs) {
   if (!event) {
     throw new Response("Not Found", { status: 404 });
   }
-  return { event };
+  return { event, now: new Date() };
 }
 
-export function ExhibitionView({ event }: { event: Exhibition }) {
+export function ExhibitionView({
+  event,
+  now,
+}: {
+  event: Exhibition;
+  now: Date;
+}) {
   return (
     <main className="space-y-8 p-6">
       <BackButton label="即売会一覧へ" href="/events?type=exhibition" />
@@ -31,10 +37,10 @@ export function ExhibitionView({ event }: { event: Exhibition }) {
       <EventDescriptionSection description={event.description} />
       <section className="space-y-3">
         <h2 className="text-lg font-semibold text-slate-900">頒布物</h2>
-        <ul className="grid gap-4">
+        <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           {event.catalog.map((work) => (
             <li key={work.id}>
-              <WorkCard work={work} />
+              <WorkCard work={work} now={now} />
             </li>
           ))}
         </ul>
@@ -44,5 +50,5 @@ export function ExhibitionView({ event }: { event: Exhibition }) {
 }
 
 export default function ExhibitionRoute({ loaderData }: Route.ComponentProps) {
-  return <ExhibitionView event={loaderData.event} />;
+  return <ExhibitionView event={loaderData.event} now={loaderData.now} />;
 }

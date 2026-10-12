@@ -70,12 +70,19 @@ export function loader({ request }: Route.LoaderArgs) {
       to: url.searchParams.get("to") ?? "",
       sort: (url.searchParams.get("sort") as SortOrder) ?? "new",
     } satisfies WorkFilter,
+    now: new Date(),
   };
 }
 
 const DEBOUNCE_MS = 300;
 
-export function WorksView({ filters }: { filters: WorkFilter }) {
+export function WorksView({
+  filters,
+  now,
+}: {
+  filters: WorkFilter;
+  now: Date;
+}) {
   const [, setSearchParams] = useSearchParams();
   const [queryInput, setQueryInput] = useState(filters.query);
   const debounceRef = useRef<number | null>(null);
@@ -182,10 +189,10 @@ export function WorksView({ filters }: { filters: WorkFilter }) {
 
       <p className="text-sm text-slate-700">{filteredWorks.length}件の作品</p>
 
-      <ul className="grid gap-4">
+      <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         {filteredWorks.map((work) => (
           <li key={work.id}>
-            <WorkCard work={work} className="animate-subtle-in" />
+            <WorkCard work={work} now={now} className="animate-subtle-in" />
           </li>
         ))}
       </ul>
@@ -194,5 +201,5 @@ export function WorksView({ filters }: { filters: WorkFilter }) {
 }
 
 export default function WorksIndex({ loaderData }: Route.ComponentProps) {
-  return <WorksView filters={loaderData.filters} />;
+  return <WorksView filters={loaderData.filters} now={loaderData.now} />;
 }

@@ -1,7 +1,7 @@
 import { Link } from "react-router";
 import type { Album, Game, Music, Work } from "~/types";
 import { works } from "../../contents/works";
-import { toLocaleDateString } from "../../utils/formats";
+import { daysUntil, toLocaleDateString } from "../../utils/formats";
 import { getWorkPath } from "../../utils/paths";
 import { TagList } from "../TagList/TagList";
 
@@ -14,51 +14,85 @@ const workTypeLabel: Record<Work["type"], string> = {
 
 type WorkCardProps = {
   work: Work;
+  now: Date;
+  showTags?: boolean;
   className?: string;
 };
 
-export const WorkCard = ({ work, className }: WorkCardProps) => {
+export const WorkCard = ({
+  work,
+  now,
+  showTags = true,
+  className,
+}: WorkCardProps) => {
   const isLinkable = works.some((item) => item.id === work.id);
   const Wrapper = isLinkable ? Link : "div";
   const wrapperProps = isLinkable ? { to: getWorkPath(work) } : { to: "" };
-  const hasJacket =
-    ["album", "game"].includes(work.type) ||
-    (work.type === "music" && (work as Music).jacketImageUrl);
+  const jacketImageUrl =
+    ["album", "game"].includes(work.type) || (work as Music).jacketImageUrl
+      ? (work as Album | Game | Music).jacketImageUrl
+      : null;
+
+  const remainingDays = daysUntil(work.releaseDate, now);
+  const isFutureWork = remainingDays >= 0;
+  const remainingDaysText =
+    remainingDays === 0 ? "本日！" : `${remainingDays}日後`;
 
   return (
     <div
-      className={["group card", isLinkable && "interactive", className]
+      className={[
+        "group card flex h-full flex-col",
+        isLinkable && "interactive",
+        isFutureWork && "bg-secondary/20",
+        className,
+      ]
         .filter(Boolean)
         .join(" ")}
     >
       <Wrapper
         {...wrapperProps}
-        className="flex h-full items-start justify-between gap-8"
+        className="flex h-full flex-row-reverse items-start gap-3 sm:flex-col sm:items-stretch sm:gap-0"
       >
-        <div className="overflow-hidden space-y-1">
-          <p className="text-xs font-medium text-slate-500 -mb-1">
+        <div className="relative flex h-24 w-24 shrink-0 items-center justify-center overflow-hidden rounded-md bg-slate-100 sm:-mx-4 sm:-mt-4 sm:mb-2 sm:h-auto sm:w-auto sm:aspect-video sm:rounded-t-lg sm:rounded-b-none">
+          {jacketImageUrl ? (
+            <img
+              src={jacketImageUrl}
+              alt={`${work.title}のジャケット画像`}
+              className="h-full w-full object-cover sm:object-contain"
+            />
+          ) : (
+            <div className="flex h-full w-full flex-col items-center justify-center gap-1 bg-primary/10 p-2 text-center sm:p-3">
+              <p className="text-[11px] font-semibold text-slate-500">
+                {workTypeLabel[work.type]}
+              </p>
+              <p className="text-xs font-semibold text-slate-700">
+                {toLocaleDateString(work.releaseDate)}
+              </p>
+            </div>
+          )}
+          {isFutureWork ? (
+            <span className="absolute top-1 left-1 rounded-full bg-secondary px-2 py-0.5 text-[10px] font-semibold text-slate-900 shadow-sm sm:top-2 sm:left-2">
+              {remainingDaysText}
+            </span>
+          ) : null}
+        </div>
+        <div className="flex flex-1 flex-col gap-1 overflow-hidden">
+          <p className="text-[11px] font-medium text-slate-500">
             {workTypeLabel[work.type]}
           </p>
           <div className="flex flex-wrap items-center gap-x-2 gap-y-0">
-            <p className="text-lg font-semibold text-slate-900 truncate whitespace-pre-line break-all line-clamp-1">
+            <p className="text-sm font-semibold text-slate-900 truncate whitespace-pre-line break-all line-clamp-1">
               {work.title}
             </p>
-            <TagList tags={work.tags} className="gap-y-1" />
           </div>
-          <p className="text-sm text-slate-700 truncate whitespace-pre-line break-all line-clamp-1">
+          {showTags ? <TagList tags={work.tags} className="gap-1" /> : null}
+          <p className="text-xs text-slate-700 line-clamp-2">
             {work.description.trim()}
           </p>
-          <p className="text-xs text-slate-500 truncate line-clamp-1">
+          <p className="mt-auto text-[11px] text-slate-500">
             {toLocaleDateString(work.releaseDate)}
           </p>
         </div>
-        {hasJacket ? (
-          <img
-            src={(work as Album | Game | Music).jacketImageUrl}
-            alt={`${work.title}のジャケット画像`}
-            className="h-40 w-40 object-cover -m-4 rounded-md drop-shadow-sm border border-slate-300"
-          />
-        ) : null}
       </Wrapper>
     </div>
   );

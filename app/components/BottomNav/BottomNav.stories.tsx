@@ -12,6 +12,12 @@ type Story = StoryObj<typeof BottomNav>;
 
 export const Default: Story = {};
 
+export const ScheduleActive: Story = {
+  args: {
+    active: "schedule",
+  },
+};
+
 export const WorksActive: Story = {
   args: {
     active: "works",

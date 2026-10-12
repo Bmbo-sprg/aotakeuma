@@ -23,3 +23,18 @@ export const toLocaleString = (date: Date) => {
     timeZone: "Asia/Tokyo",
   });
 };
+
+// date を JST の日付（時刻は落とす）に変換してから now との差を日数で返す。
+// 実行環境のタイムゾーンに依存しないよう、Intl の timeZone を明示指定する。
+const toJstDateOnly = (date: Date) => {
+  const [year, month, day] = date
+    .toLocaleDateString("en-CA", { timeZone: "Asia/Tokyo" })
+    .split("-")
+    .map(Number);
+  return Date.UTC(year, month - 1, day);
+};
+
+export const daysUntil = (date: Date, now: Date) => {
+  const msPerDay = 24 * 60 * 60 * 1000;
+  return Math.round((toJstDateOnly(date) - toJstDateOnly(now)) / msPerDay);
+};

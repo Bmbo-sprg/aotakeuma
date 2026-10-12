@@ -58,10 +58,10 @@ export function loader({ params }: Route.LoaderArgs) {
   if (!music) {
     throw new Response("Not Found", { status: 404 });
   }
-  return { music };
+  return { music, now: new Date() };
 }
 
-export function MusicView({ music }: { music: Music }) {
+export function MusicView({ music, now }: { music: Music; now: Date }) {
   const albumsWithTrack = aggregateAlbums(music);
   const links = aggregateLinks(music);
 
@@ -113,9 +113,9 @@ export function MusicView({ music }: { music: Music }) {
             <h2 className="text-lg font-semibold text-slate-900">
               収録されているアルバム
             </h2>
-            <div className="space-y-3">
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
               {albumsWithTrack.map((album) => (
-                <WorkCard key={album.id} work={album} />
+                <WorkCard key={album.id} work={album} now={now} />
               ))}
             </div>
           </section>
@@ -148,5 +148,5 @@ export function MusicView({ music }: { music: Music }) {
 }
 
 export default function MusicRoute({ loaderData }: Route.ComponentProps) {
-  return <MusicView music={loaderData.music} />;
+  return <MusicView music={loaderData.music} now={loaderData.now} />;
 }

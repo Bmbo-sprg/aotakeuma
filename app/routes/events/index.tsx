@@ -196,7 +196,7 @@ export function EventsView({
         {filteredEvents.length}件のイベント
       </p>
 
-      <ul className="grid gap-4">
+      <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         {filteredEvents.map((event) => (
           <li key={event.id}>
             <EventCard event={event} now={now} className="animate-subtle-in" />
