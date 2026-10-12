@@ -44,13 +44,13 @@ export function OtherWorkView({ work }: { work: Work }) {
         </div>
       </section>
 
-      <ShareButton text={buildWorkDiscoveryShareText(work)} />
-
       <section>
         <p className="text-slate-700 whitespace-pre-line">
           {work.description.trim()}
         </p>
       </section>
+
+      <ShareButton text={buildWorkDiscoveryShareText(work)} />
 
       <section className="space-y-3">
         <h2 className="text-lg font-semibold text-slate-900">クレジット</h2>

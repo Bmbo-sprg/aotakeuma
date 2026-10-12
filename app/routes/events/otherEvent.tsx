@@ -29,8 +29,8 @@ export function OtherEventView({ event }: { event: Event }) {
     <main className="space-y-8 p-6">
       <BackButton label="イベント一覧へ" href="/events" />
       <EventHeadSection event={event} />
-      <ShareButton text={buildEventDiscoveryShareText(event)} />
       <EventDescriptionSection description={event.description} />
+      <ShareButton text={buildEventDiscoveryShareText(event)} />
     </main>
   );
 }

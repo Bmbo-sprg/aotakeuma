@@ -39,8 +39,8 @@ export function PerformanceView({ event }: { event: Performance }) {
         }
         size={"lg"}
       />
-      <ShareButton text={buildEventDiscoveryShareText(event)} />
       <EventDescriptionSection description={event.description} />
+      <ShareButton text={buildEventDiscoveryShareText(event)} />
       {event.mixcloudLink && (
         <section className="space-y-3">
           <h2 className="text-lg font-semibold text-slate-900">再現MIXなど</h2>

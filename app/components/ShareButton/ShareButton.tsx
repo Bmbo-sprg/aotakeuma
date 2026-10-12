@@ -12,13 +12,13 @@ export const ShareButton = ({ text, className }: ShareButtonProps) => {
       target="_blank"
       rel="noreferrer"
       className={[
-        "inline-flex w-fit items-center gap-2 rounded-full border border-slate-300 bg-primary/50 px-4 py-2 text-sm font-semibold text-slate-700",
+        "inline-flex w-fit items-center gap-1 rounded-full border border-slate-300 bg-white/80 px-3 py-1 text-sm font-semibold text-slate-700 shadow-sm transition-colors hover:bg-slate-50",
         className,
       ]
         .filter(Boolean)
         .join(" ")}
     >
-      X に共有
+      Xに共有
     </a>
   );
 };

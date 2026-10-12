@@ -57,13 +57,13 @@ export function GameView({ game, now }: { game: Game; now: Date }) {
           </div>
         </section>
 
-        <ShareButton text={buildWorkDiscoveryShareText(game)} />
-
         <section>
           <p className="text-slate-700 whitespace-pre-line">
             {game.description.trim()}
           </p>
         </section>
+
+        <ShareButton text={buildWorkDiscoveryShareText(game)} />
 
         <section className="space-y-3">
           <h2 className="text-lg font-semibold text-slate-900">クレジット</h2>

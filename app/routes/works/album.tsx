@@ -74,8 +74,6 @@ export function AlbumView({ album, now }: { album: Album; now: Date }) {
           </p>
         </section>
 
-        <ShareButton text={buildWorkDiscoveryShareText(album)} />
-
         {hasRecentExhibition && album.downloadEnabled ? (
           <DownloadSection productId={album.id} />
         ) : null}
@@ -85,6 +83,8 @@ export function AlbumView({ album, now }: { album: Album; now: Date }) {
             {album.description.trim()}
           </p>
         </section>
+
+        <ShareButton text={buildWorkDiscoveryShareText(album)} />
 
         <section className="space-y-3">
           <h2 className="text-lg font-semibold text-slate-900">クレジット</h2>

@@ -25,7 +25,7 @@ export const buildWorkShareText = (work: Work): string => {
   const lines = [`🎶 ${work.title}`, ""];
   if (video?.niconicoUrl) lines.push(`ニコニコ: ${video.niconicoUrl}`);
   if (video?.youtubeUrl) lines.push(`YouTube: ${video.youtubeUrl}`);
-  if (video?.bilibiliUrl) lines.push(`BiliBili: ${video.bilibiliUrl}`);
+  if (video?.bilibiliUrl) lines.push(`bilibili: ${video.bilibiliUrl}`);
   lines.push(`Website: ${SITE_URL}${getWorkPath(work)}`);
   return lines.join("\n");
 };

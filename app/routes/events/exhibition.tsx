@@ -36,8 +36,8 @@ export function ExhibitionView({
     <main className="space-y-8 p-6">
       <BackButton label="即売会一覧へ" href="/events?type=exhibition" />
       <EventHeadSection event={event} />
-      <ShareButton text={buildEventDiscoveryShareText(event)} />
       <EventDescriptionSection description={event.description} />
+      <ShareButton text={buildEventDiscoveryShareText(event)} />
       <section className="space-y-3">
         <h2 className="text-lg font-semibold text-slate-900">頒布物</h2>
         <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2">
