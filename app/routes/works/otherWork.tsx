@@ -3,11 +3,13 @@ import type { Route } from "./+types/otherWork";
 import { works } from "../../contents/works";
 import { BackButton } from "../../components/BackButton/BackButton";
 import { CreditCardList } from "../../components/CreditCardList/CreditCardList";
+import { ShareButton } from "../../components/ShareButton/ShareButton";
 import { SocialLinkItem } from "../../components/SocialLinkItem/SocialLinkItem";
 import { SpotifyIframe } from "../../components/SpotifyIframe/SpotifyIframe";
 import { TagList } from "../../components/TagList/TagList";
 import { toLocaleDateString } from "../../utils/formats";
 import { buildOGMeta, getWorkPath } from "../../utils/paths";
+import { buildWorkDiscoveryShareText } from "../../utils/shareText";
 
 export function meta({ loaderData }: Route.MetaArgs) {
   return buildOGMeta({
@@ -41,6 +43,8 @@ export function OtherWorkView({ work }: { work: Work }) {
           {work.team ? <span>by {work.team}</span> : null}
         </div>
       </section>
+
+      <ShareButton text={buildWorkDiscoveryShareText(work)} />
 
       <section>
         <p className="text-slate-700 whitespace-pre-line">

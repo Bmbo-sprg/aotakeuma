@@ -11,9 +11,11 @@ import { TagList } from "../../components/TagList/TagList";
 import { VideoIframe } from "../../components/VideoIframe/VideoIframe";
 import { WorkCard } from "../../components/WorkCard/WorkCard";
 import { AccordionSection } from "../../components/AccordionSection/AccordionSection";
+import { ShareButton } from "../../components/ShareButton/ShareButton";
 import { toLocaleDateString } from "../../utils/formats";
 import { resolveMusicImage } from "../../utils/musicImage";
 import { buildOGMeta, getWorkPath } from "../../utils/paths";
+import { buildWorkDiscoveryShareText } from "../../utils/shareText";
 
 const aggregateAlbums = (music: Music) =>
   albums
@@ -91,6 +93,8 @@ export function MusicView({ music, now }: { music: Music; now: Date }) {
             {music.team ? <span>by {music.team}</span> : null}
           </div>
         </section>
+
+        <ShareButton text={buildWorkDiscoveryShareText(music)} />
 
         <section>
           <p className="text-slate-700 whitespace-pre-line">

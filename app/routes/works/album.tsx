@@ -8,6 +8,7 @@ import { BackButton } from "../../components/BackButton/BackButton";
 import { CreditCardList } from "../../components/CreditCardList/CreditCardList";
 import { DownloadSection } from "../../components/DownloadSection/DownloadSection";
 import { EventCard } from "../../components/EventCard/EventCard";
+import { ShareButton } from "../../components/ShareButton/ShareButton";
 import { SocialLinkItem } from "../../components/SocialLinkItem/SocialLinkItem";
 import { SpotifyIframe } from "../../components/SpotifyIframe/SpotifyIframe";
 import { TagList } from "../../components/TagList/TagList";
@@ -15,6 +16,7 @@ import { TrackList } from "../../components/TrackList/TrackList";
 import { VideoIframe } from "../../components/VideoIframe/VideoIframe";
 import { toLocaleDateString } from "../../utils/formats";
 import { buildOGMeta, getWorkPath } from "../../utils/paths";
+import { buildWorkDiscoveryShareText } from "../../utils/shareText";
 
 export function meta({ loaderData }: Route.MetaArgs) {
   return buildOGMeta({
@@ -71,6 +73,8 @@ export function AlbumView({ album, now }: { album: Album; now: Date }) {
             {album.team ? <span>by {album.team}</span> : null}
           </p>
         </section>
+
+        <ShareButton text={buildWorkDiscoveryShareText(album)} />
 
         {hasRecentExhibition && album.downloadEnabled ? (
           <DownloadSection productId={album.id} />

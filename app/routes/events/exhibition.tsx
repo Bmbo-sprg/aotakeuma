@@ -4,8 +4,10 @@ import { exhibitions } from "../../contents/events/exhibitions";
 import { BackButton } from "../../components/BackButton/BackButton";
 import { EventHeadSection } from "../../components/EventHeadSection/EventHeadSection";
 import { EventDescriptionSection } from "../../components/EventDescriptionSection/EventDescriptionSection";
+import { ShareButton } from "../../components/ShareButton/ShareButton";
 import { WorkCard } from "../../components/WorkCard/WorkCard";
 import { buildOGMeta, getEventPath } from "../../utils/paths";
+import { buildEventDiscoveryShareText } from "../../utils/shareText";
 
 export function meta({ loaderData }: Route.MetaArgs) {
   return buildOGMeta({
@@ -34,6 +36,7 @@ export function ExhibitionView({
     <main className="space-y-8 p-6">
       <BackButton label="即売会一覧へ" href="/events?type=exhibition" />
       <EventHeadSection event={event} />
+      <ShareButton text={buildEventDiscoveryShareText(event)} />
       <EventDescriptionSection description={event.description} />
       <section className="space-y-3">
         <h2 className="text-lg font-semibold text-slate-900">頒布物</h2>

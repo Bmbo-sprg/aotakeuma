@@ -7,10 +7,12 @@ import { Banner } from "../../components/Banner/Banner";
 import { BackButton } from "../../components/BackButton/BackButton";
 import { CreditCardList } from "../../components/CreditCardList/CreditCardList";
 import { EventCard } from "../../components/EventCard/EventCard";
+import { ShareButton } from "../../components/ShareButton/ShareButton";
 import { SocialLinkItem } from "../../components/SocialLinkItem/SocialLinkItem";
 import { TagList } from "../../components/TagList/TagList";
 import { toLocaleDateString } from "../../utils/formats";
 import { buildOGMeta, getWorkPath } from "../../utils/paths";
+import { buildWorkDiscoveryShareText } from "../../utils/shareText";
 
 export function meta({ loaderData }: Route.MetaArgs) {
   return buildOGMeta({
@@ -54,6 +56,8 @@ export function GameView({ game, now }: { game: Game; now: Date }) {
             {game.team ? <span>by {game.team}</span> : null}
           </div>
         </section>
+
+        <ShareButton text={buildWorkDiscoveryShareText(game)} />
 
         <section>
           <p className="text-slate-700 whitespace-pre-line">

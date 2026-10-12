@@ -4,7 +4,9 @@ import { events } from "../../contents/events";
 import { BackButton } from "../../components/BackButton/BackButton";
 import { EventHeadSection } from "../../components/EventHeadSection/EventHeadSection";
 import { EventDescriptionSection } from "../../components/EventDescriptionSection/EventDescriptionSection";
+import { ShareButton } from "../../components/ShareButton/ShareButton";
 import { buildOGMeta, getEventPath } from "../../utils/paths";
+import { buildEventDiscoveryShareText } from "../../utils/shareText";
 
 export function meta({ loaderData }: Route.MetaArgs) {
   return buildOGMeta({
@@ -27,6 +29,7 @@ export function OtherEventView({ event }: { event: Event }) {
     <main className="space-y-8 p-6">
       <BackButton label="イベント一覧へ" href="/events" />
       <EventHeadSection event={event} />
+      <ShareButton text={buildEventDiscoveryShareText(event)} />
       <EventDescriptionSection description={event.description} />
     </main>
   );
