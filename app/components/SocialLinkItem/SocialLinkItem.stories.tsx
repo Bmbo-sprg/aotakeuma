@@ -25,3 +25,24 @@ export const Default: Story = {
     size: "xs",
   },
 };
+
+export const Website: Story = {
+  args: {
+    link: {
+      platform: "website",
+      url: "https://aotakeuma.com/",
+    },
+    size: "xs",
+  },
+};
+
+export const TextFallback: Story = {
+  name: "アイコンがないプラットフォーム（テキストにフォールバック）",
+  args: {
+    link: {
+      platform: "skeb",
+      url: "https://skeb.jp/",
+    },
+    size: "xs",
+  },
+};

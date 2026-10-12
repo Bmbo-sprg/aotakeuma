@@ -12,7 +12,7 @@ export const koeoto_uradenshi: Performance = {
   date: new Date("2025-10-10"),
   location: "ニコニコ生放送",
   detailLink: {
-    platform: "twinvite",
+    platform: "website",
     url: "https://twvt.me/KoeotoBunmyaku_2510",
   },
   twitterLink: {

@@ -13,7 +13,7 @@ Show must go on、そして、I must go (on) の気持ちで群像劇をやら�
   date: new Date("2026-02-22"),
   location: "IV AKIHABARA",
   detailLink: {
-    platform: "twinvite",
+    platform: "website",
     url: "https://twvt.me/KoeotoBunmyaku_2602",
   },
   twitterLink: {

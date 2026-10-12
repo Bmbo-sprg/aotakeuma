@@ -14,7 +14,7 @@ export const voca_white_7: Performance = {
   date: new Date("2026-05-31"),
   location: "DJ Bar White Space Lab",
   detailLink: {
-    platform: "twipla",
+    platform: "website",
     url: "https://twipla.jp/events/722665",
   },
   twitterLink: {

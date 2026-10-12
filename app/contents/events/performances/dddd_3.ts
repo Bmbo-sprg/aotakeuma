@@ -12,7 +12,7 @@ Toriya くんとフリー B2B しました。
   date: new Date("2026-09-17"),
   location: "秋葉原 雷神 3F",
   detailLink: {
-    platform: "twipla",
+    platform: "website",
     url: "https://twipla.jp/events/738289",
   },
   twitterLink: {

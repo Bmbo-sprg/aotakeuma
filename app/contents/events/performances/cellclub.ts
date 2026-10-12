@@ -12,7 +12,7 @@ export const cellclub: Performance = {
   date: new Date("2025-05-05"),
   location: "ギルドネオ",
   detailLink: {
-    platform: "twipla",
+    platform: "website",
     url: "https://twipla.jp/events/670966",
   },
   twitterLink: {

@@ -11,7 +11,7 @@ export const nhl_2: Performance = {
   date: new Date("2026-09-13"),
   location: "秋葉原 雷神 3F",
   detailLink: {
-    platform: "twipla",
+    platform: "website",
     url: "https://twipla.jp/events/731405",
   },
   twitterLink: {

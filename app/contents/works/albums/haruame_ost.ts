@@ -47,7 +47,7 @@ export const haruame_ost: Album = {
       url: "https://music.youtube.com/playlist?list=OLAK5uy_mP5-JJ1fZicijUC4qBvRGUQZgNryNimQk",
     },
     {
-      platform: "linkcore",
+      platform: "website",
       url: "https://linkco.re/zH2FRqQe",
     },
   ],

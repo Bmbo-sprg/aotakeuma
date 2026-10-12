@@ -47,7 +47,7 @@ export const snfe: Album = {
       url: "https://music.youtube.com/playlist?list=OLAK5uy_l5UEjTpblxeLMUlGm3CRKlL0n-cm8QMcc",
     },
     {
-      platform: "linkcore",
+      platform: "website",
       url: "https://linkco.re/dReUq97q",
     },
   ],

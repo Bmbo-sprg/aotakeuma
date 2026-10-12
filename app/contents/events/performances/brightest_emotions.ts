@@ -12,7 +12,7 @@ export const brightest_emotions: Performance = {
   date: new Date("2026-11-07"),
   location: "CIRCUS TOKYO",
   detailLink: {
-    platform: "twipla",
+    platform: "website",
     url: "https://twipla.jp/events/742015",
   },
   twitterLink: {
