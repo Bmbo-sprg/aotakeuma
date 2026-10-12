@@ -65,7 +65,7 @@ export const WorkCard = ({
             fit={image?.source === "youtube" ? "cover" : "contain"}
           />
           {isFutureWork ? (
-            <span className="absolute top-1 left-1 rounded-full bg-secondary px-2 py-0.5 text-[10px] font-semibold text-slate-900 shadow-sm sm:top-2 sm:left-2">
+            <span className="absolute top-1 left-1 z-20 rounded-full bg-secondary px-2 py-0.5 text-[10px] font-semibold text-slate-900 shadow-sm sm:top-2 sm:left-2">
               {remainingDaysText}
             </span>
           ) : null}
