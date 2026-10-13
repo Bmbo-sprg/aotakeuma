@@ -19,7 +19,7 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
-    "hono": "^4.13.7",
+    "hono": "^4.13.13",
     "isbot": "^5.1.44",
     "react": "^19.3.0",
     "react-day-picker": "^10.0.1",
