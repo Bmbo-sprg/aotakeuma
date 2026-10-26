@@ -21,9 +21,9 @@
   "dependencies": {
     "hono": "^4.13.13",
     "isbot": "^5.1.44",
-    "react": "^19.3.0",
+    "react": "^19.3.1",
     "react-day-picker": "^10.0.1",
-    "react-dom": "^19.3.0",
+    "react-dom": "^19.3.1",
     "react-router": "^7.18.3",
     "three": "^0.186.1"
   },
