@@ -20,7 +20,10 @@ export const yohkoh: Album = {
   ],
   releaseDate: new Date("2026-03-29"),
   links: [
-    // TODO: booth を作る
+    {
+      platform: "booth",
+      url: "https://aotakeuma.booth.pm/items/8720709",
+    },
   ],
   jacketImageUrl: "/images/jackets/yohkoh.png",
   tracks: [yusetsu, hoga, kaika, neuron],
