@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "hono": "^4.13.16",
-    "isbot": "^5.1.44",
+    "isbot": "^5.2.3",
     "react": "^19.3.1",
     "react-day-picker": "^10.0.1",
     "react-dom": "^19.3.1",
