@@ -4,9 +4,8 @@ import { getPerson } from "../../persons";
 export const juniku: Music = {
   type: "music",
   id: "juniku",
-  title: "受肉 (wip)",
+  title: "受肉",
   description: `
-(work in progress)
 天馬手毬と祈りとピアノバラード
 無色透名祭3 参加曲でした。
 `,
