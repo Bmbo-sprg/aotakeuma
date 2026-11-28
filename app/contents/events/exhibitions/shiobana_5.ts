@@ -1,5 +1,5 @@
 import { graduation } from "../../works/albums/graduation";
-import { yohkoh } from "../..//works/albums/yohkoh";
+import { yohkoh } from "../../works/albums/yohkoh";
 import { graduation_seal } from "../../works/graduation_seal";
 import { tnftep1 } from "../../works/albums/tnftep1";
 import type { Exhibition } from "~/types";

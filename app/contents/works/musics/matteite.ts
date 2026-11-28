@@ -24,40 +24,16 @@ export const matteite: Music = {
       role: "ボーカル",
     },
     {
-      name: "セブヶ崎詠人",
+      ...getPerson("セブヶ崎詠人"),
       role: "調声",
-      socialLinks: [
-        {
-          platform: "niconico",
-          url: "https://www.nicovideo.jp/user/31483136",
-        },
-        {
-          platform: "youtube",
-          url: "https://www.youtube.com/@SevgasakiEight",
-        },
-        {
-          platform: "twitter",
-          url: "https://x.com/SevgasakiEight",
-        },
-      ],
     },
     {
-      name: "光",
+      ...getPerson("光"),
       role: "調声",
-      socialLinks: [
-        {
-          platform: "niconico",
-          url: "https://www.nicovideo.jp/user/48871660",
-        },
-        {
-          platform: "youtube",
-          url: "https://www.youtube.com/@hikaru_so",
-        },
-        {
-          platform: "twitter",
-          url: "https://x.com/hikaru_so_",
-        },
-      ],
+    },
+    {
+      ...getPerson("侑凪継"),
+      role: "ミックス",
     },
   ],
   releaseDate: new Date("2026-07-25"),

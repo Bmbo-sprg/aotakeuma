@@ -28,22 +28,8 @@ export const sayounara_ryuseigun: Music = {
         role: "映像制作",
       },
       {
-        name: "ゆぐﾓ",
+        ...getPerson("ゆぐﾓ"),
         role: "イラスト、アニメーション",
-        socialLinks: [
-          {
-            platform: "pixiv",
-            url: "https://www.pixiv.net/users/20490764",
-          },
-          {
-            platform: "skeb",
-            url: "https://skeb.jp/@yuraruranoyuu",
-          },
-          {
-            platform: "twitter",
-            url: "https://x.com/yuraruranoyuu",
-          },
-        ],
       },
     ],
     youtubeUrl: "https://www.youtube.com/watch?v=0sFnq_p2EXw",

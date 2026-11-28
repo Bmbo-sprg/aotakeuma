@@ -14,11 +14,11 @@ VocaDuo2025 参加曲です。
   credits: [
     {
       ...getPerson("竹馬あお"),
-      role: "作詞、作曲、編曲、ミックス",
+      role: "作詞、作曲、編曲",
     },
     {
       name: "らいあん",
-      role: "ボーカル",
+      role: "ボーカル (VocaDuo2025版)",
       socialLinks: [
         {
           platform: "niconico",
@@ -36,7 +36,7 @@ VocaDuo2025 参加曲です。
     },
     {
       name: "霧崎 叶葉",
-      role: "ボーカル",
+      role: "ボーカル (VocaDuo2025版)",
       socialLinks: [
         {
           platform: "youtube",
@@ -50,7 +50,7 @@ VocaDuo2025 参加曲です。
     },
     {
       name: "いちき",
-      role: "ベース",
+      role: "ベース (VocaDuo2025版, VocaDuo2025vv版)",
       socialLinks: [
         {
           platform: "youtube",
@@ -73,6 +73,26 @@ VocaDuo2025 参加曲です。
     {
       name: "VOICEVOX 冥鳴ひまり",
       role: "ポエトリーリーディング (VocaDuo2025vv版)",
+    },
+    {
+      name: "OИE",
+      role: "ボーカル (アルバム版)",
+    },
+    {
+      name: "夢ノ結唱 POPY",
+      role: "ボーカル (アルバム版)",
+    },
+    {
+      ...getPerson("光"),
+      role: "調声 (アルバム版)",
+    },
+    {
+      ...getPerson("セブヶ崎詠人"),
+      role: "調声 (アルバム版)",
+    },
+    {
+      ...getPerson("侑凪継"),
+      role: "ミックス (アルバム版)",
     },
   ],
   releaseDate: new Date("2025-07-07"),

@@ -37,10 +37,23 @@ export const graduation: Album = {
   ],
   releaseDate: new Date("2026-11-01"),
   links: [
-    // TODO: booth を作る
+    {
+      platform: "booth",
+      url: "https://aotakeuma.booth.pm/items/9092357",
+    },
   ],
   jacketImageUrl: "/images/jackets/graduation.png",
   tracks: [sukuenakatta, kokonisaku, soji, akari2],
   downloadEnabled: true,
-  // TODO: 動画アップする
+  video: {
+    credits: [
+      {
+        ...getPerson("竹馬あお"),
+        role: "映像制作",
+      },
+    ],
+    youtubeUrl: "https://www.youtube.com/watch?v=2VGbbhUc7U4",
+    niconicoUrl: "https://www.nicovideo.jp/watch/sm47067717",
+    bilibiliUrl: "https://www.bilibili.com/video/BV1JuyWz8EK1",
+  },
 };

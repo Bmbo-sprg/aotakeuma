@@ -475,6 +475,74 @@ export const persons = [
       },
     ],
   },
+  {
+    name: "ゆぐﾓ",
+    socialLinks: [
+      {
+        platform: "pixiv",
+        url: "https://www.pixiv.net/users/20490764",
+      },
+      {
+        platform: "skeb",
+        url: "https://skeb.jp/@yuraruranoyuu",
+      },
+      {
+        platform: "twitter",
+        url: "https://x.com/yuraruranoyuu",
+      },
+    ],
+  },
+  {
+    name: "光",
+    socialLinks: [
+      {
+        platform: "niconico",
+        url: "https://www.nicovideo.jp/user/48871660",
+      },
+      {
+        platform: "youtube",
+        url: "https://www.youtube.com/@hikaru_so",
+      },
+      {
+        platform: "twitter",
+        url: "https://x.com/hikaru_so_",
+      },
+    ],
+  },
+  {
+    name: "セブヶ崎詠人",
+    socialLinks: [
+      {
+        platform: "niconico",
+        url: "https://www.nicovideo.jp/user/31483136",
+      },
+      {
+        platform: "youtube",
+        url: "https://www.youtube.com/@SevgasakiEight",
+      },
+      {
+        platform: "twitter",
+        url: "https://x.com/SevgasakiEight",
+      },
+    ],
+  },
+  {
+    name: "侑凪継",
+    socialLinks: [
+      {
+        platform: "niconico",
+        url: "https://www.nicovideo.jp/user/39253838",
+      },
+      {
+        platform: "youtube",
+        url: "https://www.youtube.com/@kei_yunagi",
+      },
+      {
+        platform: "twitter",
+        url: "https://x.com/Kei_Yunagi",
+      },
+    ],
+  },
 ] as const satisfies readonly Person[];
 
 const personsByName = Object.fromEntries(
